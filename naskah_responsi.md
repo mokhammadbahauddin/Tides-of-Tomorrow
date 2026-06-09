@@ -48,4 +48,17 @@ Nantinya di produk akhir (Final Build):
 "Demikian rancangan proyek *Tides of Tomorrow*. Terima kasih."
 
 ---
+
+## 5. Pemilihan Tech Stack (Teknologi yang Digunakan)
+**[Tutup presentasi dengan meyakinkan soal kemampuan teknis]**
+
+"Untuk merealisasikan pengalaman interaktif yang kompleks ini, saya tidak menggunakan alat *website builder* instan. Proyek ini dibangun penuh menggunakan tumpukan teknologi (Tech Stack) modern standar industri:
+1. **React.js & TypeScript:** Sebagai fondasi arsitektur aplikasi (*Single Page Application*) agar transisi halaman cepat, kode dapat dikelola dengan ketat, dan meminimalisir *runtime error* saat memproses ribuan baris data.
+2. **D3.js (Data-Driven Documents):** Ini adalah *engine* visualisasi utama saya. Berbeda dengan pustaka grafik *template* (seperti Chart.js/Highcharts), D3.js memungkinkan saya memanipulasi vektor matematika secara absolut. Ini menjamin akurasi representasi data dan memberi saya kebebasan membuat grafik khusus (custom) yang unik dan inovatif.
+3. **GSAP & ScrollTrigger:** Saya mengandalkan GreenSock Animation Platform untuk mengatur ritme *Scrollytelling*. Animasi perubahan grafik dan narasi akan terikat secara matematis dengan *scroll wheel* pengguna, memberikan kontrol penuh pada ritme cerita.
+4. **Tailwind CSS:** Untuk membangun antarmuka *glassmorphism* yang gelap (*dark theme*) dan modern, memastikan desain tetap elegan, mendebarkan, dan responsif di seluruh ukuran layar."
+
+"Sekali lagi, terima kasih atas perhatian Bapak/Ibu. Itulah rancangan arsitektur *Tides of Tomorrow*."
+
+---
 *(Catatan: Anda bisa membuka file `responsi_prototype.html` di browser biasa dan melakukan presentasi sambil membaca panduan di atas!)*
