@@ -76,12 +76,15 @@ export default function PacificGlobe() {
       context.lineWidth = 1;
       context.stroke();
 
-      // Landmasses
+      // Landmasses (Global Emissions - Lava Red)
       if (land) {
         context.beginPath();
         path(land);
-        context.fillStyle = 'rgba(168, 178, 209, 0.15)'; // dim land
+        context.shadowBlur = 20;
+        context.shadowColor = 'rgba(230, 57, 70, 0.8)';
+        context.fillStyle = 'rgba(230, 57, 70, 0.7)'; // Ominous Lava Red
         context.fill();
+        context.shadowBlur = 0; // reset for next shapes
       }
 
       // Borders

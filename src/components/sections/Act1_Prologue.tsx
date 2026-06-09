@@ -3,7 +3,6 @@ import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { Leaf } from 'lucide-react';
 import PacificGlobe from '@/components/charts/PacificGlobe';
-import CarbonLedgerChart from '@/components/charts/CarbonLedgerChart';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -85,18 +84,15 @@ export default function Act1_Prologue() {
           </p>
         </div>
 
-        {/* RIGHT COLUMN: Combined Visuals */}
-        <div className="w-full md:w-1/2 md:h-screen md:sticky top-0 flex flex-col justify-center items-center py-12 md:py-0 md:pl-12 z-0">
+        {/* RIGHT COLUMN: The Crimson Globe */}
+        <div className="w-full md:w-1/2 md:h-screen md:sticky top-0 flex flex-col justify-center items-center py-12 md:py-0 md:pl-12 z-0 md:translate-x-16 lg:translate-x-24">
           <div className="w-full relative h-[70vh] flex items-center justify-center">
             
-            {/* Background: Pacific Globe */}
-            <div className="absolute inset-0 pointer-events-auto flex items-center justify-center opacity-80 mix-blend-screen scale-110">
+            {/* The Pacific Globe (Now acting as the Carbon Ledger) */}
+            <div className="absolute inset-0 pointer-events-auto flex items-center justify-center scale-125 opacity-90 drop-shadow-[0_0_50px_rgba(230,57,70,0.2)]">
               <PacificGlobe />
             </div>
 
-            {/* Foreground: Carbon Ledger Chart (HUD Overlay) */}
-            <div className="absolute bottom-0 right-0 md:-right-8 w-full max-w-sm z-10 drop-shadow-2xl translate-y-12 md:translate-y-0">
-              <CarbonLedgerChart isActive={true} />
             </div>
 
           </div>
