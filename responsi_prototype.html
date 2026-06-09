@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tides of Tomorrow - Prototype Draft</title>
+    <style>
+        /* Base Cinematic Theme */
+        :root {
+            --ocean-abyss: #020c1b;
+            --text-light: #e6f1ff;
+            --text-muted: #a8b2d1;
+            --teal: #64ffda;
+            --alert-red: #e63946;
+        }
+        body {
+            background-color: var(--ocean-abyss);
+            color: var(--text-muted);
+            font-family: 'Inter', system-ui, sans-serif;
+            margin: 0;
+            padding: 0;
+            line-height: 1.7;
+        }
+        h1, h2, h3 {
+            color: var(--text-light);
+            font-family: 'Georgia', serif; /* Simulating Display Font */
+            margin-top: 0;
+        }
+        
+        /* Glassmorphism Classes */
+        .glass-card {
+            background: rgba(10, 25, 47, 0.7);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(100, 255, 218, 0.1);
+            border-radius: 12px;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 2rem;
+            position: relative;
+        }
+        .hero h1 {
+            font-size: 5rem;
+            margin-bottom: 1.5rem;
+            font-weight: bold;
+        }
+        .hero p {
+            font-size: 1.25rem;
+            max-width: 600px;
+        }
+
+        /* Main Split Layout */
+        .act-container {
+            position: relative;
+            width: 100%;
+            max-width: 1600px;
+            margin: 0 auto;
+            display: flex;
+            padding: 0 3rem;
+            box-sizing: border-box;
+        }
+        
+        .act-container.reverse {
+            flex-direction: row-reverse;
+        }
+        
+        /* Left Column (Narrative) - 40% */
+        .narrative-col {
+            width: 41.666667%; /* 5/12 */
+            padding-top: 30vh;
+            padding-bottom: 30vh;
+            display: flex;
+            flex-direction: column;
+            gap: 70vh; /* Spacing between trigger blocks */
+            z-index: 10;
+        }
+        .trigger-block {
+            padding: 2.5rem;
+        }
+
+        /* Right Column (Sticky Chart) - 60% */
+        .chart-col {
+            width: 58.333333%; /* 7/12 */
+            height: 100vh;
+            position: sticky;
+            top: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding-left: 3rem;
+            z-index: 0;
+            box-sizing: border-box;
+        }
+
+        .chart-placeholder {
+            width: 100%;
+            max-width: 800px;
+            height: 500px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 2rem;
+            box-sizing: border-box;
+        }
+        .chart-placeholder .box {
+            width: 100%;
+            height: 100%;
+            border: 2px dashed var(--teal);
+            border-radius: 8px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background: rgba(100, 255, 218, 0.03);
+        }
+        .chart-placeholder h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+        .chart-placeholder p {
+            color: var(--teal);
+            font-family: monospace;
+        }
+
+        .draft-badge {
+            position: fixed;
+            top: 1rem;
+            right: 1rem;
+            background: var(--alert-red);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            font-family: monospace;
+            font-weight: bold;
+            z-index: 100;
+            letter-spacing: 1px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="draft-badge">PROTOTYPE DRAFT V1.0</div>
+
+    <!-- Hero Section -->
+    <header class="hero">
+        <h1>Tides of Tomorrow</h1>
+        <p>A narrative data visualization exploring the climate injustice faced by the Pacific Islands.</p>
+        <br><br>
+        <div class="glass-card" style="padding: 1rem 2rem; border-color: var(--alert-red);">
+            <span style="font-family: monospace; color: var(--alert-red);">[Interactive 3D WebGL Island rendering disabled for prototype phase]</span>
+        </div>
+    </header>
+
+    <!-- ACT 1 -->
+    <section class="act-container">
+        <div class="narrative-col">
+            <div class="trigger-block glass-card">
+                <h2>Act I: The Carbon Ledger</h2>
+                <p>Negara-negara Kepulauan Pasifik adalah penjaga lautan yang membentang lebih dari 15% permukaan bumi. Namun, seluruh 22 negara dan teritori ini secara kolektif menyumbang kurang dari <strong>0.03% emisi gas rumah kaca global</strong>.</p>
+                <p>Mereka hampir tidak berkontribusi apa-apa terhadap krisis iklim. Namun ironisnya, mereka ditempatkan di garis depan kehancuran. Ini bukan sekadar bencana alam; ini adalah hutang karbon global yang dibayar dengan tanah air mereka.</p>
+            </div>
+        </div>
+        <div class="chart-col">
+            <div class="chart-placeholder glass-card">
+                <div class="box">
+                    <h3>[Draft: Interactive 3D Globe]</h3>
+                    <p>Orthographic Projection highlighting the Pacific Islands</p>
+                    <small style="margin-top: 1rem;">Dataset: GeoJSON World 110m / SPREP</small>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ACT 2 -->
+    <section class="act-container">
+        <div class="narrative-col">
+            <div class="trigger-block glass-card" style="border-left: 4px solid #f59e0b;">
+                <h2>Act II: The Thermal Engine</h2>
+                <p>Lautan adalah 'heat sink' terhebat bumi, menyerap 93% panas berlebih akibat ulah manusia. Di Pasifik, suhu permukaan laut telah melampaui batas kritis +1.2°C.</p>
+            </div>
+            <div class="trigger-block glass-card" style="border-left: 4px solid #f59e0b;">
+                <h3>The Graveyard of Reefs</h3>
+                <p>Di bawah air, ini adalah neraka. Anomali panas memicu pemutihan terumbu karang massal (coral bleaching), menghancurkan ekosistem berusia ribuan tahun hanya dalam hitungan minggu.</p>
+            </div>
+        </div>
+        <div class="chart-col">
+            <div class="chart-placeholder glass-card">
+                <div class="box">
+                    <h3>[Draft: Interactive Line Chart]</h3>
+                    <p>Mean Sea Surface Temperature Anomalies</p>
+                    <small style="margin-top: 1rem;">Dataset: PDH.Stat / SPC</small>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ACT 3 -->
+    <section class="act-container reverse">
+        <div class="narrative-col">
+            <div class="trigger-block glass-card" style="border-left: 4px solid #3b82f6;">
+                <h2>Act III: The Encroaching Waters</h2>
+                <p>Suhu panas membuat air laut memuai (thermal expansion) dan mencairkan es kutub. Hasilnya? Kenaikan permukaan air laut rata-rata 4.5mm per tahun di area tropis Pasifik.</p>
+            </div>
+            <div class="trigger-block glass-card" style="border-left: 4px solid #3b82f6;">
+                <h3>The Loss of Sovereignty</h3>
+                <p>Bagi negara atol seperti Tuvalu dan Kiribati, air laut bukan sekadar menenggelamkan garis pantai—ia menyusup dan meracuni sumber air tanah air tawar mereka yang sangat terbatas.</p>
+            </div>
+        </div>
+        <div class="chart-col" style="padding-left: 0; padding-right: 3rem;">
+            <div class="chart-placeholder glass-card">
+                <div class="box">
+                    <h3>[Draft: Flood Area Chart]</h3>
+                    <p>Sea Level Anomalies (Inundation Thresholds)</p>
+                    <small style="margin-top: 1rem;">Dataset: PDH.Stat / SPC</small>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ACT 4 -->
+    <section class="act-container">
+        <div class="narrative-col">
+            <div class="trigger-block glass-card" style="border-left: 4px solid #8b5cf6;">
+                <h2>Act IV: Atmospheric Fracture</h2>
+                <p>Panas yang berlebih mengacaukan mesin sirkulasi atmosfer di atas Pasifik. Pergeseran zona konvergensi memicu anomali cuaca yang radikal.</p>
+            </div>
+            <div class="trigger-block glass-card" style="border-left: 4px solid #8b5cf6;">
+                <h3>Droughts and Deluges</h3>
+                <p>Curah hujan tidak lagi bisa diprediksi. Sebagian wilayah mengalami kekeringan ekstrem berbulan-bulan, sementara wilayah lain dihantam siklon dan banjir bandang yang menghanyutkan infrastruktur vital.</p>
+            </div>
+        </div>
+        <div class="chart-col">
+            <div class="chart-placeholder glass-card">
+                <div class="box">
+                    <h3>[Draft: Streamgraph / Diverging Bar Chart]</h3>
+                    <p>Rainfall Anomalies (Droughts vs Floods)</p>
+                    <small style="margin-top: 1rem;">Dataset: PDH.Stat</small>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ACT 5 -->
+    <section class="act-container reverse">
+        <div class="narrative-col">
+            <div class="trigger-block glass-card" style="border-left: 4px solid #10b981;">
+                <h2>Act V: The Empty Harvest</h2>
+                <p>Laut yang naik meracuni tanah (salinisasi), curah hujan ekstrem merendam ladang. Dampak ekologis akhirnya menghantam ketahanan pangan.</p>
+            </div>
+            <div class="trigger-block glass-card" style="border-left: 4px solid #10b981;">
+                <h3>Food Security in Crisis</h3>
+                <p>Taro (Talas), makanan pokok yang telah menghidupi generasi Pasifik, mengalami penurunan drastis. Penurunan panen memaksa mereka bergantung pada makanan impor olahan yang memicu krisis kesehatan baru.</p>
+            </div>
+        </div>
+        <div class="chart-col" style="padding-left: 0; padding-right: 3rem;">
+            <div class="chart-placeholder glass-card">
+                <div class="box">
+                    <h3>[Draft: Grouped Bar Chart]</h3>
+                    <p>Crop Yield - Disaggregated (Taro Production)</p>
+                    <small style="margin-top: 1rem;">Dataset: FAO / PDH.Stat</small>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ACT 6 -->
+    <section class="act-container">
+        <div class="narrative-col">
+            <div class="trigger-block glass-card" style="border-left: 4px solid #ef4444;">
+                <h2>Act VI: The Unpaid Debt</h2>
+                <p>Untuk bertahan hidup, pulau-pulau ini harus membangun dinding laut (seawalls), memindahkan desa, dan mencari sumber air bersih baru. Siapa yang menanggung biayanya?</p>
+            </div>
+            <div class="trigger-block glass-card" style="border-left: 4px solid #ef4444;">
+                <h3>The Climate Tax</h3>
+                <p>Pemerintah lokal seperti Fiji terpaksa membebani rakyatnya sendiri dengan Pajak Lingkungan (ECAL) untuk mendanai adaptasi iklim. Pajak untuk bertahan hidup dari krisis yang diciptakan oleh benua lain.</p>
+            </div>
+        </div>
+        <div class="chart-col">
+            <div class="chart-placeholder glass-card">
+                <div class="box">
+                    <h3>[Draft: Stacked Area Chart]</h3>
+                    <p>Environmental Taxes as % of GDP</p>
+                    <small style="margin-top: 1rem;">Dataset: PDH.Stat</small>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ACT 7 -->
+    <section class="act-container" style="padding-bottom: 20vh;">
+        <div class="narrative-col" style="width: 100%; align-items: center; text-align: center;">
+            <div class="trigger-block glass-card" style="max-width: 800px; padding: 4rem;">
+                <h2 style="font-size: 3rem; margin-bottom: 1rem;">Act VII: Connecting the Crises</h2>
+                <p>Semua penderitaan ini saling terkait. Gunakan alat di bawah ini untuk mengeksplorasi secara langsung bagaimana naiknya Suhu ekuator secara matematis berbanding lurus dengan gagalnya Hasil Panen, atau bagaimana Kenaikan Laut memaksa Pajak dinaikkan.</p>
+                <br>
+                <div class="box" style="border: 2px dashed var(--teal); padding: 4rem; border-radius: 8px; background: rgba(100,255,218,0.03);">
+                    <h3 style="color: var(--teal); margin-bottom: 1rem;">[Draft: Synthesis Explorer]</h3>
+                    <p style="font-family: monospace;">Interactive Scatterplot with Brushing (Metric A vs Metric B)</p>
+                    <small>Feature to be developed strictly using D3.js</small>
+                </div>
+            </div>
+        </div>
+    </section>
+
+</body>
+</html>
