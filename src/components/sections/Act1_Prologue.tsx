@@ -114,7 +114,7 @@ export default function Act1_Prologue() {
 
             {/* Step 1 Visual: The Carbon Ledger */}
             <div className={`absolute inset-0 flex items-center justify-center transition-opacity duration-1000 ${activeStep === 1 ? 'opacity-100 z-10' : 'opacity-0 z-0'}`}>
-              <CarbonLedgerChart />
+              <CarbonLedgerChart isActive={activeStep === 1} />
             </div>
 
           </div>

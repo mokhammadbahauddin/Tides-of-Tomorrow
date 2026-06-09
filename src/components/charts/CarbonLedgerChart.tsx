@@ -1,7 +1,7 @@
 import { useEffect, useRef } from 'react';
 import gsap from 'gsap';
 
-export default function CarbonLedgerChart() {
+export default function CarbonLedgerChart({ isActive = true }: { isActive?: boolean }) {
   const containerRef = useRef<HTMLDivElement>(null);
   const redBoxRef = useRef<HTMLDivElement>(null);
   const blueLineRef = useRef<HTMLDivElement>(null);
@@ -9,22 +9,27 @@ export default function CarbonLedgerChart() {
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      // Initial state
-      gsap.set(redBoxRef.current, { scaleY: 0, transformOrigin: 'bottom' });
-      gsap.set(blueLineRef.current, { scaleX: 0, opacity: 0, transformOrigin: 'left' });
-      gsap.set(labelRef.current, { opacity: 0, y: 20 });
-
-      // Animation timeline
-      const tl = gsap.timeline({ delay: 0.2 });
-      
-      tl.to(blueLineRef.current, { scaleX: 1, opacity: 1, duration: 1, ease: 'power2.out' })
-        .to(labelRef.current, { opacity: 1, y: 0, duration: 0.8 }, "-=0.5")
-        .to(redBoxRef.current, { scaleY: 1, duration: 1.5, ease: 'power4.out' }, "+=0.5");
+      if (isActive) {
+        // Animation timeline
+        gsap.set(redBoxRef.current, { scaleY: 0, transformOrigin: 'bottom' });
+        gsap.set(blueLineRef.current, { scaleX: 0, opacity: 0, transformOrigin: 'left' });
+        gsap.set(labelRef.current, { opacity: 0, y: 20 });
         
+        const tl = gsap.timeline({ delay: 0.2 });
+        
+        tl.to(blueLineRef.current, { scaleX: 1, opacity: 1, duration: 1, ease: 'power2.out' })
+          .to(labelRef.current, { opacity: 1, y: 0, duration: 0.8 }, "-=0.5")
+          .to(redBoxRef.current, { scaleY: 1, duration: 1.5, ease: 'power4.out' }, "+=0.5");
+      } else {
+        // Reset state
+        gsap.set(redBoxRef.current, { scaleY: 0 });
+        gsap.set(blueLineRef.current, { scaleX: 0, opacity: 0 });
+        gsap.set(labelRef.current, { opacity: 0, y: 20 });
+      }
     }, containerRef);
 
     return () => ctx.revert();
-  }, []);
+  }, [isActive]);
 
   return (
     <div ref={containerRef} className="w-full max-w-lg aspect-square relative flex flex-col items-center justify-center p-4">
