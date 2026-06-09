@@ -1,0 +1,57 @@
+export interface TemperatureData {
+  year: number;
+  anomaly: number;
+}
+
+export const temperatureData: TemperatureData[] = [
+  { year: 1980, anomaly: -0.08 },
+  { year: 1981, anomaly: -0.05 },
+  { year: 1982, anomaly: -0.02 },
+  { year: 1983, anomaly: 0.18 },
+  { year: 1984, anomaly: 0.02 },
+  { year: 1985, anomaly: -0.03 },
+  { year: 1986, anomaly: 0.01 },
+  { year: 1987, anomaly: 0.15 },
+  { year: 1988, anomaly: 0.22 },
+  { year: 1989, anomaly: 0.08 },
+  { year: 1990, anomaly: 0.18 },
+  { year: 1991, anomaly: 0.14 },
+  { year: 1992, anomaly: 0.05 },
+  { year: 1993, anomaly: 0.09 },
+  { year: 1994, anomaly: 0.16 },
+  { year: 1995, anomaly: 0.28 },
+  { year: 1996, anomaly: 0.12 },
+  { year: 1997, anomaly: 0.35 },
+  { year: 1998, anomaly: 0.52 },
+  { year: 1999, anomaly: 0.25 },
+  { year: 2000, anomaly: 0.18 },
+  { year: 2001, anomaly: 0.32 },
+  { year: 2002, anomaly: 0.38 },
+  { year: 2003, anomaly: 0.35 },
+  { year: 2004, anomaly: 0.28 },
+  { year: 2005, anomaly: 0.35 },
+  { year: 2006, anomaly: 0.32 },
+  { year: 2007, anomaly: 0.28 },
+  { year: 2008, anomaly: 0.18 },
+  { year: 2009, anomaly: 0.32 },
+  { year: 2010, anomaly: 0.35 },
+  { year: 2011, anomaly: 0.22 },
+  { year: 2012, anomaly: 0.28 },
+  { year: 2013, anomaly: 0.38 },
+  { year: 2014, anomaly: 0.42 },
+  { year: 2015, anomaly: 0.58 },
+  { year: 2016, anomaly: 0.72 },
+  { year: 2017, anomaly: 0.48 },
+  { year: 2018, anomaly: 0.42 },
+  { year: 2019, anomaly: 0.52 },
+  { year: 2020, anomaly: 0.55 },
+  { year: 2021, anomaly: 0.38 },
+  { year: 2022, anomaly: 0.42 },
+  { year: 2023, anomaly: 0.68 },
+];
+
+export const temperatureAnnotations = [
+  { year: 1998, text: "1998 — First major El Nino devastates Pacific coral reefs" },
+  { year: 2016, text: "2016 — Back-to-back bleaching kills 50% of Great Barrier Reef coral" },
+  { year: 2023, text: "2023 — Pacific warming exceeds global average" },
+];

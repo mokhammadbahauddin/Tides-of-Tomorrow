@@ -1,0 +1,450 @@
+[
+  {
+    "year": 1961,
+    "taro": 6.59,
+    "sweetPotato": 9.67,
+    "banana": 5.31,
+    "cocoa": 0.45
+  },
+  {
+    "year": 1962,
+    "taro": 6.61,
+    "sweetPotato": 9.48,
+    "banana": 5.21,
+    "cocoa": 0.46
+  },
+  {
+    "year": 1963,
+    "taro": 6.61,
+    "sweetPotato": 9.5,
+    "banana": 5.31,
+    "cocoa": 0.48
+  },
+  {
+    "year": 1964,
+    "taro": 6.64,
+    "sweetPotato": 9.63,
+    "banana": 5.37,
+    "cocoa": 0.46
+  },
+  {
+    "year": 1965,
+    "taro": 6.66,
+    "sweetPotato": 10.33,
+    "banana": 5.21,
+    "cocoa": 0.47
+  },
+  {
+    "year": 1966,
+    "taro": 6.67,
+    "sweetPotato": 8.93,
+    "banana": 5.59,
+    "cocoa": 0.46
+  },
+  {
+    "year": 1967,
+    "taro": 6.63,
+    "sweetPotato": 9.67,
+    "banana": 5.76,
+    "cocoa": 0.47
+  },
+  {
+    "year": 1968,
+    "taro": 6.7,
+    "sweetPotato": 10.68,
+    "banana": 5.83,
+    "cocoa": 0.46
+  },
+  {
+    "year": 1969,
+    "taro": 6.81,
+    "sweetPotato": 9.39,
+    "banana": 6.16,
+    "cocoa": 0.48
+  },
+  {
+    "year": 1970,
+    "taro": 6.98,
+    "sweetPotato": 10.19,
+    "banana": 6.26,
+    "cocoa": 0.44
+  },
+  {
+    "year": 1971,
+    "taro": 6.98,
+    "sweetPotato": 10.87,
+    "banana": 6.51,
+    "cocoa": 0.44
+  },
+  {
+    "year": 1972,
+    "taro": 7.21,
+    "sweetPotato": 11.05,
+    "banana": 5.95,
+    "cocoa": 0.42
+  },
+  {
+    "year": 1973,
+    "taro": 7.19,
+    "sweetPotato": 9.58,
+    "banana": 6.57,
+    "cocoa": 0.38
+  },
+  {
+    "year": 1974,
+    "taro": 7.0,
+    "sweetPotato": 9.96,
+    "banana": 6.45,
+    "cocoa": 0.42
+  },
+  {
+    "year": 1975,
+    "taro": 7.1,
+    "sweetPotato": 11.51,
+    "banana": 6.72,
+    "cocoa": 0.41
+  },
+  {
+    "year": 1976,
+    "taro": 6.96,
+    "sweetPotato": 10.77,
+    "banana": 6.25,
+    "cocoa": 0.4
+  },
+  {
+    "year": 1977,
+    "taro": 7.12,
+    "sweetPotato": 11.82,
+    "banana": 5.91,
+    "cocoa": 0.42
+  },
+  {
+    "year": 1978,
+    "taro": 7.21,
+    "sweetPotato": 12.09,
+    "banana": 5.95,
+    "cocoa": 0.41
+  },
+  {
+    "year": 1979,
+    "taro": 7.39,
+    "sweetPotato": 12.15,
+    "banana": 6.09,
+    "cocoa": 0.43
+  },
+  {
+    "year": 1980,
+    "taro": 7.62,
+    "sweetPotato": 12.0,
+    "banana": 6.79,
+    "cocoa": 0.38
+  },
+  {
+    "year": 1981,
+    "taro": 7.78,
+    "sweetPotato": 12.04,
+    "banana": 6.85,
+    "cocoa": 0.4
+  },
+  {
+    "year": 1982,
+    "taro": 7.93,
+    "sweetPotato": 12.21,
+    "banana": 6.62,
+    "cocoa": 0.33
+  },
+  {
+    "year": 1983,
+    "taro": 8.08,
+    "sweetPotato": 12.43,
+    "banana": 6.22,
+    "cocoa": 0.36
+  },
+  {
+    "year": 1984,
+    "taro": 7.96,
+    "sweetPotato": 12.57,
+    "banana": 6.67,
+    "cocoa": 0.39
+  },
+  {
+    "year": 1985,
+    "taro": 8.03,
+    "sweetPotato": 12.67,
+    "banana": 7.02,
+    "cocoa": 0.38
+  },
+  {
+    "year": 1986,
+    "taro": 8.11,
+    "sweetPotato": 12.65,
+    "banana": 6.23,
+    "cocoa": 0.38
+  },
+  {
+    "year": 1987,
+    "taro": 8.2,
+    "sweetPotato": 14.18,
+    "banana": 6.06,
+    "cocoa": 0.4
+  },
+  {
+    "year": 1988,
+    "taro": 8.23,
+    "sweetPotato": 14.36,
+    "banana": 6.1,
+    "cocoa": 0.35
+  },
+  {
+    "year": 1989,
+    "taro": 7.94,
+    "sweetPotato": 13.34,
+    "banana": 6.26,
+    "cocoa": 0.38
+  },
+  {
+    "year": 1990,
+    "taro": 7.14,
+    "sweetPotato": 11.95,
+    "banana": 5.91,
+    "cocoa": 0.35
+  },
+  {
+    "year": 1991,
+    "taro": 7.46,
+    "sweetPotato": 12.9,
+    "banana": 6.8,
+    "cocoa": 0.37
+  },
+  {
+    "year": 1992,
+    "taro": 7.11,
+    "sweetPotato": 13.32,
+    "banana": 7.07,
+    "cocoa": 0.35
+  },
+  {
+    "year": 1993,
+    "taro": 7.27,
+    "sweetPotato": 12.61,
+    "banana": 6.72,
+    "cocoa": 0.37
+  },
+  {
+    "year": 1994,
+    "taro": 7.09,
+    "sweetPotato": 11.75,
+    "banana": 6.42,
+    "cocoa": 0.32
+  },
+  {
+    "year": 1995,
+    "taro": 7.27,
+    "sweetPotato": 11.37,
+    "banana": 6.38,
+    "cocoa": 0.36
+  },
+  {
+    "year": 1996,
+    "taro": 7.49,
+    "sweetPotato": 11.28,
+    "banana": 6.24,
+    "cocoa": 0.36
+  },
+  {
+    "year": 1997,
+    "taro": 7.63,
+    "sweetPotato": 10.69,
+    "banana": 6.14,
+    "cocoa": 0.38
+  },
+  {
+    "year": 1998,
+    "taro": 6.94,
+    "sweetPotato": 11.67,
+    "banana": 6.25,
+    "cocoa": 0.35
+  },
+  {
+    "year": 1999,
+    "taro": 7.62,
+    "sweetPotato": 11.88,
+    "banana": 6.21,
+    "cocoa": 0.34
+  },
+  {
+    "year": 2000,
+    "taro": 7.48,
+    "sweetPotato": 11.64,
+    "banana": 6.16,
+    "cocoa": 0.34
+  },
+  {
+    "year": 2001,
+    "taro": 7.58,
+    "sweetPotato": 11.68,
+    "banana": 6.18,
+    "cocoa": 0.33
+  },
+  {
+    "year": 2002,
+    "taro": 7.44,
+    "sweetPotato": 11.64,
+    "banana": 6.17,
+    "cocoa": 0.34
+  },
+  {
+    "year": 2003,
+    "taro": 7.54,
+    "sweetPotato": 11.59,
+    "banana": 6.13,
+    "cocoa": 0.36
+  },
+  {
+    "year": 2004,
+    "taro": 7.92,
+    "sweetPotato": 10.95,
+    "banana": 6.1,
+    "cocoa": 0.34
+  },
+  {
+    "year": 2005,
+    "taro": 7.77,
+    "sweetPotato": 11.06,
+    "banana": 6.17,
+    "cocoa": 0.34
+  },
+  {
+    "year": 2006,
+    "taro": 8.26,
+    "sweetPotato": 11.22,
+    "banana": 6.54,
+    "cocoa": 0.33
+  },
+  {
+    "year": 2007,
+    "taro": 7.98,
+    "sweetPotato": 10.53,
+    "banana": 6.31,
+    "cocoa": 0.32
+  },
+  {
+    "year": 2008,
+    "taro": 7.79,
+    "sweetPotato": 10.41,
+    "banana": 6.02,
+    "cocoa": 0.35
+  },
+  {
+    "year": 2009,
+    "taro": 8.25,
+    "sweetPotato": 11.9,
+    "banana": 6.09,
+    "cocoa": 0.35
+  },
+  {
+    "year": 2010,
+    "taro": 7.95,
+    "sweetPotato": 11.43,
+    "banana": 6.1,
+    "cocoa": 0.34
+  },
+  {
+    "year": 2011,
+    "taro": 7.7,
+    "sweetPotato": 11.37,
+    "banana": 6.18,
+    "cocoa": 0.34
+  },
+  {
+    "year": 2012,
+    "taro": 7.66,
+    "sweetPotato": 11.15,
+    "banana": 6.13,
+    "cocoa": 0.34
+  },
+  {
+    "year": 2013,
+    "taro": 7.3,
+    "sweetPotato": 11.24,
+    "banana": 6.23,
+    "cocoa": 0.33
+  },
+  {
+    "year": 2014,
+    "taro": 7.4,
+    "sweetPotato": 11.24,
+    "banana": 6.23,
+    "cocoa": 0.33
+  },
+  {
+    "year": 2015,
+    "taro": 8.76,
+    "sweetPotato": 11.27,
+    "banana": 6.42,
+    "cocoa": 0.34
+  },
+  {
+    "year": 2016,
+    "taro": 8.63,
+    "sweetPotato": 11.35,
+    "banana": 6.48,
+    "cocoa": 0.37
+  },
+  {
+    "year": 2017,
+    "taro": 8.53,
+    "sweetPotato": 11.19,
+    "banana": 6.6,
+    "cocoa": 0.65
+  },
+  {
+    "year": 2018,
+    "taro": 8.49,
+    "sweetPotato": 10.71,
+    "banana": 6.68,
+    "cocoa": 0.65
+  },
+  {
+    "year": 2019,
+    "taro": 8.59,
+    "sweetPotato": 10.74,
+    "banana": 6.82,
+    "cocoa": 0.64
+  },
+  {
+    "year": 2020,
+    "taro": 7.77,
+    "sweetPotato": 10.56,
+    "banana": 6.57,
+    "cocoa": 0.65
+  },
+  {
+    "year": 2021,
+    "taro": 8.21,
+    "sweetPotato": 10.48,
+    "banana": 6.6,
+    "cocoa": 0.65
+  },
+  {
+    "year": 2022,
+    "taro": 9.27,
+    "sweetPotato": 10.23,
+    "banana": 7.53,
+    "cocoa": 0.65
+  },
+  {
+    "year": 2023,
+    "taro": 8.84,
+    "sweetPotato": 10.21,
+    "banana": 7.54,
+    "cocoa": 0.65
+  },
+  {
+    "year": 2024,
+    "taro": 8.6,
+    "sweetPotato": 10.32,
+    "banana": 7.55,
+    "cocoa": 0.73
+  }
+]

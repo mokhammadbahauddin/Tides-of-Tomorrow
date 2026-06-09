@@ -1,0 +1,1058 @@
+[
+  {
+    "year": 1850,
+    "anomaly": -0.25,
+    "isElNino": false,
+    "elNinoStrength": "none"
+  },
+  {
+    "year": 1851,
+    "anomaly": 0.0,
+    "isElNino": false,
+    "elNinoStrength": "none"
+  },
+  {
+    "year": 1852,
+    "anomaly": -0.2,
+    "isElNino": false,
+    "elNinoStrength": "none"
+  },
+  {
+    "year": 1853,
+    "anomaly": -0.25,
+    "isElNino": false,
+    "elNinoStrength": "none"
+  },
+  {
+    "year": 1854,
+    "anomaly": -0.6,
+    "isElNino": false,
+    "elNinoStrength": "none"
+  },
+  {
+    "year": 1855,
+    "anomaly": -0.5,
+    "isElNino": false,
+    "elNinoStrength": "none"
+  },
+  {
+    "year": 1856,
+    "anomaly": -0.65,
+    "isElNino": false,
+    "elNinoStrength": "none"
+  },
+  {
+    "year": 1857,
+    "anomaly": 0.05,
+    "isElNino": false,
+    "elNinoStrength": "none"
+  },
+  {
+    "year": 1858,
+    "anomaly": -0.3,
+    "isElNino": false,
+    "elNinoStrength": "none"
+  },
+  {
+    "year": 1859,
+    "anomaly": -0.1,
+    "isElNino": false,
+    "elNinoStrength": "none"
+  },
+  {
+    "year": 1860,
+    "anomaly": -0.2,
+    "isElNino": false,
+    "elNinoStrength": "none"
+  },
+  {
+    "year": 1861,
+    "anomaly": -0.3,
+    "isElNino": false,
+    "elNinoStrength": "none"
+  },
+  {
+    "year": 1862,
+    "anomaly": -0.15,
+    "isElNino": false,
+    "elNinoStrength": "none"
+  },
+  {
+    "year": 1863,
+    "anomaly": 0.05,
+    "isElNino": false,
+    "elNinoStrength": "none"
+  },
+  {
+    "year": 1864,
+    "anomaly": 0.1,
+    "isElNino": false,
+    "elNinoStrength": "none"
+  },
+  {
+    "year": 1865,
+    "anomaly": -0.05,
+    "isElNino": false,
+    "elNinoStrength": "none"
+  },
+  {
+    "year": 1866,
+    "anomaly": 0.0,
+    "isElNino": false,
+    "elNinoStrength": "none"
+  },
+  {
+    "year": 1867,
+    "anomaly": 0.05,
+    "isElNino": false,
+    "elNinoStrength": "none"
+  },
+  {
+    "year": 1868,
+    "anomaly": -0.1,
+    "isElNino": false,
+    "elNinoStrength": "none"
+  },
+  {
+    "year": 1869,
+    "anomaly": 0.0,
+    "isElNino": false,
+    "elNinoStrength": "none"
+  },
+  {
+    "year": 1870,
+    "anomaly": 0.15,
+    "isElNino": false,
+    "elNinoStrength": "none"
+  },
+  {
+    "year": 1871,
+    "anomaly": -0.05,
+    "isElNino": false,
+    "elNinoStrength": "none"
+  },
+  {
+    "year": 1872,
+    "anomaly": 0.1,
+    "isElNino": false,
+    "elNinoStrength": "none"
+  },
+  {
+    "year": 1873,
+    "anomaly": 0.05,
+    "isElNino": false,
+    "elNinoStrength": "none"
+  },
+  {
+    "year": 1874,
+    "anomaly": 0.05,
+    "isElNino": false,
+    "elNinoStrength": "none"
+  },
+  {
+    "year": 1875,
+    "anomaly": -0.05,
+    "isElNino": false,
+    "elNinoStrength": "none"
+  },
+  {
+    "year": 1876,
+    "anomaly": -0.1,
+    "isElNino": false,
+    "elNinoStrength": "none"
+  },
+  {
+    "year": 1877,
+    "anomaly": -0.45,
+    "isElNino": false,
+    "elNinoStrength": "none"
+  },
+  {
+    "year": 1878,
+    "anomaly": -0.15,
+    "isElNino": false,
+    "elNinoStrength": "none"
+  },
+  {
+    "year": 1879,
+    "anomaly": 0.2,
+    "isElNino": false,
+    "elNinoStrength": "none"
+  },
+  {
+    "year": 1880,
+    "anomaly": 0.0,
+    "isElNino": false,
+    "elNinoStrength": "none"
+  },
+  {
+    "year": 1881,
+    "anomaly": -0.1,
+    "isElNino": false,
+    "elNinoStrength": "none"
+  },
+  {
+    "year": 1882,
+    "anomaly": 0.0,
+    "isElNino": false,
+    "elNinoStrength": "none"
+  },
+  {
+    "year": 1883,
+    "anomaly": -0.45,
+    "isElNino": false,
+    "elNinoStrength": "none"
+  },
+  {
+    "year": 1884,
+    "anomaly": -0.8,
+    "isElNino": false,
+    "elNinoStrength": "none"
+  },
+  {
+    "year": 1885,
+    "anomaly": -1.0,
+    "isElNino": false,
+    "elNinoStrength": "none"
+  },
+  {
+    "year": 1886,
+    "anomaly": -0.7,
+    "isElNino": false,
+    "elNinoStrength": "none"
+  },
+  {
+    "year": 1887,
+    "anomaly": -0.45,
+    "isElNino": false,
+    "elNinoStrength": "none"
+  },
+  {
+    "year": 1888,
+    "anomaly": -0.75,
+    "isElNino": false,
+    "elNinoStrength": "none"
+  },
+  {
+    "year": 1889,
+    "anomaly": -0.3,
+    "isElNino": false,
+    "elNinoStrength": "none"
+  },
+  {
+    "year": 1890,
+    "anomaly": -0.15,
+    "isElNino": false,
+    "elNinoStrength": "none"
+  },
+  {
+    "year": 1891,
+    "anomaly": -0.2,
+    "isElNino": false,
+    "elNinoStrength": "none"
+  },
+  {
+    "year": 1892,
+    "anomaly": -0.35,
+    "isElNino": false,
+    "elNinoStrength": "none"
+  },
+  {
+    "year": 1893,
+    "anomaly": 0.2,
+    "isElNino": false,
+    "elNinoStrength": "none"
+  },
+  {
+    "year": 1894,
+    "anomaly": -0.4,
+    "isElNino": false,
+    "elNinoStrength": "none"
+  },
+  {
+    "year": 1895,
+    "anomaly": -0.35,
+    "isElNino": false,
+    "elNinoStrength": "none"
+  },
+  {
+    "year": 1896,
+    "anomaly": -0.35,
+    "isElNino": false,
+    "elNinoStrength": "none"
+  },
+  {
+    "year": 1897,
+    "anomaly": -0.3,
+    "isElNino": false,
+    "elNinoStrength": "none"
+  },
+  {
+    "year": 1898,
+    "anomaly": -0.15,
+    "isElNino": false,
+    "elNinoStrength": "none"
+  },
+  {
+    "year": 1899,
+    "anomaly": -0.25,
+    "isElNino": false,
+    "elNinoStrength": "none"
+  },
+  {
+    "year": 1900,
+    "anomaly": -0.5,
+    "isElNino": false,
+    "elNinoStrength": "none"
+  },
+  {
+    "year": 1901,
+    "anomaly": -0.5,
+    "isElNino": false,
+    "elNinoStrength": "none"
+  },
+  {
+    "year": 1902,
+    "anomaly": -1.0,
+    "isElNino": false,
+    "elNinoStrength": "none"
+  },
+  {
+    "year": 1903,
+    "anomaly": -0.85,
+    "isElNino": false,
+    "elNinoStrength": "none"
+  },
+  {
+    "year": 1904,
+    "anomaly": -0.7,
+    "isElNino": false,
+    "elNinoStrength": "none"
+  },
+  {
+    "year": 1905,
+    "anomaly": -1.05,
+    "isElNino": false,
+    "elNinoStrength": "none"
+  },
+  {
+    "year": 1906,
+    "anomaly": -0.65,
+    "isElNino": false,
+    "elNinoStrength": "none"
+  },
+  {
+    "year": 1907,
+    "anomaly": -0.5,
+    "isElNino": false,
+    "elNinoStrength": "none"
+  },
+  {
+    "year": 1908,
+    "anomaly": -0.55,
+    "isElNino": false,
+    "elNinoStrength": "none"
+  },
+  {
+    "year": 1909,
+    "anomaly": -0.5,
+    "isElNino": false,
+    "elNinoStrength": "none"
+  },
+  {
+    "year": 1910,
+    "anomaly": -0.25,
+    "isElNino": false,
+    "elNinoStrength": "none"
+  },
+  {
+    "year": 1911,
+    "anomaly": -0.6,
+    "isElNino": false,
+    "elNinoStrength": "none"
+  },
+  {
+    "year": 1912,
+    "anomaly": -0.7,
+    "isElNino": false,
+    "elNinoStrength": "none"
+  },
+  {
+    "year": 1913,
+    "anomaly": -0.85,
+    "isElNino": false,
+    "elNinoStrength": "none"
+  },
+  {
+    "year": 1914,
+    "anomaly": -0.85,
+    "isElNino": false,
+    "elNinoStrength": "none"
+  },
+  {
+    "year": 1915,
+    "anomaly": -0.45,
+    "isElNino": false,
+    "elNinoStrength": "none"
+  },
+  {
+    "year": 1916,
+    "anomaly": -0.05,
+    "isElNino": false,
+    "elNinoStrength": "none"
+  },
+  {
+    "year": 1917,
+    "anomaly": -0.2,
+    "isElNino": false,
+    "elNinoStrength": "none"
+  },
+  {
+    "year": 1918,
+    "anomaly": -0.55,
+    "isElNino": false,
+    "elNinoStrength": "none"
+  },
+  {
+    "year": 1919,
+    "anomaly": -0.9,
+    "isElNino": false,
+    "elNinoStrength": "none"
+  },
+  {
+    "year": 1920,
+    "anomaly": -0.55,
+    "isElNino": false,
+    "elNinoStrength": "none"
+  },
+  {
+    "year": 1921,
+    "anomaly": -0.55,
+    "isElNino": false,
+    "elNinoStrength": "none"
+  },
+  {
+    "year": 1922,
+    "anomaly": -0.3,
+    "isElNino": false,
+    "elNinoStrength": "none"
+  },
+  {
+    "year": 1923,
+    "anomaly": -0.5,
+    "isElNino": false,
+    "elNinoStrength": "none"
+  },
+  {
+    "year": 1924,
+    "anomaly": -0.15,
+    "isElNino": false,
+    "elNinoStrength": "none"
+  },
+  {
+    "year": 1925,
+    "anomaly": -0.5,
+    "isElNino": false,
+    "elNinoStrength": "none"
+  },
+  {
+    "year": 1926,
+    "anomaly": -0.6,
+    "isElNino": false,
+    "elNinoStrength": "none"
+  },
+  {
+    "year": 1927,
+    "anomaly": -0.35,
+    "isElNino": false,
+    "elNinoStrength": "none"
+  },
+  {
+    "year": 1928,
+    "anomaly": -0.5,
+    "isElNino": false,
+    "elNinoStrength": "none"
+  },
+  {
+    "year": 1929,
+    "anomaly": -0.55,
+    "isElNino": false,
+    "elNinoStrength": "none"
+  },
+  {
+    "year": 1930,
+    "anomaly": -0.85,
+    "isElNino": false,
+    "elNinoStrength": "none"
+  },
+  {
+    "year": 1931,
+    "anomaly": -0.7,
+    "isElNino": false,
+    "elNinoStrength": "none"
+  },
+  {
+    "year": 1932,
+    "anomaly": -0.6,
+    "isElNino": false,
+    "elNinoStrength": "none"
+  },
+  {
+    "year": 1933,
+    "anomaly": -0.4,
+    "isElNino": false,
+    "elNinoStrength": "none"
+  },
+  {
+    "year": 1934,
+    "anomaly": -0.7,
+    "isElNino": false,
+    "elNinoStrength": "none"
+  },
+  {
+    "year": 1935,
+    "anomaly": -0.3,
+    "isElNino": false,
+    "elNinoStrength": "none"
+  },
+  {
+    "year": 1936,
+    "anomaly": -0.35,
+    "isElNino": false,
+    "elNinoStrength": "none"
+  },
+  {
+    "year": 1937,
+    "anomaly": -0.35,
+    "isElNino": false,
+    "elNinoStrength": "none"
+  },
+  {
+    "year": 1938,
+    "anomaly": -0.15,
+    "isElNino": false,
+    "elNinoStrength": "none"
+  },
+  {
+    "year": 1939,
+    "anomaly": -0.5,
+    "isElNino": false,
+    "elNinoStrength": "none"
+  },
+  {
+    "year": 1940,
+    "anomaly": -0.75,
+    "isElNino": false,
+    "elNinoStrength": "none"
+  },
+  {
+    "year": 1941,
+    "anomaly": -0.55,
+    "isElNino": false,
+    "elNinoStrength": "none"
+  },
+  {
+    "year": 1942,
+    "anomaly": -0.35,
+    "isElNino": false,
+    "elNinoStrength": "none"
+  },
+  {
+    "year": 1943,
+    "anomaly": 0.25,
+    "isElNino": false,
+    "elNinoStrength": "none"
+  },
+  {
+    "year": 1944,
+    "anomaly": 0.15,
+    "isElNino": false,
+    "elNinoStrength": "none"
+  },
+  {
+    "year": 1945,
+    "anomaly": 0.0,
+    "isElNino": false,
+    "elNinoStrength": "none"
+  },
+  {
+    "year": 1946,
+    "anomaly": -0.35,
+    "isElNino": false,
+    "elNinoStrength": "none"
+  },
+  {
+    "year": 1947,
+    "anomaly": -0.3,
+    "isElNino": false,
+    "elNinoStrength": "none"
+  },
+  {
+    "year": 1948,
+    "anomaly": -0.25,
+    "isElNino": false,
+    "elNinoStrength": "none"
+  },
+  {
+    "year": 1949,
+    "anomaly": -0.3,
+    "isElNino": false,
+    "elNinoStrength": "none"
+  },
+  {
+    "year": 1950,
+    "anomaly": -0.05,
+    "isElNino": false,
+    "elNinoStrength": "none"
+  },
+  {
+    "year": 1951,
+    "anomaly": -0.25,
+    "isElNino": false,
+    "elNinoStrength": "none"
+  },
+  {
+    "year": 1952,
+    "anomaly": -0.1,
+    "isElNino": false,
+    "elNinoStrength": "none"
+  },
+  {
+    "year": 1953,
+    "anomaly": -0.2,
+    "isElNino": false,
+    "elNinoStrength": "none"
+  },
+  {
+    "year": 1954,
+    "anomaly": -0.35,
+    "isElNino": false,
+    "elNinoStrength": "none"
+  },
+  {
+    "year": 1955,
+    "anomaly": -0.15,
+    "isElNino": false,
+    "elNinoStrength": "none"
+  },
+  {
+    "year": 1956,
+    "anomaly": 0.1,
+    "isElNino": false,
+    "elNinoStrength": "none"
+  },
+  {
+    "year": 1957,
+    "anomaly": -0.35,
+    "isElNino": false,
+    "elNinoStrength": "none"
+  },
+  {
+    "year": 1958,
+    "anomaly": -0.35,
+    "isElNino": false,
+    "elNinoStrength": "none"
+  },
+  {
+    "year": 1959,
+    "anomaly": -0.35,
+    "isElNino": false,
+    "elNinoStrength": "none"
+  },
+  {
+    "year": 1960,
+    "anomaly": -0.15,
+    "isElNino": false,
+    "elNinoStrength": "none"
+  },
+  {
+    "year": 1961,
+    "anomaly": -0.15,
+    "isElNino": false,
+    "elNinoStrength": "none"
+  },
+  {
+    "year": 1962,
+    "anomaly": -0.05,
+    "isElNino": false,
+    "elNinoStrength": "none"
+  },
+  {
+    "year": 1963,
+    "anomaly": -0.25,
+    "isElNino": false,
+    "elNinoStrength": "none"
+  },
+  {
+    "year": 1964,
+    "anomaly": -0.15,
+    "isElNino": false,
+    "elNinoStrength": "none"
+  },
+  {
+    "year": 1965,
+    "anomaly": -0.7,
+    "isElNino": false,
+    "elNinoStrength": "none"
+  },
+  {
+    "year": 1966,
+    "anomaly": -0.5,
+    "isElNino": false,
+    "elNinoStrength": "none"
+  },
+  {
+    "year": 1967,
+    "anomaly": -0.25,
+    "isElNino": false,
+    "elNinoStrength": "none"
+  },
+  {
+    "year": 1968,
+    "anomaly": -0.15,
+    "isElNino": false,
+    "elNinoStrength": "none"
+  },
+  {
+    "year": 1969,
+    "anomaly": -0.3,
+    "isElNino": false,
+    "elNinoStrength": "none"
+  },
+  {
+    "year": 1970,
+    "anomaly": 0.0,
+    "isElNino": false,
+    "elNinoStrength": "none"
+  },
+  {
+    "year": 1971,
+    "anomaly": 0.1,
+    "isElNino": false,
+    "elNinoStrength": "none"
+  },
+  {
+    "year": 1972,
+    "anomaly": -0.25,
+    "isElNino": false,
+    "elNinoStrength": "none"
+  },
+  {
+    "year": 1973,
+    "anomaly": 0.15,
+    "isElNino": false,
+    "elNinoStrength": "none"
+  },
+  {
+    "year": 1974,
+    "anomaly": 0.3,
+    "isElNino": false,
+    "elNinoStrength": "none"
+  },
+  {
+    "year": 1975,
+    "anomaly": 0.2,
+    "isElNino": false,
+    "elNinoStrength": "none"
+  },
+  {
+    "year": 1976,
+    "anomaly": -0.05,
+    "isElNino": false,
+    "elNinoStrength": "none"
+  },
+  {
+    "year": 1977,
+    "anomaly": -0.4,
+    "isElNino": false,
+    "elNinoStrength": "none"
+  },
+  {
+    "year": 1978,
+    "anomaly": -0.3,
+    "isElNino": false,
+    "elNinoStrength": "none"
+  },
+  {
+    "year": 1979,
+    "anomaly": -0.1,
+    "isElNino": false,
+    "elNinoStrength": "none"
+  },
+  {
+    "year": 1980,
+    "anomaly": -0.15,
+    "isElNino": false,
+    "elNinoStrength": "none"
+  },
+  {
+    "year": 1981,
+    "anomaly": -0.05,
+    "isElNino": false,
+    "elNinoStrength": "none"
+  },
+  {
+    "year": 1982,
+    "anomaly": -0.3,
+    "isElNino": false,
+    "elNinoStrength": "none"
+  },
+  {
+    "year": 1983,
+    "anomaly": -0.3,
+    "isElNino": false,
+    "elNinoStrength": "none"
+  },
+  {
+    "year": 1984,
+    "anomaly": 0.1,
+    "isElNino": false,
+    "elNinoStrength": "none"
+  },
+  {
+    "year": 1985,
+    "anomaly": -0.05,
+    "isElNino": false,
+    "elNinoStrength": "none"
+  },
+  {
+    "year": 1986,
+    "anomaly": -0.25,
+    "isElNino": false,
+    "elNinoStrength": "none"
+  },
+  {
+    "year": 1987,
+    "anomaly": -0.4,
+    "isElNino": false,
+    "elNinoStrength": "none"
+  },
+  {
+    "year": 1988,
+    "anomaly": 0.35,
+    "isElNino": false,
+    "elNinoStrength": "none"
+  },
+  {
+    "year": 1989,
+    "anomaly": 0.15,
+    "isElNino": false,
+    "elNinoStrength": "none"
+  },
+  {
+    "year": 1990,
+    "anomaly": 0.15,
+    "isElNino": false,
+    "elNinoStrength": "none"
+  },
+  {
+    "year": 1991,
+    "anomaly": -0.25,
+    "isElNino": false,
+    "elNinoStrength": "none"
+  },
+  {
+    "year": 1992,
+    "anomaly": -0.3,
+    "isElNino": false,
+    "elNinoStrength": "none"
+  },
+  {
+    "year": 1993,
+    "anomaly": -0.5,
+    "isElNino": false,
+    "elNinoStrength": "none"
+  },
+  {
+    "year": 1994,
+    "anomaly": -0.45,
+    "isElNino": false,
+    "elNinoStrength": "none"
+  },
+  {
+    "year": 1995,
+    "anomaly": 0.1,
+    "isElNino": false,
+    "elNinoStrength": "none"
+  },
+  {
+    "year": 1996,
+    "anomaly": 0.2,
+    "isElNino": false,
+    "elNinoStrength": "none"
+  },
+  {
+    "year": 1997,
+    "anomaly": -0.2,
+    "isElNino": false,
+    "elNinoStrength": "none"
+  },
+  {
+    "year": 1998,
+    "anomaly": 0.25,
+    "isElNino": false,
+    "elNinoStrength": "none"
+  },
+  {
+    "year": 1999,
+    "anomaly": 0.35,
+    "isElNino": false,
+    "elNinoStrength": "none"
+  },
+  {
+    "year": 2000,
+    "anomaly": 0.35,
+    "isElNino": false,
+    "elNinoStrength": "none"
+  },
+  {
+    "year": 2001,
+    "anomaly": 0.35,
+    "isElNino": false,
+    "elNinoStrength": "none"
+  },
+  {
+    "year": 2002,
+    "anomaly": 0.25,
+    "isElNino": false,
+    "elNinoStrength": "none"
+  },
+  {
+    "year": 2003,
+    "anomaly": 0.2,
+    "isElNino": false,
+    "elNinoStrength": "none"
+  },
+  {
+    "year": 2004,
+    "anomaly": 0.15,
+    "isElNino": false,
+    "elNinoStrength": "none"
+  },
+  {
+    "year": 2005,
+    "anomaly": 0.3,
+    "isElNino": false,
+    "elNinoStrength": "none"
+  },
+  {
+    "year": 2006,
+    "anomaly": 0.15,
+    "isElNino": false,
+    "elNinoStrength": "none"
+  },
+  {
+    "year": 2007,
+    "anomaly": 0.4,
+    "isElNino": false,
+    "elNinoStrength": "none"
+  },
+  {
+    "year": 2008,
+    "anomaly": 0.5,
+    "isElNino": false,
+    "elNinoStrength": "none"
+  },
+  {
+    "year": 2009,
+    "anomaly": 0.2,
+    "isElNino": false,
+    "elNinoStrength": "none"
+  },
+  {
+    "year": 2010,
+    "anomaly": 0.4,
+    "isElNino": false,
+    "elNinoStrength": "none"
+  },
+  {
+    "year": 2011,
+    "anomaly": 0.55,
+    "isElNino": true,
+    "elNinoStrength": "strong"
+  },
+  {
+    "year": 2012,
+    "anomaly": 0.3,
+    "isElNino": false,
+    "elNinoStrength": "none"
+  },
+  {
+    "year": 2013,
+    "anomaly": 0.45,
+    "isElNino": false,
+    "elNinoStrength": "none"
+  },
+  {
+    "year": 2014,
+    "anomaly": 0.35,
+    "isElNino": false,
+    "elNinoStrength": "none"
+  },
+  {
+    "year": 2015,
+    "anomaly": -0.1,
+    "isElNino": false,
+    "elNinoStrength": "none"
+  },
+  {
+    "year": 2016,
+    "anomaly": 0.55,
+    "isElNino": true,
+    "elNinoStrength": "strong"
+  },
+  {
+    "year": 2017,
+    "anomaly": 0.5,
+    "isElNino": false,
+    "elNinoStrength": "none"
+  },
+  {
+    "year": 2018,
+    "anomaly": 0.4,
+    "isElNino": false,
+    "elNinoStrength": "none"
+  },
+  {
+    "year": 2019,
+    "anomaly": 0.35,
+    "isElNino": false,
+    "elNinoStrength": "none"
+  },
+  {
+    "year": 2020,
+    "anomaly": 0.5,
+    "isElNino": false,
+    "elNinoStrength": "none"
+  },
+  {
+    "year": 2021,
+    "anomaly": 0.65,
+    "isElNino": true,
+    "elNinoStrength": "strong"
+  },
+  {
+    "year": 2022,
+    "anomaly": 1.1,
+    "isElNino": true,
+    "elNinoStrength": "very-strong"
+  },
+  {
+    "year": 2023,
+    "anomaly": 0.5,
+    "isElNino": false,
+    "elNinoStrength": "none"
+  },
+  {
+    "year": 2024,
+    "anomaly": 0.65,
+    "isElNino": true,
+    "elNinoStrength": "strong"
+  },
+  {
+    "year": 2025,
+    "anomaly": 0.75,
+    "isElNino": true,
+    "elNinoStrength": "strong"
+  }
+]
