@@ -93,8 +93,6 @@ export default function Act1_Prologue() {
               <PacificGlobe />
             </div>
 
-            </div>
-
           </div>
         </div>
         
