@@ -108,7 +108,11 @@ export default function SynthesisExplorer() {
 
       gContext.append('path').attr('class', 'context-line').attr('fill', 'none').attr('stroke-width', 1.5).attr('opacity', 0.4);
       gContext.append('g').attr('class', 'x-axis-context').attr('transform', `translate(0,${innerHeightContext})`);
-      gContext.append('g').attr('class', 'brush');
+      
+      const brushG = gContext.append('g').attr('class', 'brush');
+      const brushObj = d3.brushX().extent([[0, 0], [innerWidth, innerHeightContext]]);
+      brushG.call(brushObj as any);
+      (svg.node() as any).__brushObj = brushObj;
 
       gFocus.append('line').attr('class', 'regression-line').attr('stroke', '#64ffda').attr('stroke-width', 2).attr('stroke-dasharray', '4,4').attr('opacity', 0);
       gFocus.append('g').attr('class', 'scatter-dots');
@@ -288,11 +292,9 @@ export default function SynthesisExplorer() {
       }
     };
 
-    // Initialize Brush
-    const brush = d3.brushX()
-      .extent([[0, 0], [innerWidth, innerHeightContext]])
-      .on('brush', brushed)
-      .on('end', brushed);
+    // Retrieve existing brush and update its event listeners
+    const brush = (svg.node() as any).__brushObj;
+    brush.on('brush', brushed).on('end', brushed);
 
     let brushG = gContext.select<SVGGElement>('.brush');
     brushG.call(brush as any);
