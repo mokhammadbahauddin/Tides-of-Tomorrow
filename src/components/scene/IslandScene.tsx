@@ -207,13 +207,18 @@ const IslandScene = React.memo(function IslandScene({ scrollProgress }: IslandSc
     const s = sceneState.current;
 
     const isMobile = window.innerWidth < 768;
-    // Optimize performance: Disable antialias and use low-power preference for background scene
-    const renderer = new THREE.WebGLRenderer({ antialias: false, alpha: true, powerPreference: "low-power" });
-    renderer.setSize(window.innerWidth, window.innerHeight);
-    // Force pixel ratio to 1 for massive performance boost since it's just a blurred background
-    renderer.setPixelRatio(1);
-    container.appendChild(renderer.domElement);
-    s.renderer = renderer;
+    let renderer: THREE.WebGLRenderer;
+    try {
+      // Optimize performance: Disable antialias
+      renderer = new THREE.WebGLRenderer({ antialias: false, alpha: true });
+      renderer.setSize(window.innerWidth, window.innerHeight);
+      renderer.setPixelRatio(1);
+      container.appendChild(renderer.domElement);
+      s.renderer = renderer;
+    } catch (e) {
+      console.warn("WebGL not supported or context lost. 3D Scene disabled.", e);
+      return; // Exit early, graceful degradation
+    }
 
     const scene = new THREE.Scene();
     scene.fog = new THREE.FogExp2(0x0a1622, 0.02);
