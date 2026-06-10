@@ -2,7 +2,6 @@ import { useEffect, useRef } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { Navigation } from '@/components/Navigation';
-import { WebGLErrorBoundary } from '@/components/scene/ErrorBoundary';
 import { VideoDivider } from '@/components/sections/VideoDivider';
 import HeroSection from '@/components/sections/HeroSection';
 import IslandScene from '@/components/scene/IslandScene';
@@ -60,9 +59,7 @@ export default function Home() {
       <main>
         {/* Global Persistent Background */}
         <div className="fixed inset-0 w-full h-full pointer-events-none z-0 bg-[#020c1b]">
-          <WebGLErrorBoundary>
-            <IslandScene scrollProgress={scrollProgress} />
-          </WebGLErrorBoundary>
+          <IslandScene scrollProgress={scrollProgress} />
           <div className="absolute inset-0 bg-gradient-to-b from-[var(--ocean-abyss)]/60 via-[var(--ocean-abyss)]/50 to-[var(--ocean-abyss)]/90" style={{ opacity: 0.6 }} />
         </div>
 
