@@ -124,6 +124,11 @@ body {
   to { opacity: 1; transform: translateY(0); }
 }
 
+@keyframes d3-halo-pulse {
+  0% { r: 12px; opacity: 0.8; stroke-width: 2px; }
+  100% { r: 24px; opacity: 0; stroke-width: 4px; }
+}
+
 .animate-pulse-glow {
   animation: pulse-glow 2s ease-in-out infinite;
 }
@@ -144,6 +149,10 @@ body {
 
 .animate-fade-in-up {
   animation: fade-in-up 0.8s ease-out forwards;
+}
+
+.animate-d3-halo {
+  animation: d3-halo-pulse 1.5s ease-out infinite;
 }
 
 /* Rain effect */

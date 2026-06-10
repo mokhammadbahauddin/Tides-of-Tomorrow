@@ -244,24 +244,11 @@ export const SynthesisExplorer: React.FC = () => {
       .data(currentData)
       .enter()
       .append('circle')
-      .attr('class', 'current-dot-halo')
+      .attr('class', 'current-dot-halo animate-d3-halo')
       .attr('cx', d => x(d[xMetric]))
       .attr('cy', d => y(d[yMetric]))
-      .attr('r', 12)
       .attr('fill', 'none')
-      .attr('stroke', '#f59e0b')
-      .attr('stroke-width', 2)
-      .attr('opacity', 0.8)
-      .each(function pulse() {
-        d3.select(this)
-          .attr('r', 12)
-          .attr('opacity', 0.8)
-          .transition()
-          .duration(800)
-          .attr('r', 16)
-          .attr('opacity', 0)
-          .on('end', pulse);
-      });
+      .attr('stroke', '#f59e0b');
       
     // Text label for current year
     g.selectAll('.current-dot-label')
