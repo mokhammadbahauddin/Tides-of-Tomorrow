@@ -2,6 +2,7 @@ export interface TaxRecord {
   year: number;
   yieldIndex: number; // Taro yield in t/ha
   taxPercent: number; // Total Environmental Tax % of GDP
+  event?: string;
 }
 
 export const taxData: TaxRecord[] = [
@@ -10,6 +11,6 @@ export const taxData: TaxRecord[] = [
   { year: 2003, yieldIndex: 13, taxPercent: 1.2 },
   { year: 2008, yieldIndex: 10, taxPercent: 1.5 },
   { year: 2013, yieldIndex: 7, taxPercent: 2.1 },
-  { year: 2018, yieldIndex: 4, taxPercent: 3.5 },
-  { year: 2023, yieldIndex: 2, taxPercent: 6.5 },
+  { year: 2018, yieldIndex: 4, taxPercent: 3.5, event: 'Introduction of ECAL' },
+  { year: 2023, yieldIndex: 2, taxPercent: 6.5, event: 'Post-Pandemic Climate Recovery Tax' },
 ];

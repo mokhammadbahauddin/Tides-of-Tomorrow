@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import * as d3 from 'd3';
 import * as topojson from 'topojson-client';
 
@@ -127,7 +127,7 @@ export default function PacificGlobe() {
         context.stroke();
       }
 
-      let hoveredNation: typeof pictNations[0] | null = null;
+      let hoveredNation: any = null;
 
       // Draw Pacific Nations
       pictNations.forEach((nation) => {

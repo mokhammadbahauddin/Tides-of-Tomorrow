@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import { useEffect, useRef } from 'react';
 import * as d3 from 'd3';
 import gsap from 'gsap';
 
@@ -40,8 +40,7 @@ export default function CarbonLedgerChart({ isActive = true }: { isActive?: bool
       .range([0, height]);
 
     // Draw bars stacked
-    let currentY = 0;
-    
+
     // Pacific line
     const pacificHeight = Math.max(y(data[1].value), 2); // Minimum 2px visibility
     const globalHeight = height - pacificHeight;
@@ -59,7 +58,7 @@ export default function CarbonLedgerChart({ isActive = true }: { isActive?: bool
       .attr('width', width)
       .attr('height', 0)
       .attr('fill', d => d.color)
-      .attr('class', (d, i) => i === 0 ? 'global-bar' : 'pacific-bar');
+      .attr('class', (_d, i) => i === 0 ? 'global-bar' : 'pacific-bar');
 
     // GSAP Animation
     gsap.to('.global-bar', { attr: { height: globalHeight }, duration: 1.5, ease: 'power4.out', delay: 0.2 });
