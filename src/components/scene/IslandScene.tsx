@@ -1,4 +1,4 @@
-import React, { useRef, useEffect, useState } from 'react';
+import React, { useRef, useEffect } from 'react';
 import * as THREE from 'three';
 
 // --- GLSL Shaders ---
@@ -200,7 +200,6 @@ const IslandScene = React.memo(function IslandScene({ scrollProgress }: IslandSc
     islandGroup: null, coralMaterials: [], sun: null, directionalLight: null, lagoonLight: null,
     particles: null, animationId: 0, startTime: performance.now(), actStates: [0, 0, 0, 0, 0],
   });
-  const [useFallback, setUseFallback] = useState(false);
 
   useEffect(() => {
     const container = containerRef.current;
@@ -211,14 +210,13 @@ const IslandScene = React.memo(function IslandScene({ scrollProgress }: IslandSc
 
     let renderer: THREE.WebGLRenderer;
     try {
-      renderer = new THREE.WebGLRenderer({ antialias: false, alpha: true, powerPreference: "high-performance" });
+      renderer = new THREE.WebGLRenderer({ antialias: false, alpha: true });
       renderer.setSize(window.innerWidth, window.innerHeight);
       renderer.setPixelRatio(1);
       container.appendChild(renderer.domElement);
       s.renderer = renderer;
     } catch (err) {
-      console.error("WebGL Blocked/Failed. Falling back:", err);
-      setUseFallback(true);
+      console.warn("WebGL blocked by environment. IslandScene aborted.");
       return;
     }
 
@@ -394,21 +392,6 @@ const IslandScene = React.memo(function IslandScene({ scrollProgress }: IslandSc
 
   return (
     <div ref={containerRef} className="fixed inset-0 z-0">
-      {useFallback && (
-        <>
-          <video 
-            autoPlay 
-            loop 
-            muted 
-            playsInline
-            className="absolute inset-0 w-full h-full object-cover opacity-60 mix-blend-screen transition-opacity duration-1000"
-            src="/videos/hero-pacific.mp4"
-          />
-          <div className="absolute top-4 right-4 bg-red-500/20 text-red-200 border border-red-500/50 px-4 py-2 rounded-lg text-xs font-mono backdrop-blur-md z-50">
-            WebGL Hardware Acceleration Disabled. Using Video Fallback.
-          </div>
-        </>
-      )}
     </div>
   );
 });
