@@ -1,163 +1,282 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useRef, useEffect } from 'react';
 import * as d3 from 'd3';
 import gsap from 'gsap';
 import { taxData } from '@/data/taxData';
-import type { TaxData } from '@/data/taxData';
+import type { TaxRecord } from '@/data/taxData';
 
 interface TaxChartProps {
   activeStep: number;
 }
 
 export const TaxChart: React.FC<TaxChartProps> = ({ activeStep }) => {
+  const containerRef = useRef<HTMLDivElement>(null);
   const svgRef = useRef<SVGSVGElement>(null);
-  const wrapperRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    if (!svgRef.current || !wrapperRef.current) return;
+    if (!containerRef.current || !svgRef.current) return;
 
-    const margin = { top: 40, right: 20, bottom: 50, left: 60 };
-    const width = wrapperRef.current.clientWidth - margin.left - margin.right;
-    const height = 500 - margin.top - margin.bottom;
+    const container = containerRef.current;
+    const width = container.clientWidth;
+    const height = 500;
+    const margin = { top: 50, right: 60, bottom: 60, left: 60 };
+    const innerW = width - margin.left - margin.right;
+    const innerH = height - margin.top - margin.bottom;
 
     d3.select(svgRef.current).selectAll('*').remove();
 
-    const svg = d3
-      .select(svgRef.current)
-      .attr('width', width + margin.left + margin.right)
-      .attr('height', height + margin.top + margin.bottom)
-      .append('g')
-      .attr('transform', `translate(${margin.left},${margin.top})`);
+    const svg = d3.select(svgRef.current)
+      .attr('width', width)
+      .attr('height', height);
 
-    const keys = ['energy', 'transport', 'pollution'];
-    
-    // Stack the data
-    const stackedData = d3.stack<TaxData>().keys(keys)(taxData);
+    const g = svg.append('g').attr('transform', `translate(${margin.left},${margin.top})`);
 
-    const x = d3
-      .scaleLinear()
-      .domain(d3.extent(taxData, (d) => d.year) as [number, number])
-      .range([0, width]);
+    // Domains adjusted to match 1993-2023, Yield [0-20], Tax [0-7]
+    const x = d3.scaleLinear().domain([1993, 2023]).range([0, innerW]);
+    const yLeft = d3.scaleLinear().domain([0, 20]).range([innerH, 0]);
+    const yRight = d3.scaleLinear().domain([0, 7.0]).range([innerH, 0]);
 
-    const y = d3
-      .scaleLinear()
-      .domain([0, 7]) // Max total is around 6.5
-      .range([height, 0]);
+    // Gridlines
+    g.append('g')
+      .selectAll('line')
+      .data(yLeft.ticks(6))
+      .enter()
+      .append('line')
+      .attr('x1', 0).attr('x2', innerW)
+      .attr('y1', d => yLeft(d)).attr('y2', d => yLeft(d))
+      .attr('stroke', 'rgba(168, 178, 209, 0.1)')
+      .attr('stroke-width', 1)
+      .attr('stroke-dasharray', '4,4');
 
-    // Colors
-    const color = d3
-      .scaleOrdinal<string>()
-      .domain(keys)
-      .range(['#ef4444', '#f59e0b', '#38bdf8']); // Red, Orange, Blue
+    // Left axis (Yield - Green to represent crop)
+    g.append('g')
+      .call(d3.axisLeft(yLeft).ticks(6))
+      .call(gAxis => gAxis.select('.domain').remove())
+      .call(gAxis => gAxis.selectAll('.tick line').remove())
+      .call(gAxis => gAxis.selectAll('.tick text')
+        .attr('fill', '#10b981')
+        .attr('font-family', 'Inter')
+        .attr('font-size', '12px'));
 
-    // Area generator
-    const area = d3
-      .area<d3.SeriesPoint<TaxData>>()
-      .x((d) => x(d.data.year))
-      .y0((d) => y(d[0]))
-      .y1((d) => y(d[1]))
+    // Right axis (Tax - Red to represent burden)
+    g.append('g')
+      .attr('transform', `translate(${innerW},0)`)
+      .call(d3.axisRight(yRight).ticks(5).tickFormat(d => d + '%'))
+      .call(gAxis => gAxis.select('.domain').remove())
+      .call(gAxis => gAxis.selectAll('.tick line').remove())
+      .call(gAxis => gAxis.selectAll('.tick text')
+        .attr('fill', '#ef4444')
+        .attr('font-family', 'Inter')
+        .attr('font-size', '12px'));
+
+    // X axis (Years)
+    g.append('g')
+      .attr('transform', `translate(0,${innerH})`)
+      .call(d3.axisBottom(x).tickFormat(d3.format('d')).ticks(6))
+      .call(gAxis => gAxis.select('.domain').attr('stroke', 'rgba(168, 178, 209, 0.2)'))
+      .call(gAxis => gAxis.selectAll('.tick text')
+        .attr('fill', '#a8b2d1')
+        .attr('font-family', 'Inter')
+        .attr('font-size', '12px'));
+
+    // Divergence fill area (The widening gap)
+    const areaData = taxData.map(d => ({
+      year: d.year,
+      taxY: yRight(d.taxPercent),
+      yieldY: yLeft(d.yieldIndex),
+    }));
+
+    const areaGen = d3.area<{ year: number; taxY: number; yieldY: number }>()
+      .x(d => x(d.year))
+      .y0(d => d.yieldY)
+      .y1(d => d.taxY)
       .curve(d3.curveMonotoneX);
 
-    // Draw Areas
-    const paths = svg
-      .selectAll('.tax-area')
-      .data(stackedData)
-      .enter()
-      .append('path')
-      .attr('class', 'tax-area')
-      .style('fill', (d) => color(d.key))
-      .style('opacity', 0) // Hide initially for animation
-      .attr('d', area);
+    g.append('path')
+      .datum(areaData)
+      .attr('class', 'divergence-area')
+      .attr('fill', 'rgba(239, 68, 68, 0.15)')
+      .attr('d', areaGen)
+      .attr('opacity', 0); // Hidden initially, revealed by GSAP
 
-    // X Axis
-    svg
-      .append('g')
-      .attr('transform', `translate(0,${height})`)
-      .call(d3.axisBottom(x).ticks(7).tickFormat(d3.format('d')))
-      .selectAll('text')
-      .style('fill', '#a8b2d1')
-      .style('font-family', 'Inter')
-      .style('font-size', '12px');
+    // Yield line (Taro)
+    const yieldLine = d3.line<TaxRecord>()
+      .x(d => x(d.year))
+      .y(d => yLeft(d.yieldIndex))
+      .curve(d3.curveMonotoneX);
 
-    // Y Axis
-    svg
-      .append('g')
-      .call(d3.axisLeft(y).ticks(5).tickFormat((d) => d + '%'))
-      .selectAll('text')
-      .style('fill', '#a8b2d1')
-      .style('font-family', 'Inter')
-      .style('font-size', '12px');
+    const yieldPath = g.append('path')
+      .datum(taxData)
+      .attr('class', 'yield-line')
+      .attr('fill', 'none')
+      .attr('stroke', '#10b981') // Emerald green
+      .attr('stroke-width', 3)
+      .attr('stroke-dasharray', '6,4')
+      .attr('d', yieldLine);
 
-    svg.selectAll('.domain').style('stroke', 'rgba(168, 178, 209, 0.2)');
-    svg.selectAll('.tick line').style('stroke', 'rgba(168, 178, 209, 0.1)');
+    // Initial Path Animation for Yield Line
+    const yieldLen = (yieldPath.node() as SVGPathElement).getTotalLength();
+    yieldPath
+      .attr('stroke-dasharray', `${yieldLen} ${yieldLen}`)
+      .attr('stroke-dashoffset', yieldLen);
+      
+    gsap.to(yieldPath.node(), {
+      strokeDashoffset: 0,
+      duration: 2,
+      ease: 'power3.out',
+      delay: 0.5
+    });
 
-    // Legend
-    const legend = svg.append('g').attr('transform', `translate(0, -30)`);
-    const legendItems = [
-      { key: 'energy', label: 'Energy Taxes' },
-      { key: 'transport', label: 'Transport Taxes' },
-      { key: 'pollution', label: 'Pollution/Adaptation' },
+    // Tax line
+    const taxLine = d3.line<TaxRecord>()
+      .x(d => x(d.year))
+      .y(d => yRight(d.taxPercent))
+      .curve(d3.curveMonotoneX);
+
+    const taxPath = g.append('path')
+      .datum(taxData)
+      .attr('class', 'tax-line')
+      .attr('fill', 'none')
+      .attr('stroke', '#ef4444') // Red
+      .attr('stroke-width', 3)
+      .attr('d', taxLine);
+
+    const taxLen = (taxPath.node() as SVGPathElement).getTotalLength();
+    taxPath
+      .attr('stroke-dasharray', `${taxLen} ${taxLen}`)
+      .attr('stroke-dashoffset', taxLen);
+
+    gsap.to(taxPath.node(), {
+      strokeDashoffset: 0,
+      duration: 2,
+      ease: 'power3.out',
+      delay: 0.5
+    });
+
+    // Annotations adapted for 1993-2023
+    const annotations = [
+      { year: 2011, label: 'ECAL Introduced', color: '#a8b2d1', bold: false },
+      { year: 2015, label: 'Paris Agreement', color: '#a8b2d1', bold: false },
+      { year: 2023, label: 'Tax hits 6.5%', color: '#ef4444', bold: true },
     ];
 
-    legendItems.forEach((item, i) => {
-      const g = legend.append('g').attr('transform', `translate(${i * 150}, 0)`);
-      g.append('rect')
-        .attr('width', 12)
-        .attr('height', 12)
-        .attr('fill', color(item.key))
-        .attr('rx', 2);
-      g.append('text')
-        .attr('x', 20)
-        .attr('y', 10)
-        .text(item.label)
-        .style('fill', '#a8b2d1')
-        .style('font-size', '12px')
-        .style('font-family', 'Inter');
+    annotations.forEach((ann, i) => {
+      const annG = g.append('g')
+        .attr('class', 'annotation')
+        .attr('opacity', 0);
+
+      annG.append('line')
+        .attr('x1', x(ann.year))
+        .attr('x2', x(ann.year))
+        .attr('y1', yRight(0))
+        .attr('y2', yRight(0) - 20)
+        .attr('stroke', ann.color)
+        .attr('stroke-width', 1)
+        .attr('stroke-dasharray', '2,2');
+
+      annG.append('text')
+        .attr('x', x(ann.year) + 5)
+        .attr('y', yRight(0) - 25)
+        .text(ann.label)
+        .attr('fill', ann.color)
+        .attr('font-family', 'Inter')
+        .attr('font-size', '10px')
+        .attr('font-weight', ann.bold ? '700' : '400')
+        .attr('transform', `rotate(-15, ${x(ann.year) + 5}, ${yRight(0) - 25})`);
+        
+      gsap.to(annG.node(), {
+        opacity: 1,
+        duration: 0.5,
+        delay: 2.5 + (i * 0.3)
+      });
     });
 
-    // Y Axis Label
-    svg
-      .append('text')
-      .attr('transform', 'rotate(-90)')
-      .attr('y', -45)
-      .attr('x', -height / 2)
-      .attr('text-anchor', 'middle')
-      .style('fill', '#a8b2d1')
-      .style('font-size', '12px')
+    // Tooltip & Crosshair
+    const crosshair = g.append('line')
+      .attr('y1', 0).attr('y2', innerH)
+      .attr('stroke', '#64ffda')
+      .attr('stroke-width', 1)
+      .attr('stroke-dasharray', '4,4')
+      .attr('opacity', 0)
+      .attr('pointer-events', 'none');
+
+    const tooltip = d3.select(container).append('div')
+      .attr('class', 'glass-tooltip')
+      .style('position', 'absolute')
+      .style('opacity', 0)
+      .style('pointer-events', 'none')
+      .style('z-index', 10)
+      .style('background', 'rgba(2, 12, 27, 0.85)')
+      .style('border', '1px solid rgba(100, 255, 218, 0.2)')
+      .style('backdrop-filter', 'blur(8px)')
+      .style('padding', '12px')
+      .style('border-radius', '8px')
+      .style('color', '#e6f1ff')
       .style('font-family', 'Inter')
-      .text('Tax Revenue (% of GDP)');
+      .style('font-size', '12px');
 
-    // GSAP Animation
-    gsap.to(paths.nodes(), {
-      opacity: 0.85,
-      duration: 1.5,
-      stagger: 0.2,
-      ease: 'power2.out',
-      delay: 0.5,
-    });
+    g.append('rect')
+      .attr('width', innerW).attr('height', innerH).attr('fill', 'transparent')
+      .on('mousemove', function (event) {
+        const [mx] = d3.pointer(event);
+        const year = Math.round(x.invert(mx));
+        // Find closest data point
+        const d = taxData.reduce((prev, curr) => 
+          Math.abs(curr.year - year) < Math.abs(prev.year - year) ? curr : prev
+        );
+        
+        if (d) {
+          crosshair.attr('x1', x(d.year)).attr('x2', x(d.year)).attr('opacity', 0.5);
+          tooltip
+            .style('left', (event.pageX + 15) + 'px')
+            .style('top', (event.pageY - 40) + 'px')
+            .style('opacity', 1)
+            .html(`
+              <div class="font-bold text-sm mb-1">${d.year}</div>
+              <div class="text-[#10b981]">Yield: ${d.yieldIndex} t/ha</div>
+              <div class="text-[#ef4444]">Tax: ${d.taxPercent}% GDP</div>
+            `);
+        }
+      })
+      .on('mouseleave', () => {
+        crosshair.attr('opacity', 0);
+        tooltip.style('opacity', 0);
+      });
 
   }, []);
 
-  // Highlight specific areas based on scroll step
+  // Sync GSAP animations with activeStep
   useEffect(() => {
     if (!svgRef.current) return;
-    
+
     if (activeStep === 1) {
-      // Highlight the massive surge in total
-      gsap.to(svgRef.current.querySelectorAll('.tax-area'), {
-        opacity: 0.9,
-        duration: 0.5,
+      // Show the divergence area dramatically when talking about "The Climate Tax"
+      gsap.to(svgRef.current.querySelector('.divergence-area'), {
+        opacity: 1,
+        duration: 1.5,
+        ease: 'power2.out'
       });
     } else {
-      gsap.to(svgRef.current.querySelectorAll('.tax-area'), {
-        opacity: 0.7,
-        duration: 0.5,
+      gsap.to(svgRef.current.querySelector('.divergence-area'), {
+        opacity: 0,
+        duration: 0.8
       });
     }
   }, [activeStep]);
 
   return (
-    <div ref={wrapperRef} className="w-full h-full min-h-[500px] flex items-center justify-center">
-      <svg ref={svgRef} className="w-full h-full drop-shadow-lg" />
+    <div ref={containerRef} className="w-full h-full flex flex-col items-center relative">
+      <div className="flex w-full justify-between items-center mb-6 px-4">
+        <div>
+          <h3 className="font-display text-xl text-[#e6f1ff]">The Diverging Crises</h3>
+          <p className="text-sm text-[#a8b2d1] font-mono mt-1">
+            <span className="text-[#10b981]">Taro Yield</span> vs <span className="text-[#ef4444]">Environmental Tax</span>
+          </p>
+        </div>
+        <div className="text-right">
+          <p className="text-xs text-[#5c6e8a] uppercase tracking-wider font-mono">Database: PDH.Stat</p>
+        </div>
+      </div>
+      <svg ref={svgRef} className="w-full drop-shadow-xl" />
     </div>
   );
 };

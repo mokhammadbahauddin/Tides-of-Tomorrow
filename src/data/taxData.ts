@@ -1,16 +1,15 @@
-export interface TaxData {
+export interface TaxRecord {
   year: number;
-  energy: number;
-  transport: number;
-  pollution: number;
+  yieldIndex: number; // Taro yield in t/ha
+  taxPercent: number; // Total Environmental Tax % of GDP
 }
 
-export const taxData: TaxData[] = [
-  { year: 1993, energy: 0.8, transport: 0.3, pollution: 0.1 },
-  { year: 1998, energy: 1.0, transport: 0.4, pollution: 0.1 },
-  { year: 2003, energy: 1.2, transport: 0.4, pollution: 0.2 },
-  { year: 2008, energy: 1.5, transport: 0.6, pollution: 0.3 },
-  { year: 2013, energy: 2.1, transport: 0.8, pollution: 0.6 },
-  { year: 2018, energy: 2.8, transport: 1.1, pollution: 0.9 },
-  { year: 2023, energy: 3.5, transport: 1.5, pollution: 1.5 }, // Totaling 6.5% of GDP
+export const taxData: TaxRecord[] = [
+  { year: 1993, yieldIndex: 16, taxPercent: 0.8 },
+  { year: 1998, yieldIndex: 15, taxPercent: 1.0 },
+  { year: 2003, yieldIndex: 13, taxPercent: 1.2 },
+  { year: 2008, yieldIndex: 10, taxPercent: 1.5 },
+  { year: 2013, yieldIndex: 7, taxPercent: 2.1 },
+  { year: 2018, yieldIndex: 4, taxPercent: 3.5 },
+  { year: 2023, yieldIndex: 2, taxPercent: 6.5 },
 ];
