@@ -2,7 +2,7 @@ import { useEffect, useRef } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { Scale } from 'lucide-react';
-import SynthesisExplorer from '@/components/charts/SynthesisExplorer';
+import { SynthesisExplorer } from '@/components/charts/SynthesisExplorer';
 
 gsap.registerPlugin(ScrollTrigger);
 

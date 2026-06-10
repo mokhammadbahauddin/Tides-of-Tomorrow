@@ -1,230 +1,195 @@
-import { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef } from 'react';
 import * as d3 from 'd3';
-import { type CropYieldData } from '@/data/cropYield';
+import gsap from 'gsap';
+import { cropData } from '@/data/cropData';
+import type { CropData } from '@/data/cropData';
 
-interface Props {
-  progress?: number;
+interface CropYieldChartProps {
+  activeStep: number;
 }
 
-export function CropYieldChart({ progress = 1 }: Props) {
+export const CropYieldChart: React.FC<CropYieldChartProps> = ({ activeStep }) => {
   const svgRef = useRef<SVGSVGElement>(null);
-  const containerRef = useRef<HTMLDivElement>(null);
-
-  const [cropYieldData, setCropYieldData] = useState<CropYieldData[]>([]);
+  const wrapperRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    d3.json<CropYieldData[]>('/data/cropyield.json').then((res) => {
-      if (res) setCropYieldData(res);
+    if (!svgRef.current || !wrapperRef.current) return;
+
+    const margin = { top: 40, right: 20, bottom: 50, left: 60 };
+    const width = wrapperRef.current.clientWidth - margin.left - margin.right;
+    const height = 500 - margin.top - margin.bottom;
+
+    // Clear previous
+    d3.select(svgRef.current).selectAll('*').remove();
+
+    const svg = d3
+      .select(svgRef.current)
+      .attr('width', width + margin.left + margin.right)
+      .attr('height', height + margin.top + margin.bottom)
+      .append('g')
+      .attr('transform', `translate(${margin.left},${margin.top})`);
+
+    const subgroups = ['taro', 'sweetPotato', 'cassava'];
+    const groups = cropData.map((d) => d.year.toString());
+
+    // X axis for years
+    const x = d3
+      .scaleBand()
+      .domain(groups)
+      .range([0, width])
+      .padding(0.2);
+
+    svg
+      .append('g')
+      .attr('transform', `translate(0,${height})`)
+      .call(d3.axisBottom(x).tickSize(0).tickPadding(10))
+      .selectAll('text')
+      .style('fill', '#a8b2d1')
+      .style('font-family', 'Inter')
+      .style('font-size', '12px');
+
+    svg.select('.domain').style('stroke', 'rgba(168, 178, 209, 0.2)');
+
+    // Y axis for Yield
+    const y = d3.scaleLinear().domain([0, 100]).range([height, 0]);
+
+    svg
+      .append('g')
+      .call(
+        d3
+          .axisLeft(y)
+          .ticks(5)
+          .tickFormat((d) => d + '%')
+          .tickSize(-width)
+      )
+      .selectAll('text')
+      .style('fill', '#a8b2d1')
+      .style('font-family', 'Inter')
+      .style('font-size', '12px');
+
+    svg.selectAll('.tick line').style('stroke', 'rgba(168, 178, 209, 0.1)');
+    svg.select('.domain').remove();
+
+    // X axis for subgroups (the 3 bars per year)
+    const xSubgroup = d3
+      .scaleBand()
+      .domain(subgroups)
+      .range([0, x.bandwidth()])
+      .padding(0.05);
+
+    // Colors: Taro (Red/Orange due to failure), others neutral/greenish
+    const color = d3
+      .scaleOrdinal<string>()
+      .domain(subgroups)
+      .range(['#e63946', '#10b981', '#38bdf8']); // Taro: Red, Sweet Potato: Green, Cassava: Blue
+
+    // Draw Bars
+    const yearGroups = svg
+      .selectAll('.year-group')
+      .data(cropData)
+      .enter()
+      .append('g')
+      .attr('class', 'year-group')
+      .attr('transform', (d) => `translate(${x(d.year.toString())},0)`);
+
+    yearGroups
+      .selectAll('rect')
+      .data((d) =>
+        subgroups.map((key) => ({ key, value: d[key as keyof CropData] as number }))
+      )
+      .enter()
+      .append('rect')
+      .attr('class', 'crop-bar')
+      .attr('x', (d) => xSubgroup(d.key)!)
+      .attr('y', height) // Start from bottom for animation
+      .attr('width', xSubgroup.bandwidth())
+      .attr('height', 0) // Start with 0 height
+      .attr('fill', (d) => color(d.key))
+      .attr('rx', 2);
+
+    // Initial animation with GSAP
+    gsap.to(svgRef.current.querySelectorAll('.crop-bar'), {
+      y: 0,
+      height: (_i, el) => {
+        const data = d3.select(el).datum() as { key: string; value: number };
+        return height - y(data.value);
+      },
+      attr: {
+        y: (_i, el) => {
+          const data = d3.select(el).datum() as { key: string; value: number };
+          return y(data.value);
+        },
+      },
+      duration: 1.5,
+      ease: 'power3.out',
+      stagger: 0.02,
+      delay: 0.5,
     });
+
+    // Add legend
+    const legend = svg
+      .append('g')
+      .attr('transform', `translate(0, -30)`);
+
+    const legendItems = [
+      { key: 'taro', label: 'Taro (Colocasia esculenta)' },
+      { key: 'sweetPotato', label: 'Sweet Potato' },
+      { key: 'cassava', label: 'Cassava' },
+    ];
+
+    legendItems.forEach((item, i) => {
+      const g = legend.append('g').attr('transform', `translate(${i * 150}, 0)`);
+      g.append('rect')
+        .attr('width', 12)
+        .attr('height', 12)
+        .attr('fill', color(item.key))
+        .attr('rx', 2);
+      g.append('text')
+        .attr('x', 20)
+        .attr('y', 10)
+        .text(item.label)
+        .style('fill', '#a8b2d1')
+        .style('font-size', '12px')
+        .style('font-family', 'Inter');
+    });
+
+    // Y Axis Label
+    svg
+      .append('text')
+      .attr('transform', 'rotate(-90)')
+      .attr('y', -45)
+      .attr('x', -height / 2)
+      .attr('text-anchor', 'middle')
+      .style('fill', '#a8b2d1')
+      .style('font-size', '12px')
+      .style('font-family', 'Inter')
+      .text('Yield Relative to 1990 Baseline (%)');
   }, []);
 
+  // Update effect based on activeStep
   useEffect(() => {
-    if (!svgRef.current || cropYieldData.length === 0) return;
-
-    const width = 900;
-    const height = 420;
-
-    const svg = d3.select(svgRef.current)
-      .attr('viewBox', `0 0 ${width} ${height}`)
-      .attr('preserveAspectRatio', 'xMidYMid meet');
-
-    // Interrupt previous transitions
-    svg.selectAll('*').interrupt();
-    svg.selectAll('*').remove();
-
-    const margin = { top: 30, right: 40, bottom: 80, left: 60 };
-    const chartWidth = width - margin.left - margin.right;
-    const chartHeight = height - margin.top - margin.bottom;
-
-    const g = svg.append('g').attr('transform', `translate(${margin.left},${margin.top})`);
-
-    // Data Processing: Average yield across all staples
-    const processedData = cropYieldData.map(d => ({
-      year: d.year,
-      actualYield: (d.taro + d.sweetPotato + d.banana + d.cocoa) / 4
-    }));
-
-    // Calculate Expected Baseline (Linear regression of first 20 years, or just flat target)
-    // For simplicity and impact, let's say the baseline was the peak historical average (~15 t/ha)
-    const peakYield = d3.max(processedData, d => d.actualYield) || 15;
-    const expectedData = processedData.map(d => ({
-      year: d.year,
-      expectedYield: peakYield,
-      actualYield: d.actualYield,
-      deficit: Math.max(0, peakYield - d.actualYield)
-    }));
-
-    // Scales
-    const xScale = d3.scaleLinear()
-      .domain(d3.extent(expectedData, d => d.year) as [number, number])
-      .range([0, chartWidth]);
-
-    const yScale = d3.scaleLinear()
-      .domain([0, peakYield + 2])
-      .range([chartHeight, 0]);
-
-    // Deficit Pattern/Gradient
-    const defs = svg.append('defs');
+    if (!svgRef.current) return;
     
-    const deficitGradient = defs.append('linearGradient')
-      .attr('id', 'deficit-gradient')
-      .attr('x1', '0%').attr('y1', '0%')
-      .attr('x2', '0%').attr('y2', '100%');
-    deficitGradient.append('stop').attr('offset', '0%').attr('stop-color', '#e63946').attr('stop-opacity', 0.8);
-    deficitGradient.append('stop').attr('offset', '100%').attr('stop-color', '#e63946').attr('stop-opacity', 0.2);
-
-    const actualGradient = defs.append('linearGradient')
-      .attr('id', 'actual-gradient')
-      .attr('x1', '0%').attr('y1', '0%')
-      .attr('x2', '0%').attr('y2', '100%');
-    actualGradient.append('stop').attr('offset', '0%').attr('stop-color', '#f59e0b').attr('stop-opacity', 0.4);
-    actualGradient.append('stop').attr('offset', '100%').attr('stop-color', '#f59e0b').attr('stop-opacity', 0.05);
-
-    // Axes
-    const xAxis = d3.axisBottom(xScale).tickFormat(d3.format('d') as any).ticks(10);
-    const yAxis = d3.axisLeft(yScale).ticks(5);
-
-    g.append('g')
-      .attr('class', 'x-axis')
-      .attr('transform', `translate(0,${chartHeight})`)
-      .call(xAxis)
-      .selectAll('text').attr('fill', '#a8b2d1');
-
-    g.append('g')
-      .attr('class', 'y-axis')
-      .call(yAxis)
-      .selectAll('text').attr('fill', '#a8b2d1');
-
-    g.selectAll('.domain, .tick line').attr('stroke', 'rgba(168, 178, 209, 0.2)');
-
-    // Y axis label
-    g.append('text')
-      .attr('transform', 'rotate(-90)')
-      .attr('x', -chartHeight / 2)
-      .attr('y', -45)
-      .attr('text-anchor', 'middle')
-      .attr('fill', '#a8b2d1')
-      .attr('font-size', '12px')
-      .attr('font-family', 'JetBrains Mono, monospace')
-      .text('Average Yield (t/ha)');
-
-    // Areas
-    const actualArea = d3.area<any>()
-      .x(d => xScale(d.year))
-      .y0(chartHeight)
-      .y1(d => yScale(d.actualYield))
-      .curve(d3.curveMonotoneX);
-
-    const deficitArea = d3.area<any>()
-      .x(d => xScale(d.year))
-      .y0(d => yScale(d.actualYield)) // Bottom is actual
-      .y1(d => yScale(d.expectedYield)) // Top is expected
-      .curve(d3.curveMonotoneX);
-
-    // Draw Actual Yield Area
-    g.append('path')
-      .datum(expectedData)
-      .attr('fill', 'url(#actual-gradient)')
-      .attr('d', actualArea);
-
-    // Draw Deficit Area (The scary part)
-    const deficitPath = g.append('path')
-      .datum(expectedData)
-      .attr('fill', 'url(#deficit-gradient)')
-      .attr('d', deficitArea)
-      .attr('opacity', 0); // Hide initially
-
-    // Draw Expected Yield Baseline
-    g.append('line')
-      .attr('x1', 0)
-      .attr('x2', chartWidth)
-      .attr('y1', yScale(peakYield))
-      .attr('y2', yScale(peakYield))
-      .attr('stroke', '#a8b2d1')
-      .attr('stroke-width', 2)
-      .attr('stroke-dasharray', '5,5');
-
-    g.append('text')
-      .attr('x', chartWidth - 10)
-      .attr('y', yScale(peakYield) - 10)
-      .attr('text-anchor', 'end')
-      .attr('fill', '#a8b2d1')
-      .attr('font-size', '12px')
-      .attr('font-family', 'JetBrains Mono, monospace')
-      .text('Historical Baseline / Expected Target');
-
-    // Draw Actual Yield Line
-    const actualLine = d3.line<any>()
-      .x(d => xScale(d.year))
-      .y(d => yScale(d.actualYield))
-      .curve(d3.curveMonotoneX);
-
-    g.append('path')
-      .datum(expectedData)
-      .attr('fill', 'none')
-      .attr('stroke', '#f59e0b')
-      .attr('stroke-width', 3)
-      .attr('d', actualLine);
-
-    // Animation & Narrative States based on progress/activeStep
-    // If progress > 0.5 (Step 2), we reveal the deficit area
-    if (progress > 0.5) {
-      deficitPath.transition()
-        .duration(1500)
-        .ease(d3.easeCubicOut)
-        .attr('opacity', 1);
-
-      // Add pulsing animation to deficit area
-      const pulse = () => {
-        deficitPath.transition()
-          .duration(2000)
-          .attr('opacity', 0.6)
-          .transition()
-          .duration(2000)
-          .attr('opacity', 1)
-          .on('end', pulse);
-      };
-      pulse();
-
-      // Add Annotation for Missing Food
-      const midX = xScale(2010);
-      const midY = yScale(peakYield - (peakYield - expectedData.find(d => d.year === 2010)!.actualYield) / 2);
-      
-      const annotation = g.append('g')
-        .attr('opacity', 0);
-        
-      annotation.append('text')
-        .attr('x', midX)
-        .attr('y', midY)
-        .attr('text-anchor', 'middle')
-        .attr('fill', '#ffffff')
-        .attr('font-size', '14px')
-        .attr('font-weight', 'bold')
-        .attr('font-family', 'JetBrains Mono, monospace')
-        .text('MISSING YIELD / DEFICIT');
-        
-      annotation.transition()
-        .delay(1000)
-        .duration(1000)
-        .attr('opacity', 1);
+    // When activeStep == 1, we highlight the collapse of Taro by dimming the others
+    if (activeStep === 1) {
+      gsap.to(svgRef.current.querySelectorAll('.crop-bar'), {
+        opacity: (_i, el) => {
+          const data = d3.select(el).datum() as { key: string; value: number };
+          return data.key === 'taro' ? 1 : 0.2;
+        },
+        duration: 0.5,
+      });
+    } else {
+      gsap.to(svgRef.current.querySelectorAll('.crop-bar'), {
+        opacity: 0.9,
+        duration: 0.5,
+      });
     }
-
-    // A11y Update
-    let descText = "Area chart showing Pacific staple crop yields over time.";
-    if (progress > 0.5) descText = "Divergence area chart highlighting a massive, pulsing red deficit between expected historical yields and actual failing crop yields.";
-    
-    if (svg.select('desc').empty()) {
-      svg.append('desc').attr('id', 'crop-desc');
-      svg.append('title').attr('id', 'crop-title').text('Crop Yield Deficit Chart');
-      svg.attr('role', 'img').attr('aria-labelledby', 'crop-title crop-desc');
-    }
-    svg.select('desc').text(descText);
-
-  }, [progress, cropYieldData]);
+  }, [activeStep]);
 
   return (
-    <div ref={containerRef} className="w-full" style={{ maxWidth: '900px', margin: '0 auto' }}>
-      <svg ref={svgRef} className="w-full" />
+    <div ref={wrapperRef} className="w-full h-full min-h-[500px] flex items-center justify-center">
+      <svg ref={svgRef} className="w-full h-full drop-shadow-lg" />
     </div>
   );
-}
+};

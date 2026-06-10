@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { Scale } from 'lucide-react';
-import TaxChart from '@/components/charts/TaxChart';
+import { TaxChart } from '@/components/charts/TaxChart';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -97,24 +97,12 @@ export default function Act6_UnpaidDebt({ className }: Act6Props) {
 
         </div>
 
-        {/* RIGHT COLUMN: Pinned Chart (60%) */}
+        {/* RIGHT COLUMN: Chart (60%) */}
         <div className="w-full md:w-7/12 h-screen sticky top-0 flex flex-col justify-center items-center py-12 md:py-0 md:pl-12 z-0">
-          <div ref={rightColumnRef} className="w-full max-w-3xl relative">
-            <div className="glass-card p-6 md:p-8 shadow-2xl">
-              <div className="flex items-center justify-between mb-2">
-                <h3 className="font-display text-lg md:text-xl text-[#e6f1ff]">Fiji Climate Adaptation Levy</h3>
-                <span className="text-xs font-mono text-[#5c6e8a] uppercase tracking-wider">Case Study</span>
-              </div>
-              <p className="text-xs text-[#a8b2d1] mb-4 leading-relaxed font-body">
-                Fiji's environmental and climate adaptation tax revenues as a percent of GDP.
-              </p>
-              <TaxChart activeStep={activeStep} />
-              <div className="mt-4 text-right">
-                <a href="https://stats.pacificdata.org" target="_blank" rel="noreferrer" className="text-xs text-[#a0aec0] hover:text-[#64ffda] transition-colors border-b border-[#64ffda]/30 pb-0.5 font-mono">
-                  Source: Pacific Data Hub (SPC:DF_CLIMATE_CHANGE), ENV_TAXES
-                </a>
-              </div>
-            </div>
+          <div ref={rightColumnRef} className="w-full max-w-4xl relative h-[60vh] glass-card p-6 rounded-xl flex items-center justify-center">
+            
+            <TaxChart activeStep={activeStep} />
+            
           </div>
         </div>
 
