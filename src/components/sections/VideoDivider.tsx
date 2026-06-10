@@ -23,21 +23,6 @@ export function VideoDivider({ videoSrc, quote, attribution }: Props) {
     if (!section || !media || !textContent) return;
 
     const ctx = gsap.context(() => {
-      // 1. Smooth Parallax Effect for the Video/Image
-      gsap.fromTo(media, 
-        { y: '-15%' }, // Start slightly above
-        { 
-          y: '15%', // Move down as you scroll
-          ease: 'none',
-          scrollTrigger: {
-            trigger: section,
-            start: 'top bottom', // Start parallax when top of section hits bottom of viewport
-            end: 'bottom top',   // End parallax when bottom of section hits top of viewport
-            scrub: true,
-          }
-        }
-      );
-
       // 2. Smooth Fade In & Up for the Quote Text
       gsap.fromTo(textContent,
         { opacity: 0, y: 50 },
@@ -65,8 +50,8 @@ export function VideoDivider({ videoSrc, quote, attribution }: Props) {
       ref={sectionRef}
       className="relative w-full h-[100vh] overflow-hidden z-20 bg-[#020c1b]"
     >
-      {/* Media Container for Parallax */}
-      <div ref={mediaRef} className="absolute inset-0 w-full h-[130%] -top-[15%]">
+      {/* Media Container (Static to prevent lag) */}
+      <div ref={mediaRef} className="absolute inset-0 w-full h-full">
         {videoSrc.endsWith('.png') || videoSrc.endsWith('.jpg') ? (
           <img
             src={videoSrc}
