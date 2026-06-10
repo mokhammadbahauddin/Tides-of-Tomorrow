@@ -57,7 +57,7 @@ export default function Act5_FoodSecurity({ className }: Act5Props) {
     >
       <div className="absolute inset-0 bg-gradient-to-r from-[var(--ocean-abyss)] via-[var(--ocean-abyss)]/80 to-transparent pointer-events-none z-0" />
 
-      <div className="relative z-10 w-full max-w-[1600px] mx-auto px-6 md:px-12 flex flex-col md:flex-row-reverse">
+      <div className="relative z-10 w-full max-w-[1600px] mx-auto px-6 md:px-12 flex flex-col-reverse md:flex-row-reverse">
         
         {/* TEXT COLUMN (Visually Right, 40%) */}
         <div ref={leftColumnRef} className="w-full md:w-5/12 py-[30vh] flex flex-col gap-[70vh] z-10">
@@ -98,22 +98,10 @@ export default function Act5_FoodSecurity({ className }: Act5Props) {
 
         {/* CHART COLUMN (Visually Left, 60%) */}
         <div className="w-full md:w-7/12 h-screen sticky top-0 flex flex-col justify-center items-center py-12 md:py-0 md:pr-12 z-0">
-          <div ref={rightColumnRef} className="w-full max-w-3xl relative">
-            <div className="glass-card p-6 md:p-8 shadow-2xl">
-              <div className="flex items-center justify-between mb-2">
-                <h3 className="font-display text-lg md:text-xl text-[#e6f1ff]">Pacific Staple Crop Yields</h3>
-                <span className="text-xs font-mono text-[#5c6e8a] uppercase tracking-wider">FAO Index</span>
-              </div>
-              <p className="text-xs text-[#a8b2d1] mb-4 leading-relaxed font-body">
-                Average yield (tonnes per hectare) showing stagnation and decline since 1961.
-              </p>
-              <CropYieldChart progress={activeStep} />
-              <div className="mt-4 text-right">
-                <a href="https://stats.pacificdata.org" target="_blank" rel="noreferrer" className="text-xs text-[#a0aec0] hover:text-[#64ffda] transition-colors border-b border-[#64ffda]/30 pb-0.5 font-mono">
-                  Source: Pacific Data Hub (SPC:DF_AGRICULTURAL_PRODUCTION)
-                </a>
-              </div>
-            </div>
+          <div ref={rightColumnRef} className="w-full max-w-4xl relative h-[60vh] glass-card p-6 rounded-xl flex items-center justify-center">
+            
+            <CropYieldChart activeStep={activeStep} />
+            
           </div>
         </div>
 

@@ -374,7 +374,24 @@ const IslandScene = React.memo(function IslandScene({ scrollProgress }: IslandSc
       window.removeEventListener('resize', onResize);
       cancelAnimationFrame(s.animationId);
       
-      // CRITICAL FIX: Force WebGL Context Loss to prevent memory leaks in React Strict Mode/Suspense
+      // CRITICAL FIX: Properly dispose all WebGL resources to prevent GPU memory leak
+      scene.traverse((object: any) => {
+        if (object.geometry) {
+          object.geometry.dispose();
+        }
+        if (object.material) {
+          if (Array.isArray(object.material)) {
+            object.material.forEach((mat: any) => {
+              if (mat.map) mat.map.dispose();
+              mat.dispose();
+            });
+          } else {
+            if (object.material.map) object.material.map.dispose();
+            object.material.dispose();
+          }
+        }
+      });
+      
       renderer.forceContextLoss();
       renderer.dispose();
       

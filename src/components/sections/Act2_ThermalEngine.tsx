@@ -62,7 +62,7 @@ export default function Act2_ThermalEngine({ className }: Act2Props) {
       {/* Background overlay for blending */}
       <div className="absolute inset-0 bg-gradient-to-r from-[var(--ocean-abyss)] via-transparent to-transparent pointer-events-none z-0" />
 
-      <div className="relative z-10 w-full max-w-[1600px] mx-auto px-6 md:px-12 flex flex-col md:flex-row">
+      <div className="relative z-10 w-full max-w-[1600px] mx-auto px-6 md:px-12 flex flex-col-reverse md:flex-row">
         
         {/* LEFT COLUMN: Narrative Text (40%) */}
         <div ref={leftColumnRef} className="w-full md:w-5/12 py-[30vh] flex flex-col gap-[70vh] z-10">
