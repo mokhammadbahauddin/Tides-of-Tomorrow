@@ -134,14 +134,13 @@ export default function CallToAction({ className }: CallToActionProps) {
               <div className="text-sm text-[#e6f1ff] font-body leading-relaxed">
                 {pledge < 30 && "Business as usual. The trajectory remains catastrophic. At this level of inaction, Pacific adaptation costs will exceed total GDP, and mass forced migration is mathematically inevitable."}
                 {pledge >= 30 && pledge < 75 && "Moderate transition. While this delays the most extreme impacts, it still locks the Pacific into billions in necessary seawall defenses and continuous agricultural failure. Survival remains precarious."}
-                {pledge >= 75 && "Aggressive decarbonization. This is the only scenario where the data begins to stabilize. The thermal engine cools, sea level anomalies plateau, and sovereign land is preserved."}
+                {pledge >= 75 && "Aggressive decarbonization. This is the only scenario where the data begins to stabilize. The warming slows, sea level anomalies plateau, and sovereign land is preserved."}
               </div>
             </div>
           </div>
 
           <a
-            href="https://pacificdatavizchallenge.org/"
-            target="_blank"
+            href="https://fossilfueltreaty.org/port-vila-call"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-3 px-8 py-4 bg-[#e63946] rounded-xl text-white font-bold text-lg hover:bg-[#c1121f] transition-all duration-300 shadow-lg shadow-[#e63946]/20 font-display tracking-wide"
           >
@@ -196,11 +195,11 @@ export default function CallToAction({ className }: CallToActionProps) {
               The time for "awareness" has passed. Support indigenous Pacific climate initiatives and amplify their demands for loss and damage compensation on the global stage.
             </p>
             <div className="flex flex-col gap-3">
-              <a href="https://www.sprep.org/" target="_blank" rel="noreferrer" className="w-full text-xs font-mono py-2 px-4 rounded border border-[#e63946]/40 text-[#F5F2EB] hover:bg-[#e63946]/20 transition-colors flex items-center justify-between">
+              <a href="https://www.pican.org/" target="_blank" rel="noreferrer" className="w-full text-xs font-mono py-2 px-4 rounded border border-[#e63946]/40 text-[#F5F2EB] hover:bg-[#e63946]/20 transition-colors flex items-center justify-between">
                 <span>Pacific Climate Action Network</span>
                 <ExternalLink className="w-3 h-3" />
               </a>
-              <a href="https://pican.org/" target="_blank" rel="noreferrer" className="w-full text-xs font-mono py-2 px-4 rounded border border-[#e63946]/40 text-[#F5F2EB] hover:bg-[#e63946]/20 transition-colors flex items-center justify-between">
+              <a href="https://fossilfueltreaty.org/" target="_blank" rel="noreferrer" className="w-full text-xs font-mono py-2 px-4 rounded border border-[#e63946]/40 text-[#F5F2EB] hover:bg-[#e63946]/20 transition-colors flex items-center justify-between">
                 <span>Fossil Fuel Non-Proliferation Treaty</span>
                 <ExternalLink className="w-3 h-3" />
               </a>

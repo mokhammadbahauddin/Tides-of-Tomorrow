@@ -103,8 +103,8 @@ export default function Home() {
           {/* Video Divider 2: Coral Cathedral */}
           <VideoDivider
             videoSrc="/videos/coral-reef.mp4"
-            quote="We are not drowning, we are fighting."
-            attribution="— Pacific Climate Warriors"
+            quote="The ocean is the heart of our world. But the heart is feverish."
+            attribution="— Pacific Council of Elders"
           />
 
           <Act2_ThermalEngine />
@@ -112,8 +112,8 @@ export default function Home() {
           {/* Video Divider 3: The Tides */}
           <VideoDivider
             videoSrc="/videos/waves-shore.mp4"
-            quote="We are sinking, but so is everyone else."
-            attribution="— Simon Kofe, Tuvalu Minister of Justice"
+            quote="We are not drowning, we are fighting."
+            attribution="— Pacific Climate Warriors"
           />
 
           <Act3_EncroachingWaters />

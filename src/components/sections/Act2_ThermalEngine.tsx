@@ -79,7 +79,7 @@ export default function Act2_ThermalEngine({ className }: Act2Props) {
               The Warming <span className="text-[#f59e0b]">Ocean</span>
             </h2>
             <p className="font-body text-base md:text-lg text-[#a8b2d1] leading-relaxed mb-6">
-              The ocean is our planet's ultimate heat sink, absorbing an invisible <strong>93% of the excess heat trapped by human activity²</strong>. But the engine is overheating. The buffering capacity has fractured.
+              The ocean is our planet's ultimate heat sink, absorbing an invisible <strong>93% of the excess heat trapped by human activity</strong>. But the engine is overheating. The buffering capacity has fractured.
             </p>
             <div className="flex items-center gap-2 text-[#5c6e8a] text-sm mt-8">
               <TrendingUp className="w-4 h-4" />

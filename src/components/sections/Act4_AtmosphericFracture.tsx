@@ -77,7 +77,7 @@ export default function Act4_AtmosphericFracture({ className }: Act4Props) {
               <span className="block text-[#8899a6]">Storms</span>
             </h2>
             <p className="font-body text-base md:text-lg text-[#a8b2d1] leading-relaxed mb-6">
-              The thermal engine of the ocean inevitably disrupts the sky above it. When you inject billions of joules of excess heat into the Pacific, you fundamentally alter the atmospheric circulation. The result is a total fracture of historic precipitation patterns.
+              The encroaching seas from Act III are only half the battle. As rising tides push inland, the thermal engine of the ocean simultaneously supercharges the sky above. When billions of joules of excess heat evaporate into the atmosphere, the result is a total fracture of historic precipitation patterns.
             </p>
             <div className="flex items-center gap-2 text-[#5c6e8a] text-sm mt-8">
               <CloudLightning className="w-4 h-4" />

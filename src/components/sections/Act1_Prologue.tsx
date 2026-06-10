@@ -70,7 +70,7 @@ export default function Act1_Prologue() {
               </li>
               <li className="flex items-start gap-3">
                 <span className="text-[#e63946] mt-1.5 text-xs">●</span>
-                <span>Yet, our island nations contribute only <strong className="text-[#00d4aa]">0.03% of global greenhouse gas emissions¹</strong>.</span>
+                <span>Yet, our island nations contribute only <strong className="text-[#00d4aa]">0.03% of global greenhouse gas emissions</strong>.</span>
               </li>
               <li className="flex items-start gap-3">
                 <span className="text-[#e63946] mt-1.5 text-xs">●</span>

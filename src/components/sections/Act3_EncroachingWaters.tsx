@@ -90,7 +90,7 @@ export default function Act3_EncroachingWaters({ className }: Act3Props) {
               Accelerated Sea Level Rise
             </h3>
             <p className="font-body text-base md:text-lg text-[#a8b2d1] leading-relaxed mb-4">
-              Satellite altimetry data reveals sea level anomalies rising at nearly <span className="text-[#e63946] font-semibold">4.5 millimeters per year</span> in the tropical Pacific—significantly outpacing the global mean⁴. This isn't just an environmental hazard; it is a physical encroachment on sovereign land.
+              Satellite altimetry data reveals sea level anomalies rising at nearly <span className="text-[#e63946] font-semibold">4.5 millimeters per year</span> in the tropical Pacific—significantly outpacing the global mean. This isn't just an environmental hazard; it is a physical encroachment on sovereign land.
             </p>
             <p className="font-body text-base md:text-lg text-[#a8b2d1] leading-relaxed">
               When the sea level rises by even a few millimeters, King Tides penetrate hundreds of meters further inland, completely reshaping the geography of the islands.

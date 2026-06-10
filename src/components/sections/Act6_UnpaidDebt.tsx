@@ -75,7 +75,7 @@ export default function Act6_UnpaidDebt({ className }: Act6Props) {
               The Cost of <span className="text-[#f59e0b]">Survival</span>
             </h2>
             <p className="font-body text-base md:text-lg text-[#a8b2d1] leading-relaxed mb-4">
-              Climate change doesn't just destroy homes; it bankrupts communities. To survive, our governments have to build massive seawalls, move entire villages inland, and rebuild after every cyclone. Where does that money come from?
+              Climate change doesn't just destroy homes; it bankrupts communities. To survive, our governments have to build massive seawalls, move entire villages inland, rebuild after every cyclone, and bail out farmers whose staple crops have entirely failed from saltwater intrusion (Act V). Where does that money come from?
             </p>
             <p className="font-body text-base md:text-lg text-[#a8b2d1] leading-relaxed">
               It comes from us. Fiji had to introduce a climate adaptation tax on its own economy. We are taxing our own people just to afford the concrete needed to keep the ocean out. 
