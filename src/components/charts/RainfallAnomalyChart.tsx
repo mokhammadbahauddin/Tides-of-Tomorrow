@@ -5,6 +5,7 @@ import { Tooltip } from '@/components/Tooltip';
 interface RainfallAnomalyRecord {
   year: number;
   anomaly: number;
+  event?: string;
 }
 
 interface Props {
@@ -160,12 +161,8 @@ export function RainfallAnomalyChart({ activeStep = 0 }: Props) {
         handleMouseLeave();
       });
 
-    // Cyclone Annotations
-    const cyclones = [
-      { year: 2015, name: 'Cyclone Pam (Cat 5)' },
-      { year: 2016, name: 'Cyclone Winston (Cat 5)' },
-      { year: 2020, name: 'Cyclone Harold (Cat 5)' }
-    ];
+    // Cyclone Annotations dynamically fetched from data
+    const cyclones = data.filter(d => d.event);
 
     const annotationGroup = g.append('g').attr('class', 'cyclone-annotations').attr('opacity', 0);
     
@@ -200,7 +197,7 @@ export function RainfallAnomalyChart({ activeStep = 0 }: Props) {
           .attr('font-size', '10px')
           .attr('font-weight', 'bold')
           .attr('font-family', 'JetBrains Mono, monospace')
-          .text(c.name);
+          .text(c.event || '');
           
         group.append('line')
           .attr('x1', 0)

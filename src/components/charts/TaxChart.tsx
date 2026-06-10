@@ -25,15 +25,20 @@ export const TaxChart: React.FC<TaxChartProps> = ({ activeStep }) => {
     d3.select(svgRef.current).selectAll('*').remove();
 
     const svg = d3.select(svgRef.current)
-      .attr('width', width)
-      .attr('height', height);
+      .attr('viewBox', `0 0 ${width} ${height}`)
+      .attr('preserveAspectRatio', 'xMidYMid meet')
+      .style('width', '100%')
+      .style('height', 'auto');
 
     const g = svg.append('g').attr('transform', `translate(${margin.left},${margin.top})`);
 
-    // Domains adjusted to match 1993-2023, Yield [0-20], Tax [0-7]
-    const x = d3.scaleLinear().domain([1993, 2023]).range([0, innerW]);
-    const yLeft = d3.scaleLinear().domain([0, 20]).range([innerH, 0]);
-    const yRight = d3.scaleLinear().domain([0, 7.0]).range([innerH, 0]);
+    const xExtent = d3.extent(taxData, d => d.year) as [number, number];
+    const maxYield = d3.max(taxData, d => d.yieldIndex) || 20;
+    const maxTax = d3.max(taxData, d => d.taxPercent) || 7.0;
+
+    const x = d3.scaleLinear().domain(xExtent).range([0, innerW]);
+    const yLeft = d3.scaleLinear().domain([0, maxYield * 1.1]).range([innerH, 0]);
+    const yRight = d3.scaleLinear().domain([0, maxTax * 1.1]).range([innerH, 0]);
 
     // Gridlines
     g.append('g')
@@ -152,12 +157,15 @@ export const TaxChart: React.FC<TaxChartProps> = ({ activeStep }) => {
       delay: 0.5
     });
 
-    // Annotations adapted for 1993-2023
-    const annotations = [
-      { year: 2011, label: 'ECAL Introduced', color: '#a8b2d1', bold: false },
-      { year: 2015, label: 'Paris Agreement', color: '#a8b2d1', bold: false },
-      { year: 2023, label: 'Tax hits 6.5%', color: '#ef4444', bold: true },
-    ];
+    // Annotations dynamically extracted from dataset
+    const annotations = taxData
+      .filter(d => d.event)
+      .map(d => ({
+        year: d.year,
+        label: d.event!,
+        color: '#ef4444',
+        bold: true
+      }));
 
     annotations.forEach((ann, i) => {
       const annG = g.append('g')
@@ -199,7 +207,8 @@ export const TaxChart: React.FC<TaxChartProps> = ({ activeStep }) => {
       .attr('opacity', 0)
       .attr('pointer-events', 'none');
 
-    const tooltip = d3.select(container).append('div')
+    // Tooltip Memory Leak Fix
+    const tooltip = d3.select(container).selectAll('.glass-tooltip').data([0]).join('div')
       .attr('class', 'glass-tooltip')
       .style('position', 'absolute')
       .style('opacity', 0)

@@ -25,9 +25,12 @@ export const CropYieldChart: React.FC<CropYieldChartProps> = ({ activeStep }) =>
     // Clear previous
     d3.select(svgRef.current).selectAll('*').remove();
 
+    // Use viewBox for perfect responsiveness without resize listeners
     const svg = d3.select(svgRef.current)
-      .attr('width', width)
-      .attr('height', height);
+      .attr('viewBox', `0 0 ${width} ${height}`)
+      .attr('preserveAspectRatio', 'xMidYMid meet')
+      .style('width', '100%')
+      .style('height', 'auto');
 
     const g = svg.append('g').attr('transform', `translate(${margin.left},${margin.top})`);
 
@@ -49,8 +52,11 @@ export const CropYieldChart: React.FC<CropYieldChartProps> = ({ activeStep }) =>
       .range([0, x0.bandwidth()])
       .padding(0.05);
 
+    // Dynamically calculate max value from all crops
+    const maxY = d3.max(cropData, d => Math.max(d.taro, d.sweetPotato, d.banana, d.cocoa)) || 20;
+
     const y = d3.scaleLinear()
-      .domain([0, 20])
+      .domain([0, maxY * 1.1]) // Add 10% headroom
       .range([innerH, 0]);
 
     // Gridlines
@@ -101,9 +107,38 @@ export const CropYieldChart: React.FC<CropYieldChartProps> = ({ activeStep }) =>
       .attr('y', innerH)
       .attr('width', x1.bandwidth())
       .attr('height', 0)
-      .attr('rx', 2)
       .attr('fill', d => colors[d.key])
-      .attr('opacity', 0.85);
+      .attr('rx', 2)
+      // Add Tooltip interaction
+      .on('mouseenter', function(event, d) {
+        d3.select(this).attr('opacity', 0.8);
+        const tooltip = d3.select(container).selectAll('.glass-tooltip').data([0]).join('div')
+          .attr('class', 'glass-tooltip')
+          .style('position', 'absolute')
+          .style('pointer-events', 'none')
+          .style('opacity', 0)
+          .style('background', 'rgba(17, 24, 39, 0.9)')
+          .style('padding', '8px')
+          .style('border-radius', '4px')
+          .style('border', '1px solid rgba(255,255,255,0.1)');
+        
+        tooltip.html(`
+          <div style="font-weight:bold; color: #64ffda">${d.key.toUpperCase()} (${d.year})</div>
+          <div>Yield: ${d.value.toFixed(1)} t/ha</div>
+        `)
+        .style('left', `${event.offsetX + 10}px`)
+        .style('top', `${event.offsetY - 30}px`)
+        .transition().duration(200).style('opacity', 1);
+      })
+      .on('mousemove', function(event) {
+        d3.select(container).select('.glass-tooltip')
+          .style('left', `${event.offsetX + 10}px`)
+          .style('top', `${event.offsetY - 30}px`);
+      })
+      .on('mouseleave', function() {
+        d3.select(this).attr('opacity', 1);
+        d3.select(container).select('.glass-tooltip').transition().duration(200).style('opacity', 0).remove();
+      });
 
     // Initial GSAP setup
     gsap.to(svg.selectAll('.crop-bar').nodes(), {

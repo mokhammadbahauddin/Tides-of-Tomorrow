@@ -1,77 +1,122 @@
-import { useEffect, useRef } from 'react';
+import React, { useEffect, useRef } from 'react';
+import * as d3 from 'd3';
 import gsap from 'gsap';
 
 export default function CarbonLedgerChart({ isActive = true }: { isActive?: boolean }) {
   const containerRef = useRef<HTMLDivElement>(null);
-  const redBoxRef = useRef<HTMLDivElement>(null);
-  const blueLineRef = useRef<HTMLDivElement>(null);
-  const labelRef = useRef<HTMLDivElement>(null);
+  const svgRef = useRef<SVGSVGElement>(null);
+
+  const data = [
+    { label: 'Global Greenhouse Gas Emissions', value: 99.97, color: 'url(#red-grad)' },
+    { label: 'Pacific Nations', value: 0.03, color: '#64ffda' }
+  ];
 
   useEffect(() => {
-    const ctx = gsap.context(() => {
-      if (isActive) {
-        // Animation timeline
-        gsap.set(redBoxRef.current, { scaleY: 0, transformOrigin: 'bottom' });
-        gsap.set(blueLineRef.current, { scaleX: 0, opacity: 0, transformOrigin: 'left' });
-        gsap.set(labelRef.current, { opacity: 0, y: 20 });
-        
-        const tl = gsap.timeline({ delay: 0.2 });
-        
-        tl.to(blueLineRef.current, { scaleX: 1, opacity: 1, duration: 1, ease: 'power2.out' })
-          .to(labelRef.current, { opacity: 1, y: 0, duration: 0.8 }, "-=0.5")
-          .to(redBoxRef.current, { scaleY: 1, duration: 1.5, ease: 'power4.out' }, "+=0.5");
-      } else {
-        // Reset state
-        gsap.set(redBoxRef.current, { scaleY: 0 });
-        gsap.set(blueLineRef.current, { scaleX: 0, opacity: 0 });
-        gsap.set(labelRef.current, { opacity: 0, y: 20 });
-      }
-    }, containerRef);
+    if (!containerRef.current || !svgRef.current || !isActive) return;
 
-    return () => ctx.revert();
+    const width = containerRef.current.clientWidth;
+    const height = 400; // Fixed aspect ratio
+
+    const svg = d3.select(svgRef.current)
+      .attr('viewBox', `0 0 ${width} ${height}`)
+      .attr('preserveAspectRatio', 'xMidYMid meet')
+      .style('width', '100%')
+      .style('height', '100%');
+
+    svg.selectAll('*').remove();
+
+    // Defs for gradients
+    const defs = svg.append('defs');
+    const grad = defs.append('linearGradient')
+      .attr('id', 'red-grad')
+      .attr('x1', '0%').attr('y1', '0%')
+      .attr('x2', '0%').attr('y2', '100%');
+    grad.append('stop').attr('offset', '0%').attr('stop-color', '#e63946');
+    grad.append('stop').attr('offset', '100%').attr('stop-color', '#780000');
+
+    // D3 Scale
+    const y = d3.scaleLinear()
+      .domain([0, 100])
+      .range([0, height]);
+
+    // Draw bars stacked
+    let currentY = 0;
+    
+    // Pacific line
+    const pacificHeight = Math.max(y(data[1].value), 2); // Minimum 2px visibility
+    const globalHeight = height - pacificHeight;
+
+    const bars = svg.selectAll('rect')
+      .data([
+        { ...data[0], y: 0, h: globalHeight },
+        { ...data[1], y: globalHeight, h: pacificHeight }
+      ]);
+
+    bars.enter()
+      .append('rect')
+      .attr('x', 0)
+      .attr('y', d => d.y)
+      .attr('width', width)
+      .attr('height', 0)
+      .attr('fill', d => d.color)
+      .attr('class', (d, i) => i === 0 ? 'global-bar' : 'pacific-bar');
+
+    // GSAP Animation
+    gsap.to('.global-bar', { attr: { height: globalHeight }, duration: 1.5, ease: 'power4.out', delay: 0.2 });
+    gsap.to('.pacific-bar', { attr: { height: pacificHeight }, duration: 1, ease: 'power2.out' });
+
+    // Labels
+    svg.append('text')
+      .attr('class', 'global-pct')
+      .attr('x', width / 2)
+      .attr('y', height / 2)
+      .attr('text-anchor', 'middle')
+      .attr('fill', 'rgba(255,255,255,0.8)')
+      .style('font-family', 'Inter')
+      .style('font-weight', 'bold')
+      .style('font-size', '48px')
+      .text('0%')
+      .style('mix-blend-mode', 'overlay');
+
+    svg.append('text')
+      .attr('class', 'global-label')
+      .attr('x', 20)
+      .attr('y', 40)
+      .attr('fill', 'rgba(255,255,255,0.6)')
+      .style('font-family', 'monospace')
+      .style('font-size', '12px')
+      .text('GLOBAL GREENHOUSE GAS EMISSIONS');
+
+    svg.append('text')
+      .attr('class', 'pacific-label')
+      .attr('x', 20)
+      .attr('y', height - 20)
+      .attr('fill', '#64ffda')
+      .style('font-family', 'monospace')
+      .style('font-size', '12px')
+      .text('PACIFIC NATIONS: 0.03%')
+      .style('opacity', 0);
+
+    gsap.to('.global-pct', {
+      innerHTML: 99.97,
+      duration: 1.5,
+      delay: 0.2,
+      ease: 'power2.out',
+      modifiers: {
+        innerHTML: value => `${Number(value).toFixed(2)}%`
+      }
+    });
+
+    gsap.to('.pacific-label', { opacity: 1, duration: 1, delay: 0.8 });
+
   }, [isActive]);
 
   return (
     <div ref={containerRef} className="w-full max-w-lg aspect-square relative flex flex-col items-center justify-center p-4">
-      {/* Background Frame */}
-      <div className="w-full h-full border border-[var(--teal)]/20 rounded-lg relative overflow-hidden bg-[#0a192f]/50 backdrop-blur-md shadow-[0_0_50px_rgba(230,57,70,0.1)]">
-        
-        {/* Global Emissions (99.97%) - Massive Red Block */}
-        <div 
-          ref={redBoxRef}
-          className="absolute inset-0 bg-gradient-to-b from-[#e63946] to-[#780000] opacity-80"
-          style={{ bottom: '2px' }} // Leave 2px for the pacific line
-        >
-          <div className="absolute inset-0 flex items-center justify-center">
-            <span className="text-white/80 font-display text-4xl md:text-6xl font-bold tracking-widest mix-blend-overlay">
-              99.97%
-            </span>
-          </div>
-          <div className="absolute top-4 left-4 text-white/60 font-mono text-sm tracking-wider">
-            GLOBAL GREENHOUSE GAS EMISSIONS
-          </div>
-        </div>
-
-        {/* Pacific Emissions (0.03%) - Tiny glowing line at the bottom */}
-        <div 
-          ref={blueLineRef}
-          className="absolute bottom-0 left-0 right-0 h-[2px] bg-[var(--teal)] shadow-[0_0_15px_var(--teal)]"
-        />
-        
-        {/* Pacific Label */}
-        <div 
-          ref={labelRef}
-          className="absolute bottom-6 left-4 text-[var(--teal)] font-mono text-xs md:text-sm tracking-wider"
-        >
-          <div className="flex items-center gap-2">
-            <span className="w-2 h-2 bg-[var(--teal)] rounded-full animate-pulse shadow-[0_0_10px_var(--teal)]"></span>
-            PACIFIC NATIONS: 0.03%
-          </div>
-        </div>
-
+      <div className="w-full h-full border border-[#64ffda]/20 rounded-lg relative overflow-hidden bg-[#0a192f]/50 backdrop-blur-md shadow-[0_0_50px_rgba(230,57,70,0.1)]">
+        <svg ref={svgRef} className="w-full h-full" />
       </div>
-
-      <div className="mt-6 text-center text-[var(--text-muted)] font-mono text-xs uppercase tracking-widest opacity-60">
+      <div className="mt-6 text-center text-[#a8b2d1] font-mono text-xs uppercase tracking-widest opacity-60">
         Data: SPREP / IPCC AR6
       </div>
     </div>
