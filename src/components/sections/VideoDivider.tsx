@@ -83,7 +83,12 @@ export function VideoDivider({ videoSrc, quote, attribution }: Props) {
             playsInline
             preload="auto"
             className="w-full h-full object-cover"
-            style={{ zIndex: 0 }}
+            style={{ 
+              zIndex: 0, 
+              willChange: 'transform, opacity', 
+              transform: 'translateZ(0)',
+              backfaceVisibility: 'hidden'
+            }}
           >
             <source src={videoSrc} type="video/mp4" />
           </video>

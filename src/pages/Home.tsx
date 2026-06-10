@@ -30,15 +30,19 @@ export default function Home() {
     window.addEventListener('scroll', handleScroll, { passive: true });
     handleScroll();
 
-    // Refresh ScrollTrigger after all components mount
-    const timeout = setTimeout(() => {
+    // Robust ScrollTrigger refresh using ResizeObserver
+    // This fixes the blank space / overshoot below the footer caused by asynchronous video/image loading
+    const resizeObserver = new ResizeObserver(() => {
       ScrollTrigger.refresh();
       handleScroll();
-    }, 500);
+    });
+
+    // Observe the main body for any height changes
+    resizeObserver.observe(document.body);
 
     return () => {
       window.removeEventListener('scroll', handleScroll);
-      clearTimeout(timeout);
+      resizeObserver.disconnect();
     };
   }, []);
 
@@ -107,8 +111,8 @@ export default function Home() {
           {/* Video Divider 6: The Unpaid Debt */}
           <VideoDivider
             videoSrc="/videos/abandoned-village.mp4"
-            quote="Our resilience is being tested, but the bill is being sent to the wrong address."
-            attribution="— Pacific Islands Forum Declaration"
+            quote="We are drowning in your exhaust, yet you hand us the invoice for our own survival."
+            attribution="— The Climate Justice Declaration"
           />
 
           <Act6_UnpaidDebt />
