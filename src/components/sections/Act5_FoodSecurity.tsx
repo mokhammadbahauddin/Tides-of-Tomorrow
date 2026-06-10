@@ -63,15 +63,16 @@ export default function Act5_FoodSecurity({ className }: Act5Props) {
         <div ref={leftColumnRef} className="w-full md:w-5/12 py-[30vh] flex flex-col gap-[70vh] z-10">
           
           <div className="trigger-block-food glass-card p-8 md:p-10 border-l-4 border-l-transparent transition-colors duration-500" style={{ borderColor: activeStep === 0 ? '#e6b89c' : 'transparent' }}>
-            <div className="flex items-center gap-3 mb-4">
+            <div className="flex items-center gap-3 mb-6">
               <span className="w-8 h-px bg-[#e63946]"></span>
-              <span className="text-xs font-mono tracking-widest uppercase text-[#e6b89c]">
-                ACT V — DATASET 04
+              <span className="text-sm font-mono tracking-widest uppercase text-[#e6b89c]">
+                ACT V — FOOD SECURITY
               </span>
             </div>
-            <h3 className="text-2xl font-display font-bold text-[#e6f1ff] mb-4">
-              The Dying Soil
-            </h3>
+            
+            <h2 className="font-display text-4xl md:text-5xl lg:text-6xl font-bold text-[#e6f1ff] mb-8 leading-tight">
+              The Dying <span className="text-[#e6b89c]">Soil</span>
+            </h2>
             <p className="font-body text-base md:text-lg text-[#a8b2d1] leading-relaxed mb-6">
               When extreme weather and saltwater intrusion combine, they strike directly at the foundation of subsistence agriculture. In the Pacific, staple crops like taro, sweet potatoes, and bananas are not just calories on a spreadsheet—they are cultural cornerstones, the bedrock of community resilience, and a profound connection to ancestral lands.
             </p>
@@ -82,7 +83,7 @@ export default function Act5_FoodSecurity({ className }: Act5Props) {
           </div>
 
           <div className="trigger-block-food glass-card p-8 md:p-10 border-l-4 border-l-transparent transition-colors duration-500" style={{ borderColor: activeStep === 1 ? '#e6b89c' : 'transparent' }}>
-            <h3 className="font-display text-2xl text-[#e6f1ff] mb-4">
+            <h3 className="font-display text-3xl md:text-4xl font-bold text-[#e6f1ff] mb-6">
               The Empty Harvest
             </h3>
             <p className="font-body text-base md:text-lg text-[#a8b2d1] leading-relaxed mb-4">

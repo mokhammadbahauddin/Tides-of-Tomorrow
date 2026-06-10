@@ -104,6 +104,13 @@ export default function Home() {
 
           <Act5_FoodSecurity />
 
+          {/* Video Divider 6: The Unpaid Debt */}
+          <VideoDivider
+            videoSrc="/videos/abandoned-village.mp4"
+            quote="Our resilience is being tested, but the bill is being sent to the wrong address."
+            attribution="— Pacific Islands Forum Declaration"
+          />
+
           <Act6_UnpaidDebt />
 
           <Act7_Synthesis />

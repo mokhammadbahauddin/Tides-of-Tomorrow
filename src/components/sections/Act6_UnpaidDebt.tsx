@@ -64,15 +64,16 @@ export default function Act6_UnpaidDebt({ className }: Act6Props) {
         <div ref={leftColumnRef} className="w-full md:w-5/12 py-[30vh] flex flex-col gap-[70vh] z-10">
           
           <div className="trigger-block-tax glass-card p-8 md:p-10 border-l-4 border-l-transparent transition-colors duration-500" style={{ borderColor: activeStep === 0 ? '#e6b89c' : 'transparent' }}>
-            <div className="flex items-center gap-3 mb-4">
+            <div className="flex items-center gap-3 mb-6">
               <span className="w-8 h-px bg-[#f59e0b]"></span>
-              <span className="text-xs font-mono tracking-widest uppercase text-[#f59e0b]">
-                ACT VI — DATASET 05
+              <span className="text-sm font-mono tracking-widest uppercase text-[#f59e0b]">
+                ACT VI — THE UNPAID DEBT
               </span>
             </div>
-            <h3 className="font-display text-2xl text-[#e6f1ff] mb-4">
-              The Cost of Survival
-            </h3>
+            
+            <h2 className="font-display text-4xl md:text-5xl lg:text-6xl font-bold text-[#e6f1ff] mb-8 leading-tight">
+              The Cost of <span className="text-[#f59e0b]">Survival</span>
+            </h2>
             <p className="font-body text-base md:text-lg text-[#a8b2d1] leading-relaxed mb-4">
               Climate change doesn't just destroy homes; it bankrupts communities. To survive, our governments have to build massive seawalls, move entire villages inland, and rebuild after every cyclone. Where does that money come from?
             </p>
@@ -82,12 +83,10 @@ export default function Act6_UnpaidDebt({ className }: Act6Props) {
           </div>
 
           <div className="trigger-block-tax glass-card p-8 md:p-10 border-l-4 border-l-transparent transition-colors duration-500" style={{ borderColor: activeStep === 1 ? '#f59e0b' : 'transparent' }}>
-            <div className="flex items-center gap-3 mb-4">
-              <Scale className="w-5 h-5 text-[#f59e0b]" />
-              <h3 className="font-display text-2xl text-[#e6f1ff]">
-                The Unpaid Debt
-              </h3>
-            </div>
+            <h3 className="font-display text-3xl md:text-4xl font-bold text-[#e6f1ff] mb-6 flex items-center gap-4">
+              <Scale className="w-8 h-8 text-[#f59e0b]" />
+              The Climate Tax
+            </h3>
             <p className="font-body text-base md:text-lg text-[#a8b2d1] leading-relaxed mb-4">
               Look at the background of the chart. That massive red block represents the historical emissions of the industrialized world. That tiny dot below it? That's the entire Pacific. 
             </p>
