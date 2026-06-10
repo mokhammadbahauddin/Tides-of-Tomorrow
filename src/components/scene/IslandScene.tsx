@@ -1,4 +1,4 @@
-import React, { useRef, useEffect } from 'react';
+import React, { useRef, useEffect, useState } from 'react';
 import * as THREE from 'three';
 
 // --- GLSL Shaders ---
@@ -200,6 +200,7 @@ const IslandScene = React.memo(function IslandScene({ scrollProgress }: IslandSc
     islandGroup: null, coralMaterials: [], sun: null, directionalLight: null, lagoonLight: null,
     particles: null, animationId: 0, startTime: performance.now(), actStates: [0, 0, 0, 0, 0],
   });
+  const [useFallback, setUseFallback] = useState(false);
 
   useEffect(() => {
     const container = containerRef.current;
@@ -207,18 +208,28 @@ const IslandScene = React.memo(function IslandScene({ scrollProgress }: IslandSc
     const s = sceneState.current;
 
     const isMobile = window.innerWidth < 768;
-    let renderer: THREE.WebGLRenderer;
-    try {
-      // Optimize performance: Disable antialias
-      renderer = new THREE.WebGLRenderer({ antialias: false, alpha: true });
-      renderer.setSize(window.innerWidth, window.innerHeight);
-      renderer.setPixelRatio(1);
-      container.appendChild(renderer.domElement);
-      s.renderer = renderer;
-    } catch (e) {
-      console.warn("WebGL not supported or context lost. 3D Scene disabled.", e);
-      return; // Exit early, graceful degradation
+    
+    // SAFE WEBGL CHECK BEFORE ANY THREE.JS CALLS
+    const hasWebGL = (() => {
+      try {
+        const canvas = document.createElement('canvas');
+        return !!(window.WebGLRenderingContext && (canvas.getContext('webgl') || canvas.getContext('experimental-webgl')));
+      } catch(e) {
+        return false;
+      }
+    })();
+
+    if (!hasWebGL) {
+      console.warn("WebGL blocked or unsupported. Falling back to video.");
+      setUseFallback(true);
+      return;
     }
+
+    let renderer = new THREE.WebGLRenderer({ antialias: false, alpha: true });
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    renderer.setPixelRatio(1);
+    container.appendChild(renderer.domElement);
+    s.renderer = renderer;
 
     const scene = new THREE.Scene();
     scene.fog = new THREE.FogExp2(0x0a1622, 0.02);
@@ -373,7 +384,20 @@ const IslandScene = React.memo(function IslandScene({ scrollProgress }: IslandSc
     };
   }, []);
 
-  return <div ref={containerRef} className="fixed inset-0 z-0" />;
+  return (
+    <div ref={containerRef} className="fixed inset-0 z-0">
+      {useFallback && (
+        <video 
+          autoPlay 
+          loop 
+          muted 
+          playsInline
+          className="absolute inset-0 w-full h-full object-cover opacity-60 mix-blend-screen transition-opacity duration-1000"
+          src="/videos/hero-pacific.mp4"
+        />
+      )}
+    </div>
+  );
 });
 
 export default IslandScene;
