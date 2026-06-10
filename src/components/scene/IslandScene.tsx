@@ -357,8 +357,14 @@ const IslandScene = React.memo(function IslandScene({ scrollProgress }: IslandSc
     return () => {
       window.removeEventListener('resize', onResize);
       cancelAnimationFrame(s.animationId);
+      
+      // CRITICAL FIX: Force WebGL Context Loss to prevent memory leaks in React Strict Mode/Suspense
+      renderer.forceContextLoss();
       renderer.dispose();
-      container.removeChild(renderer.domElement);
+      
+      if (container && renderer.domElement && container.contains(renderer.domElement)) {
+        container.removeChild(renderer.domElement);
+      }
     };
   }, []);
 
