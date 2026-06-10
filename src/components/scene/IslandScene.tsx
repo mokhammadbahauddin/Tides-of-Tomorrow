@@ -1,4 +1,4 @@
-import { useRef, useEffect } from 'react';
+import React, { useRef, useEffect } from 'react';
 import * as THREE from 'three';
 
 // --- GLSL Shaders ---
@@ -193,7 +193,7 @@ interface IslandSceneProps {
   scrollProgress: React.MutableRefObject<number>;
 }
 
-export default function IslandScene({ scrollProgress }: IslandSceneProps) {
+const IslandScene = React.memo(function IslandScene({ scrollProgress }: IslandSceneProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const sceneState = useRef<any>({
     renderer: null, scene: null, camera: null, waterMaterial: null, skyMaterial: null,
@@ -363,7 +363,9 @@ export default function IslandScene({ scrollProgress }: IslandSceneProps) {
   }, []);
 
   return <div ref={containerRef} className="fixed inset-0 z-0" />;
-}
+});
+
+export default IslandScene;
 
 function smoothstep(min: number, max: number, value: number) {
   const x = Math.max(0, Math.min(1, (value - min) / (max - min)));
