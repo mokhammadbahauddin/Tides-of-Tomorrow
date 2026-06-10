@@ -23,20 +23,9 @@ ScrollTrigger.config({
 });
 
 export default function Home() {
-  const [isLoaded, setIsLoaded] = useState(false);
   const scrollProgress = useRef(0);
 
   useEffect(() => {
-    // Preloader logic: wait for window load or 1.5 seconds minimum to ensure everything is parsed
-    const handleLoad = () => setIsLoaded(true);
-    if (document.readyState === 'complete') {
-      setTimeout(handleLoad, 1000);
-    } else {
-      window.addEventListener('load', handleLoad);
-      // Fallback
-      setTimeout(handleLoad, 2500);
-    }
-
     const handleScroll = () => {
       const totalHeight = document.documentElement.scrollHeight - window.innerHeight;
       const progress = totalHeight > 0 ? window.scrollY / totalHeight : 0;
@@ -64,17 +53,6 @@ export default function Home() {
 
   return (
     <div className="relative text-[#e6f1ff]">
-      {/* Global Preloader */}
-      <div 
-        className={`fixed inset-0 z-[100] flex flex-col items-center justify-center bg-[#020c1b] transition-opacity duration-1000 ${
-          isLoaded ? 'opacity-0 pointer-events-none' : 'opacity-100'
-        }`}
-      >
-        <div className="w-16 h-16 border-4 border-[var(--ocean-abyss)] border-t-[var(--accent-cyan)] rounded-full animate-spin mb-4" />
-        <h2 className="text-xl font-light tracking-widest text-[var(--accent-cyan)] animate-pulse">
-          INITIALIZING PACIFIC DATA...
-        </h2>
-      </div>
 
       <Navigation />
 

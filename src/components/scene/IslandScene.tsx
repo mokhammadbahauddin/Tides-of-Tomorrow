@@ -200,7 +200,6 @@ const IslandScene = React.memo(function IslandScene({ scrollProgress }: IslandSc
     islandGroup: null, coralMaterials: [], sun: null, directionalLight: null, lagoonLight: null,
     particles: null, animationId: 0, startTime: performance.now(), actStates: [0, 0, 0, 0, 0],
   });
-  const [useFallback, setUseFallback] = useState(false);
 
   useEffect(() => {
     const container = containerRef.current;
@@ -208,22 +207,6 @@ const IslandScene = React.memo(function IslandScene({ scrollProgress }: IslandSc
     const s = sceneState.current;
 
     const isMobile = window.innerWidth < 768;
-    
-    // SAFE WEBGL CHECK BEFORE ANY THREE.JS CALLS
-    const hasWebGL = (() => {
-      try {
-        const canvas = document.createElement('canvas');
-        return !!(window.WebGLRenderingContext && (canvas.getContext('webgl') || canvas.getContext('experimental-webgl')));
-      } catch(e) {
-        return false;
-      }
-    })();
-
-    if (!hasWebGL) {
-      console.warn("WebGL blocked or unsupported. Falling back to video.");
-      setUseFallback(true);
-      return;
-    }
 
     let renderer = new THREE.WebGLRenderer({ antialias: false, alpha: true });
     renderer.setSize(window.innerWidth, window.innerHeight);
@@ -403,16 +386,6 @@ const IslandScene = React.memo(function IslandScene({ scrollProgress }: IslandSc
 
   return (
     <div ref={containerRef} className="fixed inset-0 z-0">
-      {useFallback && (
-        <video 
-          autoPlay 
-          loop 
-          muted 
-          playsInline
-          className="absolute inset-0 w-full h-full object-cover opacity-60 mix-blend-screen transition-opacity duration-1000"
-          src="/videos/hero-pacific.mp4"
-        />
-      )}
     </div>
   );
 });
