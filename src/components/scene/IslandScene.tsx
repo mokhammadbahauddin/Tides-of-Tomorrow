@@ -208,17 +208,11 @@ const IslandScene = React.memo(function IslandScene({ scrollProgress }: IslandSc
 
     const isMobile = window.innerWidth < 768;
 
-    let renderer: THREE.WebGLRenderer;
-    try {
-      renderer = new THREE.WebGLRenderer({ antialias: false, alpha: true });
-      renderer.setSize(window.innerWidth, window.innerHeight);
-      renderer.setPixelRatio(1);
-      container.appendChild(renderer.domElement);
-      s.renderer = renderer;
-    } catch (err) {
-      console.warn("WebGL blocked by environment. IslandScene aborted.");
-      return;
-    }
+    const renderer = new THREE.WebGLRenderer({ antialias: false, alpha: true });
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    renderer.setPixelRatio(1);
+    container.appendChild(renderer.domElement);
+    s.renderer = renderer;
 
     const scene = new THREE.Scene();
     scene.fog = new THREE.FogExp2(0x0a1622, 0.02);
