@@ -252,18 +252,15 @@ export const SynthesisExplorer: React.FC = () => {
       .attr('stroke', '#f59e0b')
       .attr('stroke-width', 2)
       .attr('opacity', 0.8)
-      .transition()
-      .duration(800)
-      .attr('r', 16)
-      .attr('opacity', 0)
-      .on('end', function() {
-         d3.active(this)
-           ?.attr('r', 12)
-           .attr('opacity', 0.8)
-           .transition()
-           .duration(800)
-           .attr('r', 16)
-           .attr('opacity', 0)
+      .each(function pulse() {
+        d3.select(this)
+          .attr('r', 12)
+          .attr('opacity', 0.8)
+          .transition()
+          .duration(800)
+          .attr('r', 16)
+          .attr('opacity', 0)
+          .on('end', pulse);
       });
       
     // Text label for current year
