@@ -2,6 +2,7 @@ import { useRef, useEffect, useState, lazy, Suspense } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { Routes, Route } from 'react-router';
+import Lenis from 'lenis';
 import Home from './pages/Home';
 
 gsap.registerPlugin(ScrollTrigger);
@@ -14,6 +15,22 @@ export default function App() {
   const mainRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
+    // Initialize Lenis for butter-smooth native-feeling scrolling
+    const lenis = new Lenis({
+      duration: 1.2,
+      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), // standard ease-out
+      wheelMultiplier: 1,
+      touchMultiplier: 2,
+    });
+
+    lenis.on('scroll', ScrollTrigger.update);
+
+    gsap.ticker.add((time) => {
+      lenis.raf(time * 1000);
+    });
+    
+    gsap.ticker.lagSmoothing(0);
+
     const masterTrigger = ScrollTrigger.create({
       trigger: mainRef.current,
       start: 'top top',
@@ -26,6 +43,8 @@ export default function App() {
 
     return () => {
       masterTrigger.kill();
+      gsap.ticker.remove(lenis.raf);
+      lenis.destroy();
     };
   }, []);
 

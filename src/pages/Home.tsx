@@ -17,12 +17,10 @@ import { Footer } from '@/components/sections/Footer';
 
 gsap.registerPlugin(ScrollTrigger);
 
-// Global GSAP Optimizations for buttery smooth scrolling
+// Global GSAP Optimizations
 ScrollTrigger.config({ 
-  ignoreMobileResize: true,
   autoRefreshEvents: "visibilitychange,DOMContentLoaded,load" // Don't refresh on resize unless necessary
 });
-ScrollTrigger.normalizeScroll(true); // Forces native-like smooth scrolling on different browsers
 
 export default function Home() {
   const scrollProgress = useRef(0);
