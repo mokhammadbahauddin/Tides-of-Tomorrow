@@ -7,7 +7,6 @@ import Home from './pages/Home';
 
 gsap.registerPlugin(ScrollTrigger);
 
-const IslandScene = lazy(() => import('@/components/scene/IslandScene'));
 
 export default function App() {
   const scrollProgressRef = useRef(0);
@@ -50,10 +49,6 @@ export default function App() {
 
   return (
     <div ref={mainRef} className="relative">
-      {/* 3D Background Scene */}
-      <Suspense fallback={<div className="fixed inset-0 z-0 bg-[var(--ocean-abyss)]" />}>
-        <IslandScene scrollProgress={scrollProgressRef} />
-      </Suspense>
 
       {/* Progress Bar */}
       <div className="fixed top-0 left-0 right-0 z-[60] h-[2px] bg-transparent pointer-events-none">
