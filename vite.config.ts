@@ -26,7 +26,7 @@ export default defineConfig({
           'react-vendor': ['react', 'react-dom'],
           'gsap-vendor': ['gsap'],
           'd3-vendor': ['d3'],
-          'three-vendor': ['three', '@react-three/fiber', '@react-three/drei'],
+          'three-vendor': ['three'],
         },
       },
     },
