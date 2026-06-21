@@ -2,10 +2,20 @@ import { useEffect, useRef, useState } from 'react';
 import * as d3 from 'd3';
 import * as topojson from 'topojson-client';
 
+interface TooltipState {
+  x: number;
+  y: number;
+  name: string;
+  coords: string;
+  severity: 'CRITICAL' | 'SEVERE' | 'HIGH';
+  category: string;
+  impact: string;
+}
+
 export default function PacificGlobe() {
   const containerRef = useRef<HTMLDivElement>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
-  const [tooltip, setTooltip] = useState<{ x: number, y: number, name: string } | null>(null);
+  const [tooltip, setTooltip] = useState<TooltipState | null>(null);
 
   useEffect(() => {
     if (!canvasRef.current || !containerRef.current) return;
@@ -39,22 +49,24 @@ export default function PacificGlobe() {
       .precision(0.5);
 
     const path = d3.geoPath(projection, context);
+    const graticule = d3.geoGraticule();
 
+    // Precise, geographically accurate coordinates [longitude, latitude]
     const pictNations = [
-      { name: 'Tuvalu', coords: [-179, -9] },
-      { name: 'Kiribati', coords: [173, 1] },
-      { name: 'Fiji', coords: [178, -18] },
-      { name: 'Samoa', coords: [-172, -13] },
-      { name: 'Tonga', coords: [-175, -21] },
-      { name: 'Solomon Islands', coords: [160, -9] },
-      { name: 'Vanuatu', coords: [167, -15] },
-      { name: 'Nauru', coords: [166, -0.5] },
-      { name: 'Niue', coords: [-170, -19] },
-      { name: 'Cook Islands', coords: [-159, -21] },
-      { name: 'Guam', coords: [143, 13] },
-      { name: 'Micronesia', coords: [158, 6] },
-      { name: 'Marshall Islands', coords: [171, 7] },
-      { name: 'Palau', coords: [134, 7] },
+      { name: 'Tuvalu', coords: [179.2, -8.5] as [number, number], severity: 'CRITICAL' as const, category: 'Sea Level Rise', impact: 'Rising ocean tides are flooding coastal areas and contaminating their fresh drinking water with salt.' },
+      { name: 'Kiribati', coords: [173.0, 1.4] as [number, number], severity: 'CRITICAL' as const, category: 'Shoreline Erosion', impact: 'Severe coastal erosion is washing away homes and poisoning crop soils, forcing relocation plans.' },
+      { name: 'Fiji', coords: [178.4, -17.7] as [number, number], severity: 'HIGH' as const, category: 'Adaptation Costs', impact: 'Villages are being forced to relocate inland, diverting vital public funds to build new seawalls.' },
+      { name: 'Samoa', coords: [-172.2, -13.8] as [number, number], severity: 'SEVERE' as const, category: 'Storm Surges', impact: 'Violent storm surges are destroying key coastal roads and flooding low-lying family communities.' },
+      { name: 'Tonga', coords: [-175.2, -21.1] as [number, number], severity: 'HIGH' as const, category: 'Acidification', impact: 'Acidic waters are killing protective coral reefs and depleting the fish populations they depend on.' },
+      { name: 'Solomon Islands', coords: [160.1, -9.6] as [number, number], severity: 'SEVERE' as const, category: 'Crop Failure', impact: 'Rising seas are ruining agricultural soil, forcing families to rely on expensive imported food.' },
+      { name: 'Vanuatu', coords: [168.3, -17.7] as [number, number], severity: 'CRITICAL' as const, category: 'Extreme Weather', impact: 'Experiencing catastrophic category-5 cyclones and unpredictable whiplash weather cycles.' },
+      { name: 'Nauru', coords: [166.9, -0.5] as [number, number], severity: 'HIGH' as const, category: 'Coral Bleaching', impact: 'Spiking water temperatures are bleaching protective reefs, threatening local fish supplies.' },
+      { name: 'Niue', coords: [-169.9, -19.0] as [number, number], severity: 'HIGH' as const, category: 'Water Security', impact: 'Their underground freshwater supply is highly vulnerable to sea level rise and storms.' },
+      { name: 'Cook Islands', coords: [-159.8, -21.2] as [number, number], severity: 'SEVERE' as const, category: 'Reef Collapse', impact: 'Bleached coral reefs can no longer buffer the shores, leaving coastal homes exposed to ocean waves.' },
+      { name: 'Guam', coords: [144.7, 13.4] as [number, number], severity: 'SEVERE' as const, category: 'Typhoons', impact: 'More frequent and intense typhoons are battering local infrastructure and bleaching coral reefs.' },
+      { name: 'Micronesia', coords: [158.2, 6.9] as [number, number], severity: 'SEVERE' as const, category: 'Salt Intrusion', impact: 'Regular flooding during high spring tides is contaminating farm soils and crop gardens.' },
+      { name: 'Marshall Islands', coords: [171.3, 7.1] as [number, number], severity: 'CRITICAL' as const, category: 'Tidal Flooding', impact: 'King tides now flood lagoon streets regularly, while heat stress is collapsing local coral reefs.' },
+      { name: 'Palau', coords: [134.5, 7.4] as [number, number], severity: 'HIGH' as const, category: 'Marine Bleaching', impact: 'Spiking water temperatures threaten rare marine species in their world-famous marine lakes.' },
     ];
 
     let sphere = { type: 'Sphere' } as d3.GeoPermissibleObjects;
@@ -62,21 +74,82 @@ export default function PacificGlobe() {
     let borders: d3.GeoPermissibleObjects | null = null;
 
     let rotationX = -160;
-    const rotationY = -10;
+    let rotationY = -10;
     let animationId: number;
     let mousePos: [number, number] | null = null;
 
-    // Tooltip interaction
-    const handleMouseMove = (e: MouseEvent) => {
-      const rect = canvas.getBoundingClientRect();
-      const x = e.clientX - rect.left;
-      const y = e.clientY - rect.top;
-      mousePos = [x, y];
+    // Drag-to-spin with inertia variables
+    let isDragging = false;
+    let startX = 0;
+    let startY = 0;
+    let startRotX = 0;
+    let startRotY = 0;
+    let velocityX = 0;
+    let velocityY = 0;
+    let lastX = 0;
+    let lastY = 0;
+    let lastTime = 0;
+
+    // Pointer event interaction (Unified Mouse + Touch)
+    const handlePointerDown = (e: PointerEvent) => {
+      isDragging = true;
+      startX = e.clientX;
+      startY = e.clientY;
+      lastX = e.clientX;
+      lastY = e.clientY;
+      lastTime = performance.now();
+      startRotX = rotationX;
+      startRotY = rotationY;
+      velocityX = 0;
+      velocityY = 0;
+      canvas.setPointerCapture(e.pointerId);
     };
-    canvas.addEventListener('mousemove', handleMouseMove);
-    canvas.addEventListener('mouseleave', () => {
-      mousePos = null;
-      setTooltip(null);
+
+    const handlePointerMove = (e: PointerEvent) => {
+      const rect = canvas.getBoundingClientRect();
+      
+      // Fix mouse mapping issue under CSS transform scale layouts
+      const scaleX = rect.width / width;
+      const scaleY = rect.height / height;
+      
+      const x = (e.clientX - rect.left) / (scaleX || 1);
+      const y = (e.clientY - rect.top) / (scaleY || 1);
+      mousePos = [x, y];
+
+      if (isDragging) {
+        const dx = e.clientX - startX;
+        const dy = e.clientY - startY;
+        const sensitivity = 0.25; // Drag sensitivity
+        
+        const now = performance.now();
+        const dt = now - lastTime;
+        if (dt > 0) {
+          // Calculate instant velocity
+          velocityX = (e.clientX - lastX) * sensitivity;
+          velocityY = -(e.clientY - lastY) * sensitivity;
+        }
+        lastX = e.clientX;
+        lastY = e.clientY;
+        lastTime = now;
+
+        rotationX = startRotX + dx * sensitivity;
+        rotationY = Math.max(-60, Math.min(60, startRotY - dy * sensitivity)); // Clamp pitch rotation
+      }
+    };
+
+    const handlePointerUp = (e: PointerEvent) => {
+      isDragging = false;
+      canvas.releasePointerCapture(e.pointerId);
+    };
+
+    canvas.addEventListener('pointerdown', handlePointerDown);
+    canvas.addEventListener('pointermove', handlePointerMove);
+    canvas.addEventListener('pointerup', handlePointerUp);
+    canvas.addEventListener('pointerleave', () => {
+      if (!isDragging) {
+        mousePos = null;
+        setTooltip(null);
+      }
     });
 
     d3.json('/data/world-110m.json').then((world: any) => {
@@ -88,9 +161,26 @@ export default function PacificGlobe() {
     const render = () => {
       if (!context) return;
       
-      rotationX += 0.05; // Spin
+      // Auto spin and inertia logic
+      if (!isDragging) {
+        // Apply inertia (friction)
+        rotationX += velocityX;
+        rotationY += velocityY;
+        
+        velocityX *= 0.95;
+        velocityY *= 0.95;
+        
+        rotationY = Math.max(-60, Math.min(60, rotationY));
 
-      // Update projection dynamically based on resized dimensions
+        // When inertia stops, resume auto-spin
+        if (Math.abs(velocityX) < 0.01 && Math.abs(velocityY) < 0.01) {
+          velocityX = 0;
+          velocityY = 0;
+          rotationX += 0.05; // auto-spin speed
+        }
+      }
+
+      // Update projection scale dynamically based on dimensions
       projection
         .scale(Math.min(width, height) / 2.2)
         .translate([width / 2, height / 2])
@@ -98,67 +188,143 @@ export default function PacificGlobe() {
 
       context.clearRect(0, 0, width, height);
 
-      // Ocean / Sphere
+      // Deep 3D Sphere Radial Gradient for Ocean
+      const r = Math.min(width, height) / 2.2;
+      const sphereGrad = context.createRadialGradient(
+        width / 2 - r * 0.1, height / 2 - r * 0.1, r * 0.1,
+        width / 2, height / 2, r
+      );
+      sphereGrad.addColorStop(0, 'rgba(15, 34, 55, 0.50)'); // Ocean Ink fade
+      sphereGrad.addColorStop(0.7, 'rgba(11, 26, 46, 0.85)'); // Deep Ocean
+      sphereGrad.addColorStop(1, 'rgba(10, 20, 32, 0.98)');
+
       context.beginPath();
       path(sphere);
-      context.fillStyle = 'rgba(6, 16, 24, 0.4)';
+      context.fillStyle = sphereGrad;
       context.fill();
-      context.strokeStyle = 'rgba(100, 255, 218, 0.2)';
-      context.lineWidth = 1;
+
+      // Atmospheric outer glow edge stroke
+      context.beginPath();
+      path(sphere);
+      context.strokeStyle = 'rgba(43, 122, 120, 0.30)'; // Reef Teal
+      context.lineWidth = 1.5;
       context.stroke();
 
-      // Landmasses
+      // Draw Gridlines (Graticules)
+      context.beginPath();
+      path(graticule());
+      context.strokeStyle = 'rgba(107, 143, 163, 0.08)'; // Storm Gray
+      context.lineWidth = 0.5;
+      context.stroke();
+
+      // Landmasses (Driftwood styling with warm sand shadow)
       if (land) {
         context.beginPath();
         path(land);
-        context.shadowBlur = 20;
-        context.shadowColor = 'rgba(230, 57, 70, 0.8)';
-        context.fillStyle = 'rgba(230, 57, 70, 0.7)';
+        context.shadowBlur = 8;
+        context.shadowColor = 'rgba(212, 165, 116, 0.2)'; // Warm Sand
+        context.fillStyle = 'rgba(139, 115, 85, 0.7)'; // Driftwood
         context.fill();
-        context.shadowBlur = 0;
+        context.shadowBlur = 0; // Reset shadow for subsequent drawings
       }
 
       // Borders
       if (borders) {
         context.beginPath();
         path(borders);
-        context.strokeStyle = 'rgba(168, 178, 209, 0.1)';
+        context.strokeStyle = 'rgba(168, 178, 209, 0.15)';
         context.lineWidth = 0.5;
         context.stroke();
       }
 
       let hoveredNation: any = null;
 
+      // Pulse calculations
+      const pulseTime = (Date.now() / 1000) % 2; // 2 second cycle
+
       // Draw Pacific Nations
       pictNations.forEach((nation) => {
-        const p = projection(nation.coords as [number, number]);
-        if (p) {
-          const [x, y] = p;
-          
-          // Check collision
-          if (mousePos) {
-            const dist = Math.hypot(x - mousePos[0], y - mousePos[1]);
-            if (dist < 8) {
-              hoveredNation = nation;
+        // Verify if the nation's point is visible on the front hemisphere
+        const center: [number, number] = [-rotationX, -rotationY];
+        const distFromCenter = d3.geoDistance(center, nation.coords);
+        const isVisible = distFromCenter < Math.PI / 2;
+
+        if (isVisible) {
+          const p = projection(nation.coords);
+          if (p) {
+            const [x, y] = p;
+            
+            // Check collision with a larger 12px hover radius
+            if (mousePos && !isDragging) {
+              const dist = Math.hypot(x - mousePos[0], y - mousePos[1]);
+              if (dist < 12) {
+                hoveredNation = nation;
+              }
             }
+
+            // 1. Faint inner lagoon fill
+            context.beginPath();
+            context.arc(x, y, 8, 0, 2 * Math.PI);
+            context.fillStyle = 'rgba(212, 165, 116, 0.08)'; // Warm Sand
+            context.fill();
+
+            // 2. Dashed outer reef ring
+            context.beginPath();
+            context.arc(x, y, 9, 0, 2 * Math.PI);
+            context.strokeStyle = 'rgba(212, 165, 116, 0.45)'; // Warm Sand
+            context.lineWidth = 0.75;
+            context.setLineDash([2, 1.5]); // Dashed reef segments
+            context.stroke();
+            context.setLineDash([]); // Reset line dash for subsequent context drawings
+
+            // 3. Tiny islets (motus) along the reef ring
+            const isletCount = 3;
+            for (let i = 0; i < isletCount; i++) {
+              const angle = (i * (2 * Math.PI / isletCount)) + (nation.name.length * 0.4);
+              const isletX = x + Math.cos(angle) * 9;
+              const isletY = y + Math.sin(angle) * 9;
+              context.beginPath();
+              context.arc(isletX, isletY, 0.8, 0, 2 * Math.PI);
+              context.fillStyle = '#D4A574'; // Warm Sand
+              context.fill();
+            }
+
+            // 4. Center telemetry coordinate core dot
+            context.beginPath();
+            context.arc(x, y, 1.5, 0, 2 * Math.PI);
+            context.fillStyle = '#B44D36'; // Terracotta
+            context.fill();
+
+            // 5. Breathing pulse aura (expands outside the atoll)
+            const pulseRadius = 9 + pulseTime * 12;
+            const pulseOpacity = Math.max(0, 0.35 * (1 - pulseTime / 2));
+            context.beginPath();
+            context.arc(x, y, pulseRadius, 0, 2 * Math.PI);
+            context.fillStyle = `rgba(180, 77, 54, ${pulseOpacity})`; // Terracotta
+            context.fill();
           }
-
-          context.beginPath();
-          context.arc(x, y, 4, 0, 2 * Math.PI);
-          context.fillStyle = 'rgba(100, 255, 218, 0.3)';
-          context.fill();
-
-          context.beginPath();
-          context.arc(x, y, 1.5, 0, 2 * Math.PI);
-          context.fillStyle = '#64ffda';
-          context.fill();
         }
       });
 
       if (hoveredNation && mousePos) {
-        setTooltip({ x: mousePos[0], y: mousePos[1], name: hoveredNation.name });
+        // Format coordinates for display
+        const lon = hoveredNation.coords[0];
+        const lat = hoveredNation.coords[1];
+        const coordString = `${Math.abs(lat).toFixed(1)}° ${lat >= 0 ? 'N' : 'S'}, ${Math.abs(lon).toFixed(1)}° ${lon >= 0 ? 'E' : 'W'}`;
+
+        setTooltip({ 
+          x: mousePos[0], 
+          y: mousePos[1], 
+          name: hoveredNation.name,
+          coords: coordString,
+          severity: hoveredNation.severity,
+          category: hoveredNation.category,
+          impact: hoveredNation.impact
+        });
       } else {
-        setTooltip(null);
+        if (!isDragging) {
+          setTooltip(null);
+        }
       }
 
       animationId = requestAnimationFrame(render);
@@ -167,22 +333,59 @@ export default function PacificGlobe() {
     return () => {
       cancelAnimationFrame(animationId);
       window.removeEventListener('resize', resizeCanvas);
-      canvas.removeEventListener('mousemove', handleMouseMove);
+      canvas.removeEventListener('pointerdown', handlePointerDown);
+      canvas.removeEventListener('pointermove', handlePointerMove);
+      canvas.removeEventListener('pointerup', handlePointerUp);
     };
   }, []);
+
+  // Determine severity style classes
+  const getSeverityStyle = (severity?: string) => {
+    switch (severity) {
+      case 'CRITICAL':
+        return 'text-[#B44D36]'; // Terracotta
+      case 'SEVERE':
+        return 'text-[#D4836A]'; // Coral Pink
+      case 'HIGH':
+        return 'text-[#C49A3C]'; // Golden Hour
+      default:
+        return 'text-[#2B7A78]'; // Reef Teal
+    }
+  };
 
   return (
     <div ref={containerRef} className="absolute inset-0 flex items-center justify-center opacity-90" style={{ mixBlendMode: 'screen' }}>
       <canvas 
         ref={canvasRef} 
-        className="cursor-crosshair"
+        className="cursor-grab active:cursor-grabbing pointer-events-auto"
       />
       {tooltip && (
         <div 
-          className="absolute pointer-events-none glass-card px-3 py-2 text-xs font-mono text-[#64ffda] border border-[#64ffda]/30 shadow-lg whitespace-nowrap"
+          className="absolute pointer-events-none bg-[#0F2237]/95 border border-[#D4A574]/25 p-4 shadow-[0_15px_30px_rgba(0,0,0,0.5)] backdrop-blur-md max-w-xs z-50 text-left rounded-lg"
           style={{ left: tooltip.x + 15, top: tooltip.y - 15 }}
         >
-          {tooltip.name}
+          {/* Heading */}
+          <div className="mb-1 border-b border-[#D4A574]/15 pb-1.5">
+            <h4 className="text-sm font-bold text-[#E8DCC8] tracking-wide font-display">
+              {tooltip.name}
+            </h4>
+            <span className="text-[9px] text-[#8B7355] font-body mt-0.5 block">
+              Coordinates: {tooltip.coords}
+            </span>
+          </div>
+
+          {/* Impact Statement */}
+          <div className="text-[11px] text-[#E8DCC8]/80 leading-relaxed my-2.5 font-sans">
+            {tooltip.impact}
+          </div>
+
+          {/* Warning Level & Category */}
+          <div className="mt-2 pt-2 border-t border-[#D4A574]/15 flex items-center justify-between text-[8px]">
+            <span className="text-[#8B7355] font-body uppercase tracking-wider">Impact: {tooltip.category}</span>
+            <span className={`font-bold uppercase tracking-widest ${getSeverityStyle(tooltip.severity)}`}>
+              {tooltip.severity} RISK
+            </span>
+          </div>
         </div>
       )}
     </div>

@@ -145,13 +145,11 @@
   },
   {
     "year": 2015,
-    "anomaly": 2.84,
-    "event": "Cyclone Pam (Cat 5)"
+    "anomaly": 2.84
   },
   {
     "year": 2016,
-    "anomaly": -0.85,
-    "event": "Cyclone Winston (Cat 5)"
+    "anomaly": -0.85
   },
   {
     "year": 2017,
@@ -167,8 +165,7 @@
   },
   {
     "year": 2020,
-    "anomaly": 2.53,
-    "event": "Cyclone Harold (Cat 5)"
+    "anomaly": 2.53
   },
   {
     "year": 2021,

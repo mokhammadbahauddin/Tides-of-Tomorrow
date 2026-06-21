@@ -11,12 +11,13 @@ interface Milestone {
   year: number;
   label: string;
   align: 'start' | 'end';
+  y: number; // Staggered y-position to prevent vertical overlap
 }
 
 const milestones: Milestone[] = [
-  { year: 1990, label: '1990: IPCC First Report', align: 'end' },
-  { year: 2015, label: '2015: Paris Agreement (+1.5°C Target)', align: 'start' },
-  { year: 2023, label: '2023: Global Record Heat', align: 'end' }
+  { year: 1990, label: '1990: IPCC First Report', align: 'end', y: 15 },
+  { year: 2015, label: '2015: Paris Agreement (+1.5°C Target)', align: 'start', y: 15 },
+  { year: 2023, label: '2023: Global Record Heat', align: 'end', y: 32 }
 ];
 
 export default function TemperatureChart({ activeStep = 0 }: TemperatureChartProps) {
@@ -36,21 +37,21 @@ export default function TemperatureChart({ activeStep = 0 }: TemperatureChartPro
 
   const handleMouseMove = useCallback((event: MouseEvent, d: TemperatureRecord) => {
     let elNinoText = 'Neutral/La Niña';
-    let dotColor = '#a8b2d1';
+    let dotColor = '#8B7355'; // drift-wood
     
     if (d.isElNino) {
       if (d.elNinoStrength === 'very-strong') {
         elNinoText = 'Extreme El Niño';
-        dotColor = '#e63946';
+        dotColor = '#B44D36'; // terracotta
       } else if (d.elNinoStrength === 'strong') {
         elNinoText = 'Strong El Niño';
-        dotColor = '#ff5a5f';
+        dotColor = '#D4836A'; // coral-pink
       } else {
         elNinoText = 'Moderate El Niño';
-        dotColor = '#f59e0b';
+        dotColor = '#C49A3C'; // golden-hour
       }
     } else if (d.anomaly < 0) {
-      dotColor = '#00d4aa';
+      dotColor = '#2B7A78'; // reef-teal
     }
 
     setTooltip({
@@ -93,26 +94,42 @@ export default function TemperatureChart({ activeStep = 0 }: TemperatureChartPro
       .attr('id', 'temp-pos-gradient')
       .attr('x1', '0%').attr('y1', '0%')
       .attr('x2', '0%').attr('y2', '100%');
-    posGradient.append('stop').attr('offset', '0%').attr('stop-color', '#e63946').attr('stop-opacity', 0.4);
-    posGradient.append('stop').attr('offset', '100%').attr('stop-color', '#f59e0b').attr('stop-opacity', 0.0);
+    posGradient.append('stop').attr('offset', '0%').attr('stop-color', '#B44D36').attr('stop-opacity', 0.4);
+    posGradient.append('stop').attr('offset', '100%').attr('stop-color', '#C49A3C').attr('stop-opacity', 0.0);
 
     // Negative Area Gradient (Cold Colors)
     const negGradient = defs.append('linearGradient')
       .attr('id', 'temp-neg-gradient')
       .attr('x1', '0%').attr('y1', '0%')
       .attr('x2', '0%').attr('y2', '100%');
-    negGradient.append('stop').attr('offset', '0%').attr('stop-color', '#00d4aa').attr('stop-opacity', 0.0);
-    negGradient.append('stop').attr('offset', '100%').attr('stop-color', '#3A7DFF').attr('stop-opacity', 0.4);
+    negGradient.append('stop').attr('offset', '0%').attr('stop-color', '#2B7A78').attr('stop-opacity', 0.0);
+    negGradient.append('stop').attr('offset', '100%').attr('stop-color', '#1E4D5C').attr('stop-opacity', 0.4);
+
+    // Positive Area Gray Gradient (For desaturated bleaching state)
+    const posGrayGradient = defs.append('linearGradient')
+      .attr('id', 'temp-pos-gray-gradient')
+      .attr('x1', '0%').attr('y1', '0%')
+      .attr('x2', '0%').attr('y2', '100%');
+    posGrayGradient.append('stop').attr('offset', '0%').attr('stop-color', '#8B7355').attr('stop-opacity', 0.25);
+    posGrayGradient.append('stop').attr('offset', '100%').attr('stop-color', '#8B7355').attr('stop-opacity', 0.0);
+
+    // Negative Area Gray Gradient (For desaturated bleaching state)
+    const negGrayGradient = defs.append('linearGradient')
+      .attr('id', 'temp-neg-gray-gradient')
+      .attr('x1', '0%').attr('y1', '0%')
+      .attr('x2', '0%').attr('y2', '100%');
+    negGrayGradient.append('stop').attr('offset', '0%').attr('stop-color', '#8B7355').attr('stop-opacity', 0.0);
+    negGrayGradient.append('stop').attr('offset', '100%').attr('stop-color', '#8B7355').attr('stop-opacity', 0.25);
 
     // Vertical line path gradient for Heat
     const lineGradient = defs.append('linearGradient')
       .attr('id', 'temp-line-gradient')
       .attr('x1', '0%').attr('y1', '100%')
       .attr('x2', '0%').attr('y2', '0%'); // Vertical scale (bottom to top)
-    lineGradient.append('stop').attr('offset', '0%').attr('stop-color', '#3A7DFF');  // Dark cold blue
-    lineGradient.append('stop').attr('offset', '35%').attr('stop-color', '#00d4aa'); // Safe teal
-    lineGradient.append('stop').attr('offset', '60%').attr('stop-color', '#f59e0b'); // Warm warning yellow
-    lineGradient.append('stop').attr('offset', '100%').attr('stop-color', '#e63946'); // Critical hot red
+    lineGradient.append('stop').attr('offset', '0%').attr('stop-color', '#1E4D5C');  // Tide pool
+    lineGradient.append('stop').attr('offset', '35%').attr('stop-color', '#2B7A78'); // Reef teal
+    lineGradient.append('stop').attr('offset', '60%').attr('stop-color', '#C49A3C'); // Golden hour
+    lineGradient.append('stop').attr('offset', '100%').attr('stop-color', '#B44D36'); // Terracotta
 
     defs.append('clipPath')
       .attr('id', 'temp-chart-clip')
@@ -121,6 +138,33 @@ export default function TemperatureChart({ activeStep = 0 }: TemperatureChartPro
       .attr('height', innerHeight)
       .attr('x', 0)
       .attr('y', 0);
+      
+    // Bioluminescent Glow Filter
+    const glowFilter = defs.append('filter')
+      .attr('id', 'bioluminescent-glow')
+      .attr('x', '-50%').attr('y', '-50%').attr('width', '200%').attr('height', '200%');
+    glowFilter.append('feGaussianBlur').attr('stdDeviation', '4').attr('result', 'blur');
+    const feMerge = glowFilter.append('feMerge');
+    feMerge.append('feMergeNode').attr('in', 'blur');
+    feMerge.append('feMergeNode').attr('in', 'SourceGraphic');
+
+    // Clip path for x-axis to prevent ticks/numbers from sliding outside horizontal boundaries during zoom
+    defs.append('clipPath')
+      .attr('id', 'temp-x-axis-clip')
+      .append('rect')
+      .attr('x', 0)
+      .attr('y', -5)
+      .attr('width', innerWidth)
+      .attr('height', margin.bottom + 10);
+
+    // Clip path for milestones to prevent lines and text from sliding outside horizontal boundaries during zoom
+    defs.append('clipPath')
+      .attr('id', 'temp-milestone-clip')
+      .append('rect')
+      .attr('x', 0)
+      .attr('y', -margin.top)
+      .attr('width', innerWidth)
+      .attr('height', innerHeight + margin.top);
 
     const stripeColor = (val: number) => d3.interpolateRdYlBu(1 - (val + 0.5) / 1.7); // Approximate mapping: cold=blue, hot=red
 
@@ -145,7 +189,7 @@ export default function TemperatureChart({ activeStep = 0 }: TemperatureChartPro
       .attr('x2', innerWidth)
       .attr('y1', d => yScale(d))
       .attr('y2', d => yScale(d))
-      .attr('stroke', d => d === 0 ? 'rgba(100, 255, 218, 0.25)' : 'rgba(168, 178, 209, 0.08)')
+      .attr('stroke', d => d === 0 ? 'rgba(43, 122, 120, 0.25)' : 'rgba(232, 220, 200, 0.08)')
       .attr('stroke-width', d => d === 0 ? 1.5 : 1)
       .attr('stroke-dasharray', d => d === 0 ? 'none' : '4,4');
 
@@ -154,9 +198,13 @@ export default function TemperatureChart({ activeStep = 0 }: TemperatureChartPro
       .attr('x', innerWidth - 5)
       .attr('y', yScale(0) - 6)
       .attr('text-anchor', 'end')
-      .attr('fill', 'rgba(100, 255, 218, 0.4)')
-      .attr('font-size', '10px')
+      .attr('fill', 'rgba(43, 122, 120, 0.4)')
+      .attr('font-size', '9.5px')
       .attr('font-family', 'JetBrains Mono, monospace')
+      .attr('paint-order', 'stroke')
+      .attr('stroke', '#0B1A2E')
+      .attr('stroke-width', '3px')
+      .attr('stroke-linejoin', 'round')
       .text('Pre-Industrial Baseline');
 
     // Axes
@@ -171,38 +219,27 @@ export default function TemperatureChart({ activeStep = 0 }: TemperatureChartPro
     g.append('g')
       .attr('class', 'x-axis')
       .attr('transform', `translate(0,${innerHeight})`)
+      .attr('clip-path', 'url(#temp-x-axis-clip)')
       .call(xAxis)
+      .call(g => g.select(".domain").remove()) // Hide axis line
       .selectAll('text')
-      .attr('fill', '#a8b2d1')
-      .attr('font-size', '11px')
+      .attr('fill', 'rgba(232, 220, 200, 0.4)') // Dimmer text
+      .attr('font-size', '10px')
       .attr('font-family', 'Inter');
 
     g.append('g')
       .attr('class', 'y-axis')
       .call(yAxis)
+      .call(g => g.select(".domain").remove()) // Hide axis line
       .selectAll('text')
-      .attr('fill', '#a8b2d1')
-      .attr('font-size', '11px')
+      .attr('fill', 'rgba(232, 220, 200, 0.4)') // Dimmer text
+      .attr('font-size', '10px')
       .attr('font-family', 'Inter');
 
     const dataGroup = g.append('g')
       .attr('clip-path', 'url(#temp-chart-clip)');
 
-    // Draw Warming Stripes (Background)
-    const stripeWidth = innerWidth / data.length;
-    dataGroup.append('g')
-      .attr('class', 'stripes-group')
-      .selectAll('rect')
-      .data(data)
-      .enter()
-      .append('rect')
-      .attr('class', 'stripe')
-      .attr('x', d => xScale(d.year) - stripeWidth / 2)
-      .attr('y', 0)
-      .attr('width', stripeWidth + 1) // +1 to overlap slightly and prevent gaps
-      .attr('height', innerHeight)
-      .attr('fill', d => stripeColor(d.anomaly))
-      .attr('opacity', 0.2); // Semi-transparent initially
+    // Warming Stripes (Background vertical bars) removed to avoid crowding
 
     // Generators
     const posArea = d3.area<TemperatureRecord>()
@@ -242,37 +279,53 @@ export default function TemperatureChart({ activeStep = 0 }: TemperatureChartPro
       .attr('fill', 'none')
       .attr('stroke', 'url(#temp-line-gradient)')
       .attr('stroke-width', 2.5)
+      .style('filter', 'url(#bioluminescent-glow)') // Add glow
       .attr('d', line as any);
 
-    // Draw Milestones Group
-    const milestoneGroup = g.append('g').attr('class', 'milestone-group');
+    // Draw Milestones Group with Staggered Heights and Outlines, clipped horizontally
+    const milestoneGroup = g.append('g')
+      .attr('class', 'milestone-group')
+      .attr('clip-path', 'url(#temp-milestone-clip)');
+
     milestones.forEach((m) => {
       const xPos = xScale(m.year);
       const mG = milestoneGroup.append('g')
         .attr('class', `milestone-${m.year}`)
         .attr('opacity', 0); // hidden initially
 
-      mG.append('line')
-        .attr('x1', xPos)
-        .attr('x2', xPos)
-        .attr('y1', 0)
-        .attr('y2', innerHeight)
-        .attr('stroke', 'rgba(230, 57, 70, 0.4)')
-        .attr('stroke-width', 1.5)
-        .attr('stroke-dasharray', '3,3');
+      // Milestone vertical lines removed to avoid crowding
+
+      // Add a distinct intersection dot on the temperature line for each milestone
+      const pt = data.find(d => d.year === m.year);
+      if (pt) {
+        const yVal = yScale(pt.anomaly);
+        mG.append('circle')
+          .attr('class', 'milestone-point')
+          .attr('cx', xPos)
+          .attr('cy', yVal)
+          .attr('r', 5)
+          .attr('fill', '#D4836A')
+          .attr('stroke', '#0B1A2E')
+          .attr('stroke-width', 1.5);
+      }
 
       mG.append('text')
+        .attr('class', 'hidden md:block')
         .attr('x', xPos + (m.align === 'start' ? 8 : -8))
-        .attr('y', 15)
+        .attr('y', m.y) // Use staggered y to prevent overlapping text
         .attr('text-anchor', m.align)
-        .attr('fill', '#ff5a5f')
-        .attr('font-size', '10px')
+        .attr('fill', '#D4836A')
+        .attr('font-size', '9.5px')
         .attr('font-weight', 'bold')
         .attr('font-family', 'JetBrains Mono, monospace')
+        .attr('paint-order', 'stroke')
+        .attr('stroke', '#0B1A2E')
+        .attr('stroke-width', '3px')
+        .attr('stroke-linejoin', 'round')
         .text(m.label);
     });
 
-    // Draw Dots
+    // Draw Dots as flares
     dataGroup.selectAll('.temp-dot')
       .data(data)
       .enter()
@@ -280,36 +333,32 @@ export default function TemperatureChart({ activeStep = 0 }: TemperatureChartPro
       .attr('class', 'temp-dot')
       .attr('cx', d => xScale(d.year))
       .attr('cy', d => yScale(d.anomaly))
-      .attr('r', d => d.isElNino ? 4.5 : 2.5)
+      .attr('r', d => d.isElNino ? 6 : 3)
       .attr('fill', d => {
         if (d.isElNino) {
-          return d.elNinoStrength === 'very-strong' ? '#e63946' : '#f59e0b';
+          return d.elNinoStrength === 'very-strong' ? '#B44D36' : '#C49A3C';
         }
-        return d.anomaly > 0 ? '#ff8c00' : '#3A7DFF';
+        return d.anomaly > 0 ? '#D4A574' : '#1E4D5C';
       })
-      .attr('stroke', '#020c1b')
-      .attr('stroke-width', 1)
-      .attr('opacity', 0.85)
+      .attr('stroke', 'none')
+      .style('filter', 'url(#bioluminescent-glow)')
+      .attr('opacity', 0.9)
       .style('cursor', 'pointer')
       .on('pointermove', function(event, d) {
         d3.select(this)
-          .attr('r', 8)
-          .attr('stroke', '#ffffff')
-          .attr('stroke-width', 2)
+          .attr('r', 10)
           .attr('opacity', 1);
         handleMouseMove(event as unknown as MouseEvent, d);
       })
       .on('pointerleave', function(_, d) {
         d3.select(this)
-          .attr('r', d.isElNino ? 4.5 : 2.5)
-          .attr('stroke', '#020c1b')
-          .attr('stroke-width', 1)
-          .attr('opacity', 0.85);
+          .attr('r', d.isElNino ? 6 : 3)
+          .attr('opacity', 0.9);
         handleMouseLeave();
       });
 
     // Save refs for activeStep changes
-    (svg.node() as any).__scales = { xScale, yScale, innerWidth, innerHeight, xAxis, yAxis, stripeColor, stripeWidth };
+    (svg.node() as any).__scales = { xScale, yScale, innerWidth, innerHeight, xAxis, yAxis, stripeColor };
   }, [handleMouseMove, handleMouseLeave, data]);
 
   // Handle Scroll-driven Active Step Changes (Zoom & Focus)
@@ -320,7 +369,8 @@ export default function TemperatureChart({ activeStep = 0 }: TemperatureChartPro
     const scales = (svg.node() as any).__scales;
     if (!scales) return;
 
-    const { xScale, yScale, xAxis, stripeColor, stripeWidth } = scales;
+    const { xScale, yScale, xAxis } = scales;
+    const g = svg.select('.chart-group');
 
     // Interrupt all active transitions to prevent overlap during fast scrolling
     svg.selectAll('*').interrupt();
@@ -359,23 +409,31 @@ export default function TemperatureChart({ activeStep = 0 }: TemperatureChartPro
       .y(d => yScale(d.anomaly))
       .curve(d3.curveMonotoneX);
 
-    // Transition Area & Line Paths
+    // Transition Area & Line Paths (Transition color/opacity directly, NO CSS filters to avoid trail glitches)
+    const isBleached = activeStep >= 2;
+
     svg.select('.area-pos')
       .transition()
       .duration(transitionDuration)
       .ease(ease)
+      .attr('fill', isBleached ? 'url(#temp-pos-gray-gradient)' : 'url(#temp-pos-gradient)')
+      .attr('opacity', isBleached ? 0.35 : 1)
       .attr('d', posArea as any);
 
     svg.select('.area-neg')
       .transition()
       .duration(transitionDuration)
       .ease(ease)
+      .attr('fill', isBleached ? 'url(#temp-neg-gray-gradient)' : 'url(#temp-neg-gradient)')
+      .attr('opacity', isBleached ? 0.35 : 1)
       .attr('d', negArea as any);
 
     svg.select('.temp-line')
       .transition()
       .duration(transitionDuration)
       .ease(ease)
+      .attr('stroke', isBleached ? '#5a6275' : 'url(#temp-line-gradient)')
+      .attr('opacity', isBleached ? 0.45 : 1)
       .attr('d', line as any);
 
     // Transition Dots
@@ -400,38 +458,7 @@ export default function TemperatureChart({ activeStep = 0 }: TemperatureChartPro
         return 0.85;
       });
 
-    // Transition Stripes and implement BLEACHING
-    const isBleached = activeStep >= 2;
-    
-    svg.selectAll('.stripe')
-      .transition()
-      .duration(transitionDuration)
-      .ease(ease)
-      .attr('x', (d: any) => xScale(d.year) - stripeWidth / 2)
-      .attr('width', stripeWidth + 1)
-      .attr('fill', (d: any) => {
-        if (isBleached) {
-          // Coral Bleaching Metaphor: Drain color to bone white
-          return 'rgba(240, 240, 245, 0.4)'; 
-        }
-        return stripeColor(d.anomaly);
-      })
-      .attr('opacity', isBleached ? 0.6 : (isZoomed ? 0.4 : 0.2));
-
-    // Desaturate chart elements during bleaching
-    svg.select('.area-pos')
-      .transition()
-      .duration(transitionDuration)
-      .ease(ease)
-      .style('filter', isBleached ? 'grayscale(100%) opacity(0.3)' : 'none')
-      .attr('d', posArea as any);
-
-    svg.select('.temp-line')
-      .transition()
-      .duration(transitionDuration)
-      .ease(ease)
-      .style('filter', isBleached ? 'grayscale(100%) opacity(0.5)' : 'none')
-      .attr('d', line as any);
+    // Transition Stripes and BLEACHING removed
 
     // Transition Milestone Lines
     milestones.forEach((m) => {
@@ -443,12 +470,13 @@ export default function TemperatureChart({ activeStep = 0 }: TemperatureChartPro
         .ease(ease)
         .attr('opacity', isZoomed && m.year >= 1970 ? 1 : 0);
 
-      mG.select('line')
+      // Transition for vertical lines removed
+
+      mG.select('.milestone-point')
         .transition()
         .duration(transitionDuration)
         .ease(ease)
-        .attr('x1', xPos)
-        .attr('x2', xPos);
+        .attr('cx', xPos);
 
       mG.select('text')
         .transition()
@@ -457,38 +485,54 @@ export default function TemperatureChart({ activeStep = 0 }: TemperatureChartPro
         .attr('x', xPos + (m.align === 'start' ? 8 : -8));
     });
 
-    // Handle Step 2 Specific Highlights (Coral Bleaching / Extreme El Nino)
-    svg.selectAll('.bleaching-annotation').remove();
+    // Handle Step 2 Specific Highlights (Coral Bleaching / Extreme El Nino) with text outlines
+    g.selectAll('.bleaching-annotation').remove();
 
     if (activeStep >= 2) {
-      const extremeYears = [1997, 2015];
+      // Use 1998 and 2016 which are the actual peak warming years in the Pacific dataset
+      const extremeYears = [1998, 2016];
       
       extremeYears.forEach(year => {
         const xPos = xScale(year);
-        const pt = (svg.datum() as any[])?.find?.((d: any) => d.year === year) || { anomaly: 1.0 }; // Fallback
-        const yPos = yScale(pt.anomaly || 1.0);
+        const pt = data.find(d => d.year === year) || { anomaly: 0.5 };
+        const yPos = yScale(pt.anomaly);
 
-        const group = svg.append('g')
+        const group = g.append('g')
           .attr('class', 'bleaching-annotation')
+          .attr('clip-path', 'url(#temp-milestone-clip)')
           .attr('opacity', 0);
 
+        // Pulsing ring
         group.append('circle')
           .attr('cx', xPos)
           .attr('cy', yPos)
           .attr('r', 15)
           .attr('fill', 'none')
-          .attr('stroke', '#f59e0b')
+          .attr('stroke', '#C49A3C')
           .attr('stroke-width', 2)
           .attr('stroke-dasharray', '2,2');
+
+        // Solid inner point to anchor exactly on the line
+        group.append('circle')
+          .attr('cx', xPos)
+          .attr('cy', yPos)
+          .attr('r', 5)
+          .attr('fill', '#C49A3C')
+          .attr('stroke', '#0B1A2E')
+          .attr('stroke-width', 1.5);
 
         group.append('text')
           .attr('x', xPos)
           .attr('y', yPos - 25)
           .attr('text-anchor', 'middle')
-          .attr('fill', '#f59e0b')
-          .attr('font-size', '10px')
+          .attr('fill', '#C49A3C')
+          .attr('font-size', '9.5px')
           .attr('font-weight', 'bold')
           .attr('font-family', 'JetBrains Mono, monospace')
+          .attr('paint-order', 'stroke')
+          .attr('stroke', '#0B1A2E')
+          .attr('stroke-width', '3px')
+          .attr('stroke-linejoin', 'round')
           .text(`Bleaching Event (${year})`);
 
         group.transition()
@@ -511,6 +555,14 @@ export default function TemperatureChart({ activeStep = 0 }: TemperatureChartPro
     svg.select('desc').text(descText);
 
   }, [activeStep, data]);
+
+  if (data.length === 0) {
+    return (
+      <div className="w-full h-[350px] rounded-lg bg-gradient-to-r from-[#0a1526] via-[#112240] to-[#0a1526] animate-pulse flex items-center justify-center">
+        <p className="text-blue-200/50 font-body tracking-widest text-xs">LOADING TEMPERATURE DATA...</p>
+      </div>
+    );
+  }
 
   return (
     <div ref={containerRef} className="relative w-full">

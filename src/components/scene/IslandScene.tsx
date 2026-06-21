@@ -193,22 +193,40 @@ interface IslandSceneProps {
   scrollProgress: React.MutableRefObject<number>;
 }
 
+interface IslandSceneState {
+  renderer: THREE.WebGLRenderer | null;
+  scene: THREE.Scene | null;
+  camera: THREE.PerspectiveCamera | null;
+  waterMaterial: THREE.ShaderMaterial | null;
+  skyMaterial: THREE.ShaderMaterial | null;
+  islandGroup: THREE.Group | null;
+  coralMaterials: THREE.ShaderMaterial[];
+  sun: THREE.Sprite | null;
+  directionalLight: THREE.DirectionalLight | null;
+  lagoonLight: THREE.PointLight | null;
+  particles: THREE.Points | null;
+  animationId: number;
+  startTime: number;
+  actStates: number[];
+}
+
 const IslandScene = React.memo(function IslandScene({ scrollProgress }: IslandSceneProps) {
   const containerRef = useRef<HTMLDivElement>(null);
-  const sceneState = useRef<any>({
+  const sceneState = useRef<IslandSceneState>({
     renderer: null, scene: null, camera: null, waterMaterial: null, skyMaterial: null,
     islandGroup: null, coralMaterials: [], sun: null, directionalLight: null, lagoonLight: null,
-    particles: null, animationId: 0, startTime: performance.now(), actStates: [0, 0, 0, 0, 0],
+    particles: null, animationId: 0, startTime: 0, actStates: [0, 0, 0, 0, 0],
   });
 
   useEffect(() => {
     const container = containerRef.current;
     if (!container) return;
     const s = sceneState.current;
+    s.startTime = performance.now();
 
     const isMobile = window.innerWidth < 768;
 
-    const renderer = new THREE.WebGLRenderer({ antialias: false, alpha: true });
+    const renderer = new THREE.WebGLRenderer({ antialias: !isMobile, alpha: true });
     renderer.setSize(window.innerWidth, window.innerHeight);
     renderer.setPixelRatio(1);
     container.appendChild(renderer.domElement);
@@ -323,15 +341,28 @@ const IslandScene = React.memo(function IslandScene({ scrollProgress }: IslandSc
     scene.add(sun);
     s.sun = sun;
 
+    let isPaused = false;
+    const handleVisibilityChange = () => {
+      isPaused = document.hidden;
+    };
+    document.addEventListener('visibilitychange', handleVisibilityChange);
+
     s.startTime = performance.now();
     const animate = () => {
       s.animationId = requestAnimationFrame(animate);
+      
+      // Stop rendering and consuming GPU when the page is hidden 
+      // or when scrolled to the opaque bottom Call to Action (scrollProgress > 0.94)
+      if (isPaused || scrollProgress.current > 0.94) {
+        return;
+      }
+
       const elapsed = (performance.now() - s.startTime) / 1000;
       updateSceneState(s, scrollProgress.current, elapsed);
 
       if (s.waterMaterial) s.waterMaterial.uniforms.uTime.value = elapsed * 0.5;
       if (s.skyMaterial) s.skyMaterial.uniforms.uTime.value = elapsed;
-      s.coralMaterials.forEach((mat: any) => mat.uniforms.uTime.value = elapsed);
+      s.coralMaterials.forEach((mat: THREE.ShaderMaterial) => mat.uniforms.uTime.value = elapsed);
 
       if (s.particles) {
         s.particles.rotation.y = elapsed * 0.05;
@@ -354,23 +385,31 @@ const IslandScene = React.memo(function IslandScene({ scrollProgress }: IslandSc
     window.addEventListener('resize', onResize);
 
     return () => {
+      document.removeEventListener('visibilitychange', handleVisibilityChange);
       window.removeEventListener('resize', onResize);
       cancelAnimationFrame(s.animationId);
       
       // CRITICAL FIX: Properly dispose all WebGL resources to prevent GPU memory leak
-      scene.traverse((object: any) => {
-        if (object.geometry) {
-          object.geometry.dispose();
-        }
-        if (object.material) {
-          if (Array.isArray(object.material)) {
-            object.material.forEach((mat: any) => {
-              if (mat.map) mat.map.dispose();
+      scene.traverse((object: THREE.Object3D) => {
+        if (object instanceof THREE.Mesh || object instanceof THREE.Points || object instanceof THREE.Line) {
+          if (object.geometry) {
+            object.geometry.dispose();
+          }
+          if (object.material) {
+            if (Array.isArray(object.material)) {
+              object.material.forEach((mat: any) => {
+                if (mat.map && typeof mat.map.dispose === 'function') {
+                  mat.map.dispose();
+                }
+                mat.dispose();
+              });
+            } else {
+              const mat = object.material as any;
+              if (mat.map && typeof mat.map.dispose === 'function') {
+                mat.map.dispose();
+              }
               mat.dispose();
-            });
-          } else {
-            if (object.material.map) object.material.map.dispose();
-            object.material.dispose();
+            }
           }
         }
       });
@@ -603,7 +642,7 @@ function createCoconutTree() {
   return treeGroup;
 }
 
-function createIsland(group: THREE.Group, coralMaterials: THREE.ShaderMaterial[], s: any) {
+function createIsland(group: THREE.Group, coralMaterials: THREE.ShaderMaterial[], s: IslandSceneState) {
   // Low-poly rugged atoll with Grass & Sand (Vertex Colors)
   const sandGeometry = new THREE.TorusGeometry(3.5, 1.6, 24, 48);
   const pos = sandGeometry.attributes.position;
@@ -755,7 +794,7 @@ function createIsland(group: THREE.Group, coralMaterials: THREE.ShaderMaterial[]
   });
 }
 
-function updateSceneState(s: any, progress: number, elapsed: number) {
+function updateSceneState(s: IslandSceneState, progress: number, elapsed: number) {
   const numActs = 5;
   for (let i = 0; i < numActs; i++) {
     const segmentStart = i / numActs;
@@ -813,6 +852,6 @@ function updateSceneState(s: any, progress: number, elapsed: number) {
 
   if (s.particles) {
     // Show particles only in act 5
-    s.particles.material.opacity = act5Progress * 0.8;
+    (s.particles.material as any).opacity = act5Progress * 0.8;
   }
 }

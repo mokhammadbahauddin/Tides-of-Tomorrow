@@ -60,47 +60,69 @@ export default function Act5_FoodSecurity({ className }: Act5Props) {
       <div className="relative z-10 w-full max-w-[1600px] mx-auto px-6 md:px-12 flex flex-col-reverse md:flex-row-reverse">
         
         {/* TEXT COLUMN (Visually Right, 40%) */}
-        <div ref={leftColumnRef} className="w-full md:w-5/12 py-[30vh] flex flex-col gap-[70vh] z-10">
+        <div ref={leftColumnRef} className="w-full md:w-5/12 py-[35vh] flex flex-col gap-[80vh] z-10">
           
-          <div className="trigger-block-food glass-card p-8 md:p-10 border-l-4 border-l-transparent transition-colors duration-500" style={{ borderColor: activeStep === 0 ? '#e6b89c' : 'transparent' }}>
+          <div 
+            className="trigger-block-food relative py-12 px-6 md:px-8 transition-all duration-500" 
+            style={{ 
+              opacity: activeStep === 0 ? 1 : 0.4,
+              transform: activeStep === 0 ? 'scale(1)' : 'scale(0.98)'
+            }}
+          >
+            <div className={`absolute inset-0 rounded-xl transition-opacity duration-500 ${activeStep === 0 ? 'glass-card' : ''}`} />
+            <div className="relative z-10">
             <div className="flex items-center gap-3 mb-6">
-              <span className="w-8 h-px bg-[#e63946]"></span>
-              <span className="text-sm font-mono tracking-widest uppercase text-[#e6b89c]">
+              <span className="w-8 h-px bg-terracotta"></span>
+              <span className="text-xs font-body tracking-widest uppercase text-coral-pink">
                 ACT V — FOOD SECURITY
               </span>
             </div>
             
-            <h2 className="font-display text-4xl md:text-5xl lg:text-6xl font-bold text-[#e6f1ff] mb-8 leading-tight">
-              The Dying <span className="text-[#e6b89c]">Soil</span>
+            <h2 className="font-display text-4xl md:text-5xl lg:text-6xl font-bold text-shell-white mb-8 leading-tight">
+              The Dying <span className="text-coral-pink">Soil</span>
             </h2>
-            <p className="font-body text-base md:text-lg text-[#a8b2d1] leading-relaxed mb-6">
+            <p className="font-body text-base md:text-lg text-shell-white/80 leading-relaxed mb-6">
               When extreme weather and saltwater intrusion combine, they strike directly at the foundation of subsistence agriculture. In the Pacific, staple crops like taro, sweet potatoes, and bananas are not just calories on a spreadsheet—they are cultural cornerstones, the bedrock of community resilience, and a profound connection to ancestral lands.
             </p>
-            <div className="p-4 bg-[#112240] border-l-4 border-[#e63946] italic text-[#ccd6f6] font-body text-sm rounded-r-md">
+            <div className="p-4 glass-card italic text-shell-white/90 font-body text-sm">
               "We plant the taro, but the salt in the soil from the king tides means it rots before we can harvest. Our children are eating imported rice instead of what our ancestors grew. We are losing our food sovereignty." <br/>
-              <span className="text-xs text-[#8892b0] mt-2 block">— Farmer, Malaita Province, Solomon Islands</span>
+              <span className="text-xs text-drift-wood mt-2 block font-body">— Farmer, Malaita Province, Solomon Islands</span>
+            </div>
             </div>
           </div>
 
-          <div className="trigger-block-food glass-card p-8 md:p-10 border-l-4 border-l-transparent transition-colors duration-500" style={{ borderColor: activeStep === 1 ? '#e6b89c' : 'transparent' }}>
-            <h3 className="font-display text-3xl md:text-4xl font-bold text-[#e6f1ff] mb-6">
+          <div 
+            className="trigger-block-food relative py-12 px-6 md:px-8 transition-all duration-500" 
+            style={{ 
+              opacity: activeStep === 1 ? 1 : 0.4,
+              transform: activeStep === 1 ? 'scale(1)' : 'scale(0.98)'
+            }}
+          >
+            <div className={`absolute inset-0 rounded-xl transition-opacity duration-500 ${activeStep === 1 ? 'glass-card' : ''}`} />
+            <div className="relative z-10">
+            <h3 className="font-display text-3xl md:text-4xl font-bold text-shell-white mb-6">
               The Empty Harvest
             </h3>
-            <p className="font-body text-base md:text-lg text-[#a8b2d1] leading-relaxed mb-4">
-              When the soil turns salty and the rains fail, the crops stop growing. For generations, staples like taro and sweet potato were the backbone of our communities. Now, families watch their harvests shrink year after year.
+            <p className="font-body text-base md:text-lg text-shell-white/80 leading-relaxed mb-4">
+              While agricultural yields are not completely collapsing across the region, they are stagnating while the population expands. In disaster years, sudden crop drops compound the food security pressure.
             </p>
-            <p className="font-body text-base md:text-lg text-[#a8b2d1] leading-relaxed">
-              That <strong className="text-[#e63946]">red gap</strong> on the chart isn't just a statistical deficit. It represents empty plates. It represents the food we used to grow ourselves. To survive, we are forced to buy expensive, processed, imported food in plastic packaging. We aren't just losing our crops; we are losing our food sovereignty.
+            <p className="font-body text-base md:text-lg text-shell-white/80 leading-relaxed">
+              That <strong className="text-terracotta">red bar</strong> on the chart represents Taro—our cultural staple. As temperature anomalies rise and cyclones strike, yields stagnate and experience sudden shocks. This isn't just a statistical flatline; it represents crop failures, empty plates, and the loss of what our ancestors grew. To survive, we are forced to buy expensive, processed, imported food. We aren't just losing our crops; we are losing our food sovereignty.
             </p>
+            </div>
           </div>
 
         </div>
 
         {/* CHART COLUMN (Visually Left, 60%) */}
         <div className="w-full md:w-7/12 h-screen sticky top-0 flex flex-col justify-center items-center py-12 md:py-0 md:pr-12 z-0">
-          <div ref={rightColumnRef} className="w-full max-w-4xl relative h-[60vh] glass-card p-6 rounded-xl flex items-center justify-center">
+          <div ref={rightColumnRef} className="w-full max-w-4xl relative h-[60vh] flex flex-col justify-center items-center">
             
             <CropYieldChart activeStep={activeStep} />
+
+            <div className="absolute bottom-[-32px] left-0 right-0 text-center text-[9px] uppercase tracking-widest font-body text-drift-wood/75">
+              Solomon Islands — Crop Yield Production Data (Taro)
+            </div>
             
           </div>
         </div>

@@ -61,47 +61,71 @@ export default function Act6_UnpaidDebt({ className }: Act6Props) {
       <div className="relative z-10 w-full max-w-[1600px] mx-auto px-6 md:px-12 flex flex-col-reverse md:flex-row">
         
         {/* LEFT COLUMN: Narrative Text (40%) */}
-        <div ref={leftColumnRef} className="w-full md:w-5/12 py-[30vh] flex flex-col gap-[70vh] z-10">
+        <div ref={leftColumnRef} className="w-full md:w-5/12 py-[35vh] flex flex-col gap-[80vh] z-10">
           
-          <div className="trigger-block-tax glass-card p-8 md:p-10 border-l-4 border-l-transparent transition-colors duration-500" style={{ borderColor: activeStep === 0 ? '#e6b89c' : 'transparent' }}>
+          {/* Step 0 */}
+          <div 
+            className="trigger-block-tax relative py-12 px-6 md:px-8 transition-all duration-500" 
+            style={{ 
+              opacity: activeStep === 0 ? 1 : 0.4,
+              transform: activeStep === 0 ? 'scale(1)' : 'scale(0.98)'
+            }}
+          >
+            <div className={`absolute inset-0 rounded-xl transition-opacity duration-500 ${activeStep === 0 ? 'glass-card' : ''}`} />
+            <div className="relative z-10">
             <div className="flex items-center gap-3 mb-6">
-              <span className="w-8 h-px bg-[#f59e0b]"></span>
-              <span className="text-sm font-mono tracking-widest uppercase text-[#f59e0b]">
+              <span className="w-8 h-px bg-golden-hour"></span>
+              <span className="text-xs font-body tracking-widest uppercase text-golden-hour">
                 ACT VI — THE UNPAID DEBT
               </span>
             </div>
             
-            <h2 className="font-display text-4xl md:text-5xl lg:text-6xl font-bold text-[#e6f1ff] mb-8 leading-tight">
-              The Cost of <span className="text-[#f59e0b]">Survival</span>
+            <h2 className="font-display text-4xl md:text-5xl lg:text-6xl font-bold text-shell-white mb-8 leading-tight">
+              The Cost of <span className="text-golden-hour">Survival</span>
             </h2>
-            <p className="font-body text-base md:text-lg text-[#a8b2d1] leading-relaxed mb-4">
+            <p className="font-body text-base md:text-lg text-shell-white/80 leading-relaxed mb-4">
               Climate change doesn't just destroy homes; it bankrupts communities. To survive, our governments have to build massive seawalls, move entire villages inland, rebuild after every cyclone, and bail out farmers whose staple crops have entirely failed from saltwater intrusion (Act V). Where does that money come from?
             </p>
-            <p className="font-body text-base md:text-lg text-[#a8b2d1] leading-relaxed">
+            <p className="font-body text-base md:text-lg text-shell-white/80 leading-relaxed">
               It comes from us. Fiji had to introduce a climate adaptation tax on its own economy. We are taxing our own people just to afford the concrete needed to keep the ocean out. 
             </p>
+            </div>
           </div>
 
-          <div className="trigger-block-tax glass-card p-8 md:p-10 border-l-4 border-l-transparent transition-colors duration-500" style={{ borderColor: activeStep === 1 ? '#f59e0b' : 'transparent' }}>
-            <h3 className="font-display text-3xl md:text-4xl font-bold text-[#e6f1ff] mb-6 flex items-center gap-4">
-              <Scale className="w-8 h-8 text-[#f59e0b]" />
+          {/* Step 1 */}
+          <div 
+            className="trigger-block-tax relative py-12 px-6 md:px-8 transition-all duration-500" 
+            style={{ 
+              opacity: activeStep === 1 ? 1 : 0.4,
+              transform: activeStep === 1 ? 'scale(1)' : 'scale(0.98)'
+            }}
+          >
+            <div className={`absolute inset-0 rounded-xl transition-opacity duration-500 ${activeStep === 1 ? 'glass-card' : ''}`} />
+            <div className="relative z-10">
+            <h3 className="font-display text-3xl md:text-4xl font-bold text-shell-white mb-6 flex items-center gap-4">
+              <Scale className="w-8 h-8 text-golden-hour" />
               The Climate Tax
             </h3>
-            <p className="font-body text-base md:text-lg text-[#a8b2d1] leading-relaxed mb-4">
-              Look at the background of the chart. That massive red block represents the historical emissions of the industrialized world. That tiny dot below it? That's the entire Pacific. 
+            <p className="font-body text-base md:text-lg text-shell-white/80 leading-relaxed mb-4">
+              Even though Fiji's environmental tax rate appears small (ranging from 0.4% to 1.4% of GDP), it represents a significant economic burden for a developing island nation. These funds are diverted from health, education, and development just to build seawalls and relocate communities.
             </p>
-            <p className="font-body text-base md:text-lg text-[#a8b2d1] leading-relaxed">
-              We didn't cause this crisis, but we are paying the bill. When you see our taxes rising just to survive, you realize this isn't just an environmental issue—it's a profound injustice. We are paying a tax on our own existence.
+            <p className="font-body text-base md:text-lg text-shell-white/80 leading-relaxed">
+              We didn't cause this crisis, but we are paying the bill. When you see our public funds diverted to environmental taxes just to survive, you realize this isn't just an ecological issue—it's a profound injustice. We are paying the price for others' emissions.
             </p>
+            </div>
           </div>
 
         </div>
 
         {/* RIGHT COLUMN: Chart (60%) */}
         <div className="w-full md:w-7/12 h-screen sticky top-0 flex flex-col justify-center items-center py-12 md:py-0 md:pl-12 z-0">
-          <div ref={rightColumnRef} className="w-full max-w-4xl relative h-[60vh] glass-card p-6 rounded-xl flex items-center justify-center">
+          <div ref={rightColumnRef} className="w-full max-w-4xl relative h-[60vh] flex flex-col justify-center items-center">
             
             <TaxChart activeStep={activeStep} />
+
+            <div className="absolute bottom-[-32px] left-0 right-0 text-center text-[9px] uppercase tracking-widest font-body text-drift-wood/75">
+              Suva Peninsula — OECD/UNEP Environmental Tax Revenue (% GDP)
+            </div>
             
           </div>
         </div>

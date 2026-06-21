@@ -10,6 +10,20 @@ module.exports = {
         ring: "hsl(var(--ring))",
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",
+        
+        // Pacific Editorial Cinema custom palette
+        'deep-ocean': '#0B1A2E',
+        'ocean-ink': '#0F2237',
+        'warm-sand': '#D4A574',
+        'reef-teal': '#2B7A78',
+        'terracotta': '#B44D36',
+        'shell-white': '#E8DCC8',
+        'drift-wood': '#8B7355',
+        'golden-hour': '#C49A3C',
+        'coral-pink': '#D4836A',
+        'tide-pool': '#1E4D5C',
+        'storm-gray': '#6B8FA3',
+
         primary: {
           DEFAULT: "hsl(var(--primary))",
           foreground: "hsl(var(--primary-foreground))",

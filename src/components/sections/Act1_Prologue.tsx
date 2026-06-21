@@ -47,50 +47,57 @@ export default function Act1_Prologue() {
         {/* LEFT COLUMN: Narrative */}
         <div className="w-full md:w-1/2 py-24 flex flex-col justify-center z-10">
           <div className="prologue-text flex items-center gap-3 mb-6">
-            <Leaf className="w-6 h-6 text-[#00d4aa]" />
-            <span className="text-sm font-mono tracking-widest uppercase text-[#00d4aa]">
-              ACT I — PROLOGUE
+            <Leaf className="w-5 h-5 text-warm-sand" />
+            <span className="text-xs font-body tracking-widest uppercase text-warm-sand">
+              Act I: Prologue
             </span>
           </div>
           
-          <h2 className="prologue-text font-display text-4xl md:text-5xl lg:text-6xl font-bold text-[#e6f1ff] mb-8 leading-tight">
-            Our Homes, Our <span className="text-[#00d4aa]">History</span>
+          <h2 className="prologue-text font-display text-4xl md:text-5xl lg:text-6xl font-bold text-shell-white mb-8 leading-tight">
+            Our Homes, Our <span className="text-reef-teal">History</span>
           </h2>
           
-          <p className="prologue-text font-body text-base md:text-lg text-[#a8b2d1] leading-relaxed mb-6">
-            For thousands of years, our ancestors lived in balance with the ocean. Polynesian navigators didn't use satellites; they read the stars, the currents, and the flights of birds. The Pacific wasn't an empty space between continents—it was a highway connecting our cultures and our families.
+          <p className="prologue-text font-body text-base md:text-lg text-shell-white/80 leading-relaxed mb-6">
+            For thousands of years, our ancestors lived in balance with the ocean. Polynesian navigators didn't use satellites; they read the stars, the currents, and the flights of birds. The Pacific was never an empty space between continents; it was a highway connecting our cultures and our families.
           </p>
 
-          <div className="prologue-text bg-[#0a1526]/50 border border-[#00d4aa]/20 rounded-xl p-6 mb-6 shadow-xl backdrop-blur-sm">
-            <h3 className="text-[#00d4aa] font-display text-xl font-semibold mb-4 tracking-wide">The Frontline of a Changing Climate</h3>
-            <ul className="space-y-4 font-body text-base md:text-lg text-[#a8b2d1]">
+          <div className="prologue-text glass-card mb-6">
+            <h3 className="text-warm-sand font-display text-xl font-semibold mb-4 tracking-wide">The Frontline of a Changing Climate</h3>
+            <ul className="space-y-4 font-body text-base md:text-lg text-shell-white/70">
               <li className="flex items-start gap-3">
-                <span className="text-[#e63946] mt-1.5 text-xs">●</span>
-                <span>The Pacific Ocean covers <strong>one-third of our planet's surface</strong>.</span>
+                <span className="text-terracotta mt-1.5 text-xs">●</span>
+                <span>The Pacific Ocean covers <strong className="text-shell-white">one-third of our planet's surface</strong>.</span>
               </li>
               <li className="flex items-start gap-3">
-                <span className="text-[#e63946] mt-1.5 text-xs">●</span>
-                <span>Yet, our island nations contribute only <strong className="text-[#00d4aa]">0.03% of global greenhouse gas emissions</strong>.</span>
+                <span className="text-terracotta mt-1.5 text-xs">●</span>
+                <span>Yet, our island nations contribute only <strong className="text-reef-teal">0.03% of global greenhouse gas emissions</strong>.</span>
               </li>
               <li className="flex items-start gap-3">
-                <span className="text-[#e63946] mt-1.5 text-xs">●</span>
+                <span className="text-terracotta mt-1.5 text-xs">●</span>
                 <span>We didn't build the factories or burn the coal that caused this crisis, but we are the first to lose our homes to it.</span>
               </li>
             </ul>
           </div>
           
-          <p className="prologue-text font-body text-base md:text-lg text-[#a8b2d1] leading-relaxed mb-12">
-            This isn't a warning about the distant future. It's a record of what we are living through right now. The data you are about to explore isn't just a collection of numbers—it's the story of our homes, our livelihoods, and our survival. <strong>This is what climate change looks like on the ground.</strong>
+          <p className="prologue-text font-body text-base md:text-lg text-shell-white/80 leading-relaxed mb-12">
+            This isn't a warning about the distant future. It's a record of what we are living through right now. The data you are about to explore isn't just a collection of numbers; it is the story of our homes, our livelihoods, and our survival. <strong className="text-shell-white">This is what climate change looks like on the ground.</strong>
           </p>
         </div>
 
         {/* RIGHT COLUMN: The Crimson Globe */}
         <div className="w-full md:w-1/2 md:h-screen md:sticky top-0 flex flex-col justify-center items-center py-12 md:py-0 md:pl-12 z-0 md:translate-x-32 lg:translate-x-48 xl:translate-x-64">
-          <div className="w-full relative h-[80vh] flex items-center justify-center">
+          <div className="w-full relative h-[80vh] flex flex-col items-center justify-center">
             
             {/* The Pacific Globe (Now acting as the Carbon Ledger) */}
-            <div className="absolute inset-0 pointer-events-auto flex items-center justify-center scale-125 opacity-90 drop-shadow-[0_0_50px_rgba(230,57,70,0.2)]">
+            <div className="absolute inset-0 pointer-events-auto flex items-center justify-center scale-125 opacity-90 drop-shadow-[0_0_50px_rgba(180,77,54,0.15)]">
               <PacificGlobe />
+            </div>
+
+            {/* Data Citation Overlay */}
+            <div className="absolute bottom-4 left-1/2 -translate-x-1/2 text-center pointer-events-none z-20 w-[85%] max-w-sm">
+              <p className="text-[9px] text-drift-wood/75 uppercase tracking-widest font-body bg-deep-ocean/90 px-3 py-1.5 border border-warm-sand/15 backdrop-blur-sm rounded-sm">
+                Source: <a href="https://pacificdata.org/data/dataset/climate-vulnerability-profiles" target="_blank" rel="noreferrer" className="underline decoration-warm-sand/30 hover:decoration-warm-sand hover:text-warm-sand transition-colors underline-offset-2">Pacific Data Hub (PDH.Stat) — Climate Vulnerability Profiles</a>
+              </p>
             </div>
 
           </div>

@@ -49,9 +49,9 @@ export const acts: ActContent[] = [
     label: 'ACT V — DATASETS 04 & 05',
     labelColor: '#e6b89c',
     title: 'The Human Toll & The Unpaid Debt',
-    body: 'Physical weather anomalies ultimately translate into a crisis of human survival. Crop yield data shows how saltwater intrusion and drought decimate agricultural output, directly threatening food security⁶. To survive, local Pacific governments are forced to levy heavy environmental taxes, funding their own climate adaptation. They are paying a "carbon debt" they did not incur. The data forms an undeniable chain of causality: from warming oceans to a financial and existential toll levied upon the most vulnerable⁷.',
-    stat: 'The Debt',
-    statSubtitle: 'Vulnerable nations paying for global industrial emissions',
+    body: 'Crop yield data reveals a troubling stagnation. While Pacific populations grow, agricultural productivity remains flat—and during El Niño and cyclone years, yields suffer sharp temporary declines that compound food insecurity. Taro, the cultural staple of Pacific island life, shows particular vulnerability to climate shocks, with noticeable dips during extreme weather events.',
+    stat: 'Stagnation',
+    statSubtitle: 'Flat yields under mounting population and climate pressure',
     statColor: '#e6b89c',
   },
 ];

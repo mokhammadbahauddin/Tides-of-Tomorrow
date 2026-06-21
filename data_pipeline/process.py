@@ -4,10 +4,7 @@ import os
 from collections import defaultdict
 
 RAW_DIR = "raw"
-OUT_DIR = "../src/data/generated"
-
-if not os.path.exists(OUT_DIR):
-    os.makedirs(OUT_DIR)
+OUT_DIR = "../public/data"
 
 def read_csv(filename):
     filepath = os.path.join(RAW_DIR, filename)

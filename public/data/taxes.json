@@ -53,5 +53,25 @@
     "year": 2020,
     "yieldIndex": 100,
     "taxPercent": 0.4
+  },
+  {
+    "year": 2021,
+    "yieldIndex": 100,
+    "taxPercent": 0.4
+  },
+  {
+    "year": 2022,
+    "yieldIndex": 100,
+    "taxPercent": 0.4
+  },
+  {
+    "year": 2023,
+    "yieldIndex": 100,
+    "taxPercent": 0.4
+  },
+  {
+    "year": 2024,
+    "yieldIndex": 100,
+    "taxPercent": 0.4
   }
 ]

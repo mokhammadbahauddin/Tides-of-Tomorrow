@@ -28,7 +28,15 @@ export function RainfallAnomalyChart({ activeStep = 0 }: Props) {
 
   useEffect(() => {
     d3.json<RainfallAnomalyRecord[]>('/data/rainfall.json').then((res) => {
-      if (res) setData(res);
+      if (res) {
+        const enriched = res.map(d => {
+          if (d.year === 2015) return { ...d, event: 'Cyclone Pam' };
+          if (d.year === 2016) return { ...d, event: 'Cyclone Winston' };
+          if (d.year === 2020) return { ...d, event: 'Cyclone Harold' };
+          return d;
+        });
+        setData(enriched);
+      }
     });
   }, []);
 
@@ -50,7 +58,7 @@ export function RainfallAnomalyChart({ activeStep = 0 }: Props) {
       title: `Year ${d.year}`,
       value: anomalyText,
       subtitle: anomalyType,
-      color: isPluvial ? '#3A7DFF' : '#f59e0b'
+      color: isPluvial ? '#2B7A78' : '#C49A3C' // reef-teal / golden-hour
     });
   }, []);
 
@@ -98,6 +106,30 @@ export function RainfallAnomalyChart({ activeStep = 0 }: Props) {
       .attr('in', 'composite')
       .attr('in2', 'SourceGraphic');
 
+    // Bioluminescent Glow Filter
+    const glowFilter = defs.append('filter')
+      .attr('id', 'rain-bioluminescent-glow')
+      .attr('x', '-50%').attr('y', '-50%').attr('width', '200%').attr('height', '200%');
+    glowFilter.append('feGaussianBlur').attr('stdDeviation', '6').attr('result', 'blur');
+    const feMerge = glowFilter.append('feMerge');
+    feMerge.append('feMergeNode').attr('in', 'blur');
+    feMerge.append('feMergeNode').attr('in', 'SourceGraphic');
+
+    // Define Premium Bar Gradients
+    const rainGrad = defs.append('linearGradient')
+      .attr('id', 'rain-bar-gradient')
+      .attr('x1', '0%').attr('y1', '0%')
+      .attr('x2', '0%').attr('y2', '100%');
+    rainGrad.append('stop').attr('offset', '0%').attr('stop-color', '#2B7A78'); // reef-teal at tip
+    rainGrad.append('stop').attr('offset', '100%').attr('stop-color', '#1E4D5C'); // tide-pool at baseline
+
+    const droughtGrad = defs.append('linearGradient')
+      .attr('id', 'drought-bar-gradient')
+      .attr('x1', '0%').attr('y1', '0%')
+      .attr('x2', '0%').attr('y2', '100%');
+    droughtGrad.append('stop').attr('offset', '0%').attr('stop-color', '#8B7355'); // drift-wood at baseline
+    droughtGrad.append('stop').attr('offset', '100%').attr('stop-color', '#C49A3C'); // golden-hour at tip
+
     // Scales
     const xScale = d3.scaleBand()
       .domain(data.map(d => d.year.toString()))
@@ -122,8 +154,9 @@ export function RainfallAnomalyChart({ activeStep = 0 }: Props) {
       .attr('class', 'x-axis')
       .attr('transform', `translate(0,${yScale(0)})`) // Place at 0 baseline
       .call(xAxis)
+      .call(g => g.select(".domain").remove()) // Hide axis line
       .selectAll('text')
-      .attr('fill', '#a8b2d1')
+      .attr('fill', 'rgba(232, 220, 200, 0.4)')
       .attr('font-size', '10px')
       .attr('font-family', 'Inter')
       .attr('dy', d => (d as number) % 2 === 0 ? 15 : 25); // Stagger labels so they don't overlap
@@ -131,12 +164,14 @@ export function RainfallAnomalyChart({ activeStep = 0 }: Props) {
     g.append('g')
       .attr('class', 'y-axis')
       .call(yAxis)
+      .call(g => g.select(".domain").remove()) // Hide axis line
       .selectAll('text')
-      .attr('fill', '#a8b2d1')
+      .attr('fill', 'rgba(232, 220, 200, 0.4)')
       .attr('font-size', '10px');
 
-    g.selectAll('.domain').attr('stroke', 'rgba(168, 178, 209, 0.2)');
-    g.selectAll('.tick line').attr('stroke', 'rgba(168, 178, 209, 0.2)');
+    // Remove the manual domain stroke to keep it clean
+    // g.selectAll('.domain').attr('stroke', 'rgba(212, 165, 116, 0.15)');
+    g.selectAll('.tick line').attr('stroke', 'rgba(212, 165, 116, 0.05)');
 
     // Draw Bars
     g.selectAll('.bar')
@@ -148,10 +183,10 @@ export function RainfallAnomalyChart({ activeStep = 0 }: Props) {
       .attr('width', xScale.bandwidth())
       .attr('y', d => d.anomaly >= 0 ? yScale(d.anomaly) : yScale(0))
       .attr('height', d => Math.abs(yScale(d.anomaly) - yScale(0)))
-      .attr('fill', d => d.anomaly >= 0 ? '#3A7DFF' : '#f59e0b')
-      .attr('opacity', 0.8)
+      .attr('fill', d => d.anomaly >= 0 ? 'url(#rain-bar-gradient)' : 'url(#drought-bar-gradient)')
+      .attr('opacity', 0.85)
       .style('cursor', 'crosshair')
-      .style('filter', d => d.anomaly < -10 ? 'url(#drought-cracks)' : 'none')
+      .style('filter', d => d.anomaly < -10 ? 'url(#drought-cracks) url(#rain-bioluminescent-glow)' : 'url(#rain-bioluminescent-glow)')
       .on('pointermove', function(event, d) {
         d3.select(this).attr('opacity', 1).attr('stroke', '#ffffff').attr('stroke-width', 1);
         handleMouseMove(event as unknown as MouseEvent, d);
@@ -170,41 +205,50 @@ export function RainfallAnomalyChart({ activeStep = 0 }: Props) {
       const yearStr = c.year.toString();
       // Need to make sure the year exists in the scale domain
       if (xScale.domain().includes(yearStr)) {
+        // Stagger adjacent cyclone labels vertically to prevent overlap
+        let offset = 25;
+        if (c.year === 2015) offset = 40; // Push Pam higher
+        if (c.year === 2016) offset = 20; // Keep Winston lower
+
         const xPos = xScale(yearStr)! + xScale.bandwidth() / 2;
         const dataPoint = data.find(d => d.year === c.year) || { anomaly: 10 };
-        const yPos = yScale(dataPoint.anomaly >= 0 ? dataPoint.anomaly : 0) - 25;
+        const yPos = yScale(dataPoint.anomaly >= 0 ? dataPoint.anomaly : 0) - offset;
 
         const group = annotationGroup.append('g')
           .attr('transform', `translate(${xPos}, ${yPos})`);
           
         group.append('circle')
           .attr('r', 12)
-          .attr('fill', 'rgba(10, 21, 38, 0.8)')
-          .attr('stroke', '#ff5a5f')
+          .attr('fill', 'rgba(15, 34, 55, 0.85)')
+          .attr('stroke', '#B44D36')
           .attr('stroke-width', 2);
           
         // Simplified Cyclone swirl path
         group.append('path')
           .attr('d', 'M -4,-2 C -2,-5 2,-5 4,-2 C 5,0 4,2 2,3 C 0,4 -2,3 -3,1')
           .attr('fill', 'none')
-          .attr('stroke', '#ff5a5f')
+          .attr('stroke', '#B44D36')
           .attr('stroke-width', 1.5);
           
         group.append('text')
-          .attr('y', -20)
+          .attr('y', -18)
           .attr('text-anchor', 'middle')
-          .attr('fill', '#ff5a5f')
+          .attr('fill', '#B44D36')
           .attr('font-size', '10px')
           .attr('font-weight', 'bold')
           .attr('font-family', 'JetBrains Mono, monospace')
+          .attr('paint-order', 'stroke')
+          .attr('stroke', '#0B1A2E')
+          .attr('stroke-width', '3px')
+          .attr('stroke-linejoin', 'round')
           .text(c.event || '');
           
         group.append('line')
           .attr('x1', 0)
           .attr('y1', 12)
           .attr('x2', 0)
-          .attr('y2', 25)
-          .attr('stroke', '#ff5a5f')
+          .attr('y2', offset)
+          .attr('stroke', '#B44D36')
           .attr('stroke-width', 1.5)
           .attr('stroke-dasharray', '2,2');
       }
@@ -234,8 +278,8 @@ export function RainfallAnomalyChart({ activeStep = 0 }: Props) {
         return 0.8;
       })
       .attr('fill', (d: any) => {
-        if (activeStep >= 1 && [2015, 2016, 2020].includes(d.year)) return '#ff5a5f'; // Violent red for Cyclones
-        return d.anomaly >= 0 ? '#3A7DFF' : '#f59e0b';
+        if (activeStep >= 1 && [2015, 2016, 2020].includes(d.year)) return '#B44D36'; // Violent terracotta for Cyclones
+        return d.anomaly >= 0 ? 'url(#rain-bar-gradient)' : 'url(#drought-bar-gradient)';
       });
 
     const annotationGroup = (svg.node() as any).__annotationGroup;
@@ -299,14 +343,14 @@ export function RainfallAnomalyChart({ activeStep = 0 }: Props) {
 
         ctx.beginPath();
         if (state.type === 'rain') {
-          ctx.strokeStyle = `rgba(100, 200, 255, ${p.alpha})`;
+          ctx.strokeStyle = `rgba(43, 122, 120, ${p.alpha})`; // reef-teal
           ctx.moveTo(p.x, p.y);
           p.y += p.speed;
           // Rain falls diagonally due to wind
           p.x += p.speed * 0.2;
           ctx.lineTo(p.x, p.y + p.length);
         } else if (state.type === 'drought') {
-          ctx.strokeStyle = `rgba(245, 158, 11, ${p.alpha})`;
+          ctx.strokeStyle = `rgba(196, 154, 60, ${p.alpha})`; // golden-hour
           ctx.moveTo(p.x, p.y);
           p.y -= p.speed; // Dust rises
           p.x += Math.sin(p.y * 0.05) * 2; // Drift
@@ -328,6 +372,14 @@ export function RainfallAnomalyChart({ activeStep = 0 }: Props) {
     requestRef.current = requestAnimationFrame(render);
     return () => cancelAnimationFrame(requestRef.current);
   }, []);
+
+  if (data.length === 0) {
+    return (
+      <div className="w-full h-[400px] rounded-lg bg-gradient-to-r from-deep-ocean via-ocean-ink to-deep-ocean animate-pulse flex items-center justify-center">
+        <p className="text-shell-white/50 font-body tracking-widest text-xs">LOADING RAINFALL DATA...</p>
+      </div>
+    );
+  }
 
   return (
     <div ref={containerRef} className="relative w-full overflow-hidden rounded-lg">
