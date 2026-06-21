@@ -288,19 +288,21 @@ export function RainfallAnomalyChart({ activeStep = 0 }: Props) {
     }
 
     // Auto-trigger particle system based on narrative step if not hovering
-    if (activeStep === 1) {
-      particleStateRef.current = { intensity: 1.5, type: 'rain' }; // Massive storm
+    if (activeStep === 0) {
+      particleStateRef.current = { intensity: 0.6, type: 'rain' }; // Ambient rain at start
+    } else if (activeStep === 1) {
+      particleStateRef.current = { intensity: 1.8, type: 'rain' }; // Heavy storm rain
     } else if (activeStep === 2) {
       // Toggle between drought and rain to simulate whiplash
       const interval = setInterval(() => {
         particleStateRef.current = { 
-          intensity: 0.8, 
+          intensity: 1.2, 
           type: Math.random() > 0.5 ? 'rain' : 'drought' 
         };
       }, 2000);
       return () => clearInterval(interval);
     } else {
-      particleStateRef.current = { intensity: 0, type: 'neutral' };
+      particleStateRef.current = { intensity: 0.6, type: 'rain' };
     }
   }, [activeStep, data]);
 
@@ -312,7 +314,7 @@ export function RainfallAnomalyChart({ activeStep = 0 }: Props) {
     if (!ctx) return;
 
     let particles: {x: number, y: number, length: number, speed: number, alpha: number}[] = [];
-    const maxParticles = 500;
+    const maxParticles = 600;
 
     const render = () => {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -320,22 +322,21 @@ export function RainfallAnomalyChart({ activeStep = 0 }: Props) {
 
       if (state.type !== 'neutral' && state.intensity > 0) {
         // Spawn particles
-        const numToSpawn = Math.floor(state.intensity * (state.type === 'rain' ? 20 : 5));
+        const numToSpawn = Math.floor(state.intensity * (state.type === 'rain' ? 15 : 5));
         for (let i = 0; i < numToSpawn; i++) {
           if (particles.length < maxParticles) {
             particles.push({
               x: Math.random() * canvas.width,
-              y: state.type === 'rain' ? -10 : canvas.height + 10,
-              length: state.type === 'rain' ? Math.random() * 20 + 10 : Math.random() * 5 + 2,
-              speed: state.type === 'rain' ? Math.random() * 15 + 15 : Math.random() * 2 + 1, // Rain falls fast, dust rises slowly
-              alpha: Math.random() * 0.5 + 0.2
+              y: state.type === 'rain' ? -15 : canvas.height + 15,
+              length: state.type === 'rain' ? Math.random() * 25 + 12 : Math.random() * 6 + 2,
+              speed: state.type === 'rain' ? Math.random() * 12 + 12 : Math.random() * 2 + 1, // Rain falls fast, dust rises slowly
+              alpha: Math.random() * 0.6 + 0.3
             });
           }
         }
       }
 
       // Update and Draw
-      ctx.lineWidth = state.type === 'rain' ? 1.5 : 3;
       ctx.lineCap = 'round';
 
       for (let i = particles.length - 1; i >= 0; i--) {
@@ -343,14 +344,16 @@ export function RainfallAnomalyChart({ activeStep = 0 }: Props) {
 
         ctx.beginPath();
         if (state.type === 'rain') {
-          ctx.strokeStyle = `rgba(43, 122, 120, ${p.alpha})`; // reef-teal
+          ctx.lineWidth = 1.8;
+          ctx.strokeStyle = `rgba(224, 242, 254, ${p.alpha})`; // Bright glowing ice-blue (#e0f2fe)
           ctx.moveTo(p.x, p.y);
           p.y += p.speed;
           // Rain falls diagonally due to wind
-          p.x += p.speed * 0.2;
+          p.x += p.speed * 0.25;
           ctx.lineTo(p.x, p.y + p.length);
         } else if (state.type === 'drought') {
-          ctx.strokeStyle = `rgba(196, 154, 60, ${p.alpha})`; // golden-hour
+          ctx.lineWidth = 3;
+          ctx.strokeStyle = `rgba(245, 158, 11, ${p.alpha})`; // Bright amber (#f59e0b)
           ctx.moveTo(p.x, p.y);
           p.y -= p.speed; // Dust rises
           p.x += Math.sin(p.y * 0.05) * 2; // Drift

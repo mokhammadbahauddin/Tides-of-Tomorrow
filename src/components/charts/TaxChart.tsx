@@ -172,8 +172,7 @@ export const TaxChart: React.FC<TaxChartProps> = ({ activeStep }) => {
       .attr('y2', initYR)
       .attr('stroke', '#fbbf24') // Bright yellow horizontal beam
       .attr('stroke-width', 4.5)
-      .attr('stroke-linecap', 'round')
-      .style('filter', 'url(#scale-glow)');
+      .attr('stroke-linecap', 'round');
 
     // LEFT PAN GROUP
     const leftPanGroup = movingGroup.append('g').attr('class', 'left-pan-group');
@@ -309,8 +308,7 @@ export const TaxChart: React.FC<TaxChartProps> = ({ activeStep }) => {
       .attr('y2', height - 50)
       .attr('stroke', '#fbbf24') // Solid bright yellow scale body
       .attr('stroke-width', 6)
-      .attr('stroke-linecap', 'round')
-      .style('filter', 'url(#scale-glow)');
+      .attr('stroke-linecap', 'round');
 
     // Center pivot bolt joint
     standGroup.append('circle')
