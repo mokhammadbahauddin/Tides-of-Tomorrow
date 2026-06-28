@@ -15,11 +15,11 @@ export const CTA_COUNTRY_DATA = [
 ];
 
 export const CTA_DATASETS = [
-  { label: 'NOAA ERSST: Sea Surface Temperature', url: 'https://climatedataguide.ucar.edu/climate-data/global-surface-temperature-data-sets-overview' },
-  { label: 'NASA PO.DAAC: Sea Level Anomalies', url: 'https://sealevel.nasa.gov/data/dataset/?id=SLR_anom_OSTM' },
-  { label: 'NOAA PSL: GPCP Precipitation Anomalies', url: 'https://psl.noaa.gov/data/gridded/data.gpcp.html' },
-  { label: 'FAOSTAT: Agricultural Production', url: 'https://www.fao.org/faostat/en/#data/QCL' },
-  { label: 'OECD.stat: Environmental Tax Revenues', url: 'https://stats.oecd.org/Index.aspx?DataSetCode=ENV_TAX' },
+  { label: 'Pacific Dataviz Challenge (Official Dataset) / Pacific Data Hub / NOAA ERSST: Sea Surface Temperature', url: 'https://climatedataguide.ucar.edu/climate-data/global-surface-temperature-data-sets-overview' },
+  { label: 'Pacific Dataviz Challenge (Official Dataset) / Pacific Data Hub / NASA PO.DAAC: Sea Level Anomalies', url: 'https://sealevel.nasa.gov/data/dataset/?id=SLR_anom_OSTM' },
+  { label: 'Pacific Dataviz Challenge (Official Dataset) / Pacific Data Hub / NOAA PSL: GPCP Precipitation Anomalies', url: 'https://psl.noaa.gov/data/gridded/data.gpcp.html' },
+  { label: 'Pacific Dataviz Challenge (Official Dataset) / Pacific Data Hub / FAOSTAT: Agricultural Production', url: 'https://www.fao.org/faostat/en/#data/QCL' },
+  { label: 'Pacific Dataviz Challenge (Official Dataset) / Pacific Data Hub / OECD.stat: Environmental Tax Revenues', url: 'https://stats.oecd.org/Index.aspx?DataSetCode=ENV_TAX' },
 ];
 
 export function calcTemp2050(pledge: number): number {
