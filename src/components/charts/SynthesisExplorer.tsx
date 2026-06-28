@@ -119,6 +119,40 @@ const PRESETS: Preset[] = [
 
 const MARGIN = { top: 25, right: 25, bottom: 45, left: 55 };
 
+interface ClimateEvent {
+  year: number;
+  title: string;
+  description: string;
+  accentColor: string;
+}
+
+const CLIMATE_EVENTS: ClimateEvent[] = [
+  {
+    year: 2015,
+    title: 'Cyclone Pam',
+    description: 'Category 5 Cyclone Pam devastates Vanuatu in March 2015, causing damage equivalent to 64% of GDP and demonstrating the catastrophic potential of intensifying tropical storms in the warming Pacific.',
+    accentColor: '#B44D36', // Terracotta
+  },
+  {
+    year: 2016,
+    title: 'El Niño Bleaching Peak',
+    description: 'Severe thermal stress in 2016 triggers a devastating marine heatwave, causing unprecedented global coral bleaching that kills over 30% of the Great Barrier Reef and widespread Pacific coral ecosystems.',
+    accentColor: '#D4A574', // Warm sand
+  },
+  {
+    year: 2020,
+    title: 'Cyclone Harold',
+    description: 'Cyclone Harold, a Category 5 storm, strikes Vanuatu, Fiji, Tonga, and the Solomons in April 2020, compounding the socio-economic challenges of the COVID-19 pandemic and exposing multi-hazard vulnerabilities.',
+    accentColor: '#B44D36', // Terracotta
+  },
+  {
+    year: 2023,
+    title: 'Record Sea Level Anomalies',
+    description: 'Ocean thermal expansion and changing wind patterns drive sea level anomalies to record-breaking heights in 2023, causing severe high-tide flooding and saltwater intrusion in low-lying atolls.',
+    accentColor: '#2B7A78', // Reef teal
+  },
+];
+
 /* ──────────────────────── Helpers ──────────────────────── */
 function linearRegression(pts: { x: number; y: number }[]) {
   const n = pts.length;
@@ -285,6 +319,20 @@ export const SynthesisExplorer: React.FC = () => {
     );
   }, [data, preset.xKey, preset.yKey]);
 
+  const activeRecord = useMemo(() => {
+    return data.find(d => d.year === activeYear);
+  }, [data, activeYear]);
+
+  const activePx = useMemo(() => {
+    if (!activeRecord) return 0;
+    return xScale(activeRecord[preset.xKey] as number);
+  }, [activeRecord, preset.xKey, xScale]);
+
+  const activePy = useMemo(() => {
+    if (!activeRecord) return 0;
+    return yScale(activeRecord[preset.yKey] as number);
+  }, [activeRecord, preset.yKey, yScale]);
+
   /* ── Narrative color ── */
   const narrativeColor = rValue < -0.3 ? 'var(--terracotta)' : rValue > 0.3 ? 'var(--reef-teal)' : 'var(--warm-sand)';
 
@@ -344,6 +392,78 @@ export const SynthesisExplorer: React.FC = () => {
                 stroke="var(--shell-white)" strokeWidth={0.5} opacity={0.06}
               />
             ))}
+
+            {/* Event Reference Lines */}
+            {CLIMATE_EVENTS.map(event => {
+              const row = data.find(d => d.year === event.year);
+              if (!row) return null;
+              const px = xScale(row[preset.xKey] as number);
+              const isEventActive = row.year === activeYear;
+              return (
+                <g key={`event-line-${event.year}`}>
+                  {/* Subtle vertical dashed line */}
+                  <line
+                    x1={px}
+                    y1={0}
+                    x2={px}
+                    y2={innerH}
+                    stroke={isEventActive ? "var(--warm-sand)" : "rgba(212, 165, 116, 0.18)"}
+                    strokeWidth={isEventActive ? 1.5 : 1}
+                    strokeDasharray="4 4"
+                    style={{
+                      transition: 'all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1), stroke 0.3s ease, stroke-width 0.3s ease',
+                      ...{
+                        x1: `${px}px`,
+                        x2: `${px}px`,
+                      }
+                    } as React.CSSProperties}
+                  />
+
+                  {/* Top event label */}
+                  <text
+                    x={px}
+                    y={-8}
+                    textAnchor="middle"
+                    fill={isEventActive ? "var(--warm-sand)" : "rgba(212, 165, 116, 0.65)"}
+                    fontSize={8}
+                    fontWeight={isEventActive ? '700' : '500'}
+                    fontFamily="'Inter', sans-serif"
+                    style={{
+                      transition: 'all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1), fill 0.3s ease, font-weight 0.3s ease',
+                      cursor: 'pointer',
+                      ...{
+                        x: `${px}px`,
+                      }
+                    } as React.CSSProperties}
+                    onMouseEnter={() => setHoveredYear(event.year)}
+                    onMouseLeave={() => setHoveredYear(null)}
+                    onClick={() => setSelectedYear(event.year)}
+                  >
+                    {event.year}
+                  </text>
+
+                  {/* Invisible wide hover line */}
+                  <line
+                    x1={px}
+                    y1={0}
+                    x2={px}
+                    y2={innerH}
+                    stroke="transparent"
+                    strokeWidth={14}
+                    style={{
+                      cursor: 'pointer',
+                      ...{
+                        x1: `${px}px`,
+                        x2: `${px}px`,
+                      }
+                    } as React.CSSProperties}
+                    onMouseEnter={() => setHoveredYear(event.year)}
+                    onMouseLeave={() => setHoveredYear(null)}
+                    onClick={() => setSelectedYear(event.year)}
+                  />
+                </g>
+              );
+            })}
 
             {/* X axis ticks */}
             {xScale.ticks(5).map((t, i) => (
@@ -417,6 +537,48 @@ export const SynthesisExplorer: React.FC = () => {
               );
             })()}
 
+            {/* Projection Lines */}
+            {activeRecord && (
+              <g pointerEvents="none">
+                {/* Horizontal line to Y axis */}
+                <line
+                  x1={0}
+                  y1={activePy}
+                  x2={activePx}
+                  y2={activePy}
+                  stroke="rgba(253, 251, 247, 0.35)"
+                  strokeWidth={1}
+                  strokeDasharray="3 3"
+                  style={{
+                    transition: 'all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.3s ease',
+                    ...{
+                      y1: `${activePy}px`,
+                      y2: `${activePy}px`,
+                      x2: `${activePx}px`,
+                    }
+                  } as React.CSSProperties}
+                />
+                {/* Vertical line to X axis */}
+                <line
+                  x1={activePx}
+                  y1={activePy}
+                  x2={activePx}
+                  y2={innerH}
+                  stroke="rgba(253, 251, 247, 0.35)"
+                  strokeWidth={1}
+                  strokeDasharray="3 3"
+                  style={{
+                    transition: 'all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.3s ease',
+                    ...{
+                      x1: `${activePx}px`,
+                      x2: `${activePx}px`,
+                      y1: `${activePy}px`,
+                    }
+                  } as React.CSSProperties}
+                />
+              </g>
+            )}
+
             {/* Data points */}
             {data.map(row => {
               const isActive = row.year === activeYear;
@@ -446,6 +608,36 @@ export const SynthesisExplorer: React.FC = () => {
                     } as React.CSSProperties}
                   />
 
+                  {/* Diamond marker for event years */}
+                  {CLIMATE_EVENTS.some(e => e.year === row.year) && (() => {
+                    const event = CLIMATE_EVENTS.find(e => e.year === row.year)!;
+                    const eventActive = row.year === activeYear;
+                    return (
+                      <rect
+                        x={px - 8}
+                        y={py - 8}
+                        width={16}
+                        height={16}
+                        fill="none"
+                        stroke={eventActive ? event.accentColor : "rgba(212, 165, 116, 0.45)"}
+                        strokeWidth={eventActive ? 1.5 : 1}
+                        strokeDasharray={eventActive ? "none" : "2 2"}
+                        transform={`rotate(45, ${px}, ${py})`}
+                        style={{
+                          transition: 'all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1), stroke 0.3s ease, stroke-width 0.3s ease',
+                          cursor: 'pointer',
+                          ...{
+                            x: `${px - 8}px`,
+                            y: `${py - 8}px`,
+                        }
+                        } as React.CSSProperties}
+                        onMouseEnter={() => setHoveredYear(row.year)}
+                        onMouseLeave={() => setHoveredYear(null)}
+                        onClick={() => setSelectedYear(row.year)}
+                      />
+                    );
+                  })()}
+
                   {/* Main dot */}
                   <circle
                     cx={px}
@@ -466,6 +658,7 @@ export const SynthesisExplorer: React.FC = () => {
                     } as React.CSSProperties}
                     onMouseEnter={() => setHoveredYear(row.year)}
                     onMouseLeave={() => setHoveredYear(null)}
+                    onClick={() => setSelectedYear(row.year)}
                   />
 
                   {/* Year label */}
@@ -530,6 +723,32 @@ export const SynthesisExplorer: React.FC = () => {
                   </span>
                 </div>
               </div>
+            </div>
+          );
+        })()}
+
+        {/* Event Narrative Tooltip */}
+        {(() => {
+          const event = CLIMATE_EVENTS.find(e => e.year === activeYear);
+          if (!event) return null;
+          return (
+            <div
+              className="absolute top-4 left-4 md:left-6 z-30 rounded-none px-3.5 py-2.5 max-w-[240px] sm:max-w-[280px] backdrop-blur-md border border-t-[#D4A574]/20 border-r-[#D4A574]/20 border-b-[#D4A574]/20 shadow-none text-left"
+              style={{
+                background: 'rgba(11, 26, 46, 0.94)',
+                borderLeft: `3px solid ${event.accentColor}`,
+                borderColor: 'rgba(212, 165, 116, 0.25)',
+              }}
+            >
+              <div className="text-[9px] font-mono uppercase tracking-widest text-[#8B7355] mb-1">
+                Historical Climate Event
+              </div>
+              <h5 className="text-xs font-serif font-bold text-[#E8DCC8] mb-1 leading-snug">
+                {event.title}
+              </h5>
+              <p className="text-[10px] leading-relaxed text-[#E8DCC8]/85 font-sans">
+                {event.description}
+              </p>
             </div>
           );
         })()}

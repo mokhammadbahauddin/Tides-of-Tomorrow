@@ -8,9 +8,10 @@ gsap.registerPlugin(ScrollTrigger);
 
 interface Act4Props {
   className?: string;
+  selectedCountry?: { id: string; name: string };
 }
 
-export default function Act4_AtmosphericFracture({ className }: Act4Props) {
+export default function Act4_AtmosphericFracture({ className, selectedCountry }: Act4Props) {
   const sectionRef = useRef<HTMLElement>(null);
   const leftColumnRef = useRef<HTMLDivElement>(null);
   const rightColumnRef = useRef<HTMLDivElement>(null);
@@ -142,7 +143,7 @@ export default function Act4_AtmosphericFracture({ className }: Act4Props) {
         <div className="w-full md:w-7/12 h-screen sticky top-0 flex flex-col justify-center items-center py-12 md:py-0 md:pl-12 z-0">
           <div ref={rightColumnRef} className="w-full max-w-4xl relative h-[60vh] flex flex-col justify-center items-center">
             
-            <RainfallAnomalyChart activeStep={activeStep} />
+            <RainfallAnomalyChart activeStep={activeStep} selectedCountry={selectedCountry} />
 
             <div className="absolute bottom-[-32px] left-0 right-0 text-center text-[9px] uppercase tracking-widest font-body text-drift-wood/75">
               Vila Harbour — GPCP Precipitation Anomalies Profile

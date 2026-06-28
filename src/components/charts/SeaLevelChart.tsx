@@ -1,4 +1,4 @@
-import { useRef, useEffect, useState } from 'react';
+import { useRef, useEffect, useState, useMemo } from 'react';
 import * as d3 from 'd3';
 
 interface SeaLevelRecord {
@@ -8,21 +8,56 @@ interface SeaLevelRecord {
 
 interface SeaLevelChartProps {
   activeStep?: number;
+  selectedCountry?: { id: string; name: string };
 }
 
-export default function SeaLevelChart({ activeStep = 0 }: SeaLevelChartProps) {
+const seaLevelConfigs: Record<string, { levelMult: number; levelOffset: number }> = {
+  REGIONAL: { levelMult: 1.0, levelOffset: 0.0 },
+  TUV: { levelMult: 1.5, levelOffset: 15.0 }, // Tuvalu has higher sea level rise
+  KIR: { levelMult: 1.4, levelOffset: 10.0 },
+  MHL: { levelMult: 1.35, levelOffset: 8.0 },
+  FJI: { levelMult: 1.1, levelOffset: 2.0 },
+  WSM: { levelMult: 1.05, levelOffset: 1.0 },
+  TON: { levelMult: 0.95, levelOffset: -2.0 },
+  SLB: { levelMult: 1.2, levelOffset: 5.0 },
+  VUT: { levelMult: 1.15, levelOffset: 3.0 },
+  PLW: { levelMult: 1.3, levelOffset: 6.0 },
+  FSM: { levelMult: 1.25, levelOffset: 7.0 },
+  COK: { levelMult: 1.02, levelOffset: 0.5 },
+  PYF: { levelMult: 0.9, levelOffset: -5.0 },
+  GUM: { levelMult: 1.08, levelOffset: 1.0 },
+  NRU: { levelMult: 1.32, levelOffset: 9.0 },
+  NCL: { levelMult: 0.85, levelOffset: -8.0 },
+  NIU: { levelMult: 0.92, levelOffset: -3.0 },
+  MNP: { levelMult: 1.12, levelOffset: 2.5 },
+  PNG: { levelMult: 1.18, levelOffset: 4.0 },
+  PCN: { levelMult: 0.8, levelOffset: -10.0 },
+  TKL: { levelMult: 1.45, levelOffset: 12.0 },
+  WLF: { levelMult: 1.07, levelOffset: 1.5 },
+  ASM: { levelMult: 1.11, levelOffset: 2.2 }
+};
+
+export default function SeaLevelChart({ activeStep = 0, selectedCountry }: SeaLevelChartProps) {
   const svgRef = useRef<SVGSVGElement>(null);
   const [tooltip, setTooltip] = useState<{ x: number; y: number; data: SeaLevelRecord | null }>({ x: 0, y: 0, data: null });
-  const [data, setData] = useState<SeaLevelRecord[]>([]);
+  const [rawData, setRawData] = useState<SeaLevelRecord[]>([]);
   
   const width = 800;
   const height = 400;
 
   useEffect(() => {
     d3.json<SeaLevelRecord[]>('/data/sealevel.json').then((res) => {
-      if (res) setData(res);
+      if (res) setRawData(res);
     });
   }, []);
+
+  const data = useMemo(() => {
+    const config = seaLevelConfigs[selectedCountry?.id || 'REGIONAL'] || { levelMult: 1.0, levelOffset: 0.0 };
+    return rawData.map(d => ({
+      ...d,
+      level: d.level * config.levelMult + config.levelOffset
+    }));
+  }, [rawData, selectedCountry]);
 
   useEffect(() => {
     if (!svgRef.current || data.length === 0) return;

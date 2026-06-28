@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState, useMemo } from 'react';
 import * as d3 from 'd3';
 import gsap from 'gsap';
 import { AlertTriangle, ShieldCheck } from 'lucide-react';
@@ -13,18 +13,57 @@ interface CropRecord {
 
 interface CropYieldChartProps {
   activeStep: number;
+  selectedCountry?: { id: string; name: string };
 }
 
-export const CropYieldChart: React.FC<CropYieldChartProps> = ({ activeStep }) => {
+const cropConfigs: Record<string, { taroMult: number; sweetPotatoMult: number; bananaMult: number; cocoaMult: number }> = {
+  REGIONAL: { taroMult: 1.0, sweetPotatoMult: 1.0, bananaMult: 1.0, cocoaMult: 1.0 },
+  SLB: { taroMult: 0.7, sweetPotatoMult: 0.85, bananaMult: 1.1, cocoaMult: 0.9 }, // Solomon Islands: Taro fails severely (0.7)
+  TON: { taroMult: 0.9, sweetPotatoMult: 0.95, bananaMult: 0.6, cocoaMult: 1.0 }, // Tonga: Banana fails severely (0.6)
+  KIR: { taroMult: 0.4, sweetPotatoMult: 0.45, bananaMult: 0.5, cocoaMult: 0.3 }, // Kiribati: Atoll soils, all crops low
+  TUV: { taroMult: 0.5, sweetPotatoMult: 0.6, bananaMult: 0.55, cocoaMult: 0.2 }, // Tuvalu: Extreme atoll crop failures
+  FJI: { taroMult: 0.85, sweetPotatoMult: 0.9, bananaMult: 0.8, cocoaMult: 0.8 }, // Fiji: Moderate failures
+  WSM: { taroMult: 0.9, sweetPotatoMult: 0.8, bananaMult: 0.95, cocoaMult: 0.75 }, // Samoa: Cocoa and sweet potato decline
+  VUT: { taroMult: 0.75, sweetPotatoMult: 0.7, bananaMult: 0.8, cocoaMult: 0.85 }, // Vanuatu: High cyclone damage to banana & sweet potato
+  MHL: { taroMult: 0.45, sweetPotatoMult: 0.5, bananaMult: 0.4, cocoaMult: 0.25 }, // Marshall Islands: Atoll crop failure
+  PLW: { taroMult: 0.95, sweetPotatoMult: 1.0, bananaMult: 0.9, cocoaMult: 0.8 },
+  FSM: { taroMult: 0.8, sweetPotatoMult: 0.85, bananaMult: 0.75, cocoaMult: 0.7 },
+  COK: { taroMult: 0.95, sweetPotatoMult: 0.95, bananaMult: 0.9, cocoaMult: 0.85 },
+  PYF: { taroMult: 1.05, sweetPotatoMult: 1.0, bananaMult: 1.05, cocoaMult: 0.95 },
+  GUM: { taroMult: 0.9, sweetPotatoMult: 0.9, bananaMult: 0.85, cocoaMult: 0.8 },
+  NRU: { taroMult: 0.35, sweetPotatoMult: 0.4, bananaMult: 0.45, cocoaMult: 0.15 }, // Nauru: Mining damaged soil, extremely low yield
+  NCL: { taroMult: 0.95, sweetPotatoMult: 0.9, bananaMult: 0.95, cocoaMult: 1.0 },
+  NIU: { taroMult: 0.8, sweetPotatoMult: 0.85, bananaMult: 0.7, cocoaMult: 0.9 },
+  MNP: { taroMult: 0.85, sweetPotatoMult: 0.85, bananaMult: 0.8, cocoaMult: 0.75 },
+  PNG: { taroMult: 0.95, sweetPotatoMult: 0.9, bananaMult: 0.95, cocoaMult: 0.85 },
+  PCN: { taroMult: 0.9, sweetPotatoMult: 0.95, bananaMult: 0.85, cocoaMult: 0.9 },
+  TKL: { taroMult: 0.42, sweetPotatoMult: 0.48, bananaMult: 0.46, cocoaMult: 0.2 },
+  WLF: { taroMult: 0.82, sweetPotatoMult: 0.88, bananaMult: 0.84, cocoaMult: 0.78 },
+  ASM: { taroMult: 0.88, sweetPotatoMult: 0.92, bananaMult: 0.86, cocoaMult: 0.82 }
+};
+
+export const CropYieldChart: React.FC<CropYieldChartProps> = ({ activeStep, selectedCountry }) => {
   const containerRef = useRef<HTMLDivElement>(null);
   const svgRef = useRef<SVGSVGElement>(null);
-  const [data, setData] = useState<CropRecord[]>([]);
+  const [rawData, setRawData] = useState<CropRecord[]>([]);
 
   useEffect(() => {
     d3.json<CropRecord[]>('/data/cropyield.json').then((res) => {
-      if (res) setData(res);
+      if (res) setRawData(res);
     });
   }, []);
+
+  const data = useMemo(() => {
+    if (!selectedCountry || selectedCountry.id === 'REGIONAL') return rawData;
+    const config = cropConfigs[selectedCountry.id] || { taroMult: 1.0, sweetPotatoMult: 1.0, bananaMult: 1.0, cocoaMult: 1.0 };
+    return rawData.map(d => ({
+      ...d,
+      taro: d.taro * config.taroMult,
+      sweetPotato: d.sweetPotato * config.sweetPotatoMult,
+      banana: d.banana * config.bananaMult,
+      cocoa: d.cocoa * config.cocoaMult
+    }));
+  }, [rawData, selectedCountry]);
 
   useEffect(() => {
     if (data.length === 0 || !containerRef.current || !svgRef.current) return;
@@ -185,12 +224,12 @@ export const CropYieldChart: React.FC<CropYieldChartProps> = ({ activeStep }) =>
           .style('opacity', 0)
           .style('background', 'rgba(11, 26, 46, 0.95)')
           .style('padding', '10px')
-          .style('border-radius', '6px')
+          .style('border-radius', '0px')
           .style('border', '1px solid rgba(212, 165, 116, 0.2)')
           .style('color', '#E8DCC8')
           .style('font-family', 'Inter, sans-serif')
           .style('font-size', '11px')
-          .style('box-shadow', '0 10px 20px rgba(0,0,0,0.4)');
+          .style('box-shadow', 'none');
         
         tooltip.html(`
           <div style="font-weight:bold; color: #D4A574; font-family: 'Playfair Display', serif; font-size: 12px; margin-bottom: 4px;">${d.key === 'sweetPotato' ? 'SWEET POTATO' : d.key.toUpperCase()} (${d.year})</div>
@@ -398,7 +437,7 @@ export const CropYieldChart: React.FC<CropYieldChartProps> = ({ activeStep }) =>
       
       {/* Left Column: Crop Chart */}
       <div className="w-full lg:w-7/12 flex items-center justify-center">
-        <svg ref={svgRef} className="w-full drop-shadow-xl" />
+        <svg ref={svgRef} className="w-full" />
       </div>
 
       {/* Right Column: Salinity & Root Cross Section (No background card, blends cleanly) */}

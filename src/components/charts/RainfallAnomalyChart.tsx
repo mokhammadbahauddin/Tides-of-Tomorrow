@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState, useCallback } from 'react';
+import { useEffect, useRef, useState, useCallback, useMemo } from 'react';
 import * as d3 from 'd3';
 import { Tooltip } from '@/components/Tooltip';
 
@@ -10,14 +10,41 @@ interface RainfallAnomalyRecord {
 
 interface Props {
   activeStep?: number;
+  selectedCountry?: { id: string; name: string };
 }
 
-export function RainfallAnomalyChart({ activeStep = 0 }: Props) {
+const rainfallConfigs: Record<string, { rainMult: number; spikeYears?: Record<number, number> }> = {
+  REGIONAL: { rainMult: 1.0 },
+  VUT: { rainMult: 1.6, spikeYears: { 2015: 28.0, 2016: 22.0, 2020: 25.0 } }, // Extreme cyclone spikes for Vanuatu
+  FJI: { rainMult: 1.2, spikeYears: { 2016: 26.0 } }, // Winston was extremely severe in Fiji
+  TUV: { rainMult: 0.9, spikeYears: { 2015: 18.0 } }, // Pam storm surge, less rainfall anomaly compared to Vanuatu
+  KIR: { rainMult: 0.8 }, // Kiribati has more drought risk
+  WSM: { rainMult: 1.1 },
+  TON: { rainMult: 1.0, spikeYears: { 2018: 15.0 } }, // Cyclone Gita
+  SLB: { rainMult: 1.3, spikeYears: { 2014: 16.0 } },
+  MHL: { rainMult: 0.75 }, // Drought prone
+  PLW: { rainMult: 1.15 },
+  FSM: { rainMult: 1.1 },
+  COK: { rainMult: 0.95 },
+  PYF: { rainMult: 0.9 },
+  GUM: { rainMult: 1.12 },
+  NRU: { rainMult: 0.7 }, // Drought prone
+  NCL: { rainMult: 0.85 },
+  NIU: { rainMult: 0.92 },
+  MNP: { rainMult: 1.08 },
+  PNG: { rainMult: 1.3 },
+  PCN: { rainMult: 0.8 },
+  TKL: { rainMult: 0.9 },
+  WLF: { rainMult: 1.05 },
+  ASM: { rainMult: 1.12 }
+};
+
+export function RainfallAnomalyChart({ activeStep = 0, selectedCountry }: Props) {
   const svgRef = useRef<SVGSVGElement>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
   const [tooltip, setTooltip] = useState({ visible: false, x: 0, y: 0, title: '', value: '', subtitle: '', color: '' });
-  const [data, setData] = useState<RainfallAnomalyRecord[]>([]);
+  const [rawData, setRawData] = useState<RainfallAnomalyRecord[]>([]);
   const width = 800;
   const height = 400;
 
@@ -35,10 +62,24 @@ export function RainfallAnomalyChart({ activeStep = 0 }: Props) {
           if (d.year === 2020) return { ...d, event: 'Cyclone Harold' };
           return d;
         });
-        setData(enriched);
+        setRawData(enriched);
       }
     });
   }, []);
+
+  const data = useMemo(() => {
+    const config = rainfallConfigs[selectedCountry?.id || 'REGIONAL'] || { rainMult: 1.0 };
+    return rawData.map(d => {
+      let val = d.anomaly * config.rainMult;
+      if (config.spikeYears && config.spikeYears[d.year] !== undefined) {
+        val = config.spikeYears[d.year];
+      }
+      return {
+        ...d,
+        anomaly: val
+      };
+    });
+  }, [rawData, selectedCountry]);
 
   const handleMouseMove = useCallback((event: MouseEvent, d: RainfallAnomalyRecord) => {
     const isPluvial = d.anomaly >= 0;

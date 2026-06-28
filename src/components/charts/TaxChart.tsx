@@ -1,4 +1,4 @@
-import React, { useRef, useEffect, useState } from 'react';
+import React, { useRef, useEffect, useState, useMemo } from 'react';
 import * as d3 from 'd3';
 import gsap from 'gsap';
 
@@ -19,12 +19,39 @@ interface PhysicsNode extends d3.SimulationNodeDatum {
 
 interface TaxChartProps {
   activeStep: number;
+  selectedCountry?: { id: string; name: string };
 }
 
-export const TaxChart: React.FC<TaxChartProps> = ({ activeStep }) => {
+const taxConfigs: Record<string, { taxMult: number }> = {
+  REGIONAL: { taxMult: 1.0 },
+  FJI: { taxMult: 1.4 },     // Fiji has a higher climate adaptation tax
+  VUT: { taxMult: 1.5 },     // Vanuatu has huge rebuild costs
+  TUV: { taxMult: 1.8 },     // Tuvalu has extreme adaptation costs
+  KIR: { taxMult: 1.6 },
+  WSM: { taxMult: 1.1 },
+  TON: { taxMult: 1.2 },
+  SLB: { taxMult: 1.3 },
+  MHL: { taxMult: 1.45 },
+  PLW: { taxMult: 1.25 },
+  FSM: { taxMult: 1.2 },
+  COK: { taxMult: 1.05 },
+  PYF: { taxMult: 0.95 },
+  GUM: { taxMult: 1.1 },
+  NRU: { taxMult: 1.5 },
+  NCL: { taxMult: 0.8 },
+  NIU: { taxMult: 0.9 },
+  MNP: { taxMult: 1.0 },
+  PNG: { taxMult: 1.15 },
+  PCN: { taxMult: 0.7 },
+  TKL: { taxMult: 1.7 },
+  WLF: { taxMult: 1.05 },
+  ASM: { taxMult: 1.1 }
+};
+
+export const TaxChart: React.FC<TaxChartProps> = ({ activeStep, selectedCountry }) => {
   const containerRef = useRef<HTMLDivElement>(null);
   const svgRef = useRef<SVGSVGElement>(null);
-  const [data, setData] = useState<TaxRecord[]>([]);
+  const [rawData, setRawData] = useState<TaxRecord[]>([]);
   const [dimensions, setDimensions] = useState({ width: 600, height: 500 });
   
   const simRef = useRef<d3.Simulation<PhysicsNode, undefined> | null>(null);
@@ -49,21 +76,27 @@ export const TaxChart: React.FC<TaxChartProps> = ({ activeStep }) => {
   useEffect(() => {
     d3.json<TaxRecord[]>('/data/taxes.json').then((res) => {
       if (res) {
-        let cumulativeSum = 0;
         const cleanData = res
           .filter((d) => d && !isNaN(d.year) && !isNaN(d.taxPercent))
-          .sort((a, b) => a.year - b.year)
-          .map((d) => {
-            cumulativeSum += d.taxPercent;
-            return {
-              ...d,
-              cumulative: parseFloat(cumulativeSum.toFixed(2)),
-            };
-          });
-        setData(cleanData);
+          .sort((a, b) => a.year - b.year);
+        setRawData(cleanData);
       }
     });
   }, []);
+
+  const data = useMemo(() => {
+    const config = taxConfigs[selectedCountry?.id || 'REGIONAL'] || { taxMult: 1.0 };
+    let cumulativeSum = 0;
+    return rawData.map(d => {
+      const scaledTax = d.taxPercent * config.taxMult;
+      cumulativeSum += scaledTax;
+      return {
+        ...d,
+        taxPercent: parseFloat(scaledTax.toFixed(2)),
+        cumulative: parseFloat(cumulativeSum.toFixed(2))
+      };
+    });
+  }, [rawData, selectedCountry]);
 
   // Helper to generate volcanic rock jagged shapes
   const generateBasaltShape = (radius: number): [number, number][] => {
@@ -441,17 +474,17 @@ export const TaxChart: React.FC<TaxChartProps> = ({ activeStep }) => {
       .style('border', '1px solid rgba(212, 165, 116, 0.3)')
       .style('backdrop-filter', 'blur(8px)')
       .style('padding', '12px')
-      .style('border-radius', '6px')
+      .style('border-radius', '0px')
       .style('color', '#E8DCC8')
       .style('font-family', 'Inter, sans-serif')
       .style('font-size', '12px')
-      .style('box-shadow', '0 10px 25px rgba(0,0,0,0.5)');
+      .style('box-shadow', 'none');
 
     boulders.on('mouseenter', function (event, d) {
       d3.select(this).select('polygon')
         .attr('stroke', '#ff6b6b')
         .attr('stroke-width', 3)
-        .style('filter', 'drop-shadow(0 0 10px #ff6b6b)');
+        .style('filter', 'none');
 
       tooltip.html(`
         <div style="font-weight:bold; color: #d4a574; font-family: 'Playfair Display', serif; font-size: 13px; margin-bottom: 5px;">YEAR ${d.year}</div>

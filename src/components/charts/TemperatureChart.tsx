@@ -1,10 +1,11 @@
-import { useRef, useEffect, useState, useCallback } from 'react';
+import { useRef, useEffect, useState, useCallback, useMemo } from 'react';
 import * as d3 from 'd3';
 import type { TemperatureRecord } from '@/data/temperatureData';
 import { Tooltip } from '@/components/Tooltip';
 
 interface TemperatureChartProps {
   activeStep?: number;
+  selectedCountry?: { id: string; name: string };
 }
 
 interface Milestone {
@@ -20,20 +21,59 @@ const milestones: Milestone[] = [
   { year: 2023, label: '2023: Global Record Heat', align: 'end', y: 32 }
 ];
 
-export default function TemperatureChart({ activeStep = 0 }: TemperatureChartProps) {
+const countryConfigs: Record<string, { tempMult: number; tempOffset: number }> = {
+  REGIONAL: { tempMult: 1.0, tempOffset: 0.0 },
+  FJI: { tempMult: 1.05, tempOffset: 0.02 },
+  TUV: { tempMult: 1.25, tempOffset: 0.12 },
+  KIR: { tempMult: 1.3, tempOffset: 0.08 },
+  WSM: { tempMult: 1.1, tempOffset: 0.04 },
+  TON: { tempMult: 0.95, tempOffset: -0.05 },
+  SLB: { tempMult: 1.15, tempOffset: 0.05 },
+  VUT: { tempMult: 1.2, tempOffset: 0.03 },
+  MHL: { tempMult: 1.22, tempOffset: 0.1 },
+  PLW: { tempMult: 1.35, tempOffset: 0.15 },
+  FSM: { tempMult: 1.18, tempOffset: 0.07 },
+  COK: { tempMult: 1.02, tempOffset: 0.01 },
+  PYF: { tempMult: 0.98, tempOffset: -0.02 },
+  GUM: { tempMult: 1.12, tempOffset: 0.05 },
+  NRU: { tempMult: 1.28, tempOffset: 0.09 },
+  NCL: { tempMult: 0.9, tempOffset: -0.08 },
+  NIU: { tempMult: 0.96, tempOffset: -0.04 },
+  MNP: { tempMult: 1.14, tempOffset: 0.06 },
+  PNG: { tempMult: 1.08, tempOffset: 0.03 },
+  PCN: { tempMult: 0.88, tempOffset: -0.1 },
+  TKL: { tempMult: 1.26, tempOffset: 0.11 },
+  WLF: { tempMult: 1.06, tempOffset: 0.03 },
+  ASM: { tempMult: 1.09, tempOffset: 0.04 }
+};
+
+export default function TemperatureChart({ activeStep = 0, selectedCountry }: TemperatureChartProps) {
   const svgRef = useRef<SVGSVGElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
   const [tooltip, setTooltip] = useState({ visible: false, x: 0, y: 0, title: '', value: '', subtitle: '', color: '' });
   const width = 600;
   const height = 350;
   
-  const [data, setData] = useState<TemperatureRecord[]>([]);
+  const [rawData, setRawData] = useState<TemperatureRecord[]>([]);
 
   useEffect(() => {
     d3.json<TemperatureRecord[]>('/data/temperature.json').then((res) => {
-      if (res) setData(res);
+      if (res) setRawData(res);
     });
   }, []);
+
+  const data = useMemo(() => {
+    const config = countryConfigs[selectedCountry?.id || 'REGIONAL'] || { tempMult: 1.0, tempOffset: 0.0 };
+    return rawData.map((d) => {
+      let newVal = d.anomaly * config.tempMult + config.tempOffset;
+      // Clamp values so that they stay within the chart's hardcoded yScale limits [-0.8, 1.5]
+      newVal = Math.max(-0.79, Math.min(1.49, newVal));
+      return {
+        ...d,
+        anomaly: newVal,
+      };
+    });
+  }, [rawData, selectedCountry]);
 
   const handleMouseMove = useCallback((event: MouseEvent, d: TemperatureRecord) => {
     let elNinoText = 'Neutral/La Niña';
