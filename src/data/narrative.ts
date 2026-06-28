@@ -71,11 +71,11 @@ export const closingContent = {
 
 export const footerContent = {
   datasets: [
-    { name: 'Mean Sea Surface Temperature Anomalies', source: 'Pacific Dataviz Challenge (Official Dataset) / Pacific Data Hub, PDH.Stat — Reynolds OISST v2.1' },
-    { name: 'Sea Level Anomalies', source: 'Pacific Dataviz Challenge (Official Dataset) / Pacific Data Hub, PDH.Stat — Satellite altimetry (TOPEX/Jason series)' },
-    { name: 'Rainfall Anomalies', source: 'Pacific Dataviz Challenge (Official Dataset) / Pacific Data Hub, PDH.Stat — 1986-2005 baseline' },
-    { name: 'Crop Yield (disaggregated)', source: 'Pacific Dataviz Challenge (Official Dataset) / Pacific Data Hub, PDH.Stat — FAO production indices' },
-    { name: 'Environmental Taxes', source: 'Pacific Dataviz Challenge (Official Dataset) / Pacific Data Hub, PDH.Stat — OECD/UNEP framework' },
+    { name: 'Mean Sea Surface Temperature Anomalies', source: 'Pacific Dataviz Challenge (Official Dataset) / Pacific Data Hub / NOAA ERSST: Sea Surface Temperature' },
+    { name: 'Sea Level Anomalies', source: 'Pacific Dataviz Challenge (Official Dataset) / Pacific Data Hub / NASA PO.DAAC: Sea Level Anomalies' },
+    { name: 'Rainfall Anomalies', source: 'Pacific Dataviz Challenge (Official Dataset) / Pacific Data Hub / NOAA PSL: GPCP Precipitation Anomalies' },
+    { name: 'Crop Yield (disaggregated)', source: 'Pacific Dataviz Challenge (Official Dataset) / Pacific Data Hub / FAOSTAT: Agricultural Production' },
+    { name: 'Environmental Taxes', source: 'Pacific Dataviz Challenge (Official Dataset) / Pacific Data Hub / OECD.stat: Environmental Tax Revenues' },
   ],
   attribution: 'Created for the 2026 Pacific Dataviz Challenge.',
   license: 'Data available under open license via stats.pacificdata.org',
