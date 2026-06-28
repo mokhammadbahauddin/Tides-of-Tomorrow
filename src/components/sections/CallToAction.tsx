@@ -133,7 +133,7 @@ const MiniChart = ({ pledge }: { pledge: number }) => {
   const yearTicks = [2020, 2030, 2040, 2050];
   
   return (
-    <div ref={containerRef} className="flex flex-col w-full bg-[#0B1A2E]/50 border border-[#D4A574]/15 rounded-xl p-4 transition-all duration-500">
+    <div ref={containerRef} className="flex flex-col w-full glass-panel border border-[#D4A574]/15 rounded-none p-4 transition-all duration-500">
       <span className="text-[8px] text-[#8B7355] font-mono mb-2 uppercase tracking-wide font-semibold">
         Temperature Trajectory (2020–2050)
       </span>
@@ -346,7 +346,7 @@ export default function CallToAction({ className }: CallToActionProps) {
 
           {/* Main Simulation Panel Container (Overhauled Dashboard Grid) */}
           <div 
-            className="max-w-6xl mx-auto border p-8 md:p-12 mb-16 text-left transition-all duration-500 grid grid-cols-1 lg:grid-cols-12 gap-10 relative overflow-hidden rounded-xl bg-[#0B1A2E]/40 backdrop-blur-xl" 
+            className="max-w-6xl mx-auto glass-panel border p-8 md:p-12 mb-16 text-left transition-all duration-500 grid grid-cols-1 lg:grid-cols-12 gap-10 relative overflow-hidden rounded-none" 
             style={{ 
               borderColor: `${getPledgeColor(pledge)}25`,
               boxShadow: `0 25px 60px rgba(0,0,0,0.5), 0 0 50px ${getPledgeColor(pledge)}15`,
@@ -372,7 +372,7 @@ export default function CallToAction({ className }: CallToActionProps) {
                     <button
                       type="button"
                       onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-                      className="w-full text-left bg-[#0F2237]/65 border border-[#D4A574]/25 text-white font-body p-4 outline-none hover:border-reef-teal transition-all flex items-center justify-between shadow-[0_0_15px_rgba(43,122,120,0.03)] hover:shadow-[0_0_20px_rgba(43,122,120,0.15)] rounded-lg backdrop-blur-md relative overflow-hidden group focus:outline-none"
+                      className="w-full text-left bg-[#0F2237]/65 border border-[#D4A574]/25 text-white font-body p-4 outline-none hover:border-reef-teal transition-all flex items-center justify-between shadow-[0_0_15px_rgba(43,122,120,0.03)] hover:shadow-[0_0_20px_rgba(43,122,120,0.15)] rounded-none backdrop-blur-md relative overflow-hidden group focus:outline-none"
                     >
                       <div className="absolute inset-0 bg-gradient-to-r from-reef-teal/5 to-transparent pointer-events-none" />
                       <span className="relative z-10 text-sm font-semibold text-white">{country.name}</span>
@@ -385,7 +385,7 @@ export default function CallToAction({ className }: CallToActionProps) {
                            className="fixed inset-0 z-40"
                           onClick={() => setIsDropdownOpen(false)}
                         />
-                        <div className="absolute z-50 top-full left-0 right-0 mt-2 bg-[#0B1A2E]/95 backdrop-blur-md border border-[#D4A574]/30 max-h-72 overflow-y-auto rounded-lg shadow-[0_15px_45px_rgba(0,0,0,0.9)] py-2" style={{ scrollbarWidth: 'thin' }}>
+                        <div className="absolute z-50 top-full left-0 right-0 mt-2 bg-[#0B1A2E]/95 backdrop-blur-md border border-[#D4A574]/15 max-h-72 overflow-y-auto rounded-none shadow-[0_15px_45px_rgba(0,0,0,0.9)] py-2" style={{ scrollbarWidth: 'thin' }}>
                            {countryData.map((c: typeof countryData[number]) => (
                             <button
                               key={c.id}
@@ -412,7 +412,7 @@ export default function CallToAction({ className }: CallToActionProps) {
 
                 {/* Country Debt Invoice slip - Premium Slip Card */}
                 <div 
-                  className="bg-[#0B1A2E]/60 border p-6 rounded-lg mb-8 shadow-[0_0_20px_rgba(180,77,54,0.08)] relative overflow-hidden transition-all duration-500"
+                  className="glass-panel border p-6 rounded-none mb-8 relative overflow-hidden transition-all duration-500"
                   style={{
                     borderColor: `${getPledgeColor(pledge)}25`,
                     boxShadow: `0 15px 35px rgba(0,0,0,0.3), 0 0 25px ${getPledgeColor(pledge)}05`,
@@ -437,7 +437,7 @@ export default function CallToAction({ className }: CallToActionProps) {
                   <div className="flex justify-between items-baseline mb-3">
                     <span className="text-[9px] font-mono text-[#8B7355] uppercase tracking-wider font-semibold">Commitment Willpower</span>
                     <span 
-                      className="text-base font-bold font-display tracking-widest px-3 py-1 rounded-md transition-all duration-300"
+                      className="text-base font-bold font-display tracking-widest px-3 py-1 rounded-none transition-all duration-300"
                       style={{ 
                         color: getPledgeColor(pledge),
                         backgroundColor: `${getPledgeColor(pledge)}12`,
@@ -534,7 +534,7 @@ export default function CallToAction({ className }: CallToActionProps) {
 
             {/* Right Panel: HUD Simulator Gauges and Curves (6/12 cols) */}
             <div 
-              className="lg:col-span-6 flex flex-col justify-between gap-8 border p-6 md:p-8 rounded-lg relative overflow-hidden transition-all duration-500 bg-[#0B1A2E]/25 backdrop-blur-md"
+              className="lg:col-span-6 flex flex-col justify-between gap-8 border p-6 md:p-8 rounded-none relative overflow-hidden transition-all duration-500 glass-panel"
               style={{
                 borderColor: 'rgba(212, 165, 116, 0.15)',
               }}
@@ -570,7 +570,7 @@ export default function CallToAction({ className }: CallToActionProps) {
 
               {/* Narrative outcome block */}
               <div 
-                className="p-4.5 border rounded-lg transition-all duration-500 bg-[#0B1A2E]/55" 
+                className="p-4.5 border rounded-none transition-all duration-500 glass-panel" 
                 style={{ 
                   backgroundColor: `${getPledgeColor(pledge)}04`, 
                   borderColor: `${getPledgeColor(pledge)}20`
@@ -589,7 +589,7 @@ export default function CallToAction({ className }: CallToActionProps) {
           <a
             href="https://fossilfueltreaty.org/port-vila-call"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-4 px-10 py-5 bg-[#B44D36] text-white font-bold text-lg hover:bg-[#B44D36]/90 transition-all duration-300 font-display tracking-widest uppercase hover:scale-[1.03] active:scale-[0.98] rounded-lg border border-white/10"
+            className="inline-flex items-center gap-4 px-10 py-5 bg-[#B44D36] text-white font-bold text-lg hover:bg-[#B44D36]/90 transition-all duration-300 font-display tracking-widest uppercase hover:scale-[1.03] active:scale-[0.98] rounded-none border border-white/10"
             style={{
               animation: 'pulsate-glow 2.5s infinite alternate'
             }}
@@ -602,7 +602,7 @@ export default function CallToAction({ className }: CallToActionProps) {
 
         {/* Cards section with elevated layout */}
         <div ref={cardsRef} className="grid md:grid-cols-3 gap-8 mb-16">
-          <div className="action-card glass-panel rounded-lg p-6 text-center border border-reef-teal/20 hover:border-reef-teal/50 transition-all duration-300">
+          <div className="action-card glass-panel rounded-none p-6 text-center border border-reef-teal/20 hover:border-reef-teal/50 transition-all duration-300">
             <div className="w-14 h-14 rounded-full bg-reef-teal/10 flex items-center justify-center mx-auto mb-4">
               <Database className="w-7 h-7 text-reef-teal" />
             </div>
@@ -621,7 +621,7 @@ export default function CallToAction({ className }: CallToActionProps) {
             </ul>
           </div>
 
-          <div className="action-card glass-panel rounded-lg p-6 text-center border border-golden-hour/20 hover:border-golden-hour/50 transition-all duration-300">
+          <div className="action-card glass-panel rounded-none p-6 text-center border border-golden-hour/20 hover:border-golden-hour/50 transition-all duration-300">
             <div className="w-14 h-14 rounded-full bg-golden-hour/10 flex items-center justify-center mx-auto mb-4">
               <Globe className="w-7 h-7 text-golden-hour" />
             </div>
@@ -636,7 +636,7 @@ export default function CallToAction({ className }: CallToActionProps) {
             </p>
           </div>
 
-          <div className="action-card glass-panel rounded-lg p-6 text-center border border-terracotta/20 hover:border-terracotta/50 transition-all duration-300">
+          <div className="action-card glass-panel rounded-none p-6 text-center border border-terracotta/20 hover:border-terracotta/50 transition-all duration-300">
             <div className="w-14 h-14 rounded-full bg-terracotta/10 flex items-center justify-center mx-auto mb-4">
               <PenTool className="w-7 h-7 text-terracotta" />
             </div>
@@ -647,11 +647,11 @@ export default function CallToAction({ className }: CallToActionProps) {
               The time for "awareness" has passed. Support indigenous Pacific climate initiatives and amplify their demands for loss and damage compensation on the global stage.
             </p>
             <div className="flex flex-col gap-3">
-              <a href="https://www.pican.org/" target="_blank" rel="noreferrer" className="w-full text-xs font-body py-2.5 px-4 rounded-md border border-terracotta/40 text-shell-white hover:bg-terracotta/10 transition-colors flex items-center justify-between">
+              <a href="https://www.pican.org/" target="_blank" rel="noreferrer" className="w-full text-xs font-body py-2.5 px-4 rounded-none border border-terracotta/40 text-shell-white hover:bg-terracotta/10 transition-colors flex items-center justify-between">
                 <span>Pacific Climate Action Network</span>
                 <ExternalLink className="w-3 h-3" />
               </a>
-              <a href="https://fossilfueltreaty.org/" target="_blank" rel="noreferrer" className="w-full text-xs font-body py-2.5 px-4 rounded-md border border-terracotta/40 text-shell-white hover:bg-terracotta/10 transition-colors flex items-center justify-between">
+              <a href="https://fossilfueltreaty.org/" target="_blank" rel="noreferrer" className="w-full text-xs font-body py-2.5 px-4 rounded-none border border-terracotta/40 text-shell-white hover:bg-terracotta/10 transition-colors flex items-center justify-between">
                 <span>Fossil Fuel Non-Proliferation Treaty</span>
                 <ExternalLink className="w-3 h-3" />
               </a>

@@ -445,7 +445,7 @@ export default function SeaLevelChart({ activeStep = 0 }: SeaLevelChartProps) {
 
   if (data.length === 0) {
     return (
-      <div className="w-full h-[400px] rounded-lg bg-gradient-to-r from-deep-ocean via-ocean-ink to-deep-ocean animate-pulse flex items-center justify-center">
+      <div className="w-full h-[400px] rounded-none bg-gradient-to-r from-deep-ocean via-ocean-ink to-deep-ocean animate-pulse flex items-center justify-center">
         <p className="text-shell-white/50 font-body tracking-widest text-xs">LOADING SEA LEVEL DATA...</p>
       </div>
     );

@@ -599,7 +599,7 @@ export const TaxChart: React.FC<TaxChartProps> = ({ activeStep }) => {
 
   if (data.length === 0) {
     return (
-      <div className="w-full h-[520px] rounded-lg bg-gradient-to-r from-[#0B1A2E] via-[#0F2237] to-[#0B1A2E] animate-pulse flex items-center justify-center">
+      <div className="w-full h-[520px] rounded-none bg-gradient-to-r from-[#0B1A2E] via-[#0F2237] to-[#0B1A2E] animate-pulse flex items-center justify-center">
         <p className="text-[#D4A574]/50 font-body tracking-widest text-xs uppercase">Loading Balance Scale...</p>
       </div>
     );

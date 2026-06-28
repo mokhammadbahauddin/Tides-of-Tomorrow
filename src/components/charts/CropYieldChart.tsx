@@ -377,7 +377,7 @@ export const CropYieldChart: React.FC<CropYieldChartProps> = ({ activeStep }) =>
 
   if (data.length === 0) {
     return (
-      <div className="w-full h-[420px] rounded-lg bg-gradient-to-r from-[#0B1A2E] via-[#0F2237] to-[#0B1A2E] animate-pulse flex items-center justify-center">
+      <div className="w-full h-[420px] rounded-none bg-gradient-to-r from-[#0B1A2E] via-[#0F2237] to-[#0B1A2E] animate-pulse flex items-center justify-center">
         <p className="text-[#D4A574]/50 font-body tracking-widest text-xs uppercase">Loading Crop Yields...</p>
       </div>
     );
@@ -555,7 +555,7 @@ export const CropYieldChart: React.FC<CropYieldChartProps> = ({ activeStep }) =>
         {/* High-Contrast glowing amber-red glassmorphic alert banner */}
         <div className="z-10 mt-2 transition-all duration-500">
           {isSalty ? (
-            <div className="p-4 bg-[#B44D36]/20 border border-[#B44D36]/40 rounded-xl flex gap-3 items-start shadow-[0_0_20px_rgba(180,77,54,0.25)] backdrop-blur-md">
+            <div className="p-4 bg-[#B44D36]/20 border border-[#B44D36]/40 rounded-none flex gap-3 items-start shadow-[0_0_20px_rgba(180,77,54,0.25)] backdrop-blur-md">
               <AlertTriangle className="w-5 h-5 text-[#ff6b6b] shrink-0 mt-0.5 animate-pulse" />
               <div className="text-xs text-shell-white leading-relaxed">
                 <strong className="text-[#ff6b6b] block mb-0.5 tracking-wide uppercase font-display font-bold text-[10px]">SALTWATER INTRUSION CRITICAL</strong>
@@ -563,7 +563,7 @@ export const CropYieldChart: React.FC<CropYieldChartProps> = ({ activeStep }) =>
               </div>
             </div>
           ) : (
-            <div className="p-4 bg-[#2B7A78]/15 border border-[#2B7A78]/35 rounded-xl flex gap-3 items-start backdrop-blur-md">
+            <div className="p-4 bg-[#2B7A78]/15 border border-[#2B7A78]/35 rounded-none flex gap-3 items-start backdrop-blur-md">
               <ShieldCheck className="w-5 h-5 text-[#2B7A78] shrink-0 mt-0.5" />
               <div className="text-xs text-[#E8DCC8]/90 leading-relaxed">
                 <strong className="text-[#2B7A78] block mb-0.5 tracking-wide uppercase font-display font-bold text-[10px]">OPTIMAL SOIL HEALTH</strong>

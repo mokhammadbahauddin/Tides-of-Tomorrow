@@ -71,7 +71,7 @@ export default function Act4_AtmosphericFracture({ className }: Act4Props) {
               transform: activeStep === 0 ? 'scale(1)' : 'scale(0.98)'
             }}
           >
-            <div className={`absolute inset-0 rounded-xl transition-opacity duration-500 ${activeStep === 0 ? 'glass-card' : ''}`} />
+            <div className={`absolute inset-0 rounded-none transition-opacity duration-500 ${activeStep === 0 ? 'glass-card' : ''}`} />
             <div className="relative z-10">
             <div className="flex items-center gap-3 mb-4">
               <CloudLightning className="w-5 h-5 text-storm-gray" />
@@ -96,7 +96,7 @@ export default function Act4_AtmosphericFracture({ className }: Act4Props) {
               transform: activeStep === 1 ? 'scale(1)' : 'scale(0.98)'
             }}
           >
-            <div className={`absolute inset-0 rounded-xl transition-opacity duration-500 ${activeStep === 1 ? 'glass-card' : ''}`} />
+            <div className={`absolute inset-0 rounded-none transition-opacity duration-500 ${activeStep === 1 ? 'glass-card' : ''}`} />
             <div className="relative z-10">
             <h3 className="font-display text-3xl md:text-4xl font-bold text-shell-white mb-4">
               Droughts & Deluges
@@ -122,7 +122,7 @@ export default function Act4_AtmosphericFracture({ className }: Act4Props) {
               transform: activeStep === 2 ? 'scale(1)' : 'scale(0.98)'
             }}
           >
-            <div className={`absolute inset-0 rounded-xl transition-opacity duration-500 ${activeStep === 2 ? 'glass-card' : ''}`} />
+            <div className={`absolute inset-0 rounded-none transition-opacity duration-500 ${activeStep === 2 ? 'glass-card' : ''}`} />
             <div className="relative z-10">
             <h3 className="font-display text-3xl md:text-4xl font-bold text-shell-white mb-4">
               A Broken Sky

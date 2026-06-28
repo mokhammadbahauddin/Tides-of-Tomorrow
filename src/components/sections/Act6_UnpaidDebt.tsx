@@ -71,7 +71,7 @@ export default function Act6_UnpaidDebt({ className }: Act6Props) {
               transform: activeStep === 0 ? 'scale(1)' : 'scale(0.98)'
             }}
           >
-            <div className={`absolute inset-0 rounded-xl transition-opacity duration-500 ${activeStep === 0 ? 'glass-card' : ''}`} />
+            <div className={`absolute inset-0 rounded-none transition-opacity duration-500 ${activeStep === 0 ? 'glass-card' : ''}`} />
             <div className="relative z-10">
             <div className="flex items-center gap-3 mb-6">
               <span className="w-8 h-px bg-golden-hour"></span>
@@ -100,7 +100,7 @@ export default function Act6_UnpaidDebt({ className }: Act6Props) {
               transform: activeStep === 1 ? 'scale(1)' : 'scale(0.98)'
             }}
           >
-            <div className={`absolute inset-0 rounded-xl transition-opacity duration-500 ${activeStep === 1 ? 'glass-card' : ''}`} />
+            <div className={`absolute inset-0 rounded-none transition-opacity duration-500 ${activeStep === 1 ? 'glass-card' : ''}`} />
             <div className="relative z-10">
             <h3 className="font-display text-3xl md:text-4xl font-bold text-shell-white mb-6 flex items-center gap-4">
               <Scale className="w-8 h-8 text-golden-hour" />

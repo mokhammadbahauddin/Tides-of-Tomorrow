@@ -114,7 +114,7 @@ export default function CarbonLedgerChart({ isActive = true }: { isActive?: bool
 
   return (
     <div ref={containerRef} className="w-full max-w-lg aspect-square relative flex flex-col items-center justify-center p-4">
-      <div className="w-full h-full border border-[#D4A574]/12 rounded-lg relative overflow-hidden bg-[#0F2237]/75 backdrop-blur-md shadow-[0_20px_50px_rgba(0,0,0,0.4)]">
+      <div className="w-full h-full glass-panel border border-[#D4A574]/15 rounded-none relative overflow-hidden">
         <svg ref={svgRef} className="w-full h-full" />
       </div>
       <div className="mt-6 text-center text-[#8B7355] font-body text-xs tracking-wide opacity-80">

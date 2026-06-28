@@ -361,7 +361,7 @@ export default function PacificGlobe() {
       />
       {tooltip && (
         <div 
-          className="absolute pointer-events-none bg-[#0F2237]/95 border border-[#D4A574]/25 p-4 shadow-[0_15px_30px_rgba(0,0,0,0.5)] backdrop-blur-md max-w-xs z-50 text-left rounded-lg"
+          className="absolute pointer-events-none glass-panel border border-[#D4A574]/15 p-4 z-50 text-left rounded-none max-w-xs"
           style={{ left: tooltip.x + 15, top: tooltip.y - 15 }}
         >
           {/* Heading */}

@@ -558,7 +558,7 @@ export default function TemperatureChart({ activeStep = 0 }: TemperatureChartPro
 
   if (data.length === 0) {
     return (
-      <div className="w-full h-[350px] rounded-lg bg-gradient-to-r from-[#0a1526] via-[#112240] to-[#0a1526] animate-pulse flex items-center justify-center">
+      <div className="w-full h-[350px] rounded-none bg-gradient-to-r from-[#0a1526] via-[#112240] to-[#0a1526] animate-pulse flex items-center justify-center">
         <p className="text-blue-200/50 font-body tracking-widest text-xs">LOADING TEMPERATURE DATA...</p>
       </div>
     );
