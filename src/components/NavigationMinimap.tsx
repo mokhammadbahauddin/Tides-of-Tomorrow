@@ -10,6 +10,7 @@ if (typeof window !== 'undefined') {
 interface NavigationMinimapProps {
   scrollProgress?: number;
   activeSection?: string;
+  onSectionChange?: (section: string) => void;
 }
 
 interface MinimapItem {
@@ -31,7 +32,8 @@ const minimapItems: MinimapItem[] = [
 
 export const NavigationMinimap = ({
   scrollProgress,
-  activeSection
+  activeSection,
+  onSectionChange
 }: NavigationMinimapProps) => {
   const [progress, setProgress] = useState(0);
   const [currentSection, setCurrentSection] = useState('hero');
@@ -89,6 +91,13 @@ export const NavigationMinimap = ({
   const scrollToSection = (id: string) => {
     const el = document.getElementById(id);
     if (!el) return;
+
+    // Instantly update active section state for immediate click feedback
+    if (onSectionChange) {
+      onSectionChange(id);
+    } else {
+      setCurrentSection(id);
+    }
 
     // Get header height for offset (same as standard navigation scroll padding)
     const header = document.querySelector('header');

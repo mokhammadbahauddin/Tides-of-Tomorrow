@@ -91,7 +91,9 @@ export default function AudioController({ activeSection, activeStep, isMuted }: 
 
   const activeOscillatorsRef = useRef<(OscillatorNode | AudioBufferSourceNode)[]>([]);
   const chordIntervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
+  const pluckIntervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
   const rumbleTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const currentChordNotesRef = useRef<number[]>([130.81, 196.00, 261.63, 311.13]);
 
   const activeSectionRef = useRef(currentSection);
   const isMutedRef = useRef(isMuted);
@@ -321,40 +323,60 @@ export default function AudioController({ activeSection, activeStep, isMuted }: 
 
       const melancholyFilter = ctx.createBiquadFilter();
       melancholyFilter.type = 'lowpass';
-      melancholyFilter.frequency.setValueAtTime(750, ctx.currentTime); // warm filtering
+      melancholyFilter.frequency.setValueAtTime(650, ctx.currentTime); // warm filtering
       melancholyFilter.Q.setValueAtTime(1.0, ctx.currentTime);
       melancholyFilter.connect(melancholyGain);
 
-      const synthVoices: { osc1: OscillatorNode; osc2: OscillatorNode; gain: GainNode }[] = [];
+      // Stereo delay echo for rich spacey pads
+      const delayNode = ctx.createDelay(1.0);
+      delayNode.delayTime.setValueAtTime(0.6, ctx.currentTime); // 600ms echo
+      const delayFeedback = ctx.createGain();
+      delayFeedback.gain.setValueAtTime(0.42, ctx.currentTime); // feedback amount
+      
+      melancholyFilter.connect(delayNode);
+      delayNode.connect(delayFeedback);
+      delayFeedback.connect(delayNode);
+      delayNode.connect(melancholyGain);
+
+      const synthVoices: { oscSaw: OscillatorNode; oscTri: OscillatorNode; gain: GainNode }[] = [];
+      
+      // Lush cinematic chords (6 voices: deep sub-bass + rich 9th/11th extension notes)
       const chords = [
-        [130.81, 196.00, 261.63, 311.13], // Cm (C3, G3, C4, Eb4)
-        [103.83, 155.56, 207.65, 261.63], // Ab (Ab2, Eb3, Ab3, C4)
-        [155.56, 233.08, 311.13, 392.00], // Eb (Eb3, Bb3, Eb4, G4)
-        [98.00, 146.83, 196.00, 233.08]   // Gm (G2, D3, G3, Bb3)
+        [65.41, 196.00, 233.08, 293.66, 311.13, 392.00], // Cm9 (C2, G3, Bb3, D4, Eb4, G4)
+        [51.91, 196.00, 261.63, 311.13, 392.00, 523.25], // Abmaj9 (Ab1, G3, C4, Eb4, G4, C5)
+        [77.78, 196.00, 233.08, 349.23, 392.00, 466.16], // Ebadd9 (Eb2, G3, Bb3, F4, G4, Bb4)
+        [49.00, 174.61, 233.08, 293.66, 349.23, 440.00]  // Gm11 (G1, F3, Bb3, D4, F4, A4)
       ];
 
-      for (let i = 0; i < 4; i++) {
-        const osc1 = ctx.createOscillator();
-        const osc2 = ctx.createOscillator();
+      for (let i = 0; i < 6; i++) {
+        const oscSaw = ctx.createOscillator();
+        const oscTri = ctx.createOscillator();
         const voiceGain = ctx.createGain();
 
-        osc1.type = 'triangle';
-        osc2.type = 'triangle';
-        // Detuning for lush chorusing
-        osc1.detune.setValueAtTime(8, ctx.currentTime);
-        osc2.detune.setValueAtTime(-8, ctx.currentTime);
+        if (i === 0) {
+          // Clean low-end foundation (pure sub-bass)
+          oscSaw.type = 'sine';
+          oscTri.type = 'triangle';
+          voiceGain.gain.setValueAtTime(0.24, ctx.currentTime);
+        } else {
+          // Thick chorused upper voices
+          oscSaw.type = 'sawtooth';
+          oscTri.type = 'triangle';
+          oscSaw.detune.setValueAtTime(10 + i * 2, ctx.currentTime);
+          oscTri.detune.setValueAtTime(-6 - i * 2, ctx.currentTime);
+          voiceGain.gain.setValueAtTime(0.045, ctx.currentTime);
+        }
 
-        osc1.connect(voiceGain);
-        osc2.connect(voiceGain);
+        oscSaw.connect(voiceGain);
+        oscTri.connect(voiceGain);
         voiceGain.connect(melancholyFilter);
-        voiceGain.gain.setValueAtTime(0.12, ctx.currentTime);
 
-        osc1.start(0);
-        osc2.start(0);
-        activeOscillatorsRef.current.push(osc1);
-        activeOscillatorsRef.current.push(osc2);
+        oscSaw.start(0);
+        oscTri.start(0);
+        activeOscillatorsRef.current.push(oscSaw);
+        activeOscillatorsRef.current.push(oscTri);
 
-        synthVoices.push({ osc1, osc2, gain: voiceGain });
+        synthVoices.push({ oscSaw, oscTri, gain: voiceGain });
       }
 
       let chordIndex = 0;
@@ -362,9 +384,10 @@ export default function AudioController({ activeSection, activeStep, isMuted }: 
         if (!ctxRef.current) return;
         const nowTime = ctxRef.current.currentTime;
         const chord = chords[chordIndex];
+        currentChordNotesRef.current = chord; // sync active frequencies
         synthVoices.forEach((voice, voiceIdx) => {
-          voice.osc1.frequency.exponentialRampToValueAtTime(chord[voiceIdx], nowTime + 2.8);
-          voice.osc2.frequency.exponentialRampToValueAtTime(chord[voiceIdx], nowTime + 2.8);
+          voice.oscSaw.frequency.exponentialRampToValueAtTime(chord[voiceIdx], nowTime + 3.5);
+          voice.oscTri.frequency.exponentialRampToValueAtTime(chord[voiceIdx], nowTime + 3.5);
         });
         chordIndex = (chordIndex + 1) % chords.length;
       };
@@ -372,6 +395,61 @@ export default function AudioController({ activeSection, activeStep, isMuted }: 
       // Play Cm first
       playNextChord();
       chordIntervalRef.current = setInterval(playNextChord, 6000);
+
+      // Shimmering bioluminescent pluck arpeggiator module
+      const pluckGain = ctx.createGain();
+      pluckGain.gain.setValueAtTime(0.06, ctx.currentTime); // soft volume
+      pluckGain.connect(melancholyGain);
+
+      const pluckDelay = ctx.createDelay(1.0);
+      pluckDelay.delayTime.setValueAtTime(0.38, ctx.currentTime);
+      const pluckDelayFeedback = ctx.createGain();
+      pluckDelayFeedback.gain.setValueAtTime(0.55, ctx.currentTime);
+      pluckDelay.connect(pluckDelayFeedback);
+      pluckDelayFeedback.connect(pluckDelay);
+      pluckGain.connect(pluckDelay);
+      pluckDelay.connect(melancholyGain);
+
+      const playBioluminescentPluck = () => {
+        if (!ctxRef.current || isMutedRef.current) return;
+        if (activeSectionRef.current !== 'unpaid-debt' && activeSectionRef.current !== 'climate-debt' && activeSectionRef.current !== 'action') return;
+        
+        const nowTime = ctxRef.current.currentTime;
+        const notes = currentChordNotesRef.current;
+        if (!notes || notes.length < 3) return;
+        
+        // Pick a random high note from the active chord scale (voices 2 to 5), transposed up 2 octaves
+        const baseNote = notes[Math.floor(2 + Math.random() * (notes.length - 2))];
+        const pitch = baseNote * 4;
+        
+        const osc = ctxRef.current.createOscillator();
+        osc.type = 'sine';
+        osc.frequency.setValueAtTime(pitch, nowTime);
+        
+        const filter = ctxRef.current.createBiquadFilter();
+        filter.type = 'bandpass';
+        filter.frequency.setValueAtTime(pitch, nowTime);
+        filter.Q.setValueAtTime(6, nowTime);
+        
+        const oscGain = ctxRef.current.createGain();
+        oscGain.gain.setValueAtTime(0, nowTime);
+        oscGain.gain.linearRampToValueAtTime(0.08, nowTime + 0.012); // clean pluck envelope
+        oscGain.gain.exponentialRampToValueAtTime(0.0001, nowTime + 0.95);
+        
+        osc.connect(filter);
+        filter.connect(oscGain);
+        oscGain.connect(pluckGain);
+        
+        osc.start(nowTime);
+        osc.stop(nowTime + 1.1);
+      };
+
+      const pluckInterval = setInterval(() => {
+        if (Math.random() > 0.45) {
+          playBioluminescentPluck();
+        }
+      }, 850);
+      pluckIntervalRef.current = pluckInterval;
 
       // Trigger immediate cross-fade to current section
       const nowTime = ctx.currentTime;
@@ -454,6 +532,9 @@ export default function AudioController({ activeSection, activeStep, isMuted }: 
     return () => {
       if (chordIntervalRef.current) {
         clearInterval(chordIntervalRef.current);
+      }
+      if (pluckIntervalRef.current) {
+        clearInterval(pluckIntervalRef.current);
       }
       if (rumbleTimeoutRef.current) {
         clearTimeout(rumbleTimeoutRef.current);

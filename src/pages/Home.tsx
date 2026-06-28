@@ -54,7 +54,7 @@ export default function Home() {
 
     // IntersectionObserver to track the active visual act in the viewport
     const observers: IntersectionObserver[] = [];
-    const targets = ['prologue', 'warming', 'sinking', 'extreme-weather', 'food-security', 'unpaid-debt', 'climate-debt'];
+    const targets = ['prologue', 'warming', 'sinking', 'extreme-weather', 'food-security', 'unpaid-debt', 'climate-debt', 'action'];
     
     targets.forEach(target => {
       const el = document.getElementById(target);
@@ -103,7 +103,7 @@ export default function Home() {
       />
 
       <AudioController activeSection={activeSection} isMuted={isMuted} />
-      <NavigationMinimap activeSection={activeSection} />
+      <NavigationMinimap activeSection={activeSection} onSectionChange={setActiveSection} />
 
       <main>
         {/* Global Persistent Background */}
