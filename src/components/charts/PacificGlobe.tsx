@@ -217,13 +217,13 @@ export default function PacificGlobe() {
       context.lineWidth = 0.5;
       context.stroke();
 
-      // Landmasses (Driftwood styling with warm sand shadow)
+      // Landmasses representing Global Emissions (Red / Terracotta styling)
       if (land) {
         context.beginPath();
         path(land);
-        context.shadowBlur = 8;
-        context.shadowColor = 'rgba(212, 165, 116, 0.2)'; // Warm Sand
-        context.fillStyle = 'rgba(139, 115, 85, 0.7)'; // Driftwood
+        context.shadowBlur = 10;
+        context.shadowColor = 'rgba(180, 77, 54, 0.4)'; // Red/Terracotta shadow
+        context.fillStyle = 'rgba(180, 77, 54, 0.6)'; // Red/Terracotta representing 99.97% global emissions
         context.fill();
         context.shadowBlur = 0; // Reset shadow for subsequent drawings
       }
@@ -265,13 +265,13 @@ export default function PacificGlobe() {
             // 1. Faint inner lagoon fill
             context.beginPath();
             context.arc(x, y, 8, 0, 2 * Math.PI);
-            context.fillStyle = 'rgba(212, 165, 116, 0.08)'; // Warm Sand
+            context.fillStyle = 'rgba(43, 122, 120, 0.1)'; // Reef Teal (Blue-Green)
             context.fill();
 
             // 2. Dashed outer reef ring
             context.beginPath();
             context.arc(x, y, 9, 0, 2 * Math.PI);
-            context.strokeStyle = 'rgba(212, 165, 116, 0.45)'; // Warm Sand
+            context.strokeStyle = 'rgba(56, 189, 248, 0.5)'; // Ice Blue (Cyan)
             context.lineWidth = 0.75;
             context.setLineDash([2, 1.5]); // Dashed reef segments
             context.stroke();
@@ -285,14 +285,14 @@ export default function PacificGlobe() {
               const isletY = y + Math.sin(angle) * 9;
               context.beginPath();
               context.arc(isletX, isletY, 0.8, 0, 2 * Math.PI);
-              context.fillStyle = '#D4A574'; // Warm Sand
+              context.fillStyle = '#2B7A78'; // Reef Teal (Blue)
               context.fill();
             }
 
             // 4. Center telemetry coordinate core dot
             context.beginPath();
             context.arc(x, y, 1.5, 0, 2 * Math.PI);
-            context.fillStyle = '#B44D36'; // Terracotta
+            context.fillStyle = '#38bdf8'; // Ice Blue (Bright Cyan)
             context.fill();
 
             // 5. Breathing pulse aura (expands outside the atoll)
@@ -300,7 +300,7 @@ export default function PacificGlobe() {
             const pulseOpacity = Math.max(0, 0.35 * (1 - pulseTime / 2));
             context.beginPath();
             context.arc(x, y, pulseRadius, 0, 2 * Math.PI);
-            context.fillStyle = `rgba(180, 77, 54, ${pulseOpacity})`; // Terracotta
+            context.fillStyle = `rgba(56, 189, 248, ${pulseOpacity})`; // Ice Blue (Cyan)
             context.fill();
           }
         }
