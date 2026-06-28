@@ -349,7 +349,7 @@ export default function CallToAction({ className }: CallToActionProps) {
             className="max-w-6xl mx-auto glass-panel border p-8 md:p-12 mb-16 text-left transition-all duration-500 grid grid-cols-1 lg:grid-cols-12 gap-10 relative overflow-hidden rounded-none" 
             style={{ 
               borderColor: `${getPledgeColor(pledge)}25`,
-              boxShadow: `0 25px 60px rgba(0,0,0,0.5), 0 0 50px ${getPledgeColor(pledge)}15`,
+              boxShadow: 'inset 0 0 40px rgba(11, 26, 46, 0.5)',
             }}
           >
             {/* Left Panel: Sliders & Actions (6/12 cols) */}
@@ -372,7 +372,7 @@ export default function CallToAction({ className }: CallToActionProps) {
                     <button
                       type="button"
                       onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-                      className="w-full text-left bg-[#0F2237]/65 border border-[#D4A574]/25 text-white font-body p-4 outline-none hover:border-reef-teal transition-all flex items-center justify-between shadow-[0_0_15px_rgba(43,122,120,0.03)] hover:shadow-[0_0_20px_rgba(43,122,120,0.15)] rounded-none backdrop-blur-md relative overflow-hidden group focus:outline-none"
+                      className="w-full text-left bg-[#0F2237]/65 border border-[#D4A574]/25 text-white font-body p-4 outline-none hover:border-reef-teal transition-all flex items-center justify-between rounded-none backdrop-blur-md relative overflow-hidden group focus:outline-none"
                     >
                       <div className="absolute inset-0 bg-gradient-to-r from-reef-teal/5 to-transparent pointer-events-none" />
                       <span className="relative z-10 text-sm font-semibold text-white">{country.name}</span>
@@ -385,7 +385,7 @@ export default function CallToAction({ className }: CallToActionProps) {
                            className="fixed inset-0 z-40"
                           onClick={() => setIsDropdownOpen(false)}
                         />
-                        <div className="absolute z-50 top-full left-0 right-0 mt-2 bg-[#0B1A2E]/95 backdrop-blur-md border border-[#D4A574]/15 max-h-72 overflow-y-auto rounded-none shadow-[0_15px_45px_rgba(0,0,0,0.9)] py-2" style={{ scrollbarWidth: 'thin' }}>
+                        <div className="absolute z-50 top-full left-0 right-0 mt-2 bg-[#0B1A2E]/95 backdrop-blur-md border border-[#D4A574]/15 max-h-72 overflow-y-auto rounded-none py-2" style={{ scrollbarWidth: 'thin' }}>
                            {countryData.map((c: typeof countryData[number]) => (
                             <button
                               key={c.id}

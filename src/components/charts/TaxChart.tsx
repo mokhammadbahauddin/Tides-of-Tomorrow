@@ -613,7 +613,7 @@ export const TaxChart: React.FC<TaxChartProps> = ({ activeStep }) => {
         <h4 className="text-xs font-display text-shell-white/70">Fiji Adaptation Cost vs Public Resource Balance</h4>
       </div>
 
-      <svg ref={svgRef} className="w-full drop-shadow-2xl" />
+      <svg ref={svgRef} className="w-full" />
     </div>
   );
 };

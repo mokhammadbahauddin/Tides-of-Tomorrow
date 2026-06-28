@@ -555,7 +555,7 @@ export const CropYieldChart: React.FC<CropYieldChartProps> = ({ activeStep }) =>
         {/* High-Contrast glowing amber-red glassmorphic alert banner */}
         <div className="z-10 mt-2 transition-all duration-500">
           {isSalty ? (
-            <div className="p-4 bg-[#B44D36]/20 border border-[#B44D36]/40 rounded-none flex gap-3 items-start shadow-[0_0_20px_rgba(180,77,54,0.25)] backdrop-blur-md">
+            <div className="p-4 bg-[#B44D36]/20 border border-[#B44D36]/40 rounded-none flex gap-3 items-start backdrop-blur-md">
               <AlertTriangle className="w-5 h-5 text-[#ff6b6b] shrink-0 mt-0.5 animate-pulse" />
               <div className="text-xs text-shell-white leading-relaxed">
                 <strong className="text-[#ff6b6b] block mb-0.5 tracking-wide uppercase font-display font-bold text-[10px]">SALTWATER INTRUSION CRITICAL</strong>
