@@ -34,23 +34,19 @@ function createCrackleBuffer(ctx: AudioContext): AudioBuffer {
   const buffer = ctx.createBuffer(1, bufferSize, ctx.sampleRate);
   const data = buffer.getChannelData(0);
   
-  // Set all to silence first
   for (let i = 0; i < data.length; i++) {
     data[i] = 0;
   }
   
-  // Add sparse impulses
   let p = 0;
   while (p < data.length - 10) {
-    // Random step between impulses: 10ms to 250ms
-    const stepMs = 10 + Math.random() * 240;
+    const stepMs = 15 + Math.random() * 260;
     const stepSamples = Math.floor((stepMs / 1000) * ctx.sampleRate);
     p += stepSamples;
     if (p >= data.length - 10) break;
     
-    // Generate a tiny crackle impulse with decay
-    const amp = 0.05 + Math.random() * 0.15;
-    const duration = 2 + Math.floor(Math.random() * 5); // 2 to 6 samples
+    const amp = 0.04 + Math.random() * 0.12;
+    const duration = 2 + Math.floor(Math.random() * 4);
     for (let d = 0; d < duration; d++) {
       data[p + d] = (Math.random() * 2 - 1) * amp * Math.pow(0.5, d);
     }
@@ -78,16 +74,23 @@ export default function AudioController({ activeSection, activeStep, isMuted }: 
     }
   }
 
-  // Audio nodes and references
+  // Audio Context and Node Refs
   const ctxRef = useRef<AudioContext | null>(null);
   const masterGainRef = useRef<GainNode | null>(null);
   
+  // Gains for separate thematic modules
   const wavesGainRef = useRef<GainNode | null>(null);
   const heatGainRef = useRef<GainNode | null>(null);
   const stormGainRef = useRef<GainNode | null>(null);
   const rumbleGainRef = useRef<GainNode | null>(null);
   const droughtGainRef = useRef<GainNode | null>(null);
   const melancholyGainRef = useRef<GainNode | null>(null);
+
+  // Modulator refs for depth adjustment
+  const wavesFilterLRef = useRef<BiquadFilterNode | null>(null);
+  const wavesFilterRRef = useRef<BiquadFilterNode | null>(null);
+  const wavesLFOGainLRef = useRef<GainNode | null>(null);
+  const wavesLFOGainRRef = useRef<GainNode | null>(null);
 
   const activeOscillatorsRef = useRef<(OscillatorNode | AudioBufferSourceNode)[]>([]);
   const chordIntervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
@@ -98,7 +101,7 @@ export default function AudioController({ activeSection, activeStep, isMuted }: 
   const activeSectionRef = useRef(currentSection);
   const isMutedRef = useRef(isMuted);
 
-  // Sync state refs to keep values fresh inside intervals and timeouts
+  // Sync state refs to keep values fresh inside intervals/listeners
   useEffect(() => {
     activeSectionRef.current = currentSection;
     isMutedRef.current = isMuted;
@@ -127,64 +130,106 @@ export default function AudioController({ activeSection, activeStep, isMuted }: 
       const pinkNoiseBuffer = createPinkNoiseBuffer(ctx);
       const crackleBuffer = createCrackleBuffer(ctx);
 
-      // --- 1. Ocean Waves Module (Prologue / Act III) ---
+      // --- 1. Persistent Stereo Waves Module ---
       const wavesGain = ctx.createGain();
-      wavesGain.gain.setValueAtTime(0, ctx.currentTime);
+      wavesGain.gain.setValueAtTime(0.7, ctx.currentTime); // active baseline
       wavesGain.connect(masterGain);
       wavesGainRef.current = wavesGain;
 
-      const wavesFilter = ctx.createBiquadFilter();
-      wavesFilter.type = 'lowpass';
-      wavesFilter.frequency.setValueAtTime(450, ctx.currentTime);
-      wavesFilter.Q.setValueAtTime(1.0, ctx.currentTime);
-      wavesFilter.connect(wavesGain);
+      // Left wave channel
+      const wavesFilterL = ctx.createBiquadFilter();
+      wavesFilterL.type = 'lowpass';
+      wavesFilterL.frequency.setValueAtTime(330, ctx.currentTime);
+      wavesFilterL.Q.setValueAtTime(1.1, ctx.currentTime);
+      wavesFilterLRef.current = wavesFilterL;
 
-      const wavesNoise = ctx.createBufferSource();
-      wavesNoise.buffer = pinkNoiseBuffer;
-      wavesNoise.loop = true;
-      wavesNoise.connect(wavesFilter);
-      wavesNoise.start(0);
-      activeOscillatorsRef.current.push(wavesNoise);
+      if (ctx.createStereoPanner) {
+        const pL = ctx.createStereoPanner();
+        pL.pan.setValueAtTime(-0.65, ctx.currentTime);
+        pL.connect(wavesGain);
+        wavesFilterL.connect(pL);
+      } else {
+        wavesFilterL.connect(wavesGain);
+      }
 
-      // 0.1Hz LFO sweeping the waves filter cutoff
-      const wavesLFO = ctx.createOscillator();
-      wavesLFO.frequency.setValueAtTime(0.1, ctx.currentTime);
-      const wavesLFOGain = ctx.createGain();
-      wavesLFOGain.gain.setValueAtTime(250, ctx.currentTime); // frequency modulation range +/- 250Hz
+      const wavesNoiseL = ctx.createBufferSource();
+      wavesNoiseL.buffer = pinkNoiseBuffer;
+      wavesNoiseL.loop = true;
+      wavesNoiseL.connect(wavesFilterL);
+      wavesNoiseL.start(0);
+      activeOscillatorsRef.current.push(wavesNoiseL);
 
-      wavesLFO.connect(wavesLFOGain);
-      wavesLFOGain.connect(wavesFilter.frequency);
-      wavesLFO.start(0);
-      activeOscillatorsRef.current.push(wavesLFO);
+      const wavesLFOL = ctx.createOscillator();
+      wavesLFOL.frequency.setValueAtTime(0.08, ctx.currentTime);
+      const wavesLFOGainL = ctx.createGain();
+      wavesLFOGainL.gain.setValueAtTime(215, ctx.currentTime);
+      wavesLFOGainLRef.current = wavesLFOGainL;
+
+      wavesLFOL.connect(wavesLFOGainL);
+      wavesLFOGainL.connect(wavesFilterL.frequency);
+      wavesLFOL.start(0);
+      activeOscillatorsRef.current.push(wavesLFOL);
+
+      // Right wave channel
+      const wavesFilterR = ctx.createBiquadFilter();
+      wavesFilterR.type = 'lowpass';
+      wavesFilterR.frequency.setValueAtTime(330, ctx.currentTime);
+      wavesFilterR.Q.setValueAtTime(1.1, ctx.currentTime);
+      wavesFilterRRef.current = wavesFilterR;
+
+      if (ctx.createStereoPanner) {
+        const pR = ctx.createStereoPanner();
+        pR.pan.setValueAtTime(0.65, ctx.currentTime);
+        pR.connect(wavesGain);
+        wavesFilterR.connect(pR);
+      } else {
+        wavesFilterR.connect(wavesGain);
+      }
+
+      const wavesNoiseR = ctx.createBufferSource();
+      wavesNoiseR.buffer = pinkNoiseBuffer;
+      wavesNoiseR.loop = true;
+      wavesNoiseR.connect(wavesFilterR);
+      wavesNoiseR.start(0);
+      activeOscillatorsRef.current.push(wavesNoiseR);
+
+      const wavesLFOR = ctx.createOscillator();
+      wavesLFOR.frequency.setValueAtTime(0.095, ctx.currentTime);
+      const wavesLFOGainR = ctx.createGain();
+      wavesLFOGainR.gain.setValueAtTime(215, ctx.currentTime);
+      wavesLFOGainRRef.current = wavesLFOGainR;
+
+      wavesLFOR.connect(wavesLFOGainR);
+      wavesLFOGainR.connect(wavesFilterR.frequency);
+      wavesLFOR.start(0);
+      activeOscillatorsRef.current.push(wavesLFOR);
 
 
-      // --- 2. Heat Stress Module (Act II) ---
+      // --- 2. Heat Stress Haze Module (Act II) ---
       const heatGain = ctx.createGain();
       heatGain.gain.setValueAtTime(0, ctx.currentTime);
       heatGain.connect(masterGain);
       heatGainRef.current = heatGain;
 
-      // Subtle ambient high-pitched sine cluster
-      const frequencies = [1500, 1508, 2100, 2112];
-      const lfoFreqs = [0.08, 0.12, 0.05, 0.15];
+      const frequencies = [1480, 1488, 2050, 2062];
+      const lfoFreqs = [0.07, 0.11, 0.04, 0.13];
       for (let i = 0; i < frequencies.length; i++) {
         const osc = ctx.createOscillator();
         osc.type = 'sine';
         osc.frequency.setValueAtTime(frequencies[i], ctx.currentTime);
 
         const oscGain = ctx.createGain();
-        oscGain.gain.setValueAtTime(0.008, ctx.currentTime);
+        oscGain.gain.setValueAtTime(0.007, ctx.currentTime);
 
         osc.connect(oscGain);
         oscGain.connect(heatGain);
         osc.start(0);
         activeOscillatorsRef.current.push(osc);
 
-        // Individual slow LFOs to create shimmering, moving tension
         const lfo = ctx.createOscillator();
         lfo.frequency.setValueAtTime(lfoFreqs[i], ctx.currentTime);
         const lfoGain = ctx.createGain();
-        lfoGain.gain.setValueAtTime(0.008, ctx.currentTime);
+        lfoGain.gain.setValueAtTime(0.006, ctx.currentTime);
 
         lfo.connect(lfoGain);
         lfoGain.connect(oscGain.gain);
@@ -193,40 +238,37 @@ export default function AudioController({ activeSection, activeStep, isMuted }: 
       }
 
 
-      // --- 3. Storm Rumble Module (Act IV) ---
+      // --- 3. Storm Wind & Rumble Module (Act IV) ---
       const stormGain = ctx.createGain();
       stormGain.gain.setValueAtTime(0, ctx.currentTime);
       stormGain.connect(masterGain);
       stormGainRef.current = stormGain;
 
-      // Pink noise wind filter
       const windFilter = ctx.createBiquadFilter();
       windFilter.type = 'bandpass';
-      windFilter.frequency.setValueAtTime(300, ctx.currentTime);
-      windFilter.Q.setValueAtTime(2.5, ctx.currentTime);
+      windFilter.frequency.setValueAtTime(280, ctx.currentTime);
+      windFilter.Q.setValueAtTime(2.2, ctx.currentTime);
       windFilter.connect(stormGain);
 
       const windNoise = ctx.createBufferSource();
       windNoise.buffer = pinkNoiseBuffer;
       windNoise.loop = true;
-      const windGain = ctx.createGain();
-      windGain.gain.setValueAtTime(0.15, ctx.currentTime);
-      windNoise.connect(windGain);
-      windGain.connect(windFilter);
+      const windGainNode = ctx.createGain();
+      windGainNode.gain.setValueAtTime(0.12, ctx.currentTime);
+      windNoise.connect(windGainNode);
+      windGainNode.connect(windFilter);
       windNoise.start(0);
       activeOscillatorsRef.current.push(windNoise);
 
-      // Wind modulation LFO
       const windLFO = ctx.createOscillator();
-      windLFO.frequency.setValueAtTime(0.06, ctx.currentTime);
+      windLFO.frequency.setValueAtTime(0.05, ctx.currentTime);
       const windLFOGain = ctx.createGain();
-      windLFOGain.gain.setValueAtTime(140, ctx.currentTime);
+      windLFOGain.gain.setValueAtTime(130, ctx.currentTime);
       windLFO.connect(windLFOGain);
       windLFOGain.connect(windFilter.frequency);
       windLFO.start(0);
       activeOscillatorsRef.current.push(windLFO);
 
-      // Low frequency rumbles oscillator
       const rumbleOsc = ctx.createOscillator();
       rumbleOsc.type = 'triangle';
       rumbleOsc.frequency.setValueAtTime(36, ctx.currentTime);
@@ -245,7 +287,6 @@ export default function AudioController({ activeSection, activeStep, isMuted }: 
       rumbleOsc.start(0);
       activeOscillatorsRef.current.push(rumbleOsc);
 
-      // Rumble flutter frequency vibrato
       const rumbleLFO = ctx.createOscillator();
       rumbleLFO.frequency.setValueAtTime(8.8, ctx.currentTime);
       const rumbleLFOGain = ctx.createGain();
@@ -255,9 +296,8 @@ export default function AudioController({ activeSection, activeStep, isMuted }: 
       rumbleLFO.start(0);
       activeOscillatorsRef.current.push(rumbleLFO);
 
-      // Procedural scheduling of thunder rumbles
       const scheduleNextRumble = () => {
-        const delay = 5000 + Math.random() * 9000; // 5 to 14 seconds
+        const delay = 6000 + Math.random() * 10000;
         rumbleTimeoutRef.current = setTimeout(() => {
           if (ctxRef.current && activeSectionRef.current === 'extreme-weather' && !isMutedRef.current) {
             const nowTime = ctxRef.current.currentTime;
@@ -265,8 +305,8 @@ export default function AudioController({ activeSection, activeStep, isMuted }: 
             if (rG) {
               rG.gain.cancelScheduledValues(nowTime);
               rG.gain.setValueAtTime(0, nowTime);
-              const dur = 3.5 + Math.random() * 5.0; // rumble duration
-              const peak = 0.25 + Math.random() * 0.35;
+              const dur = 3.5 + Math.random() * 4.5;
+              const peak = 0.2 + Math.random() * 0.3;
               rG.gain.linearRampToValueAtTime(peak, nowTime + 0.6);
               rG.gain.exponentialRampToValueAtTime(0.001, nowTime + dur);
             }
@@ -277,26 +317,24 @@ export default function AudioController({ activeSection, activeStep, isMuted }: 
       scheduleNextRumble();
 
 
-      // --- 4. Drought Wind Module (Act V) ---
+      // --- 4. Drought Wind & Crackle Module (Act V) ---
       const droughtGain = ctx.createGain();
       droughtGain.gain.setValueAtTime(0, ctx.currentTime);
       droughtGain.connect(masterGain);
       droughtGainRef.current = droughtGain;
 
-      // Dry crackling sparse impulses
       const crackleSource = ctx.createBufferSource();
       crackleSource.buffer = crackleBuffer;
       crackleSource.loop = true;
       const crackleFilter = ctx.createBiquadFilter();
       crackleFilter.type = 'highpass';
-      crackleFilter.frequency.setValueAtTime(3500, ctx.currentTime);
+      crackleFilter.frequency.setValueAtTime(3600, ctx.currentTime);
 
       crackleSource.connect(crackleFilter);
       crackleFilter.connect(droughtGain);
       crackleSource.start(0);
       activeOscillatorsRef.current.push(crackleSource);
 
-      // Low volume dry wind backdrop
       const dryWindFilter = ctx.createBiquadFilter();
       dryWindFilter.type = 'bandpass';
       dryWindFilter.frequency.setValueAtTime(1300, ctx.currentTime);
@@ -307,7 +345,7 @@ export default function AudioController({ activeSection, activeStep, isMuted }: 
       dryWindNoise.buffer = pinkNoiseBuffer;
       dryWindNoise.loop = true;
       const dryWindGain = ctx.createGain();
-      dryWindGain.gain.setValueAtTime(0.03, ctx.currentTime);
+      dryWindGain.gain.setValueAtTime(0.025, ctx.currentTime);
 
       dryWindNoise.connect(dryWindGain);
       dryWindGain.connect(dryWindFilter);
@@ -315,7 +353,7 @@ export default function AudioController({ activeSection, activeStep, isMuted }: 
       activeOscillatorsRef.current.push(dryWindNoise);
 
 
-      // --- 5. Calming Synthesis Module (Act VII / CTA) ---
+      // --- 5. Calming Meditation Song Module (Act I / Act III / Act VII / CTA) ---
       const melancholyGain = ctx.createGain();
       melancholyGain.gain.setValueAtTime(0, ctx.currentTime);
       melancholyGain.connect(masterGain);
@@ -323,15 +361,15 @@ export default function AudioController({ activeSection, activeStep, isMuted }: 
 
       const melancholyFilter = ctx.createBiquadFilter();
       melancholyFilter.type = 'lowpass';
-      melancholyFilter.frequency.setValueAtTime(400, ctx.currentTime); // very low filter cutoff for warm, pillowy texture
+      melancholyFilter.frequency.setValueAtTime(400, ctx.currentTime); // warm filtering
       melancholyFilter.Q.setValueAtTime(1.0, ctx.currentTime);
       melancholyFilter.connect(melancholyGain);
 
-      // Stereo delay echo for rich spacey pads
+      // Stereo delay echo
       const delayNode = ctx.createDelay(1.0);
-      delayNode.delayTime.setValueAtTime(0.6, ctx.currentTime); // 600ms echo
+      delayNode.delayTime.setValueAtTime(0.6, ctx.currentTime);
       const delayFeedback = ctx.createGain();
-      delayFeedback.gain.setValueAtTime(0.42, ctx.currentTime); // feedback amount
+      delayFeedback.gain.setValueAtTime(0.42, ctx.currentTime);
       
       melancholyFilter.connect(delayNode);
       delayNode.connect(delayFeedback);
@@ -340,12 +378,12 @@ export default function AudioController({ activeSection, activeStep, isMuted }: 
 
       const synthVoices: { oscSaw: OscillatorNode; oscTri: OscillatorNode; gain: GainNode }[] = [];
       
-      // Serene & Expansive Lydian chords (6 voices: deep warm sub-bass + rich major/add9 extensions)
+      // Serene Lydian major chords (Cmaj9 -> Fmaj7(add9) -> Am9 -> G6/9)
       const chords = [
-        [65.41, 196.00, 246.94, 293.66, 329.63, 392.00], // Cmaj9 (C2, G3, B3, D4, E4, G4)
-        [87.31, 220.00, 261.63, 329.63, 392.00, 523.25], // Fmaj7(add9) (F2, A3, C4, E4, G4, C5)
-        [110.00, 196.00, 261.63, 293.66, 329.63, 440.00], // Am9 (A2, G3, C4, D4, E4, A4)
-        [98.00, 246.94, 293.66, 329.63, 440.00, 493.88]   // G6/9 (G2, B3, D4, E4, A4, B4)
+        [65.41, 196.00, 246.94, 293.66, 329.63, 392.00], // Cmaj9
+        [87.31, 220.00, 261.63, 329.63, 392.00, 523.25], // Fmaj7(add9)
+        [110.00, 196.00, 261.63, 293.66, 329.63, 440.00], // Am9
+        [98.00, 246.94, 293.66, 329.63, 440.00, 493.88]   // G6/9
       ];
 
       for (let i = 0; i < 6; i++) {
@@ -354,17 +392,15 @@ export default function AudioController({ activeSection, activeStep, isMuted }: 
         const voiceGain = ctx.createGain();
 
         if (i === 0) {
-          // Clean low-end foundation (pure sub-bass)
           oscSaw.type = 'sine';
           oscTri.type = 'sine';
           voiceGain.gain.setValueAtTime(0.24, ctx.currentTime);
         } else {
-          // Warm pillowy cloud (sine + triangle waves only, no sawtooth)
           oscSaw.type = 'sine';
           oscTri.type = 'triangle';
           oscSaw.detune.setValueAtTime(8 + i * 1.5, ctx.currentTime);
           oscTri.detune.setValueAtTime(-5 - i * 1.5, ctx.currentTime);
-          voiceGain.gain.setValueAtTime(0.045, ctx.currentTime);
+          voiceGain.gain.setValueAtTime(0.04, ctx.currentTime);
         }
 
         oscSaw.connect(voiceGain);
@@ -384,7 +420,7 @@ export default function AudioController({ activeSection, activeStep, isMuted }: 
         if (!ctxRef.current) return;
         const nowTime = ctxRef.current.currentTime;
         const chord = chords[chordIndex];
-        currentChordNotesRef.current = chord; // sync active frequencies
+        currentChordNotesRef.current = chord;
         synthVoices.forEach((voice, voiceIdx) => {
           voice.oscSaw.frequency.exponentialRampToValueAtTime(chord[voiceIdx], nowTime + 3.5);
           voice.oscTri.frequency.exponentialRampToValueAtTime(chord[voiceIdx], nowTime + 3.5);
@@ -392,17 +428,16 @@ export default function AudioController({ activeSection, activeStep, isMuted }: 
         chordIndex = (chordIndex + 1) % chords.length;
       };
 
-      // Play Cmaj9 first
       playNextChord();
       chordIntervalRef.current = setInterval(playNextChord, 6000);
 
-      // Shimmering pentatonic wind-chime arpeggiator module
+      // Shimmering pentatonic wind-chime pluck module
       const pluckGain = ctx.createGain();
-      pluckGain.gain.setValueAtTime(0.04, ctx.currentTime); // very soft volume
+      pluckGain.gain.setValueAtTime(0.035, ctx.currentTime); // very soft
       pluckGain.connect(melancholyGain);
 
       const pluckDelay = ctx.createDelay(1.0);
-      pluckDelay.delayTime.setValueAtTime(0.45, ctx.currentTime); // wider space
+      pluckDelay.delayTime.setValueAtTime(0.45, ctx.currentTime);
       const pluckDelayFeedback = ctx.createGain();
       pluckDelayFeedback.gain.setValueAtTime(0.5, ctx.currentTime);
       pluckDelay.connect(pluckDelayFeedback);
@@ -412,18 +447,17 @@ export default function AudioController({ activeSection, activeStep, isMuted }: 
 
       const playBioluminescentPluck = () => {
         if (!ctxRef.current || isMutedRef.current) return;
-        if (activeSectionRef.current !== 'unpaid-debt' && activeSectionRef.current !== 'climate-debt' && activeSectionRef.current !== 'action') return;
+        const s = activeSectionRef.current;
+        const isCalmSection = (s === 'prologue' || s === 'sinking' || s === 'unpaid-debt' || s === 'climate-debt' || s === 'action');
+        if (!isCalmSection) return;
         
         const nowTime = ctxRef.current.currentTime;
-        
-        // Pure C Major Pentatonic frequencies (C5, D5, E5, G5, A5, C6, D6, E6, G6, A6)
         const pentatonicFrequencies = [
           523.25, 587.33, 659.25, 783.99, 880.00,
           1046.50, 1174.66, 1318.51, 1567.98, 1760.00
         ];
         
         const pitch = pentatonicFrequencies[Math.floor(Math.random() * pentatonicFrequencies.length)];
-        
         const osc = ctxRef.current.createOscillator();
         osc.type = 'sine';
         osc.frequency.setValueAtTime(pitch, nowTime);
@@ -431,12 +465,12 @@ export default function AudioController({ activeSection, activeStep, isMuted }: 
         const filter = ctxRef.current.createBiquadFilter();
         filter.type = 'bandpass';
         filter.frequency.setValueAtTime(pitch, nowTime);
-        filter.Q.setValueAtTime(10, nowTime); // highly resonant glassy sound
+        filter.Q.setValueAtTime(10, nowTime);
         
         const oscGain = ctxRef.current.createGain();
         oscGain.gain.setValueAtTime(0, nowTime);
-        oscGain.gain.linearRampToValueAtTime(0.06, nowTime + 0.02); // gentle chime attack
-        oscGain.gain.exponentialRampToValueAtTime(0.0001, nowTime + 1.6); // long echo decay
+        oscGain.gain.linearRampToValueAtTime(0.05, nowTime + 0.02);
+        oscGain.gain.exponentialRampToValueAtTime(0.0001, nowTime + 1.6);
         
         osc.connect(filter);
         filter.connect(oscGain);
@@ -454,19 +488,31 @@ export default function AudioController({ activeSection, activeStep, isMuted }: 
       pluckIntervalRef.current = pluckInterval;
 
       // Trigger immediate cross-fade to current section
-      const nowTime = ctx.currentTime;
-      wavesGain.gain.setValueAtTime((currentSection === 'prologue' || currentSection === 'sinking') ? 0.75 : 0, nowTime);
-      heatGain.gain.setValueAtTime((currentSection === 'warming') ? 0.8 : 0, nowTime);
-      stormGain.gain.setValueAtTime((currentSection === 'extreme-weather') ? 0.85 : 0, nowTime);
-      droughtGain.gain.setValueAtTime((currentSection === 'food-security') ? 0.65 : 0, nowTime);
-      melancholyGain.gain.setValueAtTime((currentSection === 'unpaid-debt' || currentSection === 'climate-debt' || currentSection === 'action') ? 0.55 : 0, nowTime);
+      const isDeep = (currentSection === 'sinking' || currentSection === 'unpaid-debt' || currentSection === 'climate-debt' || currentSection === 'action');
+      const baseFreq = isDeep ? 315 : 330;
+      const lfoAmp = isDeep ? 230 : 215;
+
+      wavesFilterL.frequency.setValueAtTime(baseFreq, ctx.currentTime);
+      wavesFilterR.frequency.setValueAtTime(baseFreq, ctx.currentTime);
+      wavesLFOGainL.gain.setValueAtTime(lfoAmp, ctx.currentTime);
+      wavesLFOGainR.gain.setValueAtTime(lfoAmp, ctx.currentTime);
+
+      const targetCalmSong = (currentSection === 'prologue' || currentSection === 'sinking' || currentSection === 'unpaid-debt' || currentSection === 'climate-debt' || currentSection === 'action') ? 0.65 : 0;
+      const targetHeat = (currentSection === 'warming') ? 0.8 : 0;
+      const targetStorm = (currentSection === 'extreme-weather') ? 0.85 : 0;
+      const targetDrought = (currentSection === 'food-security') ? 0.65 : 0;
+
+      melancholyGain.gain.setValueAtTime(targetCalmSong, ctx.currentTime);
+      heatGain.gain.setValueAtTime(targetHeat, ctx.currentTime);
+      stormGain.gain.setValueAtTime(targetStorm, ctx.currentTime);
+      droughtGain.gain.setValueAtTime(targetDrought, ctx.currentTime);
 
     } catch (e) {
       console.error('Error initializing Web Audio API nodes:', e);
     }
   };
 
-  // Keep user interaction listener to handle autoplay blockages
+  // User interaction listener to handle autoplay policies
   useEffect(() => {
     const handleInteraction = () => {
       if (!isMuted) {
@@ -516,17 +562,27 @@ export default function AudioController({ activeSection, activeStep, isMuted }: 
     const ctx = ctxRef.current;
     const now = ctx.currentTime;
 
-    const targetWaves = (currentSection === 'prologue' || currentSection === 'sinking') ? 0.75 : 0;
+    const isDeep = (currentSection === 'sinking' || currentSection === 'unpaid-debt' || currentSection === 'climate-debt' || currentSection === 'action');
+    
+    // Modulate waves low-end sweep
+    const baseFreq = isDeep ? 315 : 330;
+    const lfoAmp = isDeep ? 230 : 215;
+
+    wavesFilterLRef.current?.frequency.setTargetAtTime(baseFreq, now, 0.8);
+    wavesFilterRRef.current?.frequency.setTargetAtTime(baseFreq, now, 0.8);
+    wavesLFOGainLRef.current?.gain.setTargetAtTime(lfoAmp, now, 0.8);
+    wavesLFOGainRRef.current?.gain.setTargetAtTime(lfoAmp, now, 0.8);
+
+    // Cross-fade thematic layers
+    const targetCalmSong = (currentSection === 'prologue' || currentSection === 'sinking' || currentSection === 'unpaid-debt' || currentSection === 'climate-debt' || currentSection === 'action') ? 0.65 : 0;
     const targetHeat = (currentSection === 'warming') ? 0.8 : 0;
     const targetStorm = (currentSection === 'extreme-weather') ? 0.85 : 0;
     const targetDrought = (currentSection === 'food-security') ? 0.65 : 0;
-    const targetMelancholy = (currentSection === 'unpaid-debt' || currentSection === 'climate-debt' || currentSection === 'action') ? 0.55 : 0;
 
-    wavesGainRef.current?.gain.setTargetAtTime(targetWaves, now, 0.6);
-    heatGainRef.current?.gain.setTargetAtTime(targetHeat, now, 0.6);
-    stormGainRef.current?.gain.setTargetAtTime(targetStorm, now, 0.6);
-    droughtGainRef.current?.gain.setTargetAtTime(targetDrought, now, 0.6);
-    melancholyGainRef.current?.gain.setTargetAtTime(targetMelancholy, now, 0.6);
+    melancholyGainRef.current?.gain.setTargetAtTime(targetCalmSong, now, 0.7);
+    heatGainRef.current?.gain.setTargetAtTime(targetHeat, now, 0.7);
+    stormGainRef.current?.gain.setTargetAtTime(targetStorm, now, 0.7);
+    droughtGainRef.current?.gain.setTargetAtTime(targetDrought, now, 0.7);
   }, [currentSection]);
 
   // Cleanup on unmount
@@ -546,7 +602,7 @@ export default function AudioController({ activeSection, activeStep, isMuted }: 
         try {
           osc.stop();
         } catch (e) {
-          // Ignore errors from already stopped nodes
+          // Ignore errors
         }
       });
       activeOscillatorsRef.current = [];

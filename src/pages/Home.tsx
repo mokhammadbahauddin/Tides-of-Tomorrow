@@ -52,23 +52,21 @@ export default function Home() {
     window.addEventListener('scroll', handleScroll, { passive: true });
     handleScroll();
 
-    // IntersectionObserver to track the active visual act in the viewport
-    const observers: IntersectionObserver[] = [];
+    // GSAP ScrollTrigger to track the active visual act in the viewport with absolute precision
+    const triggers: ScrollTrigger[] = [];
     const targets = ['prologue', 'warming', 'sinking', 'extreme-weather', 'food-security', 'unpaid-debt', 'climate-debt', 'action'];
     
     targets.forEach(target => {
       const el = document.getElementById(target);
       if (!el) return;
-      const observer = new IntersectionObserver(
-        ([entry]) => {
-          if (entry.isIntersecting) {
-            setActiveSection(target);
-          }
-        },
-        { rootMargin: '-30% 0px -30% 0px', threshold: 0 }
-      );
-      observer.observe(el);
-      observers.push(observer);
+      const trigger = ScrollTrigger.create({
+        trigger: el,
+        start: 'top 50%',
+        end: 'bottom 50%',
+        onEnter: () => setActiveSection(target),
+        onEnterBack: () => setActiveSection(target),
+      });
+      triggers.push(trigger);
     });
 
     // Robust ScrollTrigger refresh using ResizeObserver
@@ -88,7 +86,7 @@ export default function Home() {
       window.removeEventListener('scroll', handleScroll);
       resizeObserver.disconnect();
       clearTimeout(resizeTimeout);
-      observers.forEach(o => o.disconnect());
+      triggers.forEach(t => t.kill());
     };
   }, []);
 
