@@ -129,7 +129,7 @@ export function VideoDivider({ videoSrc, quote, attribution, posterSrc }: Props)
             loop
             muted
             playsInline
-            preload="auto"
+            preload="none"
             poster={posterSrc}
             className="w-full h-full object-cover filter brightness-[0.8] contrast-[1.05] saturate-[0.95]"
             style={{ 

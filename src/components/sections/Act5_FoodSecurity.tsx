@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { CropYieldChart } from '@/components/charts/CropYieldChart';
+import { getStation } from '@/data/countryStations';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -54,6 +55,7 @@ export default function Act5_FoodSecurity({ className, selectedCountry }: Act5Pr
     <section
       id="food-security"
       ref={sectionRef}
+      aria-label="Act V: Food Security narrative"
       className={`relative bg-transparent ${className || ''}`}
     >
       <div className="absolute inset-0 bg-gradient-to-r from-[var(--ocean-abyss)] via-[var(--ocean-abyss)]/80 to-transparent pointer-events-none z-0" />
@@ -116,13 +118,13 @@ export default function Act5_FoodSecurity({ className, selectedCountry }: Act5Pr
         </div>
 
         {/* CHART COLUMN (Visually Left, 60%) */}
-        <div className="w-full md:w-7/12 h-screen sticky top-0 flex flex-col justify-center items-center py-12 md:py-0 md:pr-12 z-0">
+        <div role="region" aria-label="Crop yield anomalies chart" className="w-full md:w-7/12 h-screen sticky top-0 flex flex-col justify-center items-center py-12 md:py-0 md:pr-12 z-0">
           <div ref={rightColumnRef} className="w-full max-w-4xl relative h-[60vh] flex flex-col justify-center items-center">
             
             <CropYieldChart activeStep={activeStep} selectedCountry={selectedCountry} />
 
             <div className="absolute bottom-[-32px] left-0 right-0 text-center text-[9px] uppercase tracking-widest font-body text-drift-wood/75">
-              Solomon Islands — Crop Yield Production Data (Taro)
+              {getStation(selectedCountry?.id, 'cropYield').stationName} — {getStation(selectedCountry?.id, 'cropYield').dataSource}
             </div>
             
           </div>

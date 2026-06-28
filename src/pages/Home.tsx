@@ -130,7 +130,7 @@ export default function Home() {
 
           {/* Video Divider 1: Entering the Pacific */}
           <VideoDivider
-            videoSrc="/videos/hero-pacific.mp4"
+            videoSrc="/videos/compressed_hero-pacific.mp4"
             posterSrc="/images/pacific_3d_island_fallback_1781110837476.png"
             quote="We are the ocean, and the ocean is us."
             attribution="— Epeli Hau'ofa"
@@ -144,7 +144,7 @@ export default function Home() {
 
           {/* Video Divider 2: Coral Cathedral */}
           <VideoDivider
-            videoSrc="/videos/coral-reef.mp4"
+            videoSrc="/videos/compressed_coral-reef.mp4"
             posterSrc="/images/bleached_coral_reef_1780932576963.png"
             quote="The ocean is the heart of our world. But the heart is feverish."
             attribution="— Pacific Council of Elders"
@@ -156,7 +156,7 @@ export default function Home() {
 
           {/* Video Divider 3: The Tides */}
           <VideoDivider
-            videoSrc="/videos/waves-shore.mp4"
+            videoSrc="/videos/compressed_waves-shore.mp4"
             posterSrc="/images/flooded_pacific_village_1780932627405.png"
             quote="We are not drowning, we are fighting."
             attribution="— Pacific Climate Warriors"
@@ -168,7 +168,7 @@ export default function Home() {
 
           {/* Video Divider 4: Storm's Approach */}
           <VideoDivider
-            videoSrc="/videos/storm-clouds.mp4"
+            videoSrc="/videos/compressed_storm-clouds.mp4"
             posterSrc="/images/ominous_storm_clouds_1780932603177.png"
             quote="Climate change is the single greatest threat to the livelihoods, security and wellbeing of the peoples of the Pacific."
             attribution="— Boe Declaration on Regional Security"
@@ -180,7 +180,7 @@ export default function Home() {
 
           {/* Video Divider 5: Subsistence */}
           <VideoDivider
-            videoSrc="/videos/tropical-garden.mp4"
+            videoSrc="/videos/compressed_tropical-garden.mp4"
             posterSrc="/images/pacific_3d_island_fallback_1781110837476.png"
             quote="We are fighting for our survival. We are fighting for our land, our culture, and our identity."
             attribution="— Brianna Fruean, Samoan Climate Activist"
@@ -192,7 +192,7 @@ export default function Home() {
 
           {/* Video Divider 6: The Unpaid Debt */}
           <VideoDivider
-            videoSrc="/videos/abandoned-village.mp4"
+            videoSrc="/videos/compressed_abandoned-village.mp4"
             posterSrc="/images/flooded_pacific_village_1780932627405.png"
             quote="We are drowning in your exhaust, yet you hand us the invoice for our own survival."
             attribution="— The Climate Justice Declaration"
@@ -203,7 +203,7 @@ export default function Home() {
           </Suspense>
 
           <Suspense fallback={<SkeletonCard />}>
-            <Act7_Synthesis />
+            <Act7_Synthesis selectedCountry={selectedCountry} />
           </Suspense>
 
           {/* Call to Action */}

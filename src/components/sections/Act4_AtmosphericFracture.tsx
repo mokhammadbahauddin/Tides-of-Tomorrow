@@ -3,6 +3,7 @@ import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { CloudLightning } from 'lucide-react';
 import { RainfallAnomalyChart } from '@/components/charts/RainfallAnomalyChart';
+import { getStation } from '@/data/countryStations';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -55,6 +56,7 @@ export default function Act4_AtmosphericFracture({ className, selectedCountry }:
     <section
       id="extreme-weather"
       ref={sectionRef}
+      aria-label="Act IV: Atmospheric Fracture narrative"
       className={`relative bg-transparent ${className || ''}`}
     >
       <div className="absolute inset-0 bg-gradient-to-r from-[var(--ocean-abyss)] via-[var(--ocean-abyss)]/80 to-transparent pointer-events-none z-0" />
@@ -140,13 +142,13 @@ export default function Act4_AtmosphericFracture({ className, selectedCountry }:
         </div>
 
         {/* RIGHT COLUMN: Pinned Chart (60%) */}
-        <div className="w-full md:w-7/12 h-screen sticky top-0 flex flex-col justify-center items-center py-12 md:py-0 md:pl-12 z-0">
+        <div role="region" aria-label="Rainfall anomaly chart" className="w-full md:w-7/12 h-screen sticky top-0 flex flex-col justify-center items-center py-12 md:py-0 md:pl-12 z-0">
           <div ref={rightColumnRef} className="w-full max-w-4xl relative h-[60vh] flex flex-col justify-center items-center">
             
             <RainfallAnomalyChart activeStep={activeStep} selectedCountry={selectedCountry} />
 
             <div className="absolute bottom-[-32px] left-0 right-0 text-center text-[9px] uppercase tracking-widest font-body text-drift-wood/75">
-              Vila Harbour — GPCP Precipitation Anomalies Profile
+              {getStation(selectedCountry?.id, 'rainfall').stationName} — {getStation(selectedCountry?.id, 'rainfall').dataSource} Anomalies Profile
             </div>
             
           </div>

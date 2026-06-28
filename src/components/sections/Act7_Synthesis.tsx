@@ -8,9 +8,10 @@ gsap.registerPlugin(ScrollTrigger);
 
 interface Act7Props {
   className?: string;
+  selectedCountry?: { id: string; name: string };
 }
 
-export default function Act7_Synthesis({ className }: Act7Props) {
+export default function Act7_Synthesis({ className, selectedCountry }: Act7Props) {
   const sectionRef = useRef<HTMLElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
 
@@ -40,6 +41,7 @@ export default function Act7_Synthesis({ className }: Act7Props) {
     <section
       id="climate-debt"
       ref={sectionRef}
+      aria-label="Act VII: Connecting the Crises Synthesis"
       className={`relative min-h-screen bg-deep-ocean py-20 md:py-32 flex items-center justify-center z-10 ${className || ''}`}
     >
       <div className="relative z-10 w-full max-w-7xl mx-auto px-6 md:px-12">
@@ -65,8 +67,8 @@ export default function Act7_Synthesis({ className }: Act7Props) {
             </p>
           </div>
 
-          <div className="w-full">
-            <SynthesisExplorer />
+          <div role="region" aria-label="Interactive Synthesis Explorer" className="w-full">
+            <SynthesisExplorer selectedCountry={selectedCountry} />
           </div>
 
         </div>

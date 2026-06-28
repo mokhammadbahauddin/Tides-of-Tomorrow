@@ -21,32 +21,6 @@ const milestones: Milestone[] = [
   { year: 2023, label: '2023: Global Record Heat', align: 'end', y: 32 }
 ];
 
-const countryConfigs: Record<string, { tempMult: number; tempOffset: number }> = {
-  REGIONAL: { tempMult: 1.0, tempOffset: 0.0 },
-  FJI: { tempMult: 1.05, tempOffset: 0.02 },
-  TUV: { tempMult: 1.25, tempOffset: 0.12 },
-  KIR: { tempMult: 1.3, tempOffset: 0.08 },
-  WSM: { tempMult: 1.1, tempOffset: 0.04 },
-  TON: { tempMult: 0.95, tempOffset: -0.05 },
-  SLB: { tempMult: 1.15, tempOffset: 0.05 },
-  VUT: { tempMult: 1.2, tempOffset: 0.03 },
-  MHL: { tempMult: 1.22, tempOffset: 0.1 },
-  PLW: { tempMult: 1.35, tempOffset: 0.15 },
-  FSM: { tempMult: 1.18, tempOffset: 0.07 },
-  COK: { tempMult: 1.02, tempOffset: 0.01 },
-  PYF: { tempMult: 0.98, tempOffset: -0.02 },
-  GUM: { tempMult: 1.12, tempOffset: 0.05 },
-  NRU: { tempMult: 1.28, tempOffset: 0.09 },
-  NCL: { tempMult: 0.9, tempOffset: -0.08 },
-  NIU: { tempMult: 0.96, tempOffset: -0.04 },
-  MNP: { tempMult: 1.14, tempOffset: 0.06 },
-  PNG: { tempMult: 1.08, tempOffset: 0.03 },
-  PCN: { tempMult: 0.88, tempOffset: -0.1 },
-  TKL: { tempMult: 1.26, tempOffset: 0.11 },
-  WLF: { tempMult: 1.06, tempOffset: 0.03 },
-  ASM: { tempMult: 1.09, tempOffset: 0.04 }
-};
-
 export default function TemperatureChart({ activeStep = 0, selectedCountry }: TemperatureChartProps) {
   const svgRef = useRef<SVGSVGElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
@@ -55,23 +29,29 @@ export default function TemperatureChart({ activeStep = 0, selectedCountry }: Te
   const height = 350;
   
   const [rawData, setRawData] = useState<TemperatureRecord[]>([]);
+  const [hasError, setHasError] = useState(false);
 
   useEffect(() => {
     d3.json<TemperatureRecord[]>('/data/temperature.json').then((res) => {
       if (res) setRawData(res);
-    });
+    }).catch((err) => { console.error('Failed to load chart data:', err); setHasError(true); });
   }, []);
 
   const data = useMemo(() => {
-    const config = countryConfigs[selectedCountry?.id || 'REGIONAL'] || { tempMult: 1.0, tempOffset: 0.0 };
+    const countryKey = selectedCountry?.id || 'REGIONAL';
     return rawData.map((d) => {
-      let newVal = d.anomaly * config.tempMult + config.tempOffset;
-      // Clamp values so that they stay within the chart's hardcoded yScale limits [-0.8, 1.5]
-      newVal = Math.max(-0.79, Math.min(1.49, newVal));
+      // Look up country value or fallback to regional average
+      const rawVal = (d as any)[countryKey] !== undefined
+        ? Number((d as any)[countryKey])
+        : ((d as any).regional !== undefined ? Number((d as any).regional) : Number((d as any).anomaly));
+
+      const newVal = Math.max(-0.79, Math.min(1.49, rawVal));
       return {
         ...d,
         anomaly: newVal,
-      };
+        isElNino: newVal > 0.5,
+        elNinoStrength: (newVal > 1.0 ? "very-strong" : (newVal > 0.5 ? "strong" : "none"))
+      } as any;
     });
   }, [rawData, selectedCountry]);
 
@@ -397,6 +377,23 @@ export default function TemperatureChart({ activeStep = 0, selectedCountry }: Te
         handleMouseLeave();
       });
 
+    // Diamond markers for negative anomaly years (colorblind-safe shape differentiator)
+    dataGroup.selectAll('.temp-dot-neg')
+      .data(data.filter(d => d.anomaly < 0))
+      .enter()
+      .append('path')
+      .attr('class', 'temp-dot-neg')
+      .attr('d', d => {
+        const cx = xScale(d.year);
+        const cy = yScale(d.anomaly);
+        const s = 4;
+        return `M ${cx},${cy - s} L ${cx + s},${cy} L ${cx},${cy + s} L ${cx - s},${cy} Z`;
+      })
+      .attr('fill', '#1E4D5C')
+      .attr('stroke', 'none')
+      .attr('opacity', 0.7)
+      .style('pointer-events', 'none');
+
     // Save refs for activeStep changes
     (svg.node() as any).__scales = { xScale, yScale, innerWidth, innerHeight, xAxis, yAxis, stripeColor };
   }, [handleMouseMove, handleMouseLeave, data]);
@@ -550,7 +547,7 @@ export default function TemperatureChart({ activeStep = 0, selectedCountry }: Te
           .attr('fill', 'none')
           .attr('stroke', '#C49A3C')
           .attr('stroke-width', 2)
-          .attr('stroke-dasharray', '2,2');
+          .attr('stroke-dasharray', '8,4');
 
         // Solid inner point to anchor exactly on the line
         group.append('circle')
@@ -595,6 +592,16 @@ export default function TemperatureChart({ activeStep = 0, selectedCountry }: Te
     svg.select('desc').text(descText);
 
   }, [activeStep, data]);
+
+  if (hasError) {
+    return (
+      <div className="flex flex-col items-center justify-center h-full min-h-[300px] text-center p-8">
+        <div className="text-4xl mb-4">⚠</div>
+        <p className="text-[#E8DCC8] font-['Playfair_Display'] text-lg mb-2">Data Temporarily Unavailable</p>
+        <p className="text-[#D4A574] text-sm opacity-70">Please refresh the page to try again.</p>
+      </div>
+    );
+  }
 
   if (data.length === 0) {
     return (

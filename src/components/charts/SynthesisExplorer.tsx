@@ -11,26 +11,7 @@ interface SynthesisMergedRecord {
   tax: number;
 }
 
-interface TemperatureRecord {
-  year: number;
-  anomaly: number;
-}
-interface SeaLevelRecord {
-  year: number;
-  level: number;
-}
-interface RainfallRecord {
-  year: number;
-  anomaly: number;
-}
-interface CropYieldRecord {
-  year: number;
-  taro: number;
-}
-interface TaxRecord {
-  year: number;
-  taxPercent: number;
-}
+
 
 /* ──────────────────────── Preset Definitions ──────────────────────── */
 interface Preset {
@@ -184,8 +165,12 @@ function pearsonR(x: number[], y: number[]): number {
   return den === 0 ? 0 : num / den;
 }
 
+interface SynthesisExplorerProps {
+  selectedCountry?: { id: string; name: string };
+}
+
 /* ──────────────────────── Component ──────────────────────── */
-export const SynthesisExplorer: React.FC = () => {
+export const SynthesisExplorer: React.FC<SynthesisExplorerProps> = ({ selectedCountry }) => {
   const containerRef = useRef<HTMLDivElement>(null);
 
   const [data, setData] = useState<SynthesisMergedRecord[]>([]);
@@ -229,29 +214,63 @@ export const SynthesisExplorer: React.FC = () => {
   /* ── Fetch & merge ── */
   useEffect(() => {
     Promise.all([
-      d3.json<TemperatureRecord[]>('/data/temperature.json'),
-      d3.json<SeaLevelRecord[]>('/data/sealevel.json'),
-      d3.json<RainfallRecord[]>('/data/rainfall.json'),
-      d3.json<CropYieldRecord[]>('/data/cropyield.json'),
-      d3.json<TaxRecord[]>('/data/taxes.json'),
+      d3.json<any[]>('/data/temperature.json'),
+      d3.json<any[]>('/data/sealevel.json'),
+      d3.json<any[]>('/data/rainfall.json'),
+      d3.json<any[]>('/data/cropyield.json'),
+      d3.json<any[]>('/data/taxes.json'),
     ]).then(([tempData, seaData, rainData, cropData, taxData]) => {
       if (!tempData || !seaData || !rainData || !cropData || !taxData) return;
-      const tempMap = new Map(tempData.map(d => [d.year, d.anomaly]));
-      const seaMap = new Map(seaData.map(d => [d.year, d.level]));
-      const rainMap = new Map(rainData.map(d => [d.year, d.anomaly]));
-      const cropMap = new Map(cropData.map(d => [d.year, d.taro]));
-      const taxMap = new Map(taxData.map(d => [d.year, d.taxPercent]));
+
+      const countryKey = selectedCountry?.id || 'REGIONAL';
+
+      // 1. Temperature Anomaly Map
+      const tempMap = new Map(tempData.map(d => {
+        const val = d[countryKey] !== undefined ? d[countryKey] : (d.regional !== undefined ? d.regional : d.anomaly);
+        return [d.year, val !== undefined ? Number(val) : undefined];
+      }));
+
+      // 2. Sea Level Map
+      const seaMap = new Map(seaData.map(d => {
+        const val = d[countryKey] !== undefined ? d[countryKey] : (d.regional !== undefined ? d.regional : d.level);
+        return [d.year, val !== undefined ? Number(val) : undefined];
+      }));
+
+      // 3. Rainfall Anomaly Map
+      const rainMap = new Map(rainData.map(d => {
+        const val = d[countryKey] !== undefined ? d[countryKey] : (d.regional !== undefined ? d.regional : d.anomaly);
+        return [d.year, val !== undefined ? Number(val) : undefined];
+      }));
+
+      // 4. Crop Yield Map (Taro)
+      const cropMap = new Map(cropData.map(d => {
+        const countryObj = d[countryKey] || d['REGIONAL'] || d['regional'];
+        const val = countryObj ? countryObj.taro : undefined;
+        return [d.year, val !== undefined ? Number(val) : undefined];
+      }));
+
+      // 5. Tax Map
+      const taxMap = new Map(taxData.map(d => {
+        const val = d[countryKey] !== undefined ? d[countryKey] : (d.regional !== undefined ? d.regional : d.taxPercent);
+        return [d.year, val !== undefined ? Number(val) : undefined];
+      }));
 
       const merged: SynthesisMergedRecord[] = [];
       for (let y = 2010; y <= 2023; y++) {
-        if (tempMap.has(y) && seaMap.has(y) && rainMap.has(y) && cropMap.has(y) && taxMap.has(y)) {
+        const temp = tempMap.get(y);
+        const sea = seaMap.get(y);
+        const rain = rainMap.get(y);
+        const crop = cropMap.get(y);
+        const tax = taxMap.get(y);
+
+        if (temp !== undefined && sea !== undefined && rain !== undefined && crop !== undefined && tax !== undefined) {
           merged.push({
             year: y,
-            temperature: tempMap.get(y)!,
-            sealevel: seaMap.get(y)!,
-            rainfall: rainMap.get(y)!,
-            taro: cropMap.get(y)!,
-            tax: taxMap.get(y)!,
+            temperature: temp,
+            sealevel: sea,
+            rainfall: rain,
+            taro: crop,
+            tax: tax,
           });
         }
       }
@@ -263,7 +282,7 @@ export const SynthesisExplorer: React.FC = () => {
       setData([]);
       setLoading(false);
     });
-  }, []);
+  }, [selectedCountry]);
 
   /* ── Layout ── */
   const chartWidth = containerWidth >= 768 ? Math.max(320, containerWidth * 0.65) : containerWidth;
@@ -411,7 +430,7 @@ export const SynthesisExplorer: React.FC = () => {
                     strokeWidth={isEventActive ? 1.5 : 1}
                     strokeDasharray="4 4"
                     style={{
-                      transition: 'all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1), stroke 0.3s ease, stroke-width 0.3s ease',
+                      transition: 'stroke 0.3s ease, stroke-width 0.3s ease',
                       ...{
                         x1: `${px}px`,
                         x2: `${px}px`,
@@ -429,7 +448,7 @@ export const SynthesisExplorer: React.FC = () => {
                     fontWeight={isEventActive ? '700' : '500'}
                     fontFamily="'Inter', sans-serif"
                     style={{
-                      transition: 'all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1), fill 0.3s ease, font-weight 0.3s ease',
+                      transition: 'fill 0.3s ease, font-weight 0.3s ease',
                       cursor: 'pointer',
                       ...{
                         x: `${px}px`,
@@ -525,7 +544,7 @@ export const SynthesisExplorer: React.FC = () => {
                   x2={xScale(x2)}
                   y2={yScale(y2)}
                   style={{
-                    transition: 'all 0.6s ease',
+                    transition: 'stroke 0.3s ease, opacity 0.3s ease',
                     ...{
                       x1: `${xScale(x1)}px`,
                       y1: `${yScale(y1)}px`,
@@ -550,7 +569,7 @@ export const SynthesisExplorer: React.FC = () => {
                   strokeWidth={1}
                   strokeDasharray="3 3"
                   style={{
-                    transition: 'all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.3s ease',
+                    transition: 'opacity 0.3s ease',
                     ...{
                       y1: `${activePy}px`,
                       y2: `${activePy}px`,
@@ -568,7 +587,7 @@ export const SynthesisExplorer: React.FC = () => {
                   strokeWidth={1}
                   strokeDasharray="3 3"
                   style={{
-                    transition: 'all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.3s ease',
+                    transition: 'opacity 0.3s ease',
                     ...{
                       x1: `${activePx}px`,
                       x2: `${activePx}px`,
@@ -600,7 +619,7 @@ export const SynthesisExplorer: React.FC = () => {
                     cy={py}
                     style={{
                       filter: 'url(#dot-glow-hover)',
-                      transition: 'all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.3s ease',
+                      transition: 'opacity 0.3s ease',
                       ...{
                         cx: `${px}px`,
                         cy: `${py}px`,
@@ -624,7 +643,7 @@ export const SynthesisExplorer: React.FC = () => {
                         strokeDasharray={eventActive ? "none" : "2 2"}
                         transform={`rotate(45, ${px}, ${py})`}
                         style={{
-                          transition: 'all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1), stroke 0.3s ease, stroke-width 0.3s ease',
+                          transition: 'stroke 0.3s ease, stroke-width 0.3s ease',
                           cursor: 'pointer',
                           ...{
                             x: `${px - 8}px`,
@@ -649,7 +668,7 @@ export const SynthesisExplorer: React.FC = () => {
                     opacity={dimmed ? 0.35 : 1}
                     filter="url(#dot-glow-synth)"
                     style={{
-                      transition: 'all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.3s ease, r 0.3s ease',
+                      transition: 'opacity 0.3s ease, r 0.3s ease, stroke 0.3s ease, stroke-width 0.3s ease',
                       cursor: 'pointer',
                       ...{
                         cx: `${px}px`,
@@ -672,7 +691,7 @@ export const SynthesisExplorer: React.FC = () => {
                     fontFamily="'Playfair Display', serif"
                     opacity={dimmed ? 0.3 : 0.8}
                     style={{
-                      transition: 'all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.3s ease, font-size 0.3s ease',
+                      transition: 'opacity 0.3s ease, font-size 0.3s ease, fill 0.3s ease',
                       pointerEvents: 'none',
                       ...{
                         x: `${px}px`,

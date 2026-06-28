@@ -2,7 +2,9 @@ import { useEffect, useRef, useState } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { ExternalLink, Database, AlertCircle, Globe, PenTool, TrendingDown, ChevronDown } from 'lucide-react';
-import * as d3 from 'd3';
+import { CTA_COUNTRY_DATA, CTA_DATASETS, calcTemp2050, calcSea2050 } from './cta/ctaConfig';
+import Gauge from './cta/Gauge';
+import MiniChart from './cta/MiniChart';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -17,239 +19,12 @@ const getPledgeColor = (p: number) => {
   return '#B44D36'; // Critical terracotta
 };
 
-const countryData = [
-  { id: 'USA', name: 'United States', share: 24.5, debt: 2500 },
-  { id: 'CHN', name: 'China', share: 14.3, debt: 1400 },
-  { id: 'EU', name: 'European Union', share: 17.5, debt: 1700 },
-  { id: 'RUS', name: 'Russia', share: 6.8, debt: 680 },
-  { id: 'JPN', name: 'Japan', share: 4.0, debt: 400 },
-  { id: 'UK', name: 'United Kingdom', share: 4.6, debt: 460 },
-  { id: 'IND', name: 'India', share: 3.2, debt: 320 },
-  { id: 'AUS', name: 'Australia', share: 1.2, debt: 120 },
-  { id: 'CAN', name: 'Canada', share: 2.0, debt: 200 },
-  { id: 'IDN', name: 'Indonesia', share: 0.5, debt: 50 },
-  { id: 'OTHER', name: 'Other / Global Average', share: 1.0, debt: 100 }
-];
-
-// Circular HUD Gauge Component
-const Gauge = ({ value, max, label, unit, color }: { value: number, max: number, label: string, unit: string, color: string }) => {
-  const radius = 33;
-  const circumference = 2 * Math.PI * radius;
-  const pct = Math.min(1, Math.max(0, value / max));
-  const strokeDashoffset = circumference - (pct * circumference);
-  
-  return (
-    <div className="flex flex-col items-center justify-center text-center">
-      <div className="relative w-20 h-20 flex items-center justify-center">
-        {/* Background Track */}
-        <svg className="w-full h-full transform -rotate-90">
-          <circle
-            cx="40"
-            cy="40"
-            r={radius}
-            fill="transparent"
-            stroke="rgba(232, 220, 200, 0.08)"
-            strokeWidth="4"
-          />
-          {/* Filled Value */}
-          <circle
-            cx="40"
-            cy="40"
-            r={radius}
-            fill="transparent"
-            stroke={color}
-            strokeWidth="4.5"
-            strokeDasharray={circumference}
-            strokeDashoffset={strokeDashoffset}
-            strokeLinecap="round"
-            className="transition-all duration-500 ease-out"
-            style={{ filter: `drop-shadow(0 0 3px ${color}80)` }}
-          />
-        </svg>
-        {/* Center Text */}
-        <div className="absolute flex flex-col items-center">
-          <span className="text-sm font-bold text-shell-white leading-none font-body">
-            {value.toFixed(1)}
-          </span>
-          <span className="text-[8px] text-shell-white/60 mt-0.5 uppercase font-body">{unit}</span>
-        </div>
-      </div>
-      <span className="text-[9px] text-shell-white/70 font-body mt-2 tracking-wide uppercase">{label}</span>
-    </div>
-  );
-};
-
-interface ProjectionPoint {
-  x: number;
-  y: number;
-  temp: number;
-  year: number;
-}
-
-// Fully Responsive Mini D3 Projection Line Chart Component
-const MiniChart = ({ pledge }: { pledge: number }) => {
-  const containerRef = useRef<HTMLDivElement>(null);
-  const [dimensions, setDimensions] = useState({ width: 340, height: 110 });
-
-  useEffect(() => {
-    if (!containerRef.current) return;
-    const resizeObserver = new ResizeObserver((entries) => {
-      for (let entry of entries) {
-        const { width } = entry.contentRect;
-        if (width > 0) {
-          setDimensions({ width, height: 115 });
-        }
-      }
-    });
-    resizeObserver.observe(containerRef.current);
-    return () => resizeObserver.disconnect();
-  }, []);
-
-  const width = dimensions.width;
-  const height = dimensions.height;
-  const padding = { top: 12, right: 15, bottom: 20, left: 32 };
-  const graphW = width - padding.left - padding.right;
-  const graphH = height - padding.top - padding.bottom;
-  
-  // Calculate points from 2020 to 2050
-  const points: ProjectionPoint[] = [2020, 2025, 2030, 2035, 2040, 2045, 2050].map(yVal => {
-    const t = (yVal - 2020) / 30;
-    const p = pledge / 100;
-    const tempVal = 0.95 + (1.65 - 1.3 * p) * t - (0.25 * p) * t * t;
-    const px = padding.left + t * graphW;
-    const py = padding.top + (1 - (tempVal - 0.5) / 2.3) * graphH;
-    return { x: px, y: py, temp: tempVal, year: yVal };
-  });
-
-  const lineGen = d3.line<ProjectionPoint>()
-    .x(d => d.x)
-    .y(d => d.y)
-    .curve(d3.curveMonotoneX);
-
-  const pathD = lineGen(points) || "";
-
-  // Helper arrays for gridlines & labels
-  const tempTicks = [1.0, 1.5, 2.0, 2.5];
-  const yearTicks = [2020, 2030, 2040, 2050];
-  
-  return (
-    <div ref={containerRef} className="flex flex-col w-full glass-panel border border-[#D4A574]/15 rounded-none p-4 transition-all duration-500">
-      <span className="text-[8px] text-[#8B7355] font-mono mb-2 uppercase tracking-wide font-semibold">
-        Temperature Trajectory (2020–2050)
-      </span>
-      <svg viewBox={`0 0 ${width} ${height}`} className="w-full h-auto">
-        <defs>
-          <filter id="mini-chart-glow" x="-20%" y="-20%" width="140%" height="140%">
-            <feGaussianBlur stdDeviation="3" result="blur" />
-            <feMerge>
-              <feMergeNode in="blur" />
-              <feMergeNode in="SourceGraphic" />
-            </feMerge>
-          </filter>
-        </defs>
-
-        {/* Horizontal Grid lines */}
-        {tempTicks.map(t => {
-          const py = padding.top + (1 - (t - 0.5) / 2.3) * graphH;
-          return (
-            <line
-              key={t}
-              x1={padding.left}
-              x2={width - padding.right}
-              y1={py}
-              y2={py}
-              stroke="rgba(232, 220, 200, 0.08)"
-              strokeWidth="0.5"
-              strokeDasharray="2,2"
-            />
-          );
-        })}
-        {/* Vertical Grid lines */}
-        {yearTicks.map(yr => {
-          const px = padding.left + ((yr - 2020) / 30) * graphW;
-          return (
-            <line
-              key={yr}
-              x1={px}
-              x2={px}
-              y1={padding.top}
-              y2={height - padding.bottom}
-              stroke="rgba(232, 220, 200, 0.08)"
-              strokeWidth="0.5"
-              strokeDasharray="2,2"
-            />
-          );
-        })}
-
-        {/* Y Axis Labels */}
-        {tempTicks.map(t => {
-          const py = padding.top + (1 - (t - 0.5) / 2.3) * graphH;
-          return (
-            <text
-              key={t}
-              x={padding.left - 6}
-              y={py + 3}
-              fill="rgba(232, 220, 200, 0.5)"
-              fontSize="7px"
-              fontFamily="Inter, sans-serif"
-              textAnchor="end"
-            >
-              {t.toFixed(1)}°
-            </text>
-          );
-        })}
-        {/* X Axis Labels */}
-        {yearTicks.map(yr => {
-          const px = padding.left + ((yr - 2020) / 30) * graphW;
-          return (
-            <text
-              key={yr}
-              x={px}
-              y={height - 4}
-              fill="rgba(232, 220, 200, 0.5)"
-              fontSize="7px"
-              fontFamily="Inter, sans-serif"
-              textAnchor="middle"
-            >
-              {yr}
-            </text>
-          );
-        })}
-
-        {/* Curve Path */}
-        <path
-          d={pathD}
-          fill="none"
-          stroke={getPledgeColor(pledge)}
-          strokeWidth="2.0"
-          filter="url(#mini-chart-glow)"
-          className="transition-all duration-500 ease-out"
-        />
-
-        {/* Circle Markers */}
-        {points.map(pt => (
-          <circle
-            key={pt.year}
-            cx={pt.x}
-            cy={pt.y}
-            r="2.5"
-            fill="#0B1A2E"
-            stroke={getPledgeColor(pledge)}
-            strokeWidth="1.2"
-            className="transition-all duration-500 ease-out"
-          />
-        ))}
-      </svg>
-    </div>
-  );
-};
-
 export default function CallToAction({ className }: CallToActionProps) {
   const sectionRef = useRef<HTMLElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
   const cardsRef = useRef<HTMLDivElement>(null);
   const [pledge, setPledge] = useState(15); // Default 15% reduction pledge
-  const [country, setCountry] = useState(countryData[0]);
+  const [country, setCountry] = useState(CTA_COUNTRY_DATA[0]);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
   useEffect(() => {
@@ -295,17 +70,9 @@ export default function CallToAction({ className }: CallToActionProps) {
     return () => ctx.revert();
   }, []);
 
-  const datasets = [
-    { label: 'NOAA ERSST: Sea Surface Temperature', url: 'https://climatedataguide.ucar.edu/climate-data/global-surface-temperature-data-sets-overview' },
-    { label: 'NASA PO.DAAC: Sea Level Anomalies', url: 'https://sealevel.nasa.gov/data/dataset/?id=SLR_anom_OSTM' },
-    { label: 'NOAA PSL: GPCP Precipitation Anomalies', url: 'https://psl.noaa.gov/data/gridded/data.gpcp.html' },
-    { label: 'FAOSTAT: Agricultural Production', url: 'https://www.fao.org/faostat/en/#data/QCL' },
-    { label: 'OECD.stat: Environmental Tax Revenues', url: 'https://stats.oecd.org/Index.aspx?DataSetCode=ENV_TAX' },
-  ];
-
   // Dynamic projection calculations for gauges
-  const temp2050 = 2.6 - 1.55 * (pledge / 100);
-  const sea2050 = 290 - 150 * (pledge / 100);
+  const temp2050 = calcTemp2050(pledge);
+  const sea2050 = calcSea2050(pledge);
 
   return (
     <section
@@ -313,17 +80,6 @@ export default function CallToAction({ className }: CallToActionProps) {
       ref={sectionRef}
       className={`relative min-h-screen bg-deep-ocean py-24 md:py-36 ${className || ''}`}
     >
-      <style>{`
-        @keyframes pulsate-glow {
-          0% {
-            box-shadow: 0 0 15px rgba(180, 77, 54, 0.4), 0 0 30px rgba(180, 77, 54, 0.2);
-          }
-          100% {
-            box-shadow: 0 0 35px rgba(180, 77, 54, 0.85), 0 0 70px rgba(180, 77, 54, 0.45);
-          }
-        }
-      `}</style>
-
       {/* Gradient overlay */}
       <div className="absolute inset-0 bg-gradient-to-b from-deep-ocean via-ocean-ink to-deep-ocean" />
 
@@ -367,10 +123,13 @@ export default function CallToAction({ className }: CallToActionProps) {
                 
                 {/* Select Nation custom dropdown with elevated glassmorphism */}
                 <div className="flex flex-col gap-2.5 mb-6 relative">
-                  <label className="text-[9px] font-mono text-warm-sand uppercase tracking-widest font-semibold">Select Your Nation</label>
-                  <div className="relative">
+                  <label id="cta-nation-label" className="text-[9px] font-mono text-warm-sand uppercase tracking-widest font-semibold">Select Your Nation</label>
+                  <div className="relative" onKeyDown={(e) => { if (e.key === 'Escape') setIsDropdownOpen(false); }}>
                     <button
                       type="button"
+                      aria-haspopup="listbox"
+                      aria-expanded={isDropdownOpen}
+                      aria-labelledby="cta-nation-label"
                       onClick={() => setIsDropdownOpen(!isDropdownOpen)}
                       className="w-full text-left bg-[#0F2237]/65 border border-[#D4A574]/25 text-white font-body p-4 outline-none hover:border-reef-teal transition-all flex items-center justify-between rounded-none backdrop-blur-md relative overflow-hidden group focus:outline-none"
                     >
@@ -385,10 +144,17 @@ export default function CallToAction({ className }: CallToActionProps) {
                            className="fixed inset-0 z-40"
                           onClick={() => setIsDropdownOpen(false)}
                         />
-                        <div className="absolute z-50 top-full left-0 right-0 mt-2 bg-[#0B1A2E]/95 backdrop-blur-md border border-[#D4A574]/15 max-h-72 overflow-y-auto rounded-none py-2" style={{ scrollbarWidth: 'thin' }}>
-                           {countryData.map((c: typeof countryData[number]) => (
+                        <div 
+                          role="listbox"
+                          aria-labelledby="cta-nation-label"
+                          className="absolute z-50 top-full left-0 right-0 mt-2 bg-[#0B1A2E]/95 backdrop-blur-md border border-[#D4A574]/15 max-h-72 overflow-y-auto rounded-none py-2" 
+                          style={{ scrollbarWidth: 'thin' }}
+                        >
+                           {CTA_COUNTRY_DATA.map((c) => (
                             <button
                               key={c.id}
+                              role="option"
+                              aria-selected={country.id === c.id}
                               onClick={() => {
                                 setCountry(c);
                                 setIsDropdownOpen(false);
@@ -468,6 +234,11 @@ export default function CallToAction({ className }: CallToActionProps) {
                       max="100"
                       value={pledge}
                       onChange={(e) => setPledge(parseInt(e.target.value))}
+                      aria-label="Climate pledge percentage reduction"
+                      aria-valuemin={0}
+                      aria-valuemax={100}
+                      aria-valuenow={pledge}
+                      aria-valuetext={`${pledge} percent reduction`}
                       className="w-full h-8 opacity-0 cursor-pointer relative z-10"
                     />
 
@@ -495,6 +266,8 @@ export default function CallToAction({ className }: CallToActionProps) {
                         <button
                           key={ms.val}
                           onClick={() => setPledge(ms.val)}
+                          aria-pressed={pledge === ms.val}
+                          aria-label={`Set reduction commitment to ${ms.label} (${ms.val} percent)`}
                           className="flex flex-col items-center group focus:outline-none"
                           style={{
                             width: '50px',
@@ -588,6 +361,7 @@ export default function CallToAction({ className }: CallToActionProps) {
           {/* Massive pulsing Port Vila Action Button */}
           <a
             href="https://fossilfueltreaty.org/port-vila-call"
+            target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-4 px-10 py-5 bg-[#B44D36] text-white font-bold text-lg hover:bg-[#B44D36]/90 transition-all duration-300 font-display tracking-widest uppercase hover:scale-[1.03] active:scale-[0.98] rounded-none border border-white/10"
             style={{
@@ -610,7 +384,7 @@ export default function CallToAction({ className }: CallToActionProps) {
               Official Datasets Used
             </h3>
             <ul className="text-xs text-shell-white/70 space-y-2 text-left mt-4">
-              {datasets.map((ds, i) => (
+              {CTA_DATASETS.map((ds, i) => (
                 <li key={i} className="flex items-start gap-2">
                   <span className="w-1.5 h-1.5 rounded-full bg-reef-teal mt-1.5 shrink-0" />
                   <a href={ds.url} target="_blank" rel="noreferrer" className="hover:text-reef-teal transition-colors underline decoration-reef-teal/30 underline-offset-2">
@@ -641,7 +415,7 @@ export default function CallToAction({ className }: CallToActionProps) {
               <PenTool className="w-7 h-7 text-terracotta" />
             </div>
             <h3 className="font-display text-lg font-semibold text-shell-white mb-2">
-              Policy & Advocacy
+              Policy &amp; Advocacy
             </h3>
             <p className="text-xs text-shell-white/70 leading-relaxed text-left mt-4 mb-6">
               The time for "awareness" has passed. Support indigenous Pacific climate initiatives and amplify their demands for loss and damage compensation on the global stage.

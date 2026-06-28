@@ -3,6 +3,7 @@ import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { Droplets } from 'lucide-react';
 import SeaLevelChart from '@/components/charts/SeaLevelChart';
+import { getStation } from '@/data/countryStations';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -55,6 +56,7 @@ export default function Act3_EncroachingWaters({ className, selectedCountry }: A
     <section
       id="sinking"
       ref={sectionRef}
+      aria-label="Act III: Encroaching Waters narrative"
       className={`relative bg-transparent ${className || ''}`}
     >
       <div className="absolute inset-0 bg-gradient-to-r from-[var(--ocean-abyss)] via-[var(--ocean-abyss)]/80 to-transparent pointer-events-none z-0" />
@@ -140,13 +142,13 @@ export default function Act3_EncroachingWaters({ className, selectedCountry }: A
         </div>
 
         {/* CHART COLUMN (Visually Left, 60%) */}
-        <div className="w-full md:w-7/12 h-screen sticky top-0 flex flex-col justify-center items-center py-12 md:py-0 md:pr-12 z-0">
+        <div role="region" aria-label="Sea level anomalies chart" className="w-full md:w-7/12 h-screen sticky top-0 flex flex-col justify-center items-center py-12 md:py-0 md:pr-12 z-0">
           <div ref={rightColumnRef} className="w-full max-w-4xl relative h-[60vh] flex flex-col justify-center items-center">
             
             <SeaLevelChart activeStep={activeStep} selectedCountry={selectedCountry} />
 
             <div className="absolute bottom-[-32px] left-0 right-0 text-center text-[9px] uppercase tracking-widest font-body text-drift-wood/75">
-              Funafuti Atoll — NOAA Satellite Altimetry Sea Level Profile
+              {getStation(selectedCountry?.id, 'seaLevel').stationName} — {getStation(selectedCountry?.id, 'seaLevel').dataSource} Sea Level Profile
             </div>
             
           </div>

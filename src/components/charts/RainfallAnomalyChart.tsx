@@ -13,32 +13,6 @@ interface Props {
   selectedCountry?: { id: string; name: string };
 }
 
-const rainfallConfigs: Record<string, { rainMult: number; spikeYears?: Record<number, number> }> = {
-  REGIONAL: { rainMult: 1.0 },
-  VUT: { rainMult: 1.6, spikeYears: { 2015: 28.0, 2016: 22.0, 2020: 25.0 } }, // Extreme cyclone spikes for Vanuatu
-  FJI: { rainMult: 1.2, spikeYears: { 2016: 26.0 } }, // Winston was extremely severe in Fiji
-  TUV: { rainMult: 0.9, spikeYears: { 2015: 18.0 } }, // Pam storm surge, less rainfall anomaly compared to Vanuatu
-  KIR: { rainMult: 0.8 }, // Kiribati has more drought risk
-  WSM: { rainMult: 1.1 },
-  TON: { rainMult: 1.0, spikeYears: { 2018: 15.0 } }, // Cyclone Gita
-  SLB: { rainMult: 1.3, spikeYears: { 2014: 16.0 } },
-  MHL: { rainMult: 0.75 }, // Drought prone
-  PLW: { rainMult: 1.15 },
-  FSM: { rainMult: 1.1 },
-  COK: { rainMult: 0.95 },
-  PYF: { rainMult: 0.9 },
-  GUM: { rainMult: 1.12 },
-  NRU: { rainMult: 0.7 }, // Drought prone
-  NCL: { rainMult: 0.85 },
-  NIU: { rainMult: 0.92 },
-  MNP: { rainMult: 1.08 },
-  PNG: { rainMult: 1.3 },
-  PCN: { rainMult: 0.8 },
-  TKL: { rainMult: 0.9 },
-  WLF: { rainMult: 1.05 },
-  ASM: { rainMult: 1.12 }
-};
-
 export function RainfallAnomalyChart({ activeStep = 0, selectedCountry }: Props) {
   const svgRef = useRef<SVGSVGElement>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -52,6 +26,7 @@ export function RainfallAnomalyChart({ activeStep = 0, selectedCountry }: Props)
   const requestRef = useRef<number>(0);
   // Shared state for the particle system to read
   const particleStateRef = useRef({ intensity: 0, type: 'neutral' as 'rain' | 'drought' | 'neutral' });
+  const [hasError, setHasError] = useState(false);
 
   useEffect(() => {
     d3.json<RainfallAnomalyRecord[]>('/data/rainfall.json').then((res) => {
@@ -64,20 +39,19 @@ export function RainfallAnomalyChart({ activeStep = 0, selectedCountry }: Props)
         });
         setRawData(enriched);
       }
-    });
+    }).catch((err) => { console.error('Failed to load chart data:', err); setHasError(true); });
   }, []);
 
   const data = useMemo(() => {
-    const config = rainfallConfigs[selectedCountry?.id || 'REGIONAL'] || { rainMult: 1.0 };
+    const countryKey = selectedCountry?.id || 'REGIONAL';
     return rawData.map(d => {
-      let val = d.anomaly * config.rainMult;
-      if (config.spikeYears && config.spikeYears[d.year] !== undefined) {
-        val = config.spikeYears[d.year];
-      }
+      const rawVal = (d as any)[countryKey] !== undefined
+        ? Number((d as any)[countryKey])
+        : ((d as any).regional !== undefined ? Number((d as any).regional) : Number((d as any).anomaly));
       return {
         ...d,
-        anomaly: val
-      };
+        anomaly: rawVal
+      } as any;
     });
   }, [rawData, selectedCountry]);
 
@@ -171,6 +145,49 @@ export function RainfallAnomalyChart({ activeStep = 0, selectedCountry }: Props)
     droughtGrad.append('stop').attr('offset', '0%').attr('stop-color', '#8B7355'); // drift-wood at baseline
     droughtGrad.append('stop').attr('offset', '100%').attr('stop-color', '#C49A3C'); // golden-hour at tip
 
+    // Colorblind-accessible patterns
+    const rainPattern = defs.append('pattern')
+      .attr('id', 'rain-stripe-pattern')
+      .attr('width', 8)
+      .attr('height', 8)
+      .attr('patternUnits', 'userSpaceOnUse')
+      .attr('patternTransform', 'rotate(45)');
+    rainPattern.append('rect')
+      .attr('width', 8)
+      .attr('height', 8)
+      .attr('fill', '#1E4D5C');
+    rainPattern.append('line')
+      .attr('x1', 0)
+      .attr('y1', 0)
+      .attr('x2', 0)
+      .attr('y2', 8)
+      .attr('stroke', '#2B7A78')
+      .attr('stroke-width', 2);
+
+    const droughtPattern = defs.append('pattern')
+      .attr('id', 'drought-hatch-pattern')
+      .attr('width', 8)
+      .attr('height', 8)
+      .attr('patternUnits', 'userSpaceOnUse');
+    droughtPattern.append('rect')
+      .attr('width', 8)
+      .attr('height', 8)
+      .attr('fill', '#8B7355');
+    droughtPattern.append('line')
+      .attr('x1', 0)
+      .attr('y1', 0)
+      .attr('x2', 8)
+      .attr('y2', 8)
+      .attr('stroke', '#C49A3C')
+      .attr('stroke-width', 1.2);
+    droughtPattern.append('line')
+      .attr('x1', 8)
+      .attr('y1', 0)
+      .attr('x2', 0)
+      .attr('y2', 8)
+      .attr('stroke', '#C49A3C')
+      .attr('stroke-width', 1.2);
+
     // Scales
     const xScale = d3.scaleBand()
       .domain(data.map(d => d.year.toString()))
@@ -224,7 +241,7 @@ export function RainfallAnomalyChart({ activeStep = 0, selectedCountry }: Props)
       .attr('width', xScale.bandwidth())
       .attr('y', d => d.anomaly >= 0 ? yScale(d.anomaly) : yScale(0))
       .attr('height', d => Math.abs(yScale(d.anomaly) - yScale(0)))
-      .attr('fill', d => d.anomaly >= 0 ? 'url(#rain-bar-gradient)' : 'url(#drought-bar-gradient)')
+      .attr('fill', d => d.anomaly >= 0 ? 'url(#rain-stripe-pattern)' : 'url(#drought-hatch-pattern)')
       .attr('opacity', 0.85)
       .style('cursor', 'crosshair')
       .style('filter', d => d.anomaly < -10 ? 'url(#drought-cracks) url(#rain-bioluminescent-glow)' : 'url(#rain-bioluminescent-glow)')
@@ -416,6 +433,16 @@ export function RainfallAnomalyChart({ activeStep = 0, selectedCountry }: Props)
     requestRef.current = requestAnimationFrame(render);
     return () => cancelAnimationFrame(requestRef.current);
   }, []);
+
+  if (hasError) {
+    return (
+      <div className="flex flex-col items-center justify-center h-full min-h-[300px] text-center p-8">
+        <div className="text-4xl mb-4">⚠</div>
+        <p className="text-[#E8DCC8] font-['Playfair_Display'] text-lg mb-2">Data Temporarily Unavailable</p>
+        <p className="text-[#D4A574] text-sm opacity-70">Please refresh the page to try again.</p>
+      </div>
+    );
+  }
 
   if (data.length === 0) {
     return (

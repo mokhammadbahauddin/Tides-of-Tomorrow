@@ -16,53 +16,31 @@ interface CropYieldChartProps {
   selectedCountry?: { id: string; name: string };
 }
 
-const cropConfigs: Record<string, { taroMult: number; sweetPotatoMult: number; bananaMult: number; cocoaMult: number }> = {
-  REGIONAL: { taroMult: 1.0, sweetPotatoMult: 1.0, bananaMult: 1.0, cocoaMult: 1.0 },
-  SLB: { taroMult: 0.7, sweetPotatoMult: 0.85, bananaMult: 1.1, cocoaMult: 0.9 }, // Solomon Islands: Taro fails severely (0.7)
-  TON: { taroMult: 0.9, sweetPotatoMult: 0.95, bananaMult: 0.6, cocoaMult: 1.0 }, // Tonga: Banana fails severely (0.6)
-  KIR: { taroMult: 0.4, sweetPotatoMult: 0.45, bananaMult: 0.5, cocoaMult: 0.3 }, // Kiribati: Atoll soils, all crops low
-  TUV: { taroMult: 0.5, sweetPotatoMult: 0.6, bananaMult: 0.55, cocoaMult: 0.2 }, // Tuvalu: Extreme atoll crop failures
-  FJI: { taroMult: 0.85, sweetPotatoMult: 0.9, bananaMult: 0.8, cocoaMult: 0.8 }, // Fiji: Moderate failures
-  WSM: { taroMult: 0.9, sweetPotatoMult: 0.8, bananaMult: 0.95, cocoaMult: 0.75 }, // Samoa: Cocoa and sweet potato decline
-  VUT: { taroMult: 0.75, sweetPotatoMult: 0.7, bananaMult: 0.8, cocoaMult: 0.85 }, // Vanuatu: High cyclone damage to banana & sweet potato
-  MHL: { taroMult: 0.45, sweetPotatoMult: 0.5, bananaMult: 0.4, cocoaMult: 0.25 }, // Marshall Islands: Atoll crop failure
-  PLW: { taroMult: 0.95, sweetPotatoMult: 1.0, bananaMult: 0.9, cocoaMult: 0.8 },
-  FSM: { taroMult: 0.8, sweetPotatoMult: 0.85, bananaMult: 0.75, cocoaMult: 0.7 },
-  COK: { taroMult: 0.95, sweetPotatoMult: 0.95, bananaMult: 0.9, cocoaMult: 0.85 },
-  PYF: { taroMult: 1.05, sweetPotatoMult: 1.0, bananaMult: 1.05, cocoaMult: 0.95 },
-  GUM: { taroMult: 0.9, sweetPotatoMult: 0.9, bananaMult: 0.85, cocoaMult: 0.8 },
-  NRU: { taroMult: 0.35, sweetPotatoMult: 0.4, bananaMult: 0.45, cocoaMult: 0.15 }, // Nauru: Mining damaged soil, extremely low yield
-  NCL: { taroMult: 0.95, sweetPotatoMult: 0.9, bananaMult: 0.95, cocoaMult: 1.0 },
-  NIU: { taroMult: 0.8, sweetPotatoMult: 0.85, bananaMult: 0.7, cocoaMult: 0.9 },
-  MNP: { taroMult: 0.85, sweetPotatoMult: 0.85, bananaMult: 0.8, cocoaMult: 0.75 },
-  PNG: { taroMult: 0.95, sweetPotatoMult: 0.9, bananaMult: 0.95, cocoaMult: 0.85 },
-  PCN: { taroMult: 0.9, sweetPotatoMult: 0.95, bananaMult: 0.85, cocoaMult: 0.9 },
-  TKL: { taroMult: 0.42, sweetPotatoMult: 0.48, bananaMult: 0.46, cocoaMult: 0.2 },
-  WLF: { taroMult: 0.82, sweetPotatoMult: 0.88, bananaMult: 0.84, cocoaMult: 0.78 },
-  ASM: { taroMult: 0.88, sweetPotatoMult: 0.92, bananaMult: 0.86, cocoaMult: 0.82 }
-};
-
 export const CropYieldChart: React.FC<CropYieldChartProps> = ({ activeStep, selectedCountry }) => {
   const containerRef = useRef<HTMLDivElement>(null);
   const svgRef = useRef<SVGSVGElement>(null);
   const [rawData, setRawData] = useState<CropRecord[]>([]);
+  const [hasError, setHasError] = useState(false);
 
   useEffect(() => {
     d3.json<CropRecord[]>('/data/cropyield.json').then((res) => {
       if (res) setRawData(res);
-    });
+    }).catch((err) => { console.error('Failed to load chart data:', err); setHasError(true); });
   }, []);
 
   const data = useMemo(() => {
-    if (!selectedCountry || selectedCountry.id === 'REGIONAL') return rawData;
-    const config = cropConfigs[selectedCountry.id] || { taroMult: 1.0, sweetPotatoMult: 1.0, bananaMult: 1.0, cocoaMult: 1.0 };
-    return rawData.map(d => ({
-      ...d,
-      taro: d.taro * config.taroMult,
-      sweetPotato: d.sweetPotato * config.sweetPotatoMult,
-      banana: d.banana * config.bananaMult,
-      cocoa: d.cocoa * config.cocoaMult
-    }));
+    const countryKey = selectedCountry?.id || 'REGIONAL';
+    return rawData.map(d => {
+      // Each rawData node contains countryKey mapping to taro, sweetPotato, banana, cocoa
+      const cData = (d as any)[countryKey] || (d as any).REGIONAL || { taro: 10, sweetPotato: 10, banana: 10, cocoa: 5 };
+      return {
+        year: d.year,
+        taro: Number(cData.taro !== undefined ? cData.taro : d.taro),
+        sweetPotato: Number(cData.sweetPotato !== undefined ? cData.sweetPotato : d.sweetPotato),
+        banana: Number(cData.banana !== undefined ? cData.banana : d.banana),
+        cocoa: Number(cData.cocoa !== undefined ? cData.cocoa : d.cocoa)
+      };
+    });
   }, [rawData, selectedCountry]);
 
   useEffect(() => {
@@ -139,12 +117,51 @@ export const CropYieldChart: React.FC<CropYieldChartProps> = ({ activeStep, sele
     feMerge.append('feMergeNode').attr('in', 'blur');
     feMerge.append('feMergeNode').attr('in', 'SourceGraphic');
 
+    // Colorblind-accessible patterns for crops
+    // 1. Taro: diagonal stripes
+    const taroPattern = defs.append('pattern')
+      .attr('id', 'taro-pattern')
+      .attr('width', 6)
+      .attr('height', 6)
+      .attr('patternUnits', 'userSpaceOnUse')
+      .attr('patternTransform', 'rotate(45)');
+    taroPattern.append('rect').attr('width', 6).attr('height', 6).attr('fill', '#7A2B1C');
+    taroPattern.append('line').attr('x1', 0).attr('y1', 0).attr('x2', 0).attr('y2', 6).attr('stroke', '#B44D36').attr('stroke-width', 2);
+
+    // 2. Sweet Potato: dots pattern
+    const spPattern = defs.append('pattern')
+      .attr('id', 'sweetpotato-pattern')
+      .attr('width', 8)
+      .attr('height', 8)
+      .attr('patternUnits', 'userSpaceOnUse');
+    spPattern.append('rect').attr('width', 8).attr('height', 8).attr('fill', '#9E5442');
+    spPattern.append('circle').attr('cx', 4).attr('cy', 4).attr('r', 2).attr('fill', '#D4836A');
+
+    // 3. Banana: horizontal stripes
+    const bananaPattern = defs.append('pattern')
+      .attr('id', 'banana-pattern')
+      .attr('width', 6)
+      .attr('height', 6)
+      .attr('patternUnits', 'userSpaceOnUse');
+    bananaPattern.append('rect').attr('width', 6).attr('height', 6).attr('fill', '#164E4D');
+    bananaPattern.append('line').attr('x1', 0).attr('y1', 3).attr('x2', 6).attr('y2', 3).attr('stroke', '#2B7A78').attr('stroke-width', 1.5);
+
+    // 4. Cocoa: crosshatch
+    const cocoaPattern = defs.append('pattern')
+      .attr('id', 'cocoa-pattern')
+      .attr('width', 8)
+      .attr('height', 8)
+      .attr('patternUnits', 'userSpaceOnUse');
+    cocoaPattern.append('rect').attr('width', 8).attr('height', 8).attr('fill', '#8A671F');
+    cocoaPattern.append('line').attr('x1', 0).attr('y1', 0).attr('x2', 8).attr('y2', 8).attr('stroke', '#C49A3C').attr('stroke-width', 1.2);
+    cocoaPattern.append('line').attr('x1', 8).attr('y1', 0).attr('x2', 0).attr('y2', 8).attr('stroke', '#C49A3C').attr('stroke-width', 1.2);
+
     const crops = ['taro', 'sweetPotato', 'banana', 'cocoa'] as const;
     const colors: Record<string, string> = {
-      taro: 'url(#taro-grad)',
-      sweetPotato: 'url(#sweetpotato-grad)',
-      banana: 'url(#banana-grad)',
-      cocoa: 'url(#cocoa-grad)',
+      taro: 'url(#taro-pattern)',
+      sweetPotato: 'url(#sweetpotato-pattern)',
+      banana: 'url(#banana-pattern)',
+      cocoa: 'url(#cocoa-pattern)',
     };
 
     const x0 = d3.scaleBand()
@@ -413,6 +430,16 @@ export const CropYieldChart: React.FC<CropYieldChartProps> = ({ activeStep, sele
       });
     }
   }, [activeStep, data]);
+
+  if (hasError) {
+    return (
+      <div className="flex flex-col items-center justify-center h-full min-h-[300px] text-center p-8">
+        <div className="text-4xl mb-4">⚠</div>
+        <p className="text-[#E8DCC8] font-['Playfair_Display'] text-lg mb-2">Data Temporarily Unavailable</p>
+        <p className="text-[#D4A574] text-sm opacity-70">Please refresh the page to try again.</p>
+      </div>
+    );
+  }
 
   if (data.length === 0) {
     return (

@@ -1,4 +1,4 @@
-import React, { useRef, useEffect, useState, useMemo } from 'react';
+import { useRef, useEffect, useState, useMemo } from 'react';
 import * as d3 from 'd3';
 import gsap from 'gsap';
 
@@ -22,37 +22,12 @@ interface TaxChartProps {
   selectedCountry?: { id: string; name: string };
 }
 
-const taxConfigs: Record<string, { taxMult: number }> = {
-  REGIONAL: { taxMult: 1.0 },
-  FJI: { taxMult: 1.4 },     // Fiji has a higher climate adaptation tax
-  VUT: { taxMult: 1.5 },     // Vanuatu has huge rebuild costs
-  TUV: { taxMult: 1.8 },     // Tuvalu has extreme adaptation costs
-  KIR: { taxMult: 1.6 },
-  WSM: { taxMult: 1.1 },
-  TON: { taxMult: 1.2 },
-  SLB: { taxMult: 1.3 },
-  MHL: { taxMult: 1.45 },
-  PLW: { taxMult: 1.25 },
-  FSM: { taxMult: 1.2 },
-  COK: { taxMult: 1.05 },
-  PYF: { taxMult: 0.95 },
-  GUM: { taxMult: 1.1 },
-  NRU: { taxMult: 1.5 },
-  NCL: { taxMult: 0.8 },
-  NIU: { taxMult: 0.9 },
-  MNP: { taxMult: 1.0 },
-  PNG: { taxMult: 1.15 },
-  PCN: { taxMult: 0.7 },
-  TKL: { taxMult: 1.7 },
-  WLF: { taxMult: 1.05 },
-  ASM: { taxMult: 1.1 }
-};
-
-export const TaxChart: React.FC<TaxChartProps> = ({ activeStep, selectedCountry }) => {
+export default function TaxChart({ activeStep, selectedCountry }: TaxChartProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const svgRef = useRef<SVGSVGElement>(null);
   const [rawData, setRawData] = useState<TaxRecord[]>([]);
   const [dimensions, setDimensions] = useState({ width: 600, height: 500 });
+  const [hasError, setHasError] = useState(false);
   
   const simRef = useRef<d3.Simulation<PhysicsNode, undefined> | null>(null);
   const pivotRef = useRef({ xL: 165, leftPanY: 335 });
@@ -77,24 +52,26 @@ export const TaxChart: React.FC<TaxChartProps> = ({ activeStep, selectedCountry 
     d3.json<TaxRecord[]>('/data/taxes.json').then((res) => {
       if (res) {
         const cleanData = res
-          .filter((d) => d && !isNaN(d.year) && !isNaN(d.taxPercent))
+          .filter((d) => d && !isNaN(d.year))
           .sort((a, b) => a.year - b.year);
         setRawData(cleanData);
       }
-    });
+    }).catch((err) => { console.error('Failed to load chart data:', err); setHasError(true); });
   }, []);
 
   const data = useMemo(() => {
-    const config = taxConfigs[selectedCountry?.id || 'REGIONAL'] || { taxMult: 1.0 };
+    const countryKey = selectedCountry?.id || 'REGIONAL';
     let cumulativeSum = 0;
     return rawData.map(d => {
-      const scaledTax = d.taxPercent * config.taxMult;
-      cumulativeSum += scaledTax;
+      const rawVal = (d as any)[countryKey] !== undefined
+        ? Number((d as any)[countryKey])
+        : ((d as any).regional !== undefined ? Number((d as any).regional) : Number((d as any).taxPercent));
+      cumulativeSum += rawVal;
       return {
         ...d,
-        taxPercent: parseFloat(scaledTax.toFixed(2)),
+        taxPercent: parseFloat(rawVal.toFixed(2)),
         cumulative: parseFloat(cumulativeSum.toFixed(2))
-      };
+      } as any;
     });
   }, [rawData, selectedCountry]);
 
@@ -630,6 +607,16 @@ export const TaxChart: React.FC<TaxChartProps> = ({ activeStep, selectedCountry 
     };
   }, [data, dimensions, activeStep]);
 
+  if (hasError) {
+    return (
+      <div className="flex flex-col items-center justify-center h-full min-h-[300px] text-center p-8">
+        <div className="text-4xl mb-4">⚠</div>
+        <p className="text-[#E8DCC8] font-['Playfair_Display'] text-lg mb-2">Data Temporarily Unavailable</p>
+        <p className="text-[#D4A574] text-sm opacity-70">Please refresh the page to try again.</p>
+      </div>
+    );
+  }
+
   if (data.length === 0) {
     return (
       <div className="w-full h-[520px] rounded-none bg-gradient-to-r from-[#0B1A2E] via-[#0F2237] to-[#0B1A2E] animate-pulse flex items-center justify-center">
@@ -643,7 +630,7 @@ export const TaxChart: React.FC<TaxChartProps> = ({ activeStep, selectedCountry 
       {/* HUD Header: Placed nicely at top-left, adjusted padding */}
       <div className="absolute top-6 left-6 z-10 flex flex-col pointer-events-none">
         <span className="text-[8px] font-mono text-terracotta uppercase tracking-widest font-semibold">BALANCE SCALE SIMULATOR</span>
-        <h4 className="text-xs font-display text-shell-white/70">Fiji Adaptation Cost vs Public Resource Balance</h4>
+        <h4 className="text-xs font-display text-shell-white/70">{selectedCountry?.name || 'Regional'} Adaptation Cost vs Public Resource Balance</h4>
       </div>
 
       <svg ref={svgRef} className="w-full" />

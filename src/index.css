@@ -155,6 +155,15 @@ nav .glass-panel {
   100% { r: 24px; opacity: 0; stroke-width: 4px; }
 }
 
+@keyframes pulsate-glow {
+  0% {
+    box-shadow: 0 0 15px rgba(180, 77, 54, 0.4), 0 0 30px rgba(180, 77, 54, 0.2);
+  }
+  100% {
+    box-shadow: 0 0 35px rgba(180, 77, 54, 0.85), 0 0 70px rgba(180, 77, 54, 0.45);
+  }
+}
+
 .animate-pulse-glow {
   animation: pulse-glow 2.5s ease-in-out infinite;
 }
@@ -294,4 +303,21 @@ html, body {
   animation: reading-glow 2s ease-in-out infinite !important;
   border-width: 1px !important;
   transition: all 0.3s ease-in-out;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, ::before, ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  .animate-pulse-glow,
+  .animate-float,
+  .animate-spin-slow,
+  .animate-rain-fall,
+  .animate-lightning,
+  .auto-scroll-reading {
+    animation: none !important;
+  }
 }

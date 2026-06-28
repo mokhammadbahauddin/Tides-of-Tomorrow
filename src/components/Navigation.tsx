@@ -110,9 +110,12 @@ export function Navigation({ selectedCountry, onCountryChange, isMuted, onMuteTo
             </button>
 
             {/* Global Country/Vulnerability Selector */}
-            <div className="relative z-50">
+            <div className="relative z-50" onKeyDown={(e) => { if (e.key === 'Escape') setIsDropdownOpen(false); }}>
               <button
                 type="button"
+                aria-haspopup="listbox"
+                aria-expanded={isDropdownOpen}
+                aria-label="Select vulnerability data for country"
                 onClick={() => setIsDropdownOpen(!isDropdownOpen)}
                 className="bg-[#0B1A2E]/80 border border-[#D4A574]/20 text-[#E8DCC8] hover:border-reef-teal transition-all flex items-center gap-2 px-3 py-1.5 rounded-none text-xs font-body backdrop-blur-md relative overflow-hidden group focus:outline-none shadow-[inset_0_0_10px_rgba(43,122,120,0.05)]"
               >
@@ -127,10 +130,17 @@ export function Navigation({ selectedCountry, onCountryChange, isMuted, onMuteTo
                     className="fixed inset-0 z-40"
                     onClick={() => setIsDropdownOpen(false)}
                   />
-                  <div className="absolute z-50 top-full left-0 mt-1 bg-[#0B1A2E]/95 backdrop-blur-md border border-[#D4A574]/15 max-h-72 overflow-y-auto rounded-none py-1.5 w-48 text-left shadow-[0_15px_45px_rgba(0,0,0,0.9)]" style={{ scrollbarWidth: 'thin' }}>
+                  <div 
+                    role="listbox"
+                    aria-label="Pacific countries selector"
+                    className="absolute z-50 top-full left-0 mt-1 bg-[#0B1A2E]/95 backdrop-blur-md border border-[#D4A574]/15 max-h-72 overflow-y-auto rounded-none py-1.5 w-48 text-left shadow-[0_15px_45px_rgba(0,0,0,0.9)]" 
+                    style={{ scrollbarWidth: 'thin' }}
+                  >
                     {countries.map((c) => (
                       <button
                         key={c.id}
+                        role="option"
+                        aria-selected={selectedCountry.id === c.id}
                         onClick={() => {
                           onCountryChange(c);
                           setIsDropdownOpen(false);
@@ -203,6 +213,9 @@ export function Navigation({ selectedCountry, onCountryChange, isMuted, onMuteTo
           <button
             className="md:hidden"
             style={{ color: '#E8DCC8' }}
+            aria-expanded={mobileOpen}
+            aria-label={mobileOpen ? "Close main navigation menu" : "Open main navigation menu"}
+            aria-haspopup="true"
             onClick={() => setMobileOpen(!mobileOpen)}
           >
             {mobileOpen ? <X size={24} /> : <Menu size={24} />}

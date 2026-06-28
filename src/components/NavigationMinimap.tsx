@@ -252,7 +252,7 @@ export const NavigationMinimap = ({
       <div className="w-8 h-px bg-[#D4A574]/15" />
 
       {/* Interactive Navigation Click Targets */}
-      <nav className="w-full flex flex-col gap-3 font-mono text-[9px] relative">
+      <nav aria-label="Story chapters progress" className="w-full flex flex-col gap-3 font-mono text-[9px] relative">
         {/* Vertical line connector */}
         <div className="absolute left-[7px] top-1.5 bottom-1.5 w-px bg-[#D4A574]/10 pointer-events-none" />
 
@@ -261,9 +261,11 @@ export const NavigationMinimap = ({
           const isHovered = hoveredItem === item.target;
           
           return (
-            <div
+            <button
               key={item.target}
-              className="flex items-center gap-3.5 group cursor-pointer relative"
+              aria-current={isActive ? "step" : undefined}
+              aria-label={`Go to ${item.act}: ${item.label}`}
+              className="flex items-center gap-3.5 group cursor-pointer relative w-full text-left bg-transparent border-none p-0 outline-none focus:ring-1 focus:ring-reef-teal/50 focus:rounded-sm"
               onClick={() => scrollToSection(item.target)}
               onMouseEnter={() => setHoveredItem(item.target)}
               onMouseLeave={() => setHoveredItem(null)}
@@ -316,7 +318,7 @@ export const NavigationMinimap = ({
                   {item.label}
                 </span>
               </div>
-            </div>
+            </button>
           );
         })}
       </nav>

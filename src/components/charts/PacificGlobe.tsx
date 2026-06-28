@@ -16,6 +16,21 @@ export default function PacificGlobe() {
   const containerRef = useRef<HTMLDivElement>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const [tooltip, setTooltip] = useState<TooltipState | null>(null);
+  const [hasError, setHasError] = useState(false);
+  const isVisibleRef = useRef<boolean>(false);
+  const lastTooltipRef = useRef<string>('');
+
+  // Pause the animation loop when the globe is off-screen
+  useEffect(() => {
+    const container = containerRef.current;
+    if (!container) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => { isVisibleRef.current = entry.isIntersecting; },
+      { threshold: 0.1 }
+    );
+    observer.observe(container);
+    return () => observer.disconnect();
+  }, []);
 
   useEffect(() => {
     if (!canvasRef.current || !containerRef.current) return;
@@ -156,11 +171,17 @@ export default function PacificGlobe() {
       land = topojson.feature(world, world.objects.countries) as unknown as d3.GeoPermissibleObjects;
       borders = topojson.mesh(world, world.objects.countries, (a, b) => a !== b) as unknown as d3.GeoPermissibleObjects;
       render();
-    });
+    }).catch((err) => { console.error('Failed to load chart data:', err); setHasError(true); });
 
     const render = () => {
       if (!context) return;
-      
+
+      // Skip drawing when globe is not visible, but keep the loop alive
+      if (!isVisibleRef.current) {
+        animationId = requestAnimationFrame(render);
+        return;
+      }
+
       // Auto spin and inertia logic
       if (!isDragging) {
         // Apply inertia (friction)
@@ -306,23 +327,25 @@ export default function PacificGlobe() {
         }
       });
 
-      if (hoveredNation && mousePos) {
-        // Format coordinates for display
-        const lon = hoveredNation.coords[0];
-        const lat = hoveredNation.coords[1];
-        const coordString = `${Math.abs(lat).toFixed(1)}° ${lat >= 0 ? 'N' : 'S'}, ${Math.abs(lon).toFixed(1)}° ${lon >= 0 ? 'E' : 'W'}`;
-
-        setTooltip({ 
-          x: mousePos[0], 
-          y: mousePos[1], 
-          name: hoveredNation.name,
-          coords: coordString,
-          severity: hoveredNation.severity,
-          category: hoveredNation.category,
-          impact: hoveredNation.impact
-        });
-      } else {
-        if (!isDragging) {
+      // Throttle tooltip updates: only call setTooltip when the hovered nation changes
+      const newTooltipId = hoveredNation?.name || '';
+      if (newTooltipId !== lastTooltipRef.current) {
+        lastTooltipRef.current = newTooltipId;
+        if (hoveredNation && mousePos) {
+          // Format coordinates for display
+          const lon = hoveredNation.coords[0];
+          const lat = hoveredNation.coords[1];
+          const coordString = `${Math.abs(lat).toFixed(1)}° ${lat >= 0 ? 'N' : 'S'}, ${Math.abs(lon).toFixed(1)}° ${lon >= 0 ? 'E' : 'W'}`;
+          setTooltip({
+            x: mousePos[0],
+            y: mousePos[1],
+            name: hoveredNation.name,
+            coords: coordString,
+            severity: hoveredNation.severity,
+            category: hoveredNation.category,
+            impact: hoveredNation.impact,
+          });
+        } else if (!isDragging) {
           setTooltip(null);
         }
       }
@@ -355,10 +378,18 @@ export default function PacificGlobe() {
 
   return (
     <div ref={containerRef} className="absolute inset-0 flex items-center justify-center opacity-90" style={{ mixBlendMode: 'screen' }}>
-      <canvas 
-        ref={canvasRef} 
-        className="cursor-grab active:cursor-grabbing pointer-events-auto"
-      />
+      {hasError ? (
+        <div className="flex flex-col items-center justify-center h-full min-h-[300px] text-center p-8">
+          <div className="text-4xl mb-4">⚠</div>
+          <p className="text-[#E8DCC8] font-['Playfair_Display'] text-lg mb-2">Data Temporarily Unavailable</p>
+          <p className="text-[#D4A574] text-sm opacity-70">Please refresh the page to try again.</p>
+        </div>
+      ) : (
+        <canvas 
+          ref={canvasRef} 
+          className="cursor-grab active:cursor-grabbing pointer-events-auto"
+        />
+      )}
       {tooltip && (
         <div 
           className="absolute pointer-events-none glass-panel border border-[#D4A574]/15 p-4 z-50 text-left rounded-none max-w-xs"

@@ -1,450 +1,9026 @@
 [
   {
     "year": 1961,
-    "taro": 6.59,
-    "sweetPotato": 9.67,
-    "banana": 5.31,
-    "cocoa": 0.45
+    "REGIONAL": {
+      "taro": 6.59,
+      "sweetPotato": 9.67,
+      "banana": 5.31,
+      "cocoa": 0.45
+    },
+    "FJI": {
+      "taro": 8.0,
+      "sweetPotato": 2.5,
+      "banana": 4.35,
+      "cocoa": 0.43
+    },
+    "TUV": {
+      "taro": 6.59,
+      "sweetPotato": 9.67,
+      "banana": 5.31,
+      "cocoa": 0.45
+    },
+    "VUT": {
+      "taro": 6.59,
+      "sweetPotato": 9.67,
+      "banana": 12.0,
+      "cocoa": 0.51
+    },
+    "WSM": {
+      "taro": 6.79,
+      "sweetPotato": 9.67,
+      "banana": 4.45,
+      "cocoa": 0.48
+    },
+    "TON": {
+      "taro": 7.88,
+      "sweetPotato": 12.27,
+      "banana": 1.71,
+      "cocoa": 0.45
+    },
+    "KIR": {
+      "taro": 4.71,
+      "sweetPotato": 9.67,
+      "banana": 4.0,
+      "cocoa": 0.45
+    },
+    "SLB": {
+      "taro": 10.75,
+      "sweetPotato": 10.43,
+      "banana": 3.89,
+      "cocoa": 0.5
+    },
+    "PNG": {
+      "taro": 6.7,
+      "sweetPotato": 4.0,
+      "banana": 12.55,
+      "cocoa": 0.34
+    },
+    "PLW": {
+      "taro": 6.59,
+      "sweetPotato": 9.67,
+      "banana": 5.31,
+      "cocoa": 0.45
+    },
+    "MHL": {
+      "taro": 6.59,
+      "sweetPotato": 9.67,
+      "banana": 5.31,
+      "cocoa": 0.45
+    },
+    "FSM": {
+      "taro": 6.59,
+      "sweetPotato": 9.67,
+      "banana": 5.31,
+      "cocoa": 0.45
+    },
+    "COK": {
+      "taro": 6.59,
+      "sweetPotato": 24.69,
+      "banana": 3.2,
+      "cocoa": 0.45
+    },
+    "PYF": {
+      "taro": 6.59,
+      "sweetPotato": 9.67,
+      "banana": 5.19,
+      "cocoa": 0.45
+    },
+    "GUM": {
+      "taro": 6.59,
+      "sweetPotato": 9.67,
+      "banana": 5.31,
+      "cocoa": 0.45
+    },
+    "NRU": {
+      "taro": 6.59,
+      "sweetPotato": 9.67,
+      "banana": 5.31,
+      "cocoa": 0.45
+    },
+    "NCL": {
+      "taro": 3.0,
+      "sweetPotato": 5.0,
+      "banana": 5.0,
+      "cocoa": 0.45
+    },
+    "NIU": {
+      "taro": 4.93,
+      "sweetPotato": 8.82,
+      "banana": 2.05,
+      "cocoa": 0.45
+    },
+    "MNP": {
+      "taro": 6.59,
+      "sweetPotato": 9.67,
+      "banana": 5.31,
+      "cocoa": 0.45
+    },
+    "PCN": {
+      "taro": 6.59,
+      "sweetPotato": 9.67,
+      "banana": 5.31,
+      "cocoa": 0.45
+    },
+    "TKL": {
+      "taro": 6.59,
+      "sweetPotato": 9.67,
+      "banana": 5.31,
+      "cocoa": 0.45
+    },
+    "WLF": {
+      "taro": 6.59,
+      "sweetPotato": 9.67,
+      "banana": 5.31,
+      "cocoa": 0.45
+    },
+    "ASM": {
+      "taro": 6.59,
+      "sweetPotato": 9.67,
+      "banana": 5.31,
+      "cocoa": 0.45
+    }
   },
   {
     "year": 1962,
-    "taro": 6.61,
-    "sweetPotato": 9.48,
-    "banana": 5.21,
-    "cocoa": 0.46
+    "REGIONAL": {
+      "taro": 6.61,
+      "sweetPotato": 9.48,
+      "banana": 5.21,
+      "cocoa": 0.46
+    },
+    "FJI": {
+      "taro": 8.01,
+      "sweetPotato": 2.46,
+      "banana": 3.51,
+      "cocoa": 0.43
+    },
+    "TUV": {
+      "taro": 6.61,
+      "sweetPotato": 9.48,
+      "banana": 5.21,
+      "cocoa": 0.46
+    },
+    "VUT": {
+      "taro": 6.61,
+      "sweetPotato": 9.48,
+      "banana": 12.4,
+      "cocoa": 0.51
+    },
+    "WSM": {
+      "taro": 6.77,
+      "sweetPotato": 9.48,
+      "banana": 4.35,
+      "cocoa": 0.42
+    },
+    "TON": {
+      "taro": 8.06,
+      "sweetPotato": 12.36,
+      "banana": 2.0,
+      "cocoa": 0.46
+    },
+    "KIR": {
+      "taro": 4.44,
+      "sweetPotato": 9.48,
+      "banana": 3.94,
+      "cocoa": 0.46
+    },
+    "SLB": {
+      "taro": 10.96,
+      "sweetPotato": 10.7,
+      "banana": 3.89,
+      "cocoa": 0.48
+    },
+    "PNG": {
+      "taro": 6.72,
+      "sweetPotato": 4.0,
+      "banana": 12.6,
+      "cocoa": 0.46
+    },
+    "PLW": {
+      "taro": 6.61,
+      "sweetPotato": 9.48,
+      "banana": 5.21,
+      "cocoa": 0.46
+    },
+    "MHL": {
+      "taro": 6.61,
+      "sweetPotato": 9.48,
+      "banana": 5.21,
+      "cocoa": 0.46
+    },
+    "FSM": {
+      "taro": 6.61,
+      "sweetPotato": 9.48,
+      "banana": 5.21,
+      "cocoa": 0.46
+    },
+    "COK": {
+      "taro": 6.61,
+      "sweetPotato": 24.36,
+      "banana": 3.3,
+      "cocoa": 0.46
+    },
+    "PYF": {
+      "taro": 6.61,
+      "sweetPotato": 9.48,
+      "banana": 5.31,
+      "cocoa": 0.46
+    },
+    "GUM": {
+      "taro": 6.61,
+      "sweetPotato": 9.48,
+      "banana": 5.21,
+      "cocoa": 0.46
+    },
+    "NRU": {
+      "taro": 6.61,
+      "sweetPotato": 9.48,
+      "banana": 5.21,
+      "cocoa": 0.46
+    },
+    "NCL": {
+      "taro": 3.0,
+      "sweetPotato": 5.0,
+      "banana": 4.55,
+      "cocoa": 0.46
+    },
+    "NIU": {
+      "taro": 4.93,
+      "sweetPotato": 7.45,
+      "banana": 1.49,
+      "cocoa": 0.46
+    },
+    "MNP": {
+      "taro": 6.61,
+      "sweetPotato": 9.48,
+      "banana": 5.21,
+      "cocoa": 0.46
+    },
+    "PCN": {
+      "taro": 6.61,
+      "sweetPotato": 9.48,
+      "banana": 5.21,
+      "cocoa": 0.46
+    },
+    "TKL": {
+      "taro": 6.61,
+      "sweetPotato": 9.48,
+      "banana": 5.21,
+      "cocoa": 0.46
+    },
+    "WLF": {
+      "taro": 6.61,
+      "sweetPotato": 9.48,
+      "banana": 5.21,
+      "cocoa": 0.46
+    },
+    "ASM": {
+      "taro": 6.61,
+      "sweetPotato": 9.48,
+      "banana": 5.21,
+      "cocoa": 0.46
+    }
   },
   {
     "year": 1963,
-    "taro": 6.61,
-    "sweetPotato": 9.5,
-    "banana": 5.31,
-    "cocoa": 0.48
+    "REGIONAL": {
+      "taro": 6.61,
+      "sweetPotato": 9.5,
+      "banana": 5.31,
+      "cocoa": 0.48
+    },
+    "FJI": {
+      "taro": 8.01,
+      "sweetPotato": 2.46,
+      "banana": 4.5,
+      "cocoa": 0.44
+    },
+    "TUV": {
+      "taro": 6.61,
+      "sweetPotato": 9.5,
+      "banana": 5.31,
+      "cocoa": 0.48
+    },
+    "VUT": {
+      "taro": 6.61,
+      "sweetPotato": 9.5,
+      "banana": 11.88,
+      "cocoa": 0.47
+    },
+    "WSM": {
+      "taro": 6.86,
+      "sweetPotato": 9.5,
+      "banana": 5.07,
+      "cocoa": 0.5
+    },
+    "TON": {
+      "taro": 8.03,
+      "sweetPotato": 12.38,
+      "banana": 2.0,
+      "cocoa": 0.48
+    },
+    "KIR": {
+      "taro": 4.21,
+      "sweetPotato": 9.5,
+      "banana": 4.0,
+      "cocoa": 0.48
+    },
+    "SLB": {
+      "taro": 11.16,
+      "sweetPotato": 11.15,
+      "banana": 4.0,
+      "cocoa": 0.5
+    },
+    "PNG": {
+      "taro": 6.72,
+      "sweetPotato": 4.0,
+      "banana": 12.55,
+      "cocoa": 0.48
+    },
+    "PLW": {
+      "taro": 6.61,
+      "sweetPotato": 9.5,
+      "banana": 5.31,
+      "cocoa": 0.48
+    },
+    "MHL": {
+      "taro": 6.61,
+      "sweetPotato": 9.5,
+      "banana": 5.31,
+      "cocoa": 0.48
+    },
+    "FSM": {
+      "taro": 6.61,
+      "sweetPotato": 9.5,
+      "banana": 5.31,
+      "cocoa": 0.48
+    },
+    "COK": {
+      "taro": 6.61,
+      "sweetPotato": 23.68,
+      "banana": 3.3,
+      "cocoa": 0.48
+    },
+    "PYF": {
+      "taro": 6.61,
+      "sweetPotato": 9.5,
+      "banana": 5.12,
+      "cocoa": 0.48
+    },
+    "GUM": {
+      "taro": 6.61,
+      "sweetPotato": 9.5,
+      "banana": 5.31,
+      "cocoa": 0.48
+    },
+    "NRU": {
+      "taro": 6.61,
+      "sweetPotato": 9.5,
+      "banana": 5.31,
+      "cocoa": 0.48
+    },
+    "NCL": {
+      "taro": 3.0,
+      "sweetPotato": 5.0,
+      "banana": 4.31,
+      "cocoa": 0.48
+    },
+    "NIU": {
+      "taro": 4.93,
+      "sweetPotato": 7.84,
+      "banana": 1.73,
+      "cocoa": 0.48
+    },
+    "MNP": {
+      "taro": 6.61,
+      "sweetPotato": 9.5,
+      "banana": 5.31,
+      "cocoa": 0.48
+    },
+    "PCN": {
+      "taro": 6.61,
+      "sweetPotato": 9.5,
+      "banana": 5.31,
+      "cocoa": 0.48
+    },
+    "TKL": {
+      "taro": 6.61,
+      "sweetPotato": 9.5,
+      "banana": 5.31,
+      "cocoa": 0.48
+    },
+    "WLF": {
+      "taro": 6.61,
+      "sweetPotato": 9.5,
+      "banana": 5.31,
+      "cocoa": 0.48
+    },
+    "ASM": {
+      "taro": 6.61,
+      "sweetPotato": 9.5,
+      "banana": 5.31,
+      "cocoa": 0.48
+    }
   },
   {
     "year": 1964,
-    "taro": 6.64,
-    "sweetPotato": 9.63,
-    "banana": 5.37,
-    "cocoa": 0.46
+    "REGIONAL": {
+      "taro": 6.64,
+      "sweetPotato": 9.63,
+      "banana": 5.37,
+      "cocoa": 0.46
+    },
+    "FJI": {
+      "taro": 8.04,
+      "sweetPotato": 2.46,
+      "banana": 3.89,
+      "cocoa": 0.44
+    },
+    "TUV": {
+      "taro": 6.64,
+      "sweetPotato": 9.63,
+      "banana": 5.37,
+      "cocoa": 0.46
+    },
+    "VUT": {
+      "taro": 6.64,
+      "sweetPotato": 9.63,
+      "banana": 12.25,
+      "cocoa": 0.52
+    },
+    "WSM": {
+      "taro": 6.88,
+      "sweetPotato": 9.63,
+      "banana": 4.3,
+      "cocoa": 0.5
+    },
+    "TON": {
+      "taro": 7.8,
+      "sweetPotato": 11.94,
+      "banana": 1.83,
+      "cocoa": 0.46
+    },
+    "KIR": {
+      "taro": 4.25,
+      "sweetPotato": 9.63,
+      "banana": 4.0,
+      "cocoa": 0.46
+    },
+    "SLB": {
+      "taro": 11.46,
+      "sweetPotato": 11.2,
+      "banana": 4.06,
+      "cocoa": 0.51
+    },
+    "PNG": {
+      "taro": 6.75,
+      "sweetPotato": 3.97,
+      "banana": 12.55,
+      "cocoa": 0.33
+    },
+    "PLW": {
+      "taro": 6.64,
+      "sweetPotato": 9.63,
+      "banana": 5.37,
+      "cocoa": 0.46
+    },
+    "MHL": {
+      "taro": 6.64,
+      "sweetPotato": 9.63,
+      "banana": 5.37,
+      "cocoa": 0.46
+    },
+    "FSM": {
+      "taro": 6.64,
+      "sweetPotato": 9.63,
+      "banana": 5.37,
+      "cocoa": 0.46
+    },
+    "COK": {
+      "taro": 6.64,
+      "sweetPotato": 24.0,
+      "banana": 3.31,
+      "cocoa": 0.46
+    },
+    "PYF": {
+      "taro": 6.64,
+      "sweetPotato": 9.63,
+      "banana": 5.29,
+      "cocoa": 0.46
+    },
+    "GUM": {
+      "taro": 6.64,
+      "sweetPotato": 9.63,
+      "banana": 5.37,
+      "cocoa": 0.46
+    },
+    "NRU": {
+      "taro": 6.64,
+      "sweetPotato": 9.63,
+      "banana": 5.37,
+      "cocoa": 0.46
+    },
+    "NCL": {
+      "taro": 3.0,
+      "sweetPotato": 5.0,
+      "banana": 5.0,
+      "cocoa": 0.46
+    },
+    "NIU": {
+      "taro": 4.93,
+      "sweetPotato": 8.82,
+      "banana": 2.57,
+      "cocoa": 0.46
+    },
+    "MNP": {
+      "taro": 6.64,
+      "sweetPotato": 9.63,
+      "banana": 5.37,
+      "cocoa": 0.46
+    },
+    "PCN": {
+      "taro": 6.64,
+      "sweetPotato": 9.63,
+      "banana": 5.37,
+      "cocoa": 0.46
+    },
+    "TKL": {
+      "taro": 6.64,
+      "sweetPotato": 9.63,
+      "banana": 5.37,
+      "cocoa": 0.46
+    },
+    "WLF": {
+      "taro": 6.64,
+      "sweetPotato": 9.63,
+      "banana": 5.37,
+      "cocoa": 0.46
+    },
+    "ASM": {
+      "taro": 6.64,
+      "sweetPotato": 9.63,
+      "banana": 5.37,
+      "cocoa": 0.46
+    }
   },
   {
     "year": 1965,
-    "taro": 6.66,
-    "sweetPotato": 10.33,
-    "banana": 5.21,
-    "cocoa": 0.47
+    "REGIONAL": {
+      "taro": 6.66,
+      "sweetPotato": 10.33,
+      "banana": 5.21,
+      "cocoa": 0.47
+    },
+    "FJI": {
+      "taro": 8.07,
+      "sweetPotato": 2.47,
+      "banana": 1.98,
+      "cocoa": 0.44
+    },
+    "TUV": {
+      "taro": 6.66,
+      "sweetPotato": 10.33,
+      "banana": 5.21,
+      "cocoa": 0.47
+    },
+    "VUT": {
+      "taro": 6.66,
+      "sweetPotato": 10.33,
+      "banana": 11.76,
+      "cocoa": 0.5
+    },
+    "WSM": {
+      "taro": 6.97,
+      "sweetPotato": 10.33,
+      "banana": 4.12,
+      "cocoa": 0.38
+    },
+    "TON": {
+      "taro": 7.73,
+      "sweetPotato": 11.92,
+      "banana": 3.67,
+      "cocoa": 0.47
+    },
+    "KIR": {
+      "taro": 4.19,
+      "sweetPotato": 10.33,
+      "banana": 4.0,
+      "cocoa": 0.47
+    },
+    "SLB": {
+      "taro": 11.73,
+      "sweetPotato": 11.48,
+      "banana": 4.11,
+      "cocoa": 0.5
+    },
+    "PNG": {
+      "taro": 6.67,
+      "sweetPotato": 4.0,
+      "banana": 12.5,
+      "cocoa": 0.51
+    },
+    "PLW": {
+      "taro": 6.66,
+      "sweetPotato": 10.33,
+      "banana": 5.21,
+      "cocoa": 0.47
+    },
+    "MHL": {
+      "taro": 6.66,
+      "sweetPotato": 10.33,
+      "banana": 5.21,
+      "cocoa": 0.47
+    },
+    "FSM": {
+      "taro": 6.66,
+      "sweetPotato": 10.33,
+      "banana": 5.21,
+      "cocoa": 0.47
+    },
+    "COK": {
+      "taro": 6.66,
+      "sweetPotato": 23.97,
+      "banana": 3.0,
+      "cocoa": 0.47
+    },
+    "PYF": {
+      "taro": 6.66,
+      "sweetPotato": 10.33,
+      "banana": 5.41,
+      "cocoa": 0.47
+    },
+    "GUM": {
+      "taro": 6.66,
+      "sweetPotato": 10.33,
+      "banana": 5.21,
+      "cocoa": 0.47
+    },
+    "NRU": {
+      "taro": 6.66,
+      "sweetPotato": 10.33,
+      "banana": 5.21,
+      "cocoa": 0.47
+    },
+    "NCL": {
+      "taro": 3.0,
+      "sweetPotato": 5.0,
+      "banana": 4.76,
+      "cocoa": 0.47
+    },
+    "NIU": {
+      "taro": 4.93,
+      "sweetPotato": 13.46,
+      "banana": 1.98,
+      "cocoa": 0.47
+    },
+    "MNP": {
+      "taro": 6.66,
+      "sweetPotato": 10.33,
+      "banana": 5.21,
+      "cocoa": 0.47
+    },
+    "PCN": {
+      "taro": 6.66,
+      "sweetPotato": 10.33,
+      "banana": 5.21,
+      "cocoa": 0.47
+    },
+    "TKL": {
+      "taro": 6.66,
+      "sweetPotato": 10.33,
+      "banana": 5.21,
+      "cocoa": 0.47
+    },
+    "WLF": {
+      "taro": 6.66,
+      "sweetPotato": 10.33,
+      "banana": 5.21,
+      "cocoa": 0.47
+    },
+    "ASM": {
+      "taro": 6.66,
+      "sweetPotato": 10.33,
+      "banana": 5.21,
+      "cocoa": 0.47
+    }
   },
   {
     "year": 1966,
-    "taro": 6.67,
-    "sweetPotato": 8.93,
-    "banana": 5.59,
-    "cocoa": 0.46
+    "REGIONAL": {
+      "taro": 6.67,
+      "sweetPotato": 8.93,
+      "banana": 5.59,
+      "cocoa": 0.46
+    },
+    "FJI": {
+      "taro": 8.23,
+      "sweetPotato": 2.46,
+      "banana": 4.46,
+      "cocoa": 0.45
+    },
+    "TUV": {
+      "taro": 6.67,
+      "sweetPotato": 8.93,
+      "banana": 5.59,
+      "cocoa": 0.46
+    },
+    "VUT": {
+      "taro": 6.67,
+      "sweetPotato": 8.93,
+      "banana": 12.22,
+      "cocoa": 0.5
+    },
+    "WSM": {
+      "taro": 6.97,
+      "sweetPotato": 8.93,
+      "banana": 2.5,
+      "cocoa": 0.36
+    },
+    "TON": {
+      "taro": 7.63,
+      "sweetPotato": 11.92,
+      "banana": 4.57,
+      "cocoa": 0.46
+    },
+    "KIR": {
+      "taro": 4.13,
+      "sweetPotato": 8.93,
+      "banana": 4.0,
+      "cocoa": 0.46
+    },
+    "SLB": {
+      "taro": 11.72,
+      "sweetPotato": 11.39,
+      "banana": 4.17,
+      "cocoa": 0.48
+    },
+    "PNG": {
+      "taro": 6.75,
+      "sweetPotato": 4.2,
+      "banana": 12.5,
+      "cocoa": 0.52
+    },
+    "PLW": {
+      "taro": 6.67,
+      "sweetPotato": 8.93,
+      "banana": 5.59,
+      "cocoa": 0.46
+    },
+    "MHL": {
+      "taro": 6.67,
+      "sweetPotato": 8.93,
+      "banana": 5.59,
+      "cocoa": 0.46
+    },
+    "FSM": {
+      "taro": 6.67,
+      "sweetPotato": 8.93,
+      "banana": 5.59,
+      "cocoa": 0.46
+    },
+    "COK": {
+      "taro": 6.67,
+      "sweetPotato": 14.05,
+      "banana": 2.98,
+      "cocoa": 0.46
+    },
+    "PYF": {
+      "taro": 6.67,
+      "sweetPotato": 8.93,
+      "banana": 5.59,
+      "cocoa": 0.46
+    },
+    "GUM": {
+      "taro": 6.67,
+      "sweetPotato": 8.93,
+      "banana": 5.59,
+      "cocoa": 0.46
+    },
+    "NRU": {
+      "taro": 6.67,
+      "sweetPotato": 8.93,
+      "banana": 5.59,
+      "cocoa": 0.46
+    },
+    "NCL": {
+      "taro": 3.0,
+      "sweetPotato": 5.0,
+      "banana": 4.62,
+      "cocoa": 0.46
+    },
+    "NIU": {
+      "taro": 4.93,
+      "sweetPotato": 13.46,
+      "banana": 3.87,
+      "cocoa": 0.46
+    },
+    "MNP": {
+      "taro": 6.67,
+      "sweetPotato": 8.93,
+      "banana": 5.59,
+      "cocoa": 0.46
+    },
+    "PCN": {
+      "taro": 6.67,
+      "sweetPotato": 8.93,
+      "banana": 5.59,
+      "cocoa": 0.46
+    },
+    "TKL": {
+      "taro": 6.67,
+      "sweetPotato": 8.93,
+      "banana": 5.59,
+      "cocoa": 0.46
+    },
+    "WLF": {
+      "taro": 6.67,
+      "sweetPotato": 8.93,
+      "banana": 5.59,
+      "cocoa": 0.46
+    },
+    "ASM": {
+      "taro": 6.67,
+      "sweetPotato": 8.93,
+      "banana": 5.59,
+      "cocoa": 0.46
+    }
   },
   {
     "year": 1967,
-    "taro": 6.63,
-    "sweetPotato": 9.67,
-    "banana": 5.76,
-    "cocoa": 0.47
+    "REGIONAL": {
+      "taro": 6.63,
+      "sweetPotato": 9.67,
+      "banana": 5.76,
+      "cocoa": 0.47
+    },
+    "FJI": {
+      "taro": 8.54,
+      "sweetPotato": 2.46,
+      "banana": 2.59,
+      "cocoa": 0.45
+    },
+    "TUV": {
+      "taro": 6.63,
+      "sweetPotato": 9.67,
+      "banana": 5.76,
+      "cocoa": 0.47
+    },
+    "VUT": {
+      "taro": 6.63,
+      "sweetPotato": 9.67,
+      "banana": 12.11,
+      "cocoa": 0.5
+    },
+    "WSM": {
+      "taro": 6.97,
+      "sweetPotato": 9.67,
+      "banana": 4.0,
+      "cocoa": 0.41
+    },
+    "TON": {
+      "taro": 7.32,
+      "sweetPotato": 11.92,
+      "banana": 5.38,
+      "cocoa": 0.47
+    },
+    "KIR": {
+      "taro": 4.17,
+      "sweetPotato": 9.67,
+      "banana": 4.0,
+      "cocoa": 0.47
+    },
+    "SLB": {
+      "taro": 12.0,
+      "sweetPotato": 11.49,
+      "banana": 4.19,
+      "cocoa": 0.5
+    },
+    "PNG": {
+      "taro": 6.65,
+      "sweetPotato": 4.21,
+      "banana": 13.22,
+      "cocoa": 0.48
+    },
+    "PLW": {
+      "taro": 6.63,
+      "sweetPotato": 9.67,
+      "banana": 5.76,
+      "cocoa": 0.47
+    },
+    "MHL": {
+      "taro": 6.63,
+      "sweetPotato": 9.67,
+      "banana": 5.76,
+      "cocoa": 0.47
+    },
+    "FSM": {
+      "taro": 6.63,
+      "sweetPotato": 9.67,
+      "banana": 5.76,
+      "cocoa": 0.47
+    },
+    "COK": {
+      "taro": 6.63,
+      "sweetPotato": 13.64,
+      "banana": 3.67,
+      "cocoa": 0.47
+    },
+    "PYF": {
+      "taro": 6.63,
+      "sweetPotato": 9.67,
+      "banana": 5.71,
+      "cocoa": 0.47
+    },
+    "GUM": {
+      "taro": 6.63,
+      "sweetPotato": 9.67,
+      "banana": 5.76,
+      "cocoa": 0.47
+    },
+    "NRU": {
+      "taro": 6.63,
+      "sweetPotato": 9.67,
+      "banana": 5.76,
+      "cocoa": 0.47
+    },
+    "NCL": {
+      "taro": 2.5,
+      "sweetPotato": 3.97,
+      "banana": 4.41,
+      "cocoa": 0.47
+    },
+    "NIU": {
+      "taro": 4.93,
+      "sweetPotato": 20.0,
+      "banana": 4.05,
+      "cocoa": 0.47
+    },
+    "MNP": {
+      "taro": 6.63,
+      "sweetPotato": 9.67,
+      "banana": 5.76,
+      "cocoa": 0.47
+    },
+    "PCN": {
+      "taro": 6.63,
+      "sweetPotato": 9.67,
+      "banana": 5.76,
+      "cocoa": 0.47
+    },
+    "TKL": {
+      "taro": 6.63,
+      "sweetPotato": 9.67,
+      "banana": 5.76,
+      "cocoa": 0.47
+    },
+    "WLF": {
+      "taro": 6.63,
+      "sweetPotato": 9.67,
+      "banana": 5.76,
+      "cocoa": 0.47
+    },
+    "ASM": {
+      "taro": 6.63,
+      "sweetPotato": 9.67,
+      "banana": 5.76,
+      "cocoa": 0.47
+    }
   },
   {
     "year": 1968,
-    "taro": 6.7,
-    "sweetPotato": 10.68,
-    "banana": 5.83,
-    "cocoa": 0.46
+    "REGIONAL": {
+      "taro": 6.7,
+      "sweetPotato": 10.68,
+      "banana": 5.83,
+      "cocoa": 0.46
+    },
+    "FJI": {
+      "taro": 8.72,
+      "sweetPotato": 2.46,
+      "banana": 5.17,
+      "cocoa": 0.44
+    },
+    "TUV": {
+      "taro": 6.7,
+      "sweetPotato": 10.68,
+      "banana": 5.83,
+      "cocoa": 0.46
+    },
+    "VUT": {
+      "taro": 6.7,
+      "sweetPotato": 10.68,
+      "banana": 12.0,
+      "cocoa": 0.5
+    },
+    "WSM": {
+      "taro": 6.94,
+      "sweetPotato": 10.68,
+      "banana": 4.4,
+      "cocoa": 0.39
+    },
+    "TON": {
+      "taro": 7.08,
+      "sweetPotato": 11.92,
+      "banana": 5.29,
+      "cocoa": 0.46
+    },
+    "KIR": {
+      "taro": 4.2,
+      "sweetPotato": 10.68,
+      "banana": 4.0,
+      "cocoa": 0.46
+    },
+    "SLB": {
+      "taro": 12.48,
+      "sweetPotato": 11.5,
+      "banana": 4.22,
+      "cocoa": 0.5
+    },
+    "PNG": {
+      "taro": 6.71,
+      "sweetPotato": 4.1,
+      "banana": 12.5,
+      "cocoa": 0.46
+    },
+    "PLW": {
+      "taro": 6.7,
+      "sweetPotato": 10.68,
+      "banana": 5.83,
+      "cocoa": 0.46
+    },
+    "MHL": {
+      "taro": 6.7,
+      "sweetPotato": 10.68,
+      "banana": 5.83,
+      "cocoa": 0.46
+    },
+    "FSM": {
+      "taro": 6.7,
+      "sweetPotato": 10.68,
+      "banana": 5.83,
+      "cocoa": 0.46
+    },
+    "COK": {
+      "taro": 6.7,
+      "sweetPotato": 23.53,
+      "banana": 2.25,
+      "cocoa": 0.46
+    },
+    "PYF": {
+      "taro": 6.7,
+      "sweetPotato": 10.68,
+      "banana": 5.56,
+      "cocoa": 0.46
+    },
+    "GUM": {
+      "taro": 6.7,
+      "sweetPotato": 10.68,
+      "banana": 5.83,
+      "cocoa": 0.46
+    },
+    "NRU": {
+      "taro": 6.7,
+      "sweetPotato": 10.68,
+      "banana": 5.83,
+      "cocoa": 0.46
+    },
+    "NCL": {
+      "taro": 2.5,
+      "sweetPotato": 3.97,
+      "banana": 4.29,
+      "cocoa": 0.46
+    },
+    "NIU": {
+      "taro": 4.93,
+      "sweetPotato": 17.31,
+      "banana": 4.5,
+      "cocoa": 0.46
+    },
+    "MNP": {
+      "taro": 6.7,
+      "sweetPotato": 10.68,
+      "banana": 5.83,
+      "cocoa": 0.46
+    },
+    "PCN": {
+      "taro": 6.7,
+      "sweetPotato": 10.68,
+      "banana": 5.83,
+      "cocoa": 0.46
+    },
+    "TKL": {
+      "taro": 6.7,
+      "sweetPotato": 10.68,
+      "banana": 5.83,
+      "cocoa": 0.46
+    },
+    "WLF": {
+      "taro": 6.7,
+      "sweetPotato": 10.68,
+      "banana": 5.83,
+      "cocoa": 0.46
+    },
+    "ASM": {
+      "taro": 6.7,
+      "sweetPotato": 10.68,
+      "banana": 5.83,
+      "cocoa": 0.46
+    }
   },
   {
     "year": 1969,
-    "taro": 6.81,
-    "sweetPotato": 9.39,
-    "banana": 6.16,
-    "cocoa": 0.48
+    "REGIONAL": {
+      "taro": 6.81,
+      "sweetPotato": 9.39,
+      "banana": 6.16,
+      "cocoa": 0.48
+    },
+    "FJI": {
+      "taro": 9.34,
+      "sweetPotato": 2.42,
+      "banana": 4.83,
+      "cocoa": 0.44
+    },
+    "TUV": {
+      "taro": 6.81,
+      "sweetPotato": 9.39,
+      "banana": 6.16,
+      "cocoa": 0.48
+    },
+    "VUT": {
+      "taro": 6.81,
+      "sweetPotato": 9.39,
+      "banana": 11.81,
+      "cocoa": 0.5
+    },
+    "WSM": {
+      "taro": 6.76,
+      "sweetPotato": 9.39,
+      "banana": 4.73,
+      "cocoa": 0.49
+    },
+    "TON": {
+      "taro": 7.24,
+      "sweetPotato": 11.85,
+      "banana": 3.41,
+      "cocoa": 0.48
+    },
+    "KIR": {
+      "taro": 4.23,
+      "sweetPotato": 9.39,
+      "banana": 4.02,
+      "cocoa": 0.48
+    },
+    "SLB": {
+      "taro": 12.75,
+      "sweetPotato": 11.51,
+      "banana": 4.25,
+      "cocoa": 0.48
+    },
+    "PNG": {
+      "taro": 6.71,
+      "sweetPotato": 4.12,
+      "banana": 12.67,
+      "cocoa": 0.48
+    },
+    "PLW": {
+      "taro": 6.81,
+      "sweetPotato": 9.39,
+      "banana": 6.16,
+      "cocoa": 0.48
+    },
+    "MHL": {
+      "taro": 6.81,
+      "sweetPotato": 9.39,
+      "banana": 6.16,
+      "cocoa": 0.48
+    },
+    "FSM": {
+      "taro": 6.81,
+      "sweetPotato": 9.39,
+      "banana": 6.16,
+      "cocoa": 0.48
+    },
+    "COK": {
+      "taro": 6.81,
+      "sweetPotato": 17.82,
+      "banana": 7.5,
+      "cocoa": 0.48
+    },
+    "PYF": {
+      "taro": 6.81,
+      "sweetPotato": 9.39,
+      "banana": 5.78,
+      "cocoa": 0.48
+    },
+    "GUM": {
+      "taro": 6.81,
+      "sweetPotato": 9.39,
+      "banana": 6.16,
+      "cocoa": 0.48
+    },
+    "NRU": {
+      "taro": 6.81,
+      "sweetPotato": 9.39,
+      "banana": 6.16,
+      "cocoa": 0.48
+    },
+    "NCL": {
+      "taro": 2.5,
+      "sweetPotato": 3.97,
+      "banana": 4.17,
+      "cocoa": 0.48
+    },
+    "NIU": {
+      "taro": 4.93,
+      "sweetPotato": 14.0,
+      "banana": 4.55,
+      "cocoa": 0.48
+    },
+    "MNP": {
+      "taro": 6.81,
+      "sweetPotato": 9.39,
+      "banana": 6.16,
+      "cocoa": 0.48
+    },
+    "PCN": {
+      "taro": 6.81,
+      "sweetPotato": 9.39,
+      "banana": 6.16,
+      "cocoa": 0.48
+    },
+    "TKL": {
+      "taro": 6.81,
+      "sweetPotato": 9.39,
+      "banana": 6.16,
+      "cocoa": 0.48
+    },
+    "WLF": {
+      "taro": 6.81,
+      "sweetPotato": 9.39,
+      "banana": 6.16,
+      "cocoa": 0.48
+    },
+    "ASM": {
+      "taro": 6.81,
+      "sweetPotato": 9.39,
+      "banana": 6.16,
+      "cocoa": 0.48
+    }
   },
   {
     "year": 1970,
-    "taro": 6.98,
-    "sweetPotato": 10.19,
-    "banana": 6.26,
-    "cocoa": 0.44
+    "REGIONAL": {
+      "taro": 6.98,
+      "sweetPotato": 10.19,
+      "banana": 6.26,
+      "cocoa": 0.44
+    },
+    "FJI": {
+      "taro": 10.0,
+      "sweetPotato": 3.33,
+      "banana": 5.5,
+      "cocoa": 0.45
+    },
+    "TUV": {
+      "taro": 6.98,
+      "sweetPotato": 10.19,
+      "banana": 6.26,
+      "cocoa": 0.44
+    },
+    "VUT": {
+      "taro": 6.98,
+      "sweetPotato": 10.19,
+      "banana": 11.82,
+      "cocoa": 0.39
+    },
+    "WSM": {
+      "taro": 6.58,
+      "sweetPotato": 10.19,
+      "banana": 4.17,
+      "cocoa": 0.37
+    },
+    "TON": {
+      "taro": 7.24,
+      "sweetPotato": 12.01,
+      "banana": 2.67,
+      "cocoa": 0.44
+    },
+    "KIR": {
+      "taro": 4.26,
+      "sweetPotato": 10.19,
+      "banana": 4.04,
+      "cocoa": 0.44
+    },
+    "SLB": {
+      "taro": 13.11,
+      "sweetPotato": 11.52,
+      "banana": 4.28,
+      "cocoa": 0.5
+    },
+    "PNG": {
+      "taro": 6.7,
+      "sweetPotato": 4.24,
+      "banana": 12.5,
+      "cocoa": 0.48
+    },
+    "PLW": {
+      "taro": 6.98,
+      "sweetPotato": 10.19,
+      "banana": 6.26,
+      "cocoa": 0.44
+    },
+    "MHL": {
+      "taro": 6.98,
+      "sweetPotato": 10.19,
+      "banana": 6.26,
+      "cocoa": 0.44
+    },
+    "FSM": {
+      "taro": 6.98,
+      "sweetPotato": 10.19,
+      "banana": 6.26,
+      "cocoa": 0.44
+    },
+    "COK": {
+      "taro": 6.98,
+      "sweetPotato": 17.24,
+      "banana": 8.46,
+      "cocoa": 0.44
+    },
+    "PYF": {
+      "taro": 6.98,
+      "sweetPotato": 10.19,
+      "banana": 5.94,
+      "cocoa": 0.44
+    },
+    "GUM": {
+      "taro": 6.98,
+      "sweetPotato": 10.19,
+      "banana": 6.26,
+      "cocoa": 0.44
+    },
+    "NRU": {
+      "taro": 6.98,
+      "sweetPotato": 10.19,
+      "banana": 6.26,
+      "cocoa": 0.44
+    },
+    "NCL": {
+      "taro": 3.0,
+      "sweetPotato": 4.62,
+      "banana": 4.93,
+      "cocoa": 0.44
+    },
+    "NIU": {
+      "taro": 4.93,
+      "sweetPotato": 18.33,
+      "banana": 4.55,
+      "cocoa": 0.44
+    },
+    "MNP": {
+      "taro": 6.98,
+      "sweetPotato": 10.19,
+      "banana": 6.26,
+      "cocoa": 0.44
+    },
+    "PCN": {
+      "taro": 6.98,
+      "sweetPotato": 10.19,
+      "banana": 6.26,
+      "cocoa": 0.44
+    },
+    "TKL": {
+      "taro": 6.98,
+      "sweetPotato": 10.19,
+      "banana": 6.26,
+      "cocoa": 0.44
+    },
+    "WLF": {
+      "taro": 6.98,
+      "sweetPotato": 10.19,
+      "banana": 6.26,
+      "cocoa": 0.44
+    },
+    "ASM": {
+      "taro": 6.98,
+      "sweetPotato": 10.19,
+      "banana": 6.26,
+      "cocoa": 0.44
+    }
   },
   {
     "year": 1971,
-    "taro": 6.98,
-    "sweetPotato": 10.87,
-    "banana": 6.51,
-    "cocoa": 0.44
+    "REGIONAL": {
+      "taro": 6.98,
+      "sweetPotato": 10.87,
+      "banana": 6.51,
+      "cocoa": 0.44
+    },
+    "FJI": {
+      "taro": 11.2,
+      "sweetPotato": 2.5,
+      "banana": 5.49,
+      "cocoa": 0.44
+    },
+    "TUV": {
+      "taro": 6.98,
+      "sweetPotato": 10.87,
+      "banana": 6.51,
+      "cocoa": 0.44
+    },
+    "VUT": {
+      "taro": 6.98,
+      "sweetPotato": 10.87,
+      "banana": 11.67,
+      "cocoa": 0.3
+    },
+    "WSM": {
+      "taro": 6.75,
+      "sweetPotato": 10.87,
+      "banana": 3.78,
+      "cocoa": 0.43
+    },
+    "TON": {
+      "taro": 7.33,
+      "sweetPotato": 12.28,
+      "banana": 2.1,
+      "cocoa": 0.44
+    },
+    "KIR": {
+      "taro": 4.29,
+      "sweetPotato": 10.87,
+      "banana": 4.0,
+      "cocoa": 0.44
+    },
+    "SLB": {
+      "taro": 13.46,
+      "sweetPotato": 11.53,
+      "banana": 4.22,
+      "cocoa": 0.5
+    },
+    "PNG": {
+      "taro": 6.74,
+      "sweetPotato": 4.34,
+      "banana": 12.42,
+      "cocoa": 0.53
+    },
+    "PLW": {
+      "taro": 6.98,
+      "sweetPotato": 10.87,
+      "banana": 6.51,
+      "cocoa": 0.44
+    },
+    "MHL": {
+      "taro": 6.98,
+      "sweetPotato": 10.87,
+      "banana": 6.51,
+      "cocoa": 0.44
+    },
+    "FSM": {
+      "taro": 6.98,
+      "sweetPotato": 10.87,
+      "banana": 6.51,
+      "cocoa": 0.44
+    },
+    "COK": {
+      "taro": 6.98,
+      "sweetPotato": 23.79,
+      "banana": 12.67,
+      "cocoa": 0.44
+    },
+    "PYF": {
+      "taro": 6.98,
+      "sweetPotato": 10.87,
+      "banana": 5.79,
+      "cocoa": 0.44
+    },
+    "GUM": {
+      "taro": 6.98,
+      "sweetPotato": 10.87,
+      "banana": 6.51,
+      "cocoa": 0.44
+    },
+    "NRU": {
+      "taro": 6.98,
+      "sweetPotato": 10.87,
+      "banana": 6.51,
+      "cocoa": 0.44
+    },
+    "NCL": {
+      "taro": 3.0,
+      "sweetPotato": 4.15,
+      "banana": 4.93,
+      "cocoa": 0.44
+    },
+    "NIU": {
+      "taro": 3.08,
+      "sweetPotato": 17.5,
+      "banana": 4.55,
+      "cocoa": 0.44
+    },
+    "MNP": {
+      "taro": 6.98,
+      "sweetPotato": 10.87,
+      "banana": 6.51,
+      "cocoa": 0.44
+    },
+    "PCN": {
+      "taro": 6.98,
+      "sweetPotato": 10.87,
+      "banana": 6.51,
+      "cocoa": 0.44
+    },
+    "TKL": {
+      "taro": 6.98,
+      "sweetPotato": 10.87,
+      "banana": 6.51,
+      "cocoa": 0.44
+    },
+    "WLF": {
+      "taro": 6.98,
+      "sweetPotato": 10.87,
+      "banana": 6.51,
+      "cocoa": 0.44
+    },
+    "ASM": {
+      "taro": 6.98,
+      "sweetPotato": 10.87,
+      "banana": 6.51,
+      "cocoa": 0.44
+    }
   },
   {
     "year": 1972,
-    "taro": 7.21,
-    "sweetPotato": 11.05,
-    "banana": 5.95,
-    "cocoa": 0.42
+    "REGIONAL": {
+      "taro": 7.21,
+      "sweetPotato": 11.05,
+      "banana": 5.95,
+      "cocoa": 0.42
+    },
+    "FJI": {
+      "taro": 12.67,
+      "sweetPotato": 3.57,
+      "banana": 5.75,
+      "cocoa": 0.45
+    },
+    "TUV": {
+      "taro": 7.21,
+      "sweetPotato": 11.05,
+      "banana": 5.95,
+      "cocoa": 0.42
+    },
+    "VUT": {
+      "taro": 7.21,
+      "sweetPotato": 11.05,
+      "banana": 11.54,
+      "cocoa": 0.35
+    },
+    "WSM": {
+      "taro": 6.75,
+      "sweetPotato": 11.05,
+      "banana": 3.14,
+      "cocoa": 0.34
+    },
+    "TON": {
+      "taro": 7.39,
+      "sweetPotato": 11.85,
+      "banana": 1.95,
+      "cocoa": 0.42
+    },
+    "KIR": {
+      "taro": 4.31,
+      "sweetPotato": 11.05,
+      "banana": 4.03,
+      "cocoa": 0.42
+    },
+    "SLB": {
+      "taro": 13.81,
+      "sweetPotato": 11.53,
+      "banana": 4.27,
+      "cocoa": 0.49
+    },
+    "PNG": {
+      "taro": 6.67,
+      "sweetPotato": 4.47,
+      "banana": 12.5,
+      "cocoa": 0.49
+    },
+    "PLW": {
+      "taro": 7.21,
+      "sweetPotato": 11.05,
+      "banana": 5.95,
+      "cocoa": 0.42
+    },
+    "MHL": {
+      "taro": 7.21,
+      "sweetPotato": 11.05,
+      "banana": 5.95,
+      "cocoa": 0.42
+    },
+    "FSM": {
+      "taro": 7.21,
+      "sweetPotato": 11.05,
+      "banana": 5.95,
+      "cocoa": 0.42
+    },
+    "COK": {
+      "taro": 7.21,
+      "sweetPotato": 23.79,
+      "banana": 6.67,
+      "cocoa": 0.42
+    },
+    "PYF": {
+      "taro": 7.21,
+      "sweetPotato": 11.05,
+      "banana": 6.0,
+      "cocoa": 0.42
+    },
+    "GUM": {
+      "taro": 7.21,
+      "sweetPotato": 11.05,
+      "banana": 5.95,
+      "cocoa": 0.42
+    },
+    "NRU": {
+      "taro": 7.21,
+      "sweetPotato": 11.05,
+      "banana": 5.95,
+      "cocoa": 0.42
+    },
+    "NCL": {
+      "taro": 3.0,
+      "sweetPotato": 4.62,
+      "banana": 5.07,
+      "cocoa": 0.42
+    },
+    "NIU": {
+      "taro": 3.08,
+      "sweetPotato": 17.5,
+      "banana": 4.55,
+      "cocoa": 0.42
+    },
+    "MNP": {
+      "taro": 7.21,
+      "sweetPotato": 11.05,
+      "banana": 5.95,
+      "cocoa": 0.42
+    },
+    "PCN": {
+      "taro": 7.21,
+      "sweetPotato": 11.05,
+      "banana": 5.95,
+      "cocoa": 0.42
+    },
+    "TKL": {
+      "taro": 7.21,
+      "sweetPotato": 11.05,
+      "banana": 5.95,
+      "cocoa": 0.42
+    },
+    "WLF": {
+      "taro": 7.21,
+      "sweetPotato": 11.05,
+      "banana": 5.95,
+      "cocoa": 0.42
+    },
+    "ASM": {
+      "taro": 7.21,
+      "sweetPotato": 11.05,
+      "banana": 5.95,
+      "cocoa": 0.42
+    }
   },
   {
     "year": 1973,
-    "taro": 7.19,
-    "sweetPotato": 9.58,
-    "banana": 6.57,
-    "cocoa": 0.38
+    "REGIONAL": {
+      "taro": 7.19,
+      "sweetPotato": 9.58,
+      "banana": 6.57,
+      "cocoa": 0.38
+    },
+    "FJI": {
+      "taro": 12.35,
+      "sweetPotato": 3.57,
+      "banana": 5.62,
+      "cocoa": 0.44
+    },
+    "TUV": {
+      "taro": 7.19,
+      "sweetPotato": 9.58,
+      "banana": 6.57,
+      "cocoa": 0.38
+    },
+    "VUT": {
+      "taro": 7.19,
+      "sweetPotato": 9.58,
+      "banana": 12.0,
+      "cocoa": 0.3
+    },
+    "WSM": {
+      "taro": 6.75,
+      "sweetPotato": 9.58,
+      "banana": 3.67,
+      "cocoa": 0.28
+    },
+    "TON": {
+      "taro": 7.38,
+      "sweetPotato": 12.0,
+      "banana": 2.06,
+      "cocoa": 0.38
+    },
+    "KIR": {
+      "taro": 4.33,
+      "sweetPotato": 9.58,
+      "banana": 4.0,
+      "cocoa": 0.38
+    },
+    "SLB": {
+      "taro": 14.08,
+      "sweetPotato": 11.54,
+      "banana": 4.3,
+      "cocoa": 0.5
+    },
+    "PNG": {
+      "taro": 6.67,
+      "sweetPotato": 4.46,
+      "banana": 12.17,
+      "cocoa": 0.38
+    },
+    "PLW": {
+      "taro": 7.19,
+      "sweetPotato": 9.58,
+      "banana": 6.57,
+      "cocoa": 0.38
+    },
+    "MHL": {
+      "taro": 7.19,
+      "sweetPotato": 9.58,
+      "banana": 6.57,
+      "cocoa": 0.38
+    },
+    "FSM": {
+      "taro": 7.19,
+      "sweetPotato": 9.58,
+      "banana": 6.57,
+      "cocoa": 0.38
+    },
+    "COK": {
+      "taro": 7.19,
+      "sweetPotato": 13.37,
+      "banana": 12.96,
+      "cocoa": 0.38
+    },
+    "PYF": {
+      "taro": 7.19,
+      "sweetPotato": 9.58,
+      "banana": 6.0,
+      "cocoa": 0.38
+    },
+    "GUM": {
+      "taro": 7.19,
+      "sweetPotato": 9.58,
+      "banana": 6.57,
+      "cocoa": 0.38
+    },
+    "NRU": {
+      "taro": 7.19,
+      "sweetPotato": 9.58,
+      "banana": 6.57,
+      "cocoa": 0.38
+    },
+    "NCL": {
+      "taro": 3.0,
+      "sweetPotato": 4.62,
+      "banana": 4.93,
+      "cocoa": 0.38
+    },
+    "NIU": {
+      "taro": 3.0,
+      "sweetPotato": 17.5,
+      "banana": 4.55,
+      "cocoa": 0.38
+    },
+    "MNP": {
+      "taro": 7.19,
+      "sweetPotato": 9.58,
+      "banana": 6.57,
+      "cocoa": 0.38
+    },
+    "PCN": {
+      "taro": 7.19,
+      "sweetPotato": 9.58,
+      "banana": 6.57,
+      "cocoa": 0.38
+    },
+    "TKL": {
+      "taro": 7.19,
+      "sweetPotato": 9.58,
+      "banana": 6.57,
+      "cocoa": 0.38
+    },
+    "WLF": {
+      "taro": 7.19,
+      "sweetPotato": 9.58,
+      "banana": 6.57,
+      "cocoa": 0.38
+    },
+    "ASM": {
+      "taro": 7.19,
+      "sweetPotato": 9.58,
+      "banana": 6.57,
+      "cocoa": 0.38
+    }
   },
   {
     "year": 1974,
-    "taro": 7.0,
-    "sweetPotato": 9.96,
-    "banana": 6.45,
-    "cocoa": 0.42
+    "REGIONAL": {
+      "taro": 7.0,
+      "sweetPotato": 9.96,
+      "banana": 6.45,
+      "cocoa": 0.42
+    },
+    "FJI": {
+      "taro": 11.98,
+      "sweetPotato": 3.57,
+      "banana": 5.38,
+      "cocoa": 0.49
+    },
+    "TUV": {
+      "taro": 7.0,
+      "sweetPotato": 9.96,
+      "banana": 6.45,
+      "cocoa": 0.42
+    },
+    "VUT": {
+      "taro": 7.0,
+      "sweetPotato": 9.96,
+      "banana": 12.0,
+      "cocoa": 0.3
+    },
+    "WSM": {
+      "taro": 6.75,
+      "sweetPotato": 9.96,
+      "banana": 4.4,
+      "cocoa": 0.3
+    },
+    "TON": {
+      "taro": 7.27,
+      "sweetPotato": 12.04,
+      "banana": 2.19,
+      "cocoa": 0.42
+    },
+    "KIR": {
+      "taro": 4.52,
+      "sweetPotato": 9.96,
+      "banana": 3.97,
+      "cocoa": 0.42
+    },
+    "SLB": {
+      "taro": 14.55,
+      "sweetPotato": 11.6,
+      "banana": 4.32,
+      "cocoa": 0.52
+    },
+    "PNG": {
+      "taro": 6.67,
+      "sweetPotato": 4.61,
+      "banana": 13.61,
+      "cocoa": 0.47
+    },
+    "PLW": {
+      "taro": 7.0,
+      "sweetPotato": 9.96,
+      "banana": 6.45,
+      "cocoa": 0.42
+    },
+    "MHL": {
+      "taro": 7.0,
+      "sweetPotato": 9.96,
+      "banana": 6.45,
+      "cocoa": 0.42
+    },
+    "FSM": {
+      "taro": 7.0,
+      "sweetPotato": 9.96,
+      "banana": 6.45,
+      "cocoa": 0.42
+    },
+    "COK": {
+      "taro": 7.0,
+      "sweetPotato": 13.86,
+      "banana": 9.33,
+      "cocoa": 0.42
+    },
+    "PYF": {
+      "taro": 7.0,
+      "sweetPotato": 9.96,
+      "banana": 6.3,
+      "cocoa": 0.42
+    },
+    "GUM": {
+      "taro": 7.0,
+      "sweetPotato": 9.96,
+      "banana": 6.45,
+      "cocoa": 0.42
+    },
+    "NRU": {
+      "taro": 7.0,
+      "sweetPotato": 9.96,
+      "banana": 6.45,
+      "cocoa": 0.42
+    },
+    "NCL": {
+      "taro": 3.0,
+      "sweetPotato": 4.57,
+      "banana": 4.86,
+      "cocoa": 0.42
+    },
+    "NIU": {
+      "taro": 1.24,
+      "sweetPotato": 19.44,
+      "banana": 4.55,
+      "cocoa": 0.42
+    },
+    "MNP": {
+      "taro": 7.0,
+      "sweetPotato": 9.96,
+      "banana": 6.45,
+      "cocoa": 0.42
+    },
+    "PCN": {
+      "taro": 7.0,
+      "sweetPotato": 9.96,
+      "banana": 6.45,
+      "cocoa": 0.42
+    },
+    "TKL": {
+      "taro": 7.0,
+      "sweetPotato": 9.96,
+      "banana": 6.45,
+      "cocoa": 0.42
+    },
+    "WLF": {
+      "taro": 7.0,
+      "sweetPotato": 9.96,
+      "banana": 6.45,
+      "cocoa": 0.42
+    },
+    "ASM": {
+      "taro": 7.0,
+      "sweetPotato": 9.96,
+      "banana": 6.45,
+      "cocoa": 0.42
+    }
   },
   {
     "year": 1975,
-    "taro": 7.1,
-    "sweetPotato": 11.51,
-    "banana": 6.72,
-    "cocoa": 0.41
+    "REGIONAL": {
+      "taro": 7.1,
+      "sweetPotato": 11.51,
+      "banana": 6.72,
+      "cocoa": 0.41
+    },
+    "FJI": {
+      "taro": 11.95,
+      "sweetPotato": 3.48,
+      "banana": 5.62,
+      "cocoa": 0.48
+    },
+    "TUV": {
+      "taro": 7.1,
+      "sweetPotato": 11.51,
+      "banana": 6.72,
+      "cocoa": 0.41
+    },
+    "VUT": {
+      "taro": 7.1,
+      "sweetPotato": 11.51,
+      "banana": 12.0,
+      "cocoa": 0.3
+    },
+    "WSM": {
+      "taro": 6.75,
+      "sweetPotato": 11.51,
+      "banana": 5.5,
+      "cocoa": 0.32
+    },
+    "TON": {
+      "taro": 7.12,
+      "sweetPotato": 11.92,
+      "banana": 2.39,
+      "cocoa": 0.41
+    },
+    "KIR": {
+      "taro": 4.69,
+      "sweetPotato": 11.51,
+      "banana": 3.95,
+      "cocoa": 0.41
+    },
+    "SLB": {
+      "taro": 15.02,
+      "sweetPotato": 11.72,
+      "banana": 4.43,
+      "cocoa": 0.49
+    },
+    "PNG": {
+      "taro": 6.73,
+      "sweetPotato": 4.52,
+      "banana": 12.06,
+      "cocoa": 0.47
+    },
+    "PLW": {
+      "taro": 7.1,
+      "sweetPotato": 11.51,
+      "banana": 6.72,
+      "cocoa": 0.41
+    },
+    "MHL": {
+      "taro": 7.1,
+      "sweetPotato": 11.51,
+      "banana": 6.72,
+      "cocoa": 0.41
+    },
+    "FSM": {
+      "taro": 7.1,
+      "sweetPotato": 11.51,
+      "banana": 6.72,
+      "cocoa": 0.41
+    },
+    "COK": {
+      "taro": 7.1,
+      "sweetPotato": 22.5,
+      "banana": 12.1,
+      "cocoa": 0.41
+    },
+    "PYF": {
+      "taro": 7.1,
+      "sweetPotato": 11.51,
+      "banana": 6.5,
+      "cocoa": 0.41
+    },
+    "GUM": {
+      "taro": 7.1,
+      "sweetPotato": 11.51,
+      "banana": 6.72,
+      "cocoa": 0.41
+    },
+    "NRU": {
+      "taro": 7.1,
+      "sweetPotato": 11.51,
+      "banana": 6.72,
+      "cocoa": 0.41
+    },
+    "NCL": {
+      "taro": 2.89,
+      "sweetPotato": 4.57,
+      "banana": 4.86,
+      "cocoa": 0.41
+    },
+    "NIU": {
+      "taro": 1.65,
+      "sweetPotato": 21.88,
+      "banana": 4.55,
+      "cocoa": 0.41
+    },
+    "MNP": {
+      "taro": 7.1,
+      "sweetPotato": 11.51,
+      "banana": 6.72,
+      "cocoa": 0.41
+    },
+    "PCN": {
+      "taro": 7.1,
+      "sweetPotato": 11.51,
+      "banana": 6.72,
+      "cocoa": 0.41
+    },
+    "TKL": {
+      "taro": 7.1,
+      "sweetPotato": 11.51,
+      "banana": 6.72,
+      "cocoa": 0.41
+    },
+    "WLF": {
+      "taro": 7.1,
+      "sweetPotato": 11.51,
+      "banana": 6.72,
+      "cocoa": 0.41
+    },
+    "ASM": {
+      "taro": 7.1,
+      "sweetPotato": 11.51,
+      "banana": 6.72,
+      "cocoa": 0.41
+    }
   },
   {
     "year": 1976,
-    "taro": 6.96,
-    "sweetPotato": 10.77,
-    "banana": 6.25,
-    "cocoa": 0.4
+    "REGIONAL": {
+      "taro": 6.96,
+      "sweetPotato": 10.77,
+      "banana": 6.25,
+      "cocoa": 0.4
+    },
+    "FJI": {
+      "taro": 10.0,
+      "sweetPotato": 2.55,
+      "banana": 5.62,
+      "cocoa": 0.49
+    },
+    "TUV": {
+      "taro": 6.96,
+      "sweetPotato": 10.77,
+      "banana": 6.25,
+      "cocoa": 0.4
+    },
+    "VUT": {
+      "taro": 6.96,
+      "sweetPotato": 10.77,
+      "banana": 12.0,
+      "cocoa": 0.3
+    },
+    "WSM": {
+      "taro": 6.74,
+      "sweetPotato": 10.77,
+      "banana": 5.75,
+      "cocoa": 0.3
+    },
+    "TON": {
+      "taro": 7.14,
+      "sweetPotato": 11.9,
+      "banana": 2.15,
+      "cocoa": 0.4
+    },
+    "KIR": {
+      "taro": 4.85,
+      "sweetPotato": 10.77,
+      "banana": 3.93,
+      "cocoa": 0.4
+    },
+    "SLB": {
+      "taro": 15.49,
+      "sweetPotato": 11.85,
+      "banana": 4.59,
+      "cocoa": 0.5
+    },
+    "PNG": {
+      "taro": 6.71,
+      "sweetPotato": 4.54,
+      "banana": 13.01,
+      "cocoa": 0.42
+    },
+    "PLW": {
+      "taro": 6.96,
+      "sweetPotato": 10.77,
+      "banana": 6.25,
+      "cocoa": 0.4
+    },
+    "MHL": {
+      "taro": 6.96,
+      "sweetPotato": 10.77,
+      "banana": 6.25,
+      "cocoa": 0.4
+    },
+    "FSM": {
+      "taro": 6.96,
+      "sweetPotato": 10.77,
+      "banana": 6.25,
+      "cocoa": 0.4
+    },
+    "COK": {
+      "taro": 6.96,
+      "sweetPotato": 16.67,
+      "banana": 5.5,
+      "cocoa": 0.4
+    },
+    "PYF": {
+      "taro": 6.96,
+      "sweetPotato": 10.77,
+      "banana": 6.8,
+      "cocoa": 0.4
+    },
+    "GUM": {
+      "taro": 6.96,
+      "sweetPotato": 10.77,
+      "banana": 6.25,
+      "cocoa": 0.4
+    },
+    "NRU": {
+      "taro": 6.96,
+      "sweetPotato": 10.77,
+      "banana": 6.25,
+      "cocoa": 0.4
+    },
+    "NCL": {
+      "taro": 2.94,
+      "sweetPotato": 4.57,
+      "banana": 4.8,
+      "cocoa": 0.4
+    },
+    "NIU": {
+      "taro": 1.81,
+      "sweetPotato": 23.33,
+      "banana": 4.55,
+      "cocoa": 0.4
+    },
+    "MNP": {
+      "taro": 6.96,
+      "sweetPotato": 10.77,
+      "banana": 6.25,
+      "cocoa": 0.4
+    },
+    "PCN": {
+      "taro": 6.96,
+      "sweetPotato": 10.77,
+      "banana": 6.25,
+      "cocoa": 0.4
+    },
+    "TKL": {
+      "taro": 6.96,
+      "sweetPotato": 10.77,
+      "banana": 6.25,
+      "cocoa": 0.4
+    },
+    "WLF": {
+      "taro": 6.96,
+      "sweetPotato": 10.77,
+      "banana": 6.25,
+      "cocoa": 0.4
+    },
+    "ASM": {
+      "taro": 6.96,
+      "sweetPotato": 10.77,
+      "banana": 6.25,
+      "cocoa": 0.4
+    }
   },
   {
     "year": 1977,
-    "taro": 7.12,
-    "sweetPotato": 11.82,
-    "banana": 5.91,
-    "cocoa": 0.42
+    "REGIONAL": {
+      "taro": 7.12,
+      "sweetPotato": 11.82,
+      "banana": 5.91,
+      "cocoa": 0.42
+    },
+    "FJI": {
+      "taro": 11.0,
+      "sweetPotato": 3.09,
+      "banana": 6.0,
+      "cocoa": 0.54
+    },
+    "TUV": {
+      "taro": 7.12,
+      "sweetPotato": 11.82,
+      "banana": 5.91,
+      "cocoa": 0.42
+    },
+    "VUT": {
+      "taro": 7.12,
+      "sweetPotato": 11.82,
+      "banana": 12.0,
+      "cocoa": 0.3
+    },
+    "WSM": {
+      "taro": 6.74,
+      "sweetPotato": 11.82,
+      "banana": 5.71,
+      "cocoa": 0.44
+    },
+    "TON": {
+      "taro": 6.76,
+      "sweetPotato": 12.08,
+      "banana": 2.67,
+      "cocoa": 0.42
+    },
+    "KIR": {
+      "taro": 4.85,
+      "sweetPotato": 11.82,
+      "banana": 4.0,
+      "cocoa": 0.42
+    },
+    "SLB": {
+      "taro": 15.89,
+      "sweetPotato": 11.9,
+      "banana": 4.76,
+      "cocoa": 0.47
+    },
+    "PNG": {
+      "taro": 6.72,
+      "sweetPotato": 4.52,
+      "banana": 12.5,
+      "cocoa": 0.36
+    },
+    "PLW": {
+      "taro": 7.12,
+      "sweetPotato": 11.82,
+      "banana": 5.91,
+      "cocoa": 0.42
+    },
+    "MHL": {
+      "taro": 7.12,
+      "sweetPotato": 11.82,
+      "banana": 5.91,
+      "cocoa": 0.42
+    },
+    "FSM": {
+      "taro": 7.12,
+      "sweetPotato": 11.82,
+      "banana": 5.91,
+      "cocoa": 0.42
+    },
+    "COK": {
+      "taro": 7.12,
+      "sweetPotato": 23.33,
+      "banana": 1.12,
+      "cocoa": 0.42
+    },
+    "PYF": {
+      "taro": 7.12,
+      "sweetPotato": 11.82,
+      "banana": 7.0,
+      "cocoa": 0.42
+    },
+    "GUM": {
+      "taro": 7.12,
+      "sweetPotato": 11.82,
+      "banana": 5.91,
+      "cocoa": 0.42
+    },
+    "NRU": {
+      "taro": 7.12,
+      "sweetPotato": 11.82,
+      "banana": 5.91,
+      "cocoa": 0.42
+    },
+    "NCL": {
+      "taro": 3.2,
+      "sweetPotato": 4.51,
+      "banana": 4.74,
+      "cocoa": 0.42
+    },
+    "NIU": {
+      "taro": 1.81,
+      "sweetPotato": 23.33,
+      "banana": 4.55,
+      "cocoa": 0.42
+    },
+    "MNP": {
+      "taro": 7.12,
+      "sweetPotato": 11.82,
+      "banana": 5.91,
+      "cocoa": 0.42
+    },
+    "PCN": {
+      "taro": 7.12,
+      "sweetPotato": 11.82,
+      "banana": 5.91,
+      "cocoa": 0.42
+    },
+    "TKL": {
+      "taro": 7.12,
+      "sweetPotato": 11.82,
+      "banana": 5.91,
+      "cocoa": 0.42
+    },
+    "WLF": {
+      "taro": 7.12,
+      "sweetPotato": 11.82,
+      "banana": 5.91,
+      "cocoa": 0.42
+    },
+    "ASM": {
+      "taro": 7.12,
+      "sweetPotato": 11.82,
+      "banana": 5.91,
+      "cocoa": 0.42
+    }
   },
   {
     "year": 1978,
-    "taro": 7.21,
-    "sweetPotato": 12.09,
-    "banana": 5.95,
-    "cocoa": 0.41
+    "REGIONAL": {
+      "taro": 7.21,
+      "sweetPotato": 12.09,
+      "banana": 5.95,
+      "cocoa": 0.41
+    },
+    "FJI": {
+      "taro": 11.0,
+      "sweetPotato": 2.86,
+      "banana": 6.0,
+      "cocoa": 0.56
+    },
+    "TUV": {
+      "taro": 7.21,
+      "sweetPotato": 12.09,
+      "banana": 5.95,
+      "cocoa": 0.41
+    },
+    "VUT": {
+      "taro": 7.21,
+      "sweetPotato": 12.09,
+      "banana": 12.0,
+      "cocoa": 0.37
+    },
+    "WSM": {
+      "taro": 6.8,
+      "sweetPotato": 12.09,
+      "banana": 5.71,
+      "cocoa": 0.25
+    },
+    "TON": {
+      "taro": 6.39,
+      "sweetPotato": 12.45,
+      "banana": 1.91,
+      "cocoa": 0.41
+    },
+    "KIR": {
+      "taro": 4.85,
+      "sweetPotato": 12.09,
+      "banana": 4.09,
+      "cocoa": 0.41
+    },
+    "SLB": {
+      "taro": 16.47,
+      "sweetPotato": 11.99,
+      "banana": 4.86,
+      "cocoa": 0.5
+    },
+    "PNG": {
+      "taro": 6.72,
+      "sweetPotato": 4.52,
+      "banana": 12.79,
+      "cocoa": 0.36
+    },
+    "PLW": {
+      "taro": 7.21,
+      "sweetPotato": 12.09,
+      "banana": 5.95,
+      "cocoa": 0.41
+    },
+    "MHL": {
+      "taro": 7.21,
+      "sweetPotato": 12.09,
+      "banana": 5.95,
+      "cocoa": 0.41
+    },
+    "FSM": {
+      "taro": 7.21,
+      "sweetPotato": 12.09,
+      "banana": 5.95,
+      "cocoa": 0.41
+    },
+    "COK": {
+      "taro": 7.21,
+      "sweetPotato": 23.33,
+      "banana": 1.87,
+      "cocoa": 0.41
+    },
+    "PYF": {
+      "taro": 7.21,
+      "sweetPotato": 12.09,
+      "banana": 7.0,
+      "cocoa": 0.41
+    },
+    "GUM": {
+      "taro": 7.21,
+      "sweetPotato": 12.09,
+      "banana": 5.95,
+      "cocoa": 0.41
+    },
+    "NRU": {
+      "taro": 7.21,
+      "sweetPotato": 12.09,
+      "banana": 5.95,
+      "cocoa": 0.41
+    },
+    "NCL": {
+      "taro": 3.5,
+      "sweetPotato": 4.44,
+      "banana": 4.69,
+      "cocoa": 0.41
+    },
+    "NIU": {
+      "taro": 1.98,
+      "sweetPotato": 25.0,
+      "banana": 4.55,
+      "cocoa": 0.41
+    },
+    "MNP": {
+      "taro": 7.21,
+      "sweetPotato": 12.09,
+      "banana": 5.95,
+      "cocoa": 0.41
+    },
+    "PCN": {
+      "taro": 7.21,
+      "sweetPotato": 12.09,
+      "banana": 5.95,
+      "cocoa": 0.41
+    },
+    "TKL": {
+      "taro": 7.21,
+      "sweetPotato": 12.09,
+      "banana": 5.95,
+      "cocoa": 0.41
+    },
+    "WLF": {
+      "taro": 7.21,
+      "sweetPotato": 12.09,
+      "banana": 5.95,
+      "cocoa": 0.41
+    },
+    "ASM": {
+      "taro": 7.21,
+      "sweetPotato": 12.09,
+      "banana": 5.95,
+      "cocoa": 0.41
+    }
   },
   {
     "year": 1979,
-    "taro": 7.39,
-    "sweetPotato": 12.15,
-    "banana": 6.09,
-    "cocoa": 0.43
+    "REGIONAL": {
+      "taro": 7.39,
+      "sweetPotato": 12.15,
+      "banana": 6.09,
+      "cocoa": 0.43
+    },
+    "FJI": {
+      "taro": 11.0,
+      "sweetPotato": 2.86,
+      "banana": 6.67,
+      "cocoa": 0.56
+    },
+    "TUV": {
+      "taro": 7.39,
+      "sweetPotato": 12.15,
+      "banana": 6.09,
+      "cocoa": 0.43
+    },
+    "VUT": {
+      "taro": 7.39,
+      "sweetPotato": 12.15,
+      "banana": 12.0,
+      "cocoa": 0.37
+    },
+    "WSM": {
+      "taro": 6.87,
+      "sweetPotato": 12.15,
+      "banana": 5.71,
+      "cocoa": 0.33
+    },
+    "TON": {
+      "taro": 6.92,
+      "sweetPotato": 12.93,
+      "banana": 2.0,
+      "cocoa": 0.43
+    },
+    "KIR": {
+      "taro": 4.85,
+      "sweetPotato": 12.15,
+      "banana": 4.19,
+      "cocoa": 0.43
+    },
+    "SLB": {
+      "taro": 17.13,
+      "sweetPotato": 12.09,
+      "banana": 5.03,
+      "cocoa": 0.52
+    },
+    "PNG": {
+      "taro": 6.64,
+      "sweetPotato": 4.5,
+      "banana": 12.57,
+      "cocoa": 0.36
+    },
+    "PLW": {
+      "taro": 7.39,
+      "sweetPotato": 12.15,
+      "banana": 6.09,
+      "cocoa": 0.43
+    },
+    "MHL": {
+      "taro": 7.39,
+      "sweetPotato": 12.15,
+      "banana": 6.09,
+      "cocoa": 0.43
+    },
+    "FSM": {
+      "taro": 7.39,
+      "sweetPotato": 12.15,
+      "banana": 6.09,
+      "cocoa": 0.43
+    },
+    "COK": {
+      "taro": 7.39,
+      "sweetPotato": 23.33,
+      "banana": 2.16,
+      "cocoa": 0.43
+    },
+    "PYF": {
+      "taro": 7.39,
+      "sweetPotato": 12.15,
+      "banana": 7.0,
+      "cocoa": 0.43
+    },
+    "GUM": {
+      "taro": 7.39,
+      "sweetPotato": 12.15,
+      "banana": 6.09,
+      "cocoa": 0.43
+    },
+    "NRU": {
+      "taro": 7.39,
+      "sweetPotato": 12.15,
+      "banana": 6.09,
+      "cocoa": 0.43
+    },
+    "NCL": {
+      "taro": 3.73,
+      "sweetPotato": 4.32,
+      "banana": 5.14,
+      "cocoa": 0.43
+    },
+    "NIU": {
+      "taro": 2.0,
+      "sweetPotato": 25.0,
+      "banana": 4.55,
+      "cocoa": 0.43
+    },
+    "MNP": {
+      "taro": 7.39,
+      "sweetPotato": 12.15,
+      "banana": 6.09,
+      "cocoa": 0.43
+    },
+    "PCN": {
+      "taro": 7.39,
+      "sweetPotato": 12.15,
+      "banana": 6.09,
+      "cocoa": 0.43
+    },
+    "TKL": {
+      "taro": 7.39,
+      "sweetPotato": 12.15,
+      "banana": 6.09,
+      "cocoa": 0.43
+    },
+    "WLF": {
+      "taro": 7.39,
+      "sweetPotato": 12.15,
+      "banana": 6.09,
+      "cocoa": 0.43
+    },
+    "ASM": {
+      "taro": 7.39,
+      "sweetPotato": 12.15,
+      "banana": 6.09,
+      "cocoa": 0.43
+    }
   },
   {
     "year": 1980,
-    "taro": 7.62,
-    "sweetPotato": 12.0,
-    "banana": 6.79,
-    "cocoa": 0.38
+    "REGIONAL": {
+      "taro": 7.62,
+      "sweetPotato": 12.0,
+      "banana": 6.79,
+      "cocoa": 0.38
+    },
+    "FJI": {
+      "taro": 12.0,
+      "sweetPotato": 2.67,
+      "banana": 6.67,
+      "cocoa": 0.47
+    },
+    "TUV": {
+      "taro": 7.62,
+      "sweetPotato": 12.0,
+      "banana": 6.79,
+      "cocoa": 0.38
+    },
+    "VUT": {
+      "taro": 7.62,
+      "sweetPotato": 12.0,
+      "banana": 12.0,
+      "cocoa": 0.29
+    },
+    "WSM": {
+      "taro": 6.93,
+      "sweetPotato": 12.0,
+      "banana": 5.71,
+      "cocoa": 0.24
+    },
+    "TON": {
+      "taro": 6.94,
+      "sweetPotato": 11.9,
+      "banana": 1.11,
+      "cocoa": 0.38
+    },
+    "KIR": {
+      "taro": 4.85,
+      "sweetPotato": 12.0,
+      "banana": 4.28,
+      "cocoa": 0.38
+    },
+    "SLB": {
+      "taro": 17.7,
+      "sweetPotato": 12.31,
+      "banana": 5.0,
+      "cocoa": 0.49
+    },
+    "PNG": {
+      "taro": 6.71,
+      "sweetPotato": 4.52,
+      "banana": 13.24,
+      "cocoa": 0.4
+    },
+    "PLW": {
+      "taro": 7.62,
+      "sweetPotato": 12.0,
+      "banana": 6.79,
+      "cocoa": 0.38
+    },
+    "MHL": {
+      "taro": 7.62,
+      "sweetPotato": 12.0,
+      "banana": 6.79,
+      "cocoa": 0.38
+    },
+    "FSM": {
+      "taro": 7.62,
+      "sweetPotato": 12.0,
+      "banana": 6.79,
+      "cocoa": 0.38
+    },
+    "COK": {
+      "taro": 7.62,
+      "sweetPotato": 23.33,
+      "banana": 9.6,
+      "cocoa": 0.38
+    },
+    "PYF": {
+      "taro": 7.62,
+      "sweetPotato": 12.0,
+      "banana": 7.0,
+      "cocoa": 0.38
+    },
+    "GUM": {
+      "taro": 7.62,
+      "sweetPotato": 12.0,
+      "banana": 6.79,
+      "cocoa": 0.38
+    },
+    "NRU": {
+      "taro": 7.62,
+      "sweetPotato": 12.0,
+      "banana": 6.79,
+      "cocoa": 0.38
+    },
+    "NCL": {
+      "taro": 3.92,
+      "sweetPotato": 4.25,
+      "banana": 5.43,
+      "cocoa": 0.38
+    },
+    "NIU": {
+      "taro": 1.9,
+      "sweetPotato": 25.0,
+      "banana": 4.64,
+      "cocoa": 0.38
+    },
+    "MNP": {
+      "taro": 7.62,
+      "sweetPotato": 12.0,
+      "banana": 6.79,
+      "cocoa": 0.38
+    },
+    "PCN": {
+      "taro": 7.62,
+      "sweetPotato": 12.0,
+      "banana": 6.79,
+      "cocoa": 0.38
+    },
+    "TKL": {
+      "taro": 7.62,
+      "sweetPotato": 12.0,
+      "banana": 6.79,
+      "cocoa": 0.38
+    },
+    "WLF": {
+      "taro": 7.62,
+      "sweetPotato": 12.0,
+      "banana": 6.79,
+      "cocoa": 0.38
+    },
+    "ASM": {
+      "taro": 7.62,
+      "sweetPotato": 12.0,
+      "banana": 6.79,
+      "cocoa": 0.38
+    }
   },
   {
     "year": 1981,
-    "taro": 7.78,
-    "sweetPotato": 12.04,
-    "banana": 6.85,
-    "cocoa": 0.4
+    "REGIONAL": {
+      "taro": 7.78,
+      "sweetPotato": 12.04,
+      "banana": 6.85,
+      "cocoa": 0.4
+    },
+    "FJI": {
+      "taro": 12.0,
+      "sweetPotato": 2.67,
+      "banana": 6.93,
+      "cocoa": 0.53
+    },
+    "TUV": {
+      "taro": 7.78,
+      "sweetPotato": 12.04,
+      "banana": 6.85,
+      "cocoa": 0.4
+    },
+    "VUT": {
+      "taro": 7.78,
+      "sweetPotato": 12.04,
+      "banana": 12.36,
+      "cocoa": 0.31
+    },
+    "WSM": {
+      "taro": 6.94,
+      "sweetPotato": 12.04,
+      "banana": 6.29,
+      "cocoa": 0.28
+    },
+    "TON": {
+      "taro": 6.97,
+      "sweetPotato": 11.96,
+      "banana": 1.09,
+      "cocoa": 0.4
+    },
+    "KIR": {
+      "taro": 5.0,
+      "sweetPotato": 12.04,
+      "banana": 4.31,
+      "cocoa": 0.4
+    },
+    "SLB": {
+      "taro": 18.35,
+      "sweetPotato": 12.5,
+      "banana": 5.26,
+      "cocoa": 0.49
+    },
+    "PNG": {
+      "taro": 6.7,
+      "sweetPotato": 4.53,
+      "banana": 12.66,
+      "cocoa": 0.4
+    },
+    "PLW": {
+      "taro": 7.78,
+      "sweetPotato": 12.04,
+      "banana": 6.85,
+      "cocoa": 0.4
+    },
+    "MHL": {
+      "taro": 7.78,
+      "sweetPotato": 12.04,
+      "banana": 6.85,
+      "cocoa": 0.4
+    },
+    "FSM": {
+      "taro": 7.78,
+      "sweetPotato": 12.04,
+      "banana": 6.85,
+      "cocoa": 0.4
+    },
+    "COK": {
+      "taro": 7.78,
+      "sweetPotato": 23.33,
+      "banana": 12.0,
+      "cocoa": 0.4
+    },
+    "PYF": {
+      "taro": 7.78,
+      "sweetPotato": 12.04,
+      "banana": 7.0,
+      "cocoa": 0.4
+    },
+    "GUM": {
+      "taro": 7.78,
+      "sweetPotato": 12.04,
+      "banana": 6.85,
+      "cocoa": 0.4
+    },
+    "NRU": {
+      "taro": 7.78,
+      "sweetPotato": 12.04,
+      "banana": 6.85,
+      "cocoa": 0.4
+    },
+    "NCL": {
+      "taro": 4.13,
+      "sweetPotato": 4.27,
+      "banana": 2.67,
+      "cocoa": 0.4
+    },
+    "NIU": {
+      "taro": 2.12,
+      "sweetPotato": 25.0,
+      "banana": 4.73,
+      "cocoa": 0.4
+    },
+    "MNP": {
+      "taro": 7.78,
+      "sweetPotato": 12.04,
+      "banana": 6.85,
+      "cocoa": 0.4
+    },
+    "PCN": {
+      "taro": 7.78,
+      "sweetPotato": 12.04,
+      "banana": 6.85,
+      "cocoa": 0.4
+    },
+    "TKL": {
+      "taro": 7.78,
+      "sweetPotato": 12.04,
+      "banana": 6.85,
+      "cocoa": 0.4
+    },
+    "WLF": {
+      "taro": 7.78,
+      "sweetPotato": 12.04,
+      "banana": 6.85,
+      "cocoa": 0.4
+    },
+    "ASM": {
+      "taro": 7.78,
+      "sweetPotato": 12.04,
+      "banana": 6.85,
+      "cocoa": 0.4
+    }
   },
   {
     "year": 1982,
-    "taro": 7.93,
-    "sweetPotato": 12.21,
-    "banana": 6.62,
-    "cocoa": 0.33
+    "REGIONAL": {
+      "taro": 7.93,
+      "sweetPotato": 12.21,
+      "banana": 6.62,
+      "cocoa": 0.33
+    },
+    "FJI": {
+      "taro": 12.0,
+      "sweetPotato": 2.67,
+      "banana": 6.93,
+      "cocoa": 0.34
+    },
+    "TUV": {
+      "taro": 7.93,
+      "sweetPotato": 12.21,
+      "banana": 6.62,
+      "cocoa": 0.33
+    },
+    "VUT": {
+      "taro": 7.93,
+      "sweetPotato": 12.21,
+      "banana": 12.5,
+      "cocoa": 0.21
+    },
+    "WSM": {
+      "taro": 7.1,
+      "sweetPotato": 12.21,
+      "banana": 6.29,
+      "cocoa": 0.26
+    },
+    "TON": {
+      "taro": 7.0,
+      "sweetPotato": 12.0,
+      "banana": 0.86,
+      "cocoa": 0.33
+    },
+    "KIR": {
+      "taro": 5.14,
+      "sweetPotato": 12.21,
+      "banana": 4.34,
+      "cocoa": 0.33
+    },
+    "SLB": {
+      "taro": 18.82,
+      "sweetPotato": 12.75,
+      "banana": 5.68,
+      "cocoa": 0.49
+    },
+    "PNG": {
+      "taro": 6.7,
+      "sweetPotato": 4.53,
+      "banana": 12.65,
+      "cocoa": 0.33
+    },
+    "PLW": {
+      "taro": 7.93,
+      "sweetPotato": 12.21,
+      "banana": 6.62,
+      "cocoa": 0.33
+    },
+    "MHL": {
+      "taro": 7.93,
+      "sweetPotato": 12.21,
+      "banana": 6.62,
+      "cocoa": 0.33
+    },
+    "FSM": {
+      "taro": 7.93,
+      "sweetPotato": 12.21,
+      "banana": 6.62,
+      "cocoa": 0.33
+    },
+    "COK": {
+      "taro": 7.93,
+      "sweetPotato": 24.17,
+      "banana": 9.6,
+      "cocoa": 0.33
+    },
+    "PYF": {
+      "taro": 7.93,
+      "sweetPotato": 12.21,
+      "banana": 7.0,
+      "cocoa": 0.33
+    },
+    "GUM": {
+      "taro": 7.93,
+      "sweetPotato": 12.21,
+      "banana": 6.62,
+      "cocoa": 0.33
+    },
+    "NRU": {
+      "taro": 7.93,
+      "sweetPotato": 12.21,
+      "banana": 6.62,
+      "cocoa": 0.33
+    },
+    "NCL": {
+      "taro": 4.25,
+      "sweetPotato": 4.34,
+      "banana": 2.09,
+      "cocoa": 0.33
+    },
+    "NIU": {
+      "taro": 2.41,
+      "sweetPotato": 25.0,
+      "banana": 4.82,
+      "cocoa": 0.33
+    },
+    "MNP": {
+      "taro": 7.93,
+      "sweetPotato": 12.21,
+      "banana": 6.62,
+      "cocoa": 0.33
+    },
+    "PCN": {
+      "taro": 7.93,
+      "sweetPotato": 12.21,
+      "banana": 6.62,
+      "cocoa": 0.33
+    },
+    "TKL": {
+      "taro": 7.93,
+      "sweetPotato": 12.21,
+      "banana": 6.62,
+      "cocoa": 0.33
+    },
+    "WLF": {
+      "taro": 7.93,
+      "sweetPotato": 12.21,
+      "banana": 6.62,
+      "cocoa": 0.33
+    },
+    "ASM": {
+      "taro": 7.93,
+      "sweetPotato": 12.21,
+      "banana": 6.62,
+      "cocoa": 0.33
+    }
   },
   {
     "year": 1983,
-    "taro": 8.08,
-    "sweetPotato": 12.43,
-    "banana": 6.22,
-    "cocoa": 0.36
+    "REGIONAL": {
+      "taro": 8.08,
+      "sweetPotato": 12.43,
+      "banana": 6.22,
+      "cocoa": 0.36
+    },
+    "FJI": {
+      "taro": 12.0,
+      "sweetPotato": 3.0,
+      "banana": 6.88,
+      "cocoa": 0.3
+    },
+    "TUV": {
+      "taro": 8.08,
+      "sweetPotato": 12.43,
+      "banana": 6.22,
+      "cocoa": 0.36
+    },
+    "VUT": {
+      "taro": 8.08,
+      "sweetPotato": 12.43,
+      "banana": 12.77,
+      "cocoa": 0.39
+    },
+    "WSM": {
+      "taro": 6.98,
+      "sweetPotato": 12.43,
+      "banana": 6.29,
+      "cocoa": 0.24
+    },
+    "TON": {
+      "taro": 7.04,
+      "sweetPotato": 11.92,
+      "banana": 1.81,
+      "cocoa": 0.4
+    },
+    "KIR": {
+      "taro": 5.28,
+      "sweetPotato": 12.43,
+      "banana": 4.38,
+      "cocoa": 0.36
+    },
+    "SLB": {
+      "taro": 19.37,
+      "sweetPotato": 13.0,
+      "banana": 5.79,
+      "cocoa": 0.5
+    },
+    "PNG": {
+      "taro": 6.73,
+      "sweetPotato": 4.69,
+      "banana": 12.64,
+      "cocoa": 0.35
+    },
+    "PLW": {
+      "taro": 8.08,
+      "sweetPotato": 12.43,
+      "banana": 6.22,
+      "cocoa": 0.36
+    },
+    "MHL": {
+      "taro": 8.08,
+      "sweetPotato": 12.43,
+      "banana": 6.22,
+      "cocoa": 0.36
+    },
+    "FSM": {
+      "taro": 8.08,
+      "sweetPotato": 12.43,
+      "banana": 6.22,
+      "cocoa": 0.36
+    },
+    "COK": {
+      "taro": 8.08,
+      "sweetPotato": 25.0,
+      "banana": 5.0,
+      "cocoa": 0.36
+    },
+    "PYF": {
+      "taro": 8.08,
+      "sweetPotato": 12.43,
+      "banana": 5.88,
+      "cocoa": 0.36
+    },
+    "GUM": {
+      "taro": 8.08,
+      "sweetPotato": 12.43,
+      "banana": 6.22,
+      "cocoa": 0.36
+    },
+    "NRU": {
+      "taro": 8.08,
+      "sweetPotato": 12.43,
+      "banana": 6.22,
+      "cocoa": 0.36
+    },
+    "NCL": {
+      "taro": 4.33,
+      "sweetPotato": 4.42,
+      "banana": 2.08,
+      "cocoa": 0.36
+    },
+    "NIU": {
+      "taro": 2.91,
+      "sweetPotato": 25.0,
+      "banana": 4.91,
+      "cocoa": 0.36
+    },
+    "MNP": {
+      "taro": 8.08,
+      "sweetPotato": 12.43,
+      "banana": 6.22,
+      "cocoa": 0.36
+    },
+    "PCN": {
+      "taro": 8.08,
+      "sweetPotato": 12.43,
+      "banana": 6.22,
+      "cocoa": 0.36
+    },
+    "TKL": {
+      "taro": 8.08,
+      "sweetPotato": 12.43,
+      "banana": 6.22,
+      "cocoa": 0.36
+    },
+    "WLF": {
+      "taro": 8.08,
+      "sweetPotato": 12.43,
+      "banana": 6.22,
+      "cocoa": 0.36
+    },
+    "ASM": {
+      "taro": 8.08,
+      "sweetPotato": 12.43,
+      "banana": 6.22,
+      "cocoa": 0.36
+    }
   },
   {
     "year": 1984,
-    "taro": 7.96,
-    "sweetPotato": 12.57,
-    "banana": 6.67,
-    "cocoa": 0.39
+    "REGIONAL": {
+      "taro": 7.96,
+      "sweetPotato": 12.57,
+      "banana": 6.67,
+      "cocoa": 0.39
+    },
+    "FJI": {
+      "taro": 10.0,
+      "sweetPotato": 3.0,
+      "banana": 6.88,
+      "cocoa": 0.31
+    },
+    "TUV": {
+      "taro": 7.96,
+      "sweetPotato": 12.57,
+      "banana": 6.67,
+      "cocoa": 0.39
+    },
+    "VUT": {
+      "taro": 7.96,
+      "sweetPotato": 12.57,
+      "banana": 12.86,
+      "cocoa": 0.41
+    },
+    "WSM": {
+      "taro": 7.04,
+      "sweetPotato": 12.57,
+      "banana": 6.23,
+      "cocoa": 0.3
+    },
+    "TON": {
+      "taro": 7.08,
+      "sweetPotato": 12.0,
+      "banana": 1.03,
+      "cocoa": 0.4
+    },
+    "KIR": {
+      "taro": 5.41,
+      "sweetPotato": 12.57,
+      "banana": 4.41,
+      "cocoa": 0.39
+    },
+    "SLB": {
+      "taro": 19.82,
+      "sweetPotato": 13.0,
+      "banana": 6.05,
+      "cocoa": 0.5
+    },
+    "PNG": {
+      "taro": 6.7,
+      "sweetPotato": 4.73,
+      "banana": 12.78,
+      "cocoa": 0.43
+    },
+    "PLW": {
+      "taro": 7.96,
+      "sweetPotato": 12.57,
+      "banana": 6.67,
+      "cocoa": 0.39
+    },
+    "MHL": {
+      "taro": 7.96,
+      "sweetPotato": 12.57,
+      "banana": 6.67,
+      "cocoa": 0.39
+    },
+    "FSM": {
+      "taro": 7.96,
+      "sweetPotato": 12.57,
+      "banana": 6.67,
+      "cocoa": 0.39
+    },
+    "COK": {
+      "taro": 7.96,
+      "sweetPotato": 25.83,
+      "banana": 9.5,
+      "cocoa": 0.39
+    },
+    "PYF": {
+      "taro": 7.96,
+      "sweetPotato": 12.57,
+      "banana": 6.35,
+      "cocoa": 0.39
+    },
+    "GUM": {
+      "taro": 7.96,
+      "sweetPotato": 12.57,
+      "banana": 6.67,
+      "cocoa": 0.39
+    },
+    "NRU": {
+      "taro": 7.96,
+      "sweetPotato": 12.57,
+      "banana": 6.67,
+      "cocoa": 0.39
+    },
+    "NCL": {
+      "taro": 4.33,
+      "sweetPotato": 4.42,
+      "banana": 2.28,
+      "cocoa": 0.39
+    },
+    "NIU": {
+      "taro": 3.3,
+      "sweetPotato": 25.0,
+      "banana": 5.0,
+      "cocoa": 0.39
+    },
+    "MNP": {
+      "taro": 7.96,
+      "sweetPotato": 12.57,
+      "banana": 6.67,
+      "cocoa": 0.39
+    },
+    "PCN": {
+      "taro": 7.96,
+      "sweetPotato": 12.57,
+      "banana": 6.67,
+      "cocoa": 0.39
+    },
+    "TKL": {
+      "taro": 7.96,
+      "sweetPotato": 12.57,
+      "banana": 6.67,
+      "cocoa": 0.39
+    },
+    "WLF": {
+      "taro": 7.96,
+      "sweetPotato": 12.57,
+      "banana": 6.67,
+      "cocoa": 0.39
+    },
+    "ASM": {
+      "taro": 7.96,
+      "sweetPotato": 12.57,
+      "banana": 6.67,
+      "cocoa": 0.39
+    }
   },
   {
     "year": 1985,
-    "taro": 8.03,
-    "sweetPotato": 12.67,
-    "banana": 7.02,
-    "cocoa": 0.38
+    "REGIONAL": {
+      "taro": 8.03,
+      "sweetPotato": 12.67,
+      "banana": 7.02,
+      "cocoa": 0.38
+    },
+    "FJI": {
+      "taro": 10.0,
+      "sweetPotato": 6.0,
+      "banana": 6.83,
+      "cocoa": 0.19
+    },
+    "TUV": {
+      "taro": 8.03,
+      "sweetPotato": 12.67,
+      "banana": 7.02,
+      "cocoa": 0.38
+    },
+    "VUT": {
+      "taro": 8.03,
+      "sweetPotato": 12.67,
+      "banana": 12.53,
+      "cocoa": 0.49
+    },
+    "WSM": {
+      "taro": 6.93,
+      "sweetPotato": 12.67,
+      "banana": 6.26,
+      "cocoa": 0.24
+    },
+    "TON": {
+      "taro": 7.12,
+      "sweetPotato": 11.9,
+      "banana": 0.99,
+      "cocoa": 0.4
+    },
+    "KIR": {
+      "taro": 5.14,
+      "sweetPotato": 12.67,
+      "banana": 4.49,
+      "cocoa": 0.38
+    },
+    "SLB": {
+      "taro": 20.18,
+      "sweetPotato": 13.25,
+      "banana": 6.0,
+      "cocoa": 0.51
+    },
+    "PNG": {
+      "taro": 6.72,
+      "sweetPotato": 4.79,
+      "banana": 12.7,
+      "cocoa": 0.44
+    },
+    "PLW": {
+      "taro": 8.03,
+      "sweetPotato": 12.67,
+      "banana": 7.02,
+      "cocoa": 0.38
+    },
+    "MHL": {
+      "taro": 8.03,
+      "sweetPotato": 12.67,
+      "banana": 7.02,
+      "cocoa": 0.38
+    },
+    "FSM": {
+      "taro": 8.03,
+      "sweetPotato": 12.67,
+      "banana": 7.02,
+      "cocoa": 0.38
+    },
+    "COK": {
+      "taro": 8.03,
+      "sweetPotato": 23.33,
+      "banana": 12.5,
+      "cocoa": 0.38
+    },
+    "PYF": {
+      "taro": 8.03,
+      "sweetPotato": 12.67,
+      "banana": 7.99,
+      "cocoa": 0.38
+    },
+    "GUM": {
+      "taro": 8.03,
+      "sweetPotato": 12.67,
+      "banana": 7.02,
+      "cocoa": 0.38
+    },
+    "NRU": {
+      "taro": 8.03,
+      "sweetPotato": 12.67,
+      "banana": 7.02,
+      "cocoa": 0.38
+    },
+    "NCL": {
+      "taro": 4.33,
+      "sweetPotato": 4.42,
+      "banana": 1.9,
+      "cocoa": 0.38
+    },
+    "NIU": {
+      "taro": 3.8,
+      "sweetPotato": 25.0,
+      "banana": 5.0,
+      "cocoa": 0.38
+    },
+    "MNP": {
+      "taro": 8.03,
+      "sweetPotato": 12.67,
+      "banana": 7.02,
+      "cocoa": 0.38
+    },
+    "PCN": {
+      "taro": 8.03,
+      "sweetPotato": 12.67,
+      "banana": 7.02,
+      "cocoa": 0.38
+    },
+    "TKL": {
+      "taro": 8.03,
+      "sweetPotato": 12.67,
+      "banana": 7.02,
+      "cocoa": 0.38
+    },
+    "WLF": {
+      "taro": 8.03,
+      "sweetPotato": 12.67,
+      "banana": 7.02,
+      "cocoa": 0.38
+    },
+    "ASM": {
+      "taro": 8.03,
+      "sweetPotato": 12.67,
+      "banana": 7.02,
+      "cocoa": 0.38
+    }
   },
   {
     "year": 1986,
-    "taro": 8.11,
-    "sweetPotato": 12.65,
-    "banana": 6.23,
-    "cocoa": 0.38
+    "REGIONAL": {
+      "taro": 8.11,
+      "sweetPotato": 12.65,
+      "banana": 6.23,
+      "cocoa": 0.38
+    },
+    "FJI": {
+      "taro": 9.95,
+      "sweetPotato": 2.5,
+      "banana": 7.04,
+      "cocoa": 0.16
+    },
+    "TUV": {
+      "taro": 8.11,
+      "sweetPotato": 12.65,
+      "banana": 6.23,
+      "cocoa": 0.38
+    },
+    "VUT": {
+      "taro": 8.11,
+      "sweetPotato": 12.65,
+      "banana": 12.05,
+      "cocoa": 0.61
+    },
+    "WSM": {
+      "taro": 6.82,
+      "sweetPotato": 12.65,
+      "banana": 6.28,
+      "cocoa": 0.22
+    },
+    "TON": {
+      "taro": 7.18,
+      "sweetPotato": 11.96,
+      "banana": 0.92,
+      "cocoa": 0.4
+    },
+    "KIR": {
+      "taro": 4.86,
+      "sweetPotato": 12.65,
+      "banana": 4.55,
+      "cocoa": 0.38
+    },
+    "SLB": {
+      "taro": 20.52,
+      "sweetPotato": 13.25,
+      "banana": 5.75,
+      "cocoa": 0.5
+    },
+    "PNG": {
+      "taro": 6.72,
+      "sweetPotato": 4.75,
+      "banana": 12.23,
+      "cocoa": 0.37
+    },
+    "PLW": {
+      "taro": 8.11,
+      "sweetPotato": 12.65,
+      "banana": 6.23,
+      "cocoa": 0.38
+    },
+    "MHL": {
+      "taro": 8.11,
+      "sweetPotato": 12.65,
+      "banana": 6.23,
+      "cocoa": 0.38
+    },
+    "FSM": {
+      "taro": 8.11,
+      "sweetPotato": 12.65,
+      "banana": 6.23,
+      "cocoa": 0.38
+    },
+    "COK": {
+      "taro": 8.11,
+      "sweetPotato": 26.67,
+      "banana": 5.0,
+      "cocoa": 0.38
+    },
+    "PYF": {
+      "taro": 8.11,
+      "sweetPotato": 12.65,
+      "banana": 7.71,
+      "cocoa": 0.38
+    },
+    "GUM": {
+      "taro": 8.11,
+      "sweetPotato": 12.65,
+      "banana": 6.23,
+      "cocoa": 0.38
+    },
+    "NRU": {
+      "taro": 8.11,
+      "sweetPotato": 12.65,
+      "banana": 6.23,
+      "cocoa": 0.38
+    },
+    "NCL": {
+      "taro": 4.33,
+      "sweetPotato": 4.42,
+      "banana": 1.93,
+      "cocoa": 0.38
+    },
+    "NIU": {
+      "taro": 4.48,
+      "sweetPotato": 25.0,
+      "banana": 5.09,
+      "cocoa": 0.38
+    },
+    "MNP": {
+      "taro": 8.11,
+      "sweetPotato": 12.65,
+      "banana": 6.23,
+      "cocoa": 0.38
+    },
+    "PCN": {
+      "taro": 8.11,
+      "sweetPotato": 12.65,
+      "banana": 6.23,
+      "cocoa": 0.38
+    },
+    "TKL": {
+      "taro": 8.11,
+      "sweetPotato": 12.65,
+      "banana": 6.23,
+      "cocoa": 0.38
+    },
+    "WLF": {
+      "taro": 8.11,
+      "sweetPotato": 12.65,
+      "banana": 6.23,
+      "cocoa": 0.38
+    },
+    "ASM": {
+      "taro": 8.11,
+      "sweetPotato": 12.65,
+      "banana": 6.23,
+      "cocoa": 0.38
+    }
   },
   {
     "year": 1987,
-    "taro": 8.2,
-    "sweetPotato": 14.18,
-    "banana": 6.06,
-    "cocoa": 0.4
+    "REGIONAL": {
+      "taro": 8.2,
+      "sweetPotato": 14.18,
+      "banana": 6.06,
+      "cocoa": 0.4
+    },
+    "FJI": {
+      "taro": 10.0,
+      "sweetPotato": 12.87,
+      "banana": 6.99,
+      "cocoa": 0.32
+    },
+    "TUV": {
+      "taro": 8.2,
+      "sweetPotato": 14.18,
+      "banana": 6.06,
+      "cocoa": 0.4
+    },
+    "VUT": {
+      "taro": 8.2,
+      "sweetPotato": 14.18,
+      "banana": 12.0,
+      "cocoa": 0.53
+    },
+    "WSM": {
+      "taro": 6.72,
+      "sweetPotato": 14.18,
+      "banana": 6.22,
+      "cocoa": 0.32
+    },
+    "TON": {
+      "taro": 7.25,
+      "sweetPotato": 12.08,
+      "banana": 0.95,
+      "cocoa": 0.4
+    },
+    "KIR": {
+      "taro": 4.59,
+      "sweetPotato": 14.18,
+      "banana": 4.6,
+      "cocoa": 0.4
+    },
+    "SLB": {
+      "taro": 20.77,
+      "sweetPotato": 13.5,
+      "banana": 5.88,
+      "cocoa": 0.5
+    },
+    "PNG": {
+      "taro": 6.84,
+      "sweetPotato": 4.76,
+      "banana": 13.3,
+      "cocoa": 0.35
+    },
+    "PLW": {
+      "taro": 8.2,
+      "sweetPotato": 14.18,
+      "banana": 6.06,
+      "cocoa": 0.4
+    },
+    "MHL": {
+      "taro": 8.2,
+      "sweetPotato": 14.18,
+      "banana": 6.06,
+      "cocoa": 0.4
+    },
+    "FSM": {
+      "taro": 8.2,
+      "sweetPotato": 14.18,
+      "banana": 6.06,
+      "cocoa": 0.4
+    },
+    "COK": {
+      "taro": 8.2,
+      "sweetPotato": 26.67,
+      "banana": 4.21,
+      "cocoa": 0.4
+    },
+    "PYF": {
+      "taro": 8.2,
+      "sweetPotato": 14.18,
+      "banana": 5.48,
+      "cocoa": 0.4
+    },
+    "GUM": {
+      "taro": 8.2,
+      "sweetPotato": 14.18,
+      "banana": 6.06,
+      "cocoa": 0.4
+    },
+    "NRU": {
+      "taro": 8.2,
+      "sweetPotato": 14.18,
+      "banana": 6.06,
+      "cocoa": 0.4
+    },
+    "NCL": {
+      "taro": 4.33,
+      "sweetPotato": 4.42,
+      "banana": 1.88,
+      "cocoa": 0.4
+    },
+    "NIU": {
+      "taro": 5.11,
+      "sweetPotato": 25.0,
+      "banana": 5.14,
+      "cocoa": 0.4
+    },
+    "MNP": {
+      "taro": 8.2,
+      "sweetPotato": 14.18,
+      "banana": 6.06,
+      "cocoa": 0.4
+    },
+    "PCN": {
+      "taro": 8.2,
+      "sweetPotato": 14.18,
+      "banana": 6.06,
+      "cocoa": 0.4
+    },
+    "TKL": {
+      "taro": 8.2,
+      "sweetPotato": 14.18,
+      "banana": 6.06,
+      "cocoa": 0.4
+    },
+    "WLF": {
+      "taro": 8.2,
+      "sweetPotato": 14.18,
+      "banana": 6.06,
+      "cocoa": 0.4
+    },
+    "ASM": {
+      "taro": 8.2,
+      "sweetPotato": 14.18,
+      "banana": 6.06,
+      "cocoa": 0.4
+    }
   },
   {
     "year": 1988,
-    "taro": 8.23,
-    "sweetPotato": 14.36,
-    "banana": 6.1,
-    "cocoa": 0.35
+    "REGIONAL": {
+      "taro": 8.23,
+      "sweetPotato": 14.36,
+      "banana": 6.1,
+      "cocoa": 0.35
+    },
+    "FJI": {
+      "taro": 9.5,
+      "sweetPotato": 7.6,
+      "banana": 7.09,
+      "cocoa": 0.18
+    },
+    "TUV": {
+      "taro": 8.23,
+      "sweetPotato": 14.36,
+      "banana": 6.1,
+      "cocoa": 0.35
+    },
+    "VUT": {
+      "taro": 8.23,
+      "sweetPotato": 14.36,
+      "banana": 12.0,
+      "cocoa": 0.38
+    },
+    "WSM": {
+      "taro": 6.55,
+      "sweetPotato": 14.36,
+      "banana": 6.21,
+      "cocoa": 0.23
+    },
+    "TON": {
+      "taro": 7.33,
+      "sweetPotato": 12.25,
+      "banana": 1.0,
+      "cocoa": 0.4
+    },
+    "KIR": {
+      "taro": 4.32,
+      "sweetPotato": 14.36,
+      "banana": 4.42,
+      "cocoa": 0.35
+    },
+    "SLB": {
+      "taro": 21.25,
+      "sweetPotato": 13.75,
+      "banana": 6.25,
+      "cocoa": 0.51
+    },
+    "PNG": {
+      "taro": 6.94,
+      "sweetPotato": 5.05,
+      "banana": 14.03,
+      "cocoa": 0.39
+    },
+    "PLW": {
+      "taro": 8.23,
+      "sweetPotato": 14.36,
+      "banana": 6.1,
+      "cocoa": 0.35
+    },
+    "MHL": {
+      "taro": 8.23,
+      "sweetPotato": 14.36,
+      "banana": 6.1,
+      "cocoa": 0.35
+    },
+    "FSM": {
+      "taro": 8.23,
+      "sweetPotato": 14.36,
+      "banana": 6.1,
+      "cocoa": 0.35
+    },
+    "COK": {
+      "taro": 8.23,
+      "sweetPotato": 27.5,
+      "banana": 4.19,
+      "cocoa": 0.35
+    },
+    "PYF": {
+      "taro": 8.23,
+      "sweetPotato": 14.36,
+      "banana": 5.11,
+      "cocoa": 0.35
+    },
+    "GUM": {
+      "taro": 8.23,
+      "sweetPotato": 14.36,
+      "banana": 6.1,
+      "cocoa": 0.35
+    },
+    "NRU": {
+      "taro": 8.23,
+      "sweetPotato": 14.36,
+      "banana": 6.1,
+      "cocoa": 0.35
+    },
+    "NCL": {
+      "taro": 4.25,
+      "sweetPotato": 4.34,
+      "banana": 1.67,
+      "cocoa": 0.35
+    },
+    "NIU": {
+      "taro": 5.7,
+      "sweetPotato": 30.0,
+      "banana": 5.18,
+      "cocoa": 0.35
+    },
+    "MNP": {
+      "taro": 8.23,
+      "sweetPotato": 14.36,
+      "banana": 6.1,
+      "cocoa": 0.35
+    },
+    "PCN": {
+      "taro": 8.23,
+      "sweetPotato": 14.36,
+      "banana": 6.1,
+      "cocoa": 0.35
+    },
+    "TKL": {
+      "taro": 8.23,
+      "sweetPotato": 14.36,
+      "banana": 6.1,
+      "cocoa": 0.35
+    },
+    "WLF": {
+      "taro": 8.23,
+      "sweetPotato": 14.36,
+      "banana": 6.1,
+      "cocoa": 0.35
+    },
+    "ASM": {
+      "taro": 8.23,
+      "sweetPotato": 14.36,
+      "banana": 6.1,
+      "cocoa": 0.35
+    }
   },
   {
     "year": 1989,
-    "taro": 7.94,
-    "sweetPotato": 13.34,
-    "banana": 6.26,
-    "cocoa": 0.38
+    "REGIONAL": {
+      "taro": 7.94,
+      "sweetPotato": 13.34,
+      "banana": 6.26,
+      "cocoa": 0.38
+    },
+    "FJI": {
+      "taro": 7.5,
+      "sweetPotato": 7.37,
+      "banana": 7.2,
+      "cocoa": 0.24
+    },
+    "TUV": {
+      "taro": 7.94,
+      "sweetPotato": 13.34,
+      "banana": 6.26,
+      "cocoa": 0.38
+    },
+    "VUT": {
+      "taro": 7.94,
+      "sweetPotato": 13.34,
+      "banana": 12.0,
+      "cocoa": 0.42
+    },
+    "WSM": {
+      "taro": 6.35,
+      "sweetPotato": 13.34,
+      "banana": 5.7,
+      "cocoa": 0.22
+    },
+    "TON": {
+      "taro": 7.44,
+      "sweetPotato": 12.12,
+      "banana": 1.6,
+      "cocoa": 0.4
+    },
+    "KIR": {
+      "taro": 4.05,
+      "sweetPotato": 13.34,
+      "banana": 4.24,
+      "cocoa": 0.38
+    },
+    "SLB": {
+      "taro": 21.2,
+      "sweetPotato": 14.0,
+      "banana": 6.19,
+      "cocoa": 0.5
+    },
+    "PNG": {
+      "taro": 6.67,
+      "sweetPotato": 4.55,
+      "banana": 14.02,
+      "cocoa": 0.5
+    },
+    "PLW": {
+      "taro": 7.94,
+      "sweetPotato": 13.34,
+      "banana": 6.26,
+      "cocoa": 0.38
+    },
+    "MHL": {
+      "taro": 7.94,
+      "sweetPotato": 13.34,
+      "banana": 6.26,
+      "cocoa": 0.38
+    },
+    "FSM": {
+      "taro": 7.94,
+      "sweetPotato": 13.34,
+      "banana": 6.26,
+      "cocoa": 0.38
+    },
+    "COK": {
+      "taro": 7.94,
+      "sweetPotato": 25.38,
+      "banana": 5.0,
+      "cocoa": 0.38
+    },
+    "PYF": {
+      "taro": 7.94,
+      "sweetPotato": 13.34,
+      "banana": 5.89,
+      "cocoa": 0.38
+    },
+    "GUM": {
+      "taro": 7.94,
+      "sweetPotato": 13.34,
+      "banana": 6.26,
+      "cocoa": 0.38
+    },
+    "NRU": {
+      "taro": 7.94,
+      "sweetPotato": 13.34,
+      "banana": 6.26,
+      "cocoa": 0.38
+    },
+    "NCL": {
+      "taro": 4.17,
+      "sweetPotato": 4.27,
+      "banana": 1.8,
+      "cocoa": 0.38
+    },
+    "NIU": {
+      "taro": 6.12,
+      "sweetPotato": 25.71,
+      "banana": 5.27,
+      "cocoa": 0.38
+    },
+    "MNP": {
+      "taro": 7.94,
+      "sweetPotato": 13.34,
+      "banana": 6.26,
+      "cocoa": 0.38
+    },
+    "PCN": {
+      "taro": 7.94,
+      "sweetPotato": 13.34,
+      "banana": 6.26,
+      "cocoa": 0.38
+    },
+    "TKL": {
+      "taro": 7.94,
+      "sweetPotato": 13.34,
+      "banana": 6.26,
+      "cocoa": 0.38
+    },
+    "WLF": {
+      "taro": 7.94,
+      "sweetPotato": 13.34,
+      "banana": 6.26,
+      "cocoa": 0.38
+    },
+    "ASM": {
+      "taro": 7.94,
+      "sweetPotato": 13.34,
+      "banana": 6.26,
+      "cocoa": 0.38
+    }
   },
   {
     "year": 1990,
-    "taro": 7.14,
-    "sweetPotato": 11.95,
-    "banana": 5.91,
-    "cocoa": 0.35
+    "REGIONAL": {
+      "taro": 7.14,
+      "sweetPotato": 11.95,
+      "banana": 5.91,
+      "cocoa": 0.35
+    },
+    "FJI": {
+      "taro": 1.91,
+      "sweetPotato": 6.97,
+      "banana": 7.33,
+      "cocoa": 0.19
+    },
+    "TUV": {
+      "taro": 7.14,
+      "sweetPotato": 11.95,
+      "banana": 5.91,
+      "cocoa": 0.35
+    },
+    "VUT": {
+      "taro": 7.14,
+      "sweetPotato": 11.95,
+      "banana": 12.0,
+      "cocoa": 0.44
+    },
+    "WSM": {
+      "taro": 4.17,
+      "sweetPotato": 11.95,
+      "banana": 6.18,
+      "cocoa": 0.21
+    },
+    "TON": {
+      "taro": 7.57,
+      "sweetPotato": 11.85,
+      "banana": 1.5,
+      "cocoa": 0.35
+    },
+    "KIR": {
+      "taro": 4.56,
+      "sweetPotato": 11.95,
+      "banana": 4.72,
+      "cocoa": 0.35
+    },
+    "SLB": {
+      "taro": 21.65,
+      "sweetPotato": 14.25,
+      "banana": 5.18,
+      "cocoa": 0.5
+    },
+    "PNG": {
+      "taro": 6.72,
+      "sweetPotato": 4.21,
+      "banana": 14.29,
+      "cocoa": 0.43
+    },
+    "PLW": {
+      "taro": 7.14,
+      "sweetPotato": 11.95,
+      "banana": 5.91,
+      "cocoa": 0.35
+    },
+    "MHL": {
+      "taro": 7.14,
+      "sweetPotato": 11.95,
+      "banana": 5.91,
+      "cocoa": 0.35
+    },
+    "FSM": {
+      "taro": 7.14,
+      "sweetPotato": 11.95,
+      "banana": 5.91,
+      "cocoa": 0.35
+    },
+    "COK": {
+      "taro": 7.14,
+      "sweetPotato": 26.15,
+      "banana": 5.0,
+      "cocoa": 0.35
+    },
+    "PYF": {
+      "taro": 7.14,
+      "sweetPotato": 11.95,
+      "banana": 4.68,
+      "cocoa": 0.35
+    },
+    "GUM": {
+      "taro": 7.14,
+      "sweetPotato": 11.95,
+      "banana": 5.91,
+      "cocoa": 0.35
+    },
+    "NRU": {
+      "taro": 7.14,
+      "sweetPotato": 11.95,
+      "banana": 5.91,
+      "cocoa": 0.35
+    },
+    "NCL": {
+      "taro": 4.44,
+      "sweetPotato": 4.19,
+      "banana": 2.0,
+      "cocoa": 0.35
+    },
+    "NIU": {
+      "taro": 6.12,
+      "sweetPotato": 16.0,
+      "banana": 2.12,
+      "cocoa": 0.35
+    },
+    "MNP": {
+      "taro": 7.14,
+      "sweetPotato": 11.95,
+      "banana": 5.91,
+      "cocoa": 0.35
+    },
+    "PCN": {
+      "taro": 7.14,
+      "sweetPotato": 11.95,
+      "banana": 5.91,
+      "cocoa": 0.35
+    },
+    "TKL": {
+      "taro": 7.14,
+      "sweetPotato": 11.95,
+      "banana": 5.91,
+      "cocoa": 0.35
+    },
+    "WLF": {
+      "taro": 7.14,
+      "sweetPotato": 11.95,
+      "banana": 5.91,
+      "cocoa": 0.35
+    },
+    "ASM": {
+      "taro": 7.14,
+      "sweetPotato": 11.95,
+      "banana": 5.91,
+      "cocoa": 0.35
+    }
   },
   {
     "year": 1991,
-    "taro": 7.46,
-    "sweetPotato": 12.9,
-    "banana": 6.8,
-    "cocoa": 0.37
+    "REGIONAL": {
+      "taro": 7.46,
+      "sweetPotato": 12.9,
+      "banana": 6.8,
+      "cocoa": 0.37
+    },
+    "FJI": {
+      "taro": 4.13,
+      "sweetPotato": 10.72,
+      "banana": 7.26,
+      "cocoa": 0.17
+    },
+    "TUV": {
+      "taro": 7.46,
+      "sweetPotato": 12.9,
+      "banana": 21.0,
+      "cocoa": 0.37
+    },
+    "VUT": {
+      "taro": 7.46,
+      "sweetPotato": 12.9,
+      "banana": 12.0,
+      "cocoa": 0.54
+    },
+    "WSM": {
+      "taro": 3.79,
+      "sweetPotato": 12.9,
+      "banana": 5.0,
+      "cocoa": 0.22
+    },
+    "TON": {
+      "taro": 8.73,
+      "sweetPotato": 12.34,
+      "banana": 1.4,
+      "cocoa": 0.37
+    },
+    "KIR": {
+      "taro": 3.97,
+      "sweetPotato": 12.9,
+      "banana": 4.91,
+      "cocoa": 0.37
+    },
+    "SLB": {
+      "taro": 21.54,
+      "sweetPotato": 14.5,
+      "banana": 5.68,
+      "cocoa": 0.5
+    },
+    "PNG": {
+      "taro": 6.57,
+      "sweetPotato": 4.7,
+      "banana": 14.19,
+      "cocoa": 0.41
+    },
+    "PLW": {
+      "taro": 7.46,
+      "sweetPotato": 12.9,
+      "banana": 6.8,
+      "cocoa": 0.37
+    },
+    "MHL": {
+      "taro": 7.46,
+      "sweetPotato": 12.9,
+      "banana": 6.8,
+      "cocoa": 0.37
+    },
+    "FSM": {
+      "taro": 7.46,
+      "sweetPotato": 12.9,
+      "banana": 6.8,
+      "cocoa": 0.37
+    },
+    "COK": {
+      "taro": 7.46,
+      "sweetPotato": 26.15,
+      "banana": 5.0,
+      "cocoa": 0.37
+    },
+    "PYF": {
+      "taro": 7.46,
+      "sweetPotato": 12.9,
+      "banana": 1.57,
+      "cocoa": 0.37
+    },
+    "GUM": {
+      "taro": 7.46,
+      "sweetPotato": 12.9,
+      "banana": 6.8,
+      "cocoa": 0.37
+    },
+    "NRU": {
+      "taro": 7.46,
+      "sweetPotato": 12.9,
+      "banana": 6.8,
+      "cocoa": 0.37
+    },
+    "NCL": {
+      "taro": 4.44,
+      "sweetPotato": 4.29,
+      "banana": 1.52,
+      "cocoa": 0.37
+    },
+    "NIU": {
+      "taro": 6.51,
+      "sweetPotato": 17.61,
+      "banana": 2.1,
+      "cocoa": 0.37
+    },
+    "MNP": {
+      "taro": 7.46,
+      "sweetPotato": 12.9,
+      "banana": 6.8,
+      "cocoa": 0.37
+    },
+    "PCN": {
+      "taro": 7.46,
+      "sweetPotato": 12.9,
+      "banana": 6.8,
+      "cocoa": 0.37
+    },
+    "TKL": {
+      "taro": 7.46,
+      "sweetPotato": 12.9,
+      "banana": 6.8,
+      "cocoa": 0.37
+    },
+    "WLF": {
+      "taro": 7.46,
+      "sweetPotato": 12.9,
+      "banana": 6.8,
+      "cocoa": 0.37
+    },
+    "ASM": {
+      "taro": 7.46,
+      "sweetPotato": 12.9,
+      "banana": 6.8,
+      "cocoa": 0.37
+    }
   },
   {
     "year": 1992,
-    "taro": 7.11,
-    "sweetPotato": 13.32,
-    "banana": 7.07,
-    "cocoa": 0.35
+    "REGIONAL": {
+      "taro": 7.11,
+      "sweetPotato": 13.32,
+      "banana": 7.07,
+      "cocoa": 0.35
+    },
+    "FJI": {
+      "taro": 3.17,
+      "sweetPotato": 9.13,
+      "banana": 7.15,
+      "cocoa": 0.09
+    },
+    "TUV": {
+      "taro": 7.11,
+      "sweetPotato": 13.32,
+      "banana": 22.0,
+      "cocoa": 0.35
+    },
+    "VUT": {
+      "taro": 7.11,
+      "sweetPotato": 13.32,
+      "banana": 11.97,
+      "cocoa": 0.54
+    },
+    "WSM": {
+      "taro": 4.0,
+      "sweetPotato": 13.32,
+      "banana": 4.8,
+      "cocoa": 0.22
+    },
+    "TON": {
+      "taro": 7.28,
+      "sweetPotato": 12.37,
+      "banana": 2.79,
+      "cocoa": 0.35
+    },
+    "KIR": {
+      "taro": 4.0,
+      "sweetPotato": 13.32,
+      "banana": 5.0,
+      "cocoa": 0.35
+    },
+    "SLB": {
+      "taro": 21.5,
+      "sweetPotato": 14.63,
+      "banana": 5.12,
+      "cocoa": 0.5
+    },
+    "PNG": {
+      "taro": 6.57,
+      "sweetPotato": 4.75,
+      "banana": 14.2,
+      "cocoa": 0.42
+    },
+    "PLW": {
+      "taro": 7.11,
+      "sweetPotato": 13.32,
+      "banana": 7.07,
+      "cocoa": 0.35
+    },
+    "MHL": {
+      "taro": 7.11,
+      "sweetPotato": 13.32,
+      "banana": 7.07,
+      "cocoa": 0.35
+    },
+    "FSM": {
+      "taro": 7.11,
+      "sweetPotato": 13.32,
+      "banana": 7.07,
+      "cocoa": 0.35
+    },
+    "COK": {
+      "taro": 7.11,
+      "sweetPotato": 30.73,
+      "banana": 6.67,
+      "cocoa": 0.35
+    },
+    "PYF": {
+      "taro": 7.11,
+      "sweetPotato": 13.32,
+      "banana": 1.55,
+      "cocoa": 0.35
+    },
+    "GUM": {
+      "taro": 7.11,
+      "sweetPotato": 13.32,
+      "banana": 7.07,
+      "cocoa": 0.35
+    },
+    "NRU": {
+      "taro": 7.11,
+      "sweetPotato": 13.32,
+      "banana": 7.07,
+      "cocoa": 0.35
+    },
+    "NCL": {
+      "taro": 3.75,
+      "sweetPotato": 4.09,
+      "banana": 1.49,
+      "cocoa": 0.35
+    },
+    "NIU": {
+      "taro": 6.57,
+      "sweetPotato": 17.5,
+      "banana": 2.09,
+      "cocoa": 0.35
+    },
+    "MNP": {
+      "taro": 7.11,
+      "sweetPotato": 13.32,
+      "banana": 7.07,
+      "cocoa": 0.35
+    },
+    "PCN": {
+      "taro": 7.11,
+      "sweetPotato": 13.32,
+      "banana": 7.07,
+      "cocoa": 0.35
+    },
+    "TKL": {
+      "taro": 7.11,
+      "sweetPotato": 13.32,
+      "banana": 7.07,
+      "cocoa": 0.35
+    },
+    "WLF": {
+      "taro": 7.11,
+      "sweetPotato": 13.32,
+      "banana": 7.07,
+      "cocoa": 0.35
+    },
+    "ASM": {
+      "taro": 7.11,
+      "sweetPotato": 13.32,
+      "banana": 7.07,
+      "cocoa": 0.35
+    }
   },
   {
     "year": 1993,
-    "taro": 7.27,
-    "sweetPotato": 12.61,
-    "banana": 6.72,
-    "cocoa": 0.37
+    "REGIONAL": {
+      "taro": 7.27,
+      "sweetPotato": 12.61,
+      "banana": 6.72,
+      "cocoa": 0.37
+    },
+    "FJI": {
+      "taro": 2.81,
+      "sweetPotato": 9.22,
+      "banana": 7.19,
+      "cocoa": 0.09
+    },
+    "TUV": {
+      "taro": 7.27,
+      "sweetPotato": 12.61,
+      "banana": 18.0,
+      "cocoa": 0.37
+    },
+    "VUT": {
+      "taro": 7.27,
+      "sweetPotato": 12.61,
+      "banana": 11.94,
+      "cocoa": 0.61
+    },
+    "WSM": {
+      "taro": 3.41,
+      "sweetPotato": 12.61,
+      "banana": 4.5,
+      "cocoa": 0.22
+    },
+    "TON": {
+      "taro": 9.71,
+      "sweetPotato": 10.19,
+      "banana": 1.97,
+      "cocoa": 0.37
+    },
+    "KIR": {
+      "taro": 4.08,
+      "sweetPotato": 12.61,
+      "banana": 5.09,
+      "cocoa": 0.37
+    },
+    "SLB": {
+      "taro": 21.6,
+      "sweetPotato": 14.76,
+      "banana": 4.97,
+      "cocoa": 0.51
+    },
+    "PNG": {
+      "taro": 6.57,
+      "sweetPotato": 4.8,
+      "banana": 14.19,
+      "cocoa": 0.41
+    },
+    "PLW": {
+      "taro": 7.27,
+      "sweetPotato": 12.61,
+      "banana": 6.72,
+      "cocoa": 0.37
+    },
+    "MHL": {
+      "taro": 7.27,
+      "sweetPotato": 12.61,
+      "banana": 6.72,
+      "cocoa": 0.37
+    },
+    "FSM": {
+      "taro": 7.27,
+      "sweetPotato": 12.61,
+      "banana": 6.72,
+      "cocoa": 0.37
+    },
+    "COK": {
+      "taro": 7.27,
+      "sweetPotato": 27.5,
+      "banana": 7.5,
+      "cocoa": 0.37
+    },
+    "PYF": {
+      "taro": 7.27,
+      "sweetPotato": 12.61,
+      "banana": 1.58,
+      "cocoa": 0.37
+    },
+    "GUM": {
+      "taro": 7.27,
+      "sweetPotato": 12.61,
+      "banana": 6.72,
+      "cocoa": 0.37
+    },
+    "NRU": {
+      "taro": 7.27,
+      "sweetPotato": 12.61,
+      "banana": 6.72,
+      "cocoa": 0.37
+    },
+    "NCL": {
+      "taro": 3.33,
+      "sweetPotato": 3.96,
+      "banana": 1.66,
+      "cocoa": 0.37
+    },
+    "NIU": {
+      "taro": 6.62,
+      "sweetPotato": 17.86,
+      "banana": 2.08,
+      "cocoa": 0.37
+    },
+    "MNP": {
+      "taro": 7.27,
+      "sweetPotato": 12.61,
+      "banana": 6.72,
+      "cocoa": 0.37
+    },
+    "PCN": {
+      "taro": 7.27,
+      "sweetPotato": 12.61,
+      "banana": 6.72,
+      "cocoa": 0.37
+    },
+    "TKL": {
+      "taro": 7.27,
+      "sweetPotato": 12.61,
+      "banana": 6.72,
+      "cocoa": 0.37
+    },
+    "WLF": {
+      "taro": 7.27,
+      "sweetPotato": 12.61,
+      "banana": 6.72,
+      "cocoa": 0.37
+    },
+    "ASM": {
+      "taro": 7.27,
+      "sweetPotato": 12.61,
+      "banana": 6.72,
+      "cocoa": 0.37
+    }
   },
   {
     "year": 1994,
-    "taro": 7.09,
-    "sweetPotato": 11.75,
-    "banana": 6.42,
-    "cocoa": 0.32
+    "REGIONAL": {
+      "taro": 7.09,
+      "sweetPotato": 11.75,
+      "banana": 6.42,
+      "cocoa": 0.32
+    },
+    "FJI": {
+      "taro": 3.01,
+      "sweetPotato": 4.54,
+      "banana": 7.21,
+      "cocoa": 0.06
+    },
+    "TUV": {
+      "taro": 7.09,
+      "sweetPotato": 11.75,
+      "banana": 16.67,
+      "cocoa": 0.32
+    },
+    "VUT": {
+      "taro": 7.09,
+      "sweetPotato": 11.75,
+      "banana": 11.9,
+      "cocoa": 0.37
+    },
+    "WSM": {
+      "taro": 1.5,
+      "sweetPotato": 11.75,
+      "banana": 4.5,
+      "cocoa": 0.22
+    },
+    "TON": {
+      "taro": 9.52,
+      "sweetPotato": 12.0,
+      "banana": 2.0,
+      "cocoa": 0.32
+    },
+    "KIR": {
+      "taro": 4.17,
+      "sweetPotato": 11.75,
+      "banana": 5.2,
+      "cocoa": 0.32
+    },
+    "SLB": {
+      "taro": 21.67,
+      "sweetPotato": 14.77,
+      "banana": 4.82,
+      "cocoa": 0.56
+    },
+    "PNG": {
+      "taro": 6.67,
+      "sweetPotato": 4.5,
+      "banana": 14.2,
+      "cocoa": 0.39
+    },
+    "PLW": {
+      "taro": 7.09,
+      "sweetPotato": 11.75,
+      "banana": 6.42,
+      "cocoa": 0.32
+    },
+    "MHL": {
+      "taro": 7.09,
+      "sweetPotato": 11.75,
+      "banana": 6.42,
+      "cocoa": 0.32
+    },
+    "FSM": {
+      "taro": 7.09,
+      "sweetPotato": 11.75,
+      "banana": 6.42,
+      "cocoa": 0.32
+    },
+    "COK": {
+      "taro": 7.09,
+      "sweetPotato": 25.0,
+      "banana": 5.0,
+      "cocoa": 0.32
+    },
+    "PYF": {
+      "taro": 7.09,
+      "sweetPotato": 11.75,
+      "banana": 1.58,
+      "cocoa": 0.32
+    },
+    "GUM": {
+      "taro": 7.09,
+      "sweetPotato": 11.75,
+      "banana": 6.42,
+      "cocoa": 0.32
+    },
+    "NRU": {
+      "taro": 7.09,
+      "sweetPotato": 11.75,
+      "banana": 6.42,
+      "cocoa": 0.32
+    },
+    "NCL": {
+      "taro": 3.5,
+      "sweetPotato": 3.82,
+      "banana": 1.92,
+      "cocoa": 0.32
+    },
+    "NIU": {
+      "taro": 6.67,
+      "sweetPotato": 17.64,
+      "banana": 2.08,
+      "cocoa": 0.32
+    },
+    "MNP": {
+      "taro": 7.09,
+      "sweetPotato": 11.75,
+      "banana": 6.42,
+      "cocoa": 0.32
+    },
+    "PCN": {
+      "taro": 7.09,
+      "sweetPotato": 11.75,
+      "banana": 6.42,
+      "cocoa": 0.32
+    },
+    "TKL": {
+      "taro": 7.09,
+      "sweetPotato": 11.75,
+      "banana": 6.42,
+      "cocoa": 0.32
+    },
+    "WLF": {
+      "taro": 7.09,
+      "sweetPotato": 11.75,
+      "banana": 6.42,
+      "cocoa": 0.32
+    },
+    "ASM": {
+      "taro": 7.09,
+      "sweetPotato": 11.75,
+      "banana": 6.42,
+      "cocoa": 0.32
+    }
   },
   {
     "year": 1995,
-    "taro": 7.27,
-    "sweetPotato": 11.37,
-    "banana": 6.38,
-    "cocoa": 0.36
+    "REGIONAL": {
+      "taro": 7.27,
+      "sweetPotato": 11.37,
+      "banana": 6.38,
+      "cocoa": 0.36
+    },
+    "FJI": {
+      "taro": 9.78,
+      "sweetPotato": 6.63,
+      "banana": 7.24,
+      "cocoa": 0.04
+    },
+    "TUV": {
+      "taro": 7.27,
+      "sweetPotato": 11.37,
+      "banana": 17.9,
+      "cocoa": 0.36
+    },
+    "VUT": {
+      "taro": 7.27,
+      "sweetPotato": 11.37,
+      "banana": 11.9,
+      "cocoa": 0.57
+    },
+    "WSM": {
+      "taro": 2.76,
+      "sweetPotato": 11.37,
+      "banana": 4.62,
+      "cocoa": 0.22
+    },
+    "TON": {
+      "taro": 8.57,
+      "sweetPotato": 12.35,
+      "banana": 1.48,
+      "cocoa": 0.36
+    },
+    "KIR": {
+      "taro": 4.17,
+      "sweetPotato": 11.37,
+      "banana": 5.16,
+      "cocoa": 0.36
+    },
+    "SLB": {
+      "taro": 21.7,
+      "sweetPotato": 14.78,
+      "banana": 5.2,
+      "cocoa": 0.5
+    },
+    "PNG": {
+      "taro": 6.43,
+      "sweetPotato": 4.6,
+      "banana": 14.2,
+      "cocoa": 0.4
+    },
+    "PLW": {
+      "taro": 7.27,
+      "sweetPotato": 11.37,
+      "banana": 6.38,
+      "cocoa": 0.36
+    },
+    "MHL": {
+      "taro": 7.27,
+      "sweetPotato": 11.37,
+      "banana": 6.38,
+      "cocoa": 0.36
+    },
+    "FSM": {
+      "taro": 7.27,
+      "sweetPotato": 5.88,
+      "banana": 5.19,
+      "cocoa": 0.43
+    },
+    "COK": {
+      "taro": 7.27,
+      "sweetPotato": 25.45,
+      "banana": 4.27,
+      "cocoa": 0.36
+    },
+    "PYF": {
+      "taro": 2.38,
+      "sweetPotato": 11.37,
+      "banana": 1.56,
+      "cocoa": 0.36
+    },
+    "GUM": {
+      "taro": 7.27,
+      "sweetPotato": 11.37,
+      "banana": 6.38,
+      "cocoa": 0.36
+    },
+    "NRU": {
+      "taro": 7.27,
+      "sweetPotato": 11.37,
+      "banana": 6.38,
+      "cocoa": 0.36
+    },
+    "NCL": {
+      "taro": 2.94,
+      "sweetPotato": 3.66,
+      "banana": 2.2,
+      "cocoa": 0.36
+    },
+    "NIU": {
+      "taro": 6.72,
+      "sweetPotato": 17.61,
+      "banana": 2.07,
+      "cocoa": 0.36
+    },
+    "MNP": {
+      "taro": 7.27,
+      "sweetPotato": 11.37,
+      "banana": 6.38,
+      "cocoa": 0.36
+    },
+    "PCN": {
+      "taro": 7.27,
+      "sweetPotato": 11.37,
+      "banana": 6.38,
+      "cocoa": 0.36
+    },
+    "TKL": {
+      "taro": 7.27,
+      "sweetPotato": 11.37,
+      "banana": 6.38,
+      "cocoa": 0.36
+    },
+    "WLF": {
+      "taro": 7.27,
+      "sweetPotato": 11.37,
+      "banana": 6.38,
+      "cocoa": 0.36
+    },
+    "ASM": {
+      "taro": 7.27,
+      "sweetPotato": 11.37,
+      "banana": 6.38,
+      "cocoa": 0.36
+    }
   },
   {
     "year": 1996,
-    "taro": 7.49,
-    "sweetPotato": 11.28,
-    "banana": 6.24,
-    "cocoa": 0.36
+    "REGIONAL": {
+      "taro": 7.49,
+      "sweetPotato": 11.28,
+      "banana": 6.24,
+      "cocoa": 0.36
+    },
+    "FJI": {
+      "taro": 11.31,
+      "sweetPotato": 5.89,
+      "banana": 7.35,
+      "cocoa": 0.05
+    },
+    "TUV": {
+      "taro": 7.49,
+      "sweetPotato": 11.28,
+      "banana": 18.33,
+      "cocoa": 0.36
+    },
+    "VUT": {
+      "taro": 7.49,
+      "sweetPotato": 11.28,
+      "banana": 11.88,
+      "cocoa": 0.59
+    },
+    "WSM": {
+      "taro": 2.94,
+      "sweetPotato": 11.28,
+      "banana": 4.67,
+      "cocoa": 0.22
+    },
+    "TON": {
+      "taro": 8.57,
+      "sweetPotato": 12.09,
+      "banana": 1.63,
+      "cocoa": 0.36
+    },
+    "KIR": {
+      "taro": 4.21,
+      "sweetPotato": 11.28,
+      "banana": 5.22,
+      "cocoa": 0.36
+    },
+    "SLB": {
+      "taro": 21.92,
+      "sweetPotato": 14.89,
+      "banana": 4.15,
+      "cocoa": 0.5
+    },
+    "PNG": {
+      "taro": 6.34,
+      "sweetPotato": 4.5,
+      "banana": 14.19,
+      "cocoa": 0.4
+    },
+    "PLW": {
+      "taro": 7.49,
+      "sweetPotato": 11.28,
+      "banana": 6.24,
+      "cocoa": 0.36
+    },
+    "MHL": {
+      "taro": 7.49,
+      "sweetPotato": 11.28,
+      "banana": 6.24,
+      "cocoa": 0.36
+    },
+    "FSM": {
+      "taro": 7.49,
+      "sweetPotato": 5.82,
+      "banana": 5.23,
+      "cocoa": 0.43
+    },
+    "COK": {
+      "taro": 7.49,
+      "sweetPotato": 26.0,
+      "banana": 3.57,
+      "cocoa": 0.36
+    },
+    "PYF": {
+      "taro": 2.39,
+      "sweetPotato": 11.28,
+      "banana": 1.5,
+      "cocoa": 0.36
+    },
+    "GUM": {
+      "taro": 7.49,
+      "sweetPotato": 11.28,
+      "banana": 6.24,
+      "cocoa": 0.36
+    },
+    "NRU": {
+      "taro": 7.49,
+      "sweetPotato": 11.28,
+      "banana": 6.24,
+      "cocoa": 0.36
+    },
+    "NCL": {
+      "taro": 2.94,
+      "sweetPotato": 3.49,
+      "banana": 1.36,
+      "cocoa": 0.36
+    },
+    "NIU": {
+      "taro": 6.76,
+      "sweetPotato": 17.58,
+      "banana": 2.07,
+      "cocoa": 0.36
+    },
+    "MNP": {
+      "taro": 7.49,
+      "sweetPotato": 11.28,
+      "banana": 6.24,
+      "cocoa": 0.36
+    },
+    "PCN": {
+      "taro": 7.49,
+      "sweetPotato": 11.28,
+      "banana": 6.24,
+      "cocoa": 0.36
+    },
+    "TKL": {
+      "taro": 7.49,
+      "sweetPotato": 11.28,
+      "banana": 6.24,
+      "cocoa": 0.36
+    },
+    "WLF": {
+      "taro": 7.49,
+      "sweetPotato": 11.28,
+      "banana": 6.24,
+      "cocoa": 0.36
+    },
+    "ASM": {
+      "taro": 7.49,
+      "sweetPotato": 11.28,
+      "banana": 6.24,
+      "cocoa": 0.36
+    }
   },
   {
     "year": 1997,
-    "taro": 7.63,
-    "sweetPotato": 10.69,
-    "banana": 6.14,
-    "cocoa": 0.38
+    "REGIONAL": {
+      "taro": 7.63,
+      "sweetPotato": 10.69,
+      "banana": 6.14,
+      "cocoa": 0.38
+    },
+    "FJI": {
+      "taro": 9.57,
+      "sweetPotato": 3.22,
+      "banana": 7.26,
+      "cocoa": 0.05
+    },
+    "TUV": {
+      "taro": 7.63,
+      "sweetPotato": 10.69,
+      "banana": 17.64,
+      "cocoa": 0.38
+    },
+    "VUT": {
+      "taro": 7.63,
+      "sweetPotato": 10.69,
+      "banana": 11.86,
+      "cocoa": 0.59
+    },
+    "WSM": {
+      "taro": 3.19,
+      "sweetPotato": 10.69,
+      "banana": 4.89,
+      "cocoa": 0.22
+    },
+    "TON": {
+      "taro": 8.6,
+      "sweetPotato": 12.0,
+      "banana": 1.65,
+      "cocoa": 0.38
+    },
+    "KIR": {
+      "taro": 4.21,
+      "sweetPotato": 10.69,
+      "banana": 5.18,
+      "cocoa": 0.38
+    },
+    "SLB": {
+      "taro": 20.0,
+      "sweetPotato": 15.0,
+      "banana": 3.0,
+      "cocoa": 0.56
+    },
+    "PNG": {
+      "taro": 6.0,
+      "sweetPotato": 4.6,
+      "banana": 14.11,
+      "cocoa": 0.43
+    },
+    "PLW": {
+      "taro": 7.63,
+      "sweetPotato": 10.69,
+      "banana": 6.14,
+      "cocoa": 0.38
+    },
+    "MHL": {
+      "taro": 7.63,
+      "sweetPotato": 10.69,
+      "banana": 6.14,
+      "cocoa": 0.38
+    },
+    "FSM": {
+      "taro": 7.63,
+      "sweetPotato": 5.81,
+      "banana": 5.24,
+      "cocoa": 0.43
+    },
+    "COK": {
+      "taro": 7.63,
+      "sweetPotato": 24.0,
+      "banana": 3.68,
+      "cocoa": 0.38
+    },
+    "PYF": {
+      "taro": 2.39,
+      "sweetPotato": 10.69,
+      "banana": 1.48,
+      "cocoa": 0.38
+    },
+    "GUM": {
+      "taro": 7.63,
+      "sweetPotato": 10.69,
+      "banana": 6.14,
+      "cocoa": 0.38
+    },
+    "NRU": {
+      "taro": 7.63,
+      "sweetPotato": 10.69,
+      "banana": 6.14,
+      "cocoa": 0.38
+    },
+    "NCL": {
+      "taro": 7.9,
+      "sweetPotato": 3.32,
+      "banana": 1.71,
+      "cocoa": 0.38
+    },
+    "NIU": {
+      "taro": 6.8,
+      "sweetPotato": 17.55,
+      "banana": 2.06,
+      "cocoa": 0.38
+    },
+    "MNP": {
+      "taro": 7.63,
+      "sweetPotato": 10.69,
+      "banana": 6.14,
+      "cocoa": 0.38
+    },
+    "PCN": {
+      "taro": 7.63,
+      "sweetPotato": 10.69,
+      "banana": 6.14,
+      "cocoa": 0.38
+    },
+    "TKL": {
+      "taro": 7.63,
+      "sweetPotato": 10.69,
+      "banana": 6.14,
+      "cocoa": 0.38
+    },
+    "WLF": {
+      "taro": 7.63,
+      "sweetPotato": 10.69,
+      "banana": 6.14,
+      "cocoa": 0.38
+    },
+    "ASM": {
+      "taro": 7.63,
+      "sweetPotato": 10.69,
+      "banana": 6.14,
+      "cocoa": 0.38
+    }
   },
   {
     "year": 1998,
-    "taro": 6.94,
-    "sweetPotato": 11.67,
-    "banana": 6.25,
-    "cocoa": 0.35
+    "REGIONAL": {
+      "taro": 6.94,
+      "sweetPotato": 11.67,
+      "banana": 6.25,
+      "cocoa": 0.35
+    },
+    "FJI": {
+      "taro": 8.36,
+      "sweetPotato": 10.14,
+      "banana": 7.55,
+      "cocoa": 0.06
+    },
+    "TUV": {
+      "taro": 6.94,
+      "sweetPotato": 11.67,
+      "banana": 18.46,
+      "cocoa": 0.35
+    },
+    "VUT": {
+      "taro": 6.94,
+      "sweetPotato": 11.67,
+      "banana": 11.84,
+      "cocoa": 0.58
+    },
+    "WSM": {
+      "taro": 3.43,
+      "sweetPotato": 11.67,
+      "banana": 5.0,
+      "cocoa": 0.22
+    },
+    "TON": {
+      "taro": 9.09,
+      "sweetPotato": 12.0,
+      "banana": 1.64,
+      "cocoa": 0.35
+    },
+    "KIR": {
+      "taro": 4.22,
+      "sweetPotato": 11.67,
+      "banana": 5.18,
+      "cocoa": 0.35
+    },
+    "SLB": {
+      "taro": 19.38,
+      "sweetPotato": 14.6,
+      "banana": 3.22,
+      "cocoa": 0.5
+    },
+    "PNG": {
+      "taro": 6.25,
+      "sweetPotato": 4.6,
+      "banana": 14.1,
+      "cocoa": 0.31
+    },
+    "PLW": {
+      "taro": 6.94,
+      "sweetPotato": 11.67,
+      "banana": 6.25,
+      "cocoa": 0.35
+    },
+    "MHL": {
+      "taro": 6.94,
+      "sweetPotato": 11.67,
+      "banana": 6.25,
+      "cocoa": 0.35
+    },
+    "FSM": {
+      "taro": 6.94,
+      "sweetPotato": 5.81,
+      "banana": 5.25,
+      "cocoa": 0.43
+    },
+    "COK": {
+      "taro": 6.94,
+      "sweetPotato": 25.53,
+      "banana": 3.55,
+      "cocoa": 0.35
+    },
+    "PYF": {
+      "taro": 2.4,
+      "sweetPotato": 11.67,
+      "banana": 1.45,
+      "cocoa": 0.35
+    },
+    "GUM": {
+      "taro": 6.94,
+      "sweetPotato": 11.67,
+      "banana": 6.25,
+      "cocoa": 0.35
+    },
+    "NRU": {
+      "taro": 6.94,
+      "sweetPotato": 11.67,
+      "banana": 6.25,
+      "cocoa": 0.35
+    },
+    "NCL": {
+      "taro": 2.5,
+      "sweetPotato": 3.13,
+      "banana": 1.98,
+      "cocoa": 0.35
+    },
+    "NIU": {
+      "taro": 6.84,
+      "sweetPotato": 17.52,
+      "banana": 2.06,
+      "cocoa": 0.35
+    },
+    "MNP": {
+      "taro": 6.94,
+      "sweetPotato": 11.67,
+      "banana": 6.25,
+      "cocoa": 0.35
+    },
+    "PCN": {
+      "taro": 6.94,
+      "sweetPotato": 11.67,
+      "banana": 6.25,
+      "cocoa": 0.35
+    },
+    "TKL": {
+      "taro": 6.94,
+      "sweetPotato": 11.67,
+      "banana": 6.25,
+      "cocoa": 0.35
+    },
+    "WLF": {
+      "taro": 6.94,
+      "sweetPotato": 11.67,
+      "banana": 6.25,
+      "cocoa": 0.35
+    },
+    "ASM": {
+      "taro": 6.94,
+      "sweetPotato": 11.67,
+      "banana": 6.25,
+      "cocoa": 0.35
+    }
   },
   {
     "year": 1999,
-    "taro": 7.62,
-    "sweetPotato": 11.88,
-    "banana": 6.21,
-    "cocoa": 0.34
+    "REGIONAL": {
+      "taro": 7.62,
+      "sweetPotato": 11.88,
+      "banana": 6.21,
+      "cocoa": 0.34
+    },
+    "FJI": {
+      "taro": 14.86,
+      "sweetPotato": 10.95,
+      "banana": 7.14,
+      "cocoa": 0.03
+    },
+    "TUV": {
+      "taro": 7.62,
+      "sweetPotato": 11.88,
+      "banana": 18.67,
+      "cocoa": 0.34
+    },
+    "VUT": {
+      "taro": 7.62,
+      "sweetPotato": 11.88,
+      "banana": 11.82,
+      "cocoa": 0.56
+    },
+    "WSM": {
+      "taro": 3.53,
+      "sweetPotato": 11.88,
+      "banana": 4.66,
+      "cocoa": 0.22
+    },
+    "TON": {
+      "taro": 6.86,
+      "sweetPotato": 12.37,
+      "banana": 1.63,
+      "cocoa": 0.34
+    },
+    "KIR": {
+      "taro": 4.21,
+      "sweetPotato": 11.88,
+      "banana": 5.22,
+      "cocoa": 0.34
+    },
+    "SLB": {
+      "taro": 20.0,
+      "sweetPotato": 14.23,
+      "banana": 2.95,
+      "cocoa": 0.45
+    },
+    "PNG": {
+      "taro": 6.47,
+      "sweetPotato": 4.71,
+      "banana": 14.11,
+      "cocoa": 0.37
+    },
+    "PLW": {
+      "taro": 7.62,
+      "sweetPotato": 11.88,
+      "banana": 6.21,
+      "cocoa": 0.34
+    },
+    "MHL": {
+      "taro": 7.62,
+      "sweetPotato": 11.88,
+      "banana": 6.21,
+      "cocoa": 0.34
+    },
+    "FSM": {
+      "taro": 7.62,
+      "sweetPotato": 5.8,
+      "banana": 5.26,
+      "cocoa": 0.43
+    },
+    "COK": {
+      "taro": 7.62,
+      "sweetPotato": 26.55,
+      "banana": 3.82,
+      "cocoa": 0.34
+    },
+    "PYF": {
+      "taro": 2.4,
+      "sweetPotato": 11.88,
+      "banana": 1.43,
+      "cocoa": 0.34
+    },
+    "GUM": {
+      "taro": 7.62,
+      "sweetPotato": 11.88,
+      "banana": 6.21,
+      "cocoa": 0.34
+    },
+    "NRU": {
+      "taro": 7.62,
+      "sweetPotato": 11.88,
+      "banana": 6.21,
+      "cocoa": 0.34
+    },
+    "NCL": {
+      "taro": 3.35,
+      "sweetPotato": 2.93,
+      "banana": 1.99,
+      "cocoa": 0.34
+    },
+    "NIU": {
+      "taro": 6.87,
+      "sweetPotato": 17.48,
+      "banana": 2.05,
+      "cocoa": 0.34
+    },
+    "MNP": {
+      "taro": 7.62,
+      "sweetPotato": 11.88,
+      "banana": 6.21,
+      "cocoa": 0.34
+    },
+    "PCN": {
+      "taro": 7.62,
+      "sweetPotato": 11.88,
+      "banana": 6.21,
+      "cocoa": 0.34
+    },
+    "TKL": {
+      "taro": 7.62,
+      "sweetPotato": 11.88,
+      "banana": 6.21,
+      "cocoa": 0.34
+    },
+    "WLF": {
+      "taro": 7.62,
+      "sweetPotato": 11.88,
+      "banana": 6.21,
+      "cocoa": 0.34
+    },
+    "ASM": {
+      "taro": 7.62,
+      "sweetPotato": 11.88,
+      "banana": 6.21,
+      "cocoa": 0.34
+    }
   },
   {
     "year": 2000,
-    "taro": 7.48,
-    "sweetPotato": 11.64,
-    "banana": 6.16,
-    "cocoa": 0.34
+    "REGIONAL": {
+      "taro": 7.48,
+      "sweetPotato": 11.64,
+      "banana": 6.16,
+      "cocoa": 0.34
+    },
+    "FJI": {
+      "taro": 11.22,
+      "sweetPotato": 8.82,
+      "banana": 7.5,
+      "cocoa": 0.02
+    },
+    "TUV": {
+      "taro": 7.48,
+      "sweetPotato": 11.64,
+      "banana": 17.86,
+      "cocoa": 0.34
+    },
+    "VUT": {
+      "taro": 7.48,
+      "sweetPotato": 11.64,
+      "banana": 11.8,
+      "cocoa": 0.52
+    },
+    "WSM": {
+      "taro": 5.0,
+      "sweetPotato": 11.64,
+      "banana": 5.0,
+      "cocoa": 0.22
+    },
+    "TON": {
+      "taro": 7.44,
+      "sweetPotato": 12.35,
+      "banana": 1.42,
+      "cocoa": 0.34
+    },
+    "KIR": {
+      "taro": 4.26,
+      "sweetPotato": 11.64,
+      "banana": 5.16,
+      "cocoa": 0.34
+    },
+    "SLB": {
+      "taro": 20.0,
+      "sweetPotato": 14.34,
+      "banana": 2.9,
+      "cocoa": 0.39
+    },
+    "PNG": {
+      "taro": 6.42,
+      "sweetPotato": 4.71,
+      "banana": 14.09,
+      "cocoa": 0.48
+    },
+    "PLW": {
+      "taro": 7.48,
+      "sweetPotato": 11.64,
+      "banana": 6.16,
+      "cocoa": 0.34
+    },
+    "MHL": {
+      "taro": 7.48,
+      "sweetPotato": 11.64,
+      "banana": 6.16,
+      "cocoa": 0.34
+    },
+    "FSM": {
+      "taro": 7.48,
+      "sweetPotato": 5.8,
+      "banana": 5.27,
+      "cocoa": 0.43
+    },
+    "COK": {
+      "taro": 7.48,
+      "sweetPotato": 26.88,
+      "banana": 3.83,
+      "cocoa": 0.34
+    },
+    "PYF": {
+      "taro": 2.4,
+      "sweetPotato": 11.64,
+      "banana": 1.41,
+      "cocoa": 0.34
+    },
+    "GUM": {
+      "taro": 7.48,
+      "sweetPotato": 11.64,
+      "banana": 6.16,
+      "cocoa": 0.34
+    },
+    "NRU": {
+      "taro": 7.48,
+      "sweetPotato": 11.64,
+      "banana": 6.16,
+      "cocoa": 0.34
+    },
+    "NCL": {
+      "taro": 3.64,
+      "sweetPotato": 2.75,
+      "banana": 1.76,
+      "cocoa": 0.34
+    },
+    "NIU": {
+      "taro": 6.89,
+      "sweetPotato": 17.45,
+      "banana": 2.05,
+      "cocoa": 0.34
+    },
+    "MNP": {
+      "taro": 7.48,
+      "sweetPotato": 11.64,
+      "banana": 6.16,
+      "cocoa": 0.34
+    },
+    "PCN": {
+      "taro": 7.48,
+      "sweetPotato": 11.64,
+      "banana": 6.16,
+      "cocoa": 0.34
+    },
+    "TKL": {
+      "taro": 7.48,
+      "sweetPotato": 11.64,
+      "banana": 6.16,
+      "cocoa": 0.34
+    },
+    "WLF": {
+      "taro": 7.48,
+      "sweetPotato": 11.64,
+      "banana": 6.16,
+      "cocoa": 0.34
+    },
+    "ASM": {
+      "taro": 7.48,
+      "sweetPotato": 11.64,
+      "banana": 6.16,
+      "cocoa": 0.34
+    }
   },
   {
     "year": 2001,
-    "taro": 7.58,
-    "sweetPotato": 11.68,
-    "banana": 6.18,
-    "cocoa": 0.33
+    "REGIONAL": {
+      "taro": 7.58,
+      "sweetPotato": 11.68,
+      "banana": 6.18,
+      "cocoa": 0.33
+    },
+    "FJI": {
+      "taro": 9.86,
+      "sweetPotato": 7.73,
+      "banana": 7.15,
+      "cocoa": 0.01
+    },
+    "TUV": {
+      "taro": 7.58,
+      "sweetPotato": 11.68,
+      "banana": 18.57,
+      "cocoa": 0.33
+    },
+    "VUT": {
+      "taro": 7.58,
+      "sweetPotato": 11.68,
+      "banana": 11.78,
+      "cocoa": 0.5
+    },
+    "WSM": {
+      "taro": 5.0,
+      "sweetPotato": 11.68,
+      "banana": 5.0,
+      "cocoa": 0.22
+    },
+    "TON": {
+      "taro": 10.0,
+      "sweetPotato": 12.22,
+      "banana": 1.59,
+      "cocoa": 0.33
+    },
+    "KIR": {
+      "taro": 4.25,
+      "sweetPotato": 11.68,
+      "banana": 5.13,
+      "cocoa": 0.33
+    },
+    "SLB": {
+      "taro": 20.0,
+      "sweetPotato": 14.55,
+      "banana": 2.73,
+      "cocoa": 0.41
+    },
+    "PNG": {
+      "taro": 6.39,
+      "sweetPotato": 4.8,
+      "banana": 14.1,
+      "cocoa": 0.43
+    },
+    "PLW": {
+      "taro": 7.58,
+      "sweetPotato": 11.68,
+      "banana": 6.18,
+      "cocoa": 0.33
+    },
+    "MHL": {
+      "taro": 7.58,
+      "sweetPotato": 11.68,
+      "banana": 6.18,
+      "cocoa": 0.33
+    },
+    "FSM": {
+      "taro": 7.58,
+      "sweetPotato": 5.79,
+      "banana": 5.28,
+      "cocoa": 0.43
+    },
+    "COK": {
+      "taro": 7.58,
+      "sweetPotato": 28.33,
+      "banana": 3.98,
+      "cocoa": 0.33
+    },
+    "PYF": {
+      "taro": 2.4,
+      "sweetPotato": 11.68,
+      "banana": 1.38,
+      "cocoa": 0.33
+    },
+    "GUM": {
+      "taro": 7.58,
+      "sweetPotato": 11.68,
+      "banana": 6.18,
+      "cocoa": 0.33
+    },
+    "NRU": {
+      "taro": 7.58,
+      "sweetPotato": 11.68,
+      "banana": 6.18,
+      "cocoa": 0.33
+    },
+    "NCL": {
+      "taro": 3.4,
+      "sweetPotato": 2.57,
+      "banana": 1.6,
+      "cocoa": 0.33
+    },
+    "NIU": {
+      "taro": 6.91,
+      "sweetPotato": 17.41,
+      "banana": 2.04,
+      "cocoa": 0.33
+    },
+    "MNP": {
+      "taro": 7.58,
+      "sweetPotato": 11.68,
+      "banana": 6.18,
+      "cocoa": 0.33
+    },
+    "PCN": {
+      "taro": 7.58,
+      "sweetPotato": 11.68,
+      "banana": 6.18,
+      "cocoa": 0.33
+    },
+    "TKL": {
+      "taro": 7.58,
+      "sweetPotato": 11.68,
+      "banana": 6.18,
+      "cocoa": 0.33
+    },
+    "WLF": {
+      "taro": 7.58,
+      "sweetPotato": 11.68,
+      "banana": 6.18,
+      "cocoa": 0.33
+    },
+    "ASM": {
+      "taro": 7.58,
+      "sweetPotato": 11.68,
+      "banana": 6.18,
+      "cocoa": 0.33
+    }
   },
   {
     "year": 2002,
-    "taro": 7.44,
-    "sweetPotato": 11.64,
-    "banana": 6.17,
-    "cocoa": 0.34
+    "REGIONAL": {
+      "taro": 7.44,
+      "sweetPotato": 11.64,
+      "banana": 6.17,
+      "cocoa": 0.34
+    },
+    "FJI": {
+      "taro": 9.81,
+      "sweetPotato": 9.5,
+      "banana": 7.08,
+      "cocoa": 0.05
+    },
+    "TUV": {
+      "taro": 7.44,
+      "sweetPotato": 11.64,
+      "banana": 18.58,
+      "cocoa": 0.34
+    },
+    "VUT": {
+      "taro": 7.44,
+      "sweetPotato": 11.64,
+      "banana": 11.74,
+      "cocoa": 0.5
+    },
+    "WSM": {
+      "taro": 4.86,
+      "sweetPotato": 11.64,
+      "banana": 5.0,
+      "cocoa": 0.22
+    },
+    "TON": {
+      "taro": 8.61,
+      "sweetPotato": 12.0,
+      "banana": 1.58,
+      "cocoa": 0.34
+    },
+    "KIR": {
+      "taro": 4.4,
+      "sweetPotato": 11.64,
+      "banana": 5.05,
+      "cocoa": 0.34
+    },
+    "SLB": {
+      "taro": 20.0,
+      "sweetPotato": 14.39,
+      "banana": 3.0,
+      "cocoa": 0.42
+    },
+    "PNG": {
+      "taro": 6.58,
+      "sweetPotato": 4.76,
+      "banana": 14.1,
+      "cocoa": 0.42
+    },
+    "PLW": {
+      "taro": 7.44,
+      "sweetPotato": 11.64,
+      "banana": 6.17,
+      "cocoa": 0.34
+    },
+    "MHL": {
+      "taro": 7.44,
+      "sweetPotato": 11.64,
+      "banana": 6.17,
+      "cocoa": 0.34
+    },
+    "FSM": {
+      "taro": 7.44,
+      "sweetPotato": 5.78,
+      "banana": 5.29,
+      "cocoa": 0.43
+    },
+    "COK": {
+      "taro": 7.44,
+      "sweetPotato": 27.27,
+      "banana": 4.0,
+      "cocoa": 0.34
+    },
+    "PYF": {
+      "taro": 2.4,
+      "sweetPotato": 11.64,
+      "banana": 1.36,
+      "cocoa": 0.34
+    },
+    "GUM": {
+      "taro": 7.44,
+      "sweetPotato": 11.64,
+      "banana": 6.17,
+      "cocoa": 0.34
+    },
+    "NRU": {
+      "taro": 7.44,
+      "sweetPotato": 11.64,
+      "banana": 6.17,
+      "cocoa": 0.34
+    },
+    "NCL": {
+      "taro": 3.39,
+      "sweetPotato": 2.03,
+      "banana": 1.35,
+      "cocoa": 0.34
+    },
+    "NIU": {
+      "taro": 6.93,
+      "sweetPotato": 17.37,
+      "banana": 2.04,
+      "cocoa": 0.34
+    },
+    "MNP": {
+      "taro": 7.44,
+      "sweetPotato": 11.64,
+      "banana": 6.17,
+      "cocoa": 0.34
+    },
+    "PCN": {
+      "taro": 7.44,
+      "sweetPotato": 11.64,
+      "banana": 6.17,
+      "cocoa": 0.34
+    },
+    "TKL": {
+      "taro": 7.44,
+      "sweetPotato": 11.64,
+      "banana": 6.17,
+      "cocoa": 0.34
+    },
+    "WLF": {
+      "taro": 7.44,
+      "sweetPotato": 11.64,
+      "banana": 6.17,
+      "cocoa": 0.34
+    },
+    "ASM": {
+      "taro": 7.44,
+      "sweetPotato": 11.64,
+      "banana": 6.17,
+      "cocoa": 0.34
+    }
   },
   {
     "year": 2003,
-    "taro": 7.54,
-    "sweetPotato": 11.59,
-    "banana": 6.13,
-    "cocoa": 0.36
+    "REGIONAL": {
+      "taro": 7.54,
+      "sweetPotato": 11.59,
+      "banana": 6.13,
+      "cocoa": 0.36
+    },
+    "FJI": {
+      "taro": 9.77,
+      "sweetPotato": 9.12,
+      "banana": 7.11,
+      "cocoa": 0.13
+    },
+    "TUV": {
+      "taro": 7.54,
+      "sweetPotato": 11.59,
+      "banana": 18.0,
+      "cocoa": 0.36
+    },
+    "VUT": {
+      "taro": 7.54,
+      "sweetPotato": 11.59,
+      "banana": 11.63,
+      "cocoa": 0.51
+    },
+    "WSM": {
+      "taro": 4.75,
+      "sweetPotato": 11.59,
+      "banana": 4.98,
+      "cocoa": 0.22
+    },
+    "TON": {
+      "taro": 8.53,
+      "sweetPotato": 11.91,
+      "banana": 1.57,
+      "cocoa": 0.36
+    },
+    "KIR": {
+      "taro": 4.52,
+      "sweetPotato": 11.59,
+      "banana": 5.07,
+      "cocoa": 0.36
+    },
+    "SLB": {
+      "taro": 20.0,
+      "sweetPotato": 14.33,
+      "banana": 2.86,
+      "cocoa": 0.42
+    },
+    "PNG": {
+      "taro": 6.54,
+      "sweetPotato": 4.85,
+      "banana": 14.03,
+      "cocoa": 0.43
+    },
+    "PLW": {
+      "taro": 7.54,
+      "sweetPotato": 11.59,
+      "banana": 6.13,
+      "cocoa": 0.36
+    },
+    "MHL": {
+      "taro": 7.54,
+      "sweetPotato": 11.59,
+      "banana": 6.13,
+      "cocoa": 0.36
+    },
+    "FSM": {
+      "taro": 7.54,
+      "sweetPotato": 5.78,
+      "banana": 5.29,
+      "cocoa": 0.43
+    },
+    "COK": {
+      "taro": 7.54,
+      "sweetPotato": 27.5,
+      "banana": 4.29,
+      "cocoa": 0.36
+    },
+    "PYF": {
+      "taro": 2.4,
+      "sweetPotato": 11.59,
+      "banana": 1.32,
+      "cocoa": 0.36
+    },
+    "GUM": {
+      "taro": 7.54,
+      "sweetPotato": 11.59,
+      "banana": 6.13,
+      "cocoa": 0.36
+    },
+    "NRU": {
+      "taro": 7.54,
+      "sweetPotato": 11.59,
+      "banana": 6.13,
+      "cocoa": 0.36
+    },
+    "NCL": {
+      "taro": 4.38,
+      "sweetPotato": 1.89,
+      "banana": 1.55,
+      "cocoa": 0.36
+    },
+    "NIU": {
+      "taro": 6.94,
+      "sweetPotato": 17.33,
+      "banana": 2.03,
+      "cocoa": 0.36
+    },
+    "MNP": {
+      "taro": 7.54,
+      "sweetPotato": 11.59,
+      "banana": 6.13,
+      "cocoa": 0.36
+    },
+    "PCN": {
+      "taro": 7.54,
+      "sweetPotato": 11.59,
+      "banana": 6.13,
+      "cocoa": 0.36
+    },
+    "TKL": {
+      "taro": 7.54,
+      "sweetPotato": 11.59,
+      "banana": 6.13,
+      "cocoa": 0.36
+    },
+    "WLF": {
+      "taro": 7.54,
+      "sweetPotato": 11.59,
+      "banana": 6.13,
+      "cocoa": 0.36
+    },
+    "ASM": {
+      "taro": 7.54,
+      "sweetPotato": 11.59,
+      "banana": 6.13,
+      "cocoa": 0.36
+    }
   },
   {
     "year": 2004,
-    "taro": 7.92,
-    "sweetPotato": 10.95,
-    "banana": 6.1,
-    "cocoa": 0.34
+    "REGIONAL": {
+      "taro": 7.92,
+      "sweetPotato": 10.95,
+      "banana": 6.1,
+      "cocoa": 0.34
+    },
+    "FJI": {
+      "taro": 9.36,
+      "sweetPotato": 4.33,
+      "banana": 7.0,
+      "cocoa": 0.05
+    },
+    "TUV": {
+      "taro": 7.92,
+      "sweetPotato": 10.95,
+      "banana": 17.82,
+      "cocoa": 0.34
+    },
+    "VUT": {
+      "taro": 7.92,
+      "sweetPotato": 10.95,
+      "banana": 11.6,
+      "cocoa": 0.51
+    },
+    "WSM": {
+      "taro": 4.8,
+      "sweetPotato": 10.95,
+      "banana": 4.98,
+      "cocoa": 0.22
+    },
+    "TON": {
+      "taro": 8.48,
+      "sweetPotato": 11.95,
+      "banana": 1.57,
+      "cocoa": 0.34
+    },
+    "KIR": {
+      "taro": 4.65,
+      "sweetPotato": 10.95,
+      "banana": 5.0,
+      "cocoa": 0.34
+    },
+    "SLB": {
+      "taro": 20.14,
+      "sweetPotato": 14.26,
+      "banana": 2.82,
+      "cocoa": 0.42
+    },
+    "PNG": {
+      "taro": 6.52,
+      "sweetPotato": 5.0,
+      "banana": 14.08,
+      "cocoa": 0.4
+    },
+    "PLW": {
+      "taro": 7.92,
+      "sweetPotato": 10.95,
+      "banana": 6.1,
+      "cocoa": 0.34
+    },
+    "MHL": {
+      "taro": 7.92,
+      "sweetPotato": 10.95,
+      "banana": 6.1,
+      "cocoa": 0.34
+    },
+    "FSM": {
+      "taro": 7.92,
+      "sweetPotato": 5.77,
+      "banana": 5.3,
+      "cocoa": 0.43
+    },
+    "COK": {
+      "taro": 7.92,
+      "sweetPotato": 27.29,
+      "banana": 4.17,
+      "cocoa": 0.34
+    },
+    "PYF": {
+      "taro": 2.4,
+      "sweetPotato": 10.95,
+      "banana": 1.29,
+      "cocoa": 0.34
+    },
+    "GUM": {
+      "taro": 7.92,
+      "sweetPotato": 10.95,
+      "banana": 6.1,
+      "cocoa": 0.34
+    },
+    "NRU": {
+      "taro": 7.92,
+      "sweetPotato": 10.95,
+      "banana": 6.1,
+      "cocoa": 0.34
+    },
+    "NCL": {
+      "taro": 8.0,
+      "sweetPotato": 1.76,
+      "banana": 1.69,
+      "cocoa": 0.34
+    },
+    "NIU": {
+      "taro": 6.95,
+      "sweetPotato": 17.27,
+      "banana": 2.03,
+      "cocoa": 0.34
+    },
+    "MNP": {
+      "taro": 7.92,
+      "sweetPotato": 10.95,
+      "banana": 6.1,
+      "cocoa": 0.34
+    },
+    "PCN": {
+      "taro": 7.92,
+      "sweetPotato": 10.95,
+      "banana": 6.1,
+      "cocoa": 0.34
+    },
+    "TKL": {
+      "taro": 7.92,
+      "sweetPotato": 10.95,
+      "banana": 6.1,
+      "cocoa": 0.34
+    },
+    "WLF": {
+      "taro": 7.92,
+      "sweetPotato": 10.95,
+      "banana": 6.1,
+      "cocoa": 0.34
+    },
+    "ASM": {
+      "taro": 7.92,
+      "sweetPotato": 10.95,
+      "banana": 6.1,
+      "cocoa": 0.34
+    }
   },
   {
     "year": 2005,
-    "taro": 7.77,
-    "sweetPotato": 11.06,
-    "banana": 6.17,
-    "cocoa": 0.34
+    "REGIONAL": {
+      "taro": 7.77,
+      "sweetPotato": 11.06,
+      "banana": 6.17,
+      "cocoa": 0.34
+    },
+    "FJI": {
+      "taro": 9.74,
+      "sweetPotato": 5.46,
+      "banana": 7.06,
+      "cocoa": 0.06
+    },
+    "TUV": {
+      "taro": 7.77,
+      "sweetPotato": 11.06,
+      "banana": 18.02,
+      "cocoa": 0.34
+    },
+    "VUT": {
+      "taro": 7.77,
+      "sweetPotato": 11.06,
+      "banana": 11.54,
+      "cocoa": 0.51
+    },
+    "WSM": {
+      "taro": 4.79,
+      "sweetPotato": 11.06,
+      "banana": 5.0,
+      "cocoa": 0.22
+    },
+    "TON": {
+      "taro": 8.4,
+      "sweetPotato": 11.91,
+      "banana": 1.56,
+      "cocoa": 0.34
+    },
+    "KIR": {
+      "taro": 4.75,
+      "sweetPotato": 11.06,
+      "banana": 5.13,
+      "cocoa": 0.34
+    },
+    "SLB": {
+      "taro": 20.0,
+      "sweetPotato": 14.19,
+      "banana": 2.86,
+      "cocoa": 0.42
+    },
+    "PNG": {
+      "taro": 6.5,
+      "sweetPotato": 4.96,
+      "banana": 14.06,
+      "cocoa": 0.43
+    },
+    "PLW": {
+      "taro": 7.77,
+      "sweetPotato": 11.06,
+      "banana": 6.17,
+      "cocoa": 0.34
+    },
+    "MHL": {
+      "taro": 7.77,
+      "sweetPotato": 11.06,
+      "banana": 6.17,
+      "cocoa": 0.34
+    },
+    "FSM": {
+      "taro": 7.77,
+      "sweetPotato": 5.76,
+      "banana": 5.31,
+      "cocoa": 0.43
+    },
+    "COK": {
+      "taro": 7.77,
+      "sweetPotato": 27.34,
+      "banana": 4.0,
+      "cocoa": 0.34
+    },
+    "PYF": {
+      "taro": 2.4,
+      "sweetPotato": 11.06,
+      "banana": 1.27,
+      "cocoa": 0.34
+    },
+    "GUM": {
+      "taro": 7.77,
+      "sweetPotato": 11.06,
+      "banana": 6.17,
+      "cocoa": 0.34
+    },
+    "NRU": {
+      "taro": 7.77,
+      "sweetPotato": 11.06,
+      "banana": 6.17,
+      "cocoa": 0.34
+    },
+    "NCL": {
+      "taro": 6.39,
+      "sweetPotato": 1.63,
+      "banana": 2.44,
+      "cocoa": 0.34
+    },
+    "NIU": {
+      "taro": 6.95,
+      "sweetPotato": 17.2,
+      "banana": 2.02,
+      "cocoa": 0.34
+    },
+    "MNP": {
+      "taro": 7.77,
+      "sweetPotato": 11.06,
+      "banana": 6.17,
+      "cocoa": 0.34
+    },
+    "PCN": {
+      "taro": 7.77,
+      "sweetPotato": 11.06,
+      "banana": 6.17,
+      "cocoa": 0.34
+    },
+    "TKL": {
+      "taro": 7.77,
+      "sweetPotato": 11.06,
+      "banana": 6.17,
+      "cocoa": 0.34
+    },
+    "WLF": {
+      "taro": 7.77,
+      "sweetPotato": 11.06,
+      "banana": 6.17,
+      "cocoa": 0.34
+    },
+    "ASM": {
+      "taro": 7.77,
+      "sweetPotato": 11.06,
+      "banana": 6.17,
+      "cocoa": 0.34
+    }
   },
   {
     "year": 2006,
-    "taro": 8.26,
-    "sweetPotato": 11.22,
-    "banana": 6.54,
-    "cocoa": 0.33
+    "REGIONAL": {
+      "taro": 8.26,
+      "sweetPotato": 11.22,
+      "banana": 6.54,
+      "cocoa": 0.33
+    },
+    "FJI": {
+      "taro": 9.52,
+      "sweetPotato": 6.33,
+      "banana": 7.5,
+      "cocoa": 0.06
+    },
+    "TUV": {
+      "taro": 8.26,
+      "sweetPotato": 11.22,
+      "banana": 18.2,
+      "cocoa": 0.33
+    },
+    "VUT": {
+      "taro": 8.26,
+      "sweetPotato": 11.22,
+      "banana": 11.48,
+      "cocoa": 0.4
+    },
+    "WSM": {
+      "taro": 4.93,
+      "sweetPotato": 11.22,
+      "banana": 5.06,
+      "cocoa": 0.22
+    },
+    "TON": {
+      "taro": 8.93,
+      "sweetPotato": 12.27,
+      "banana": 1.45,
+      "cocoa": 0.33
+    },
+    "KIR": {
+      "taro": 4.89,
+      "sweetPotato": 11.22,
+      "banana": 5.24,
+      "cocoa": 0.33
+    },
+    "SLB": {
+      "taro": 20.0,
+      "sweetPotato": 14.33,
+      "banana": 2.86,
+      "cocoa": 0.43
+    },
+    "PNG": {
+      "taro": 6.62,
+      "sweetPotato": 5.0,
+      "banana": 14.6,
+      "cocoa": 0.43
+    },
+    "PLW": {
+      "taro": 8.26,
+      "sweetPotato": 11.22,
+      "banana": 6.54,
+      "cocoa": 0.33
+    },
+    "MHL": {
+      "taro": 8.26,
+      "sweetPotato": 11.22,
+      "banana": 6.54,
+      "cocoa": 0.33
+    },
+    "FSM": {
+      "taro": 8.26,
+      "sweetPotato": 5.76,
+      "banana": 5.31,
+      "cocoa": 0.42
+    },
+    "COK": {
+      "taro": 8.26,
+      "sweetPotato": 27.39,
+      "banana": 4.01,
+      "cocoa": 0.33
+    },
+    "PYF": {
+      "taro": 2.4,
+      "sweetPotato": 11.22,
+      "banana": 1.24,
+      "cocoa": 0.33
+    },
+    "GUM": {
+      "taro": 8.26,
+      "sweetPotato": 11.22,
+      "banana": 6.54,
+      "cocoa": 0.33
+    },
+    "NRU": {
+      "taro": 8.26,
+      "sweetPotato": 11.22,
+      "banana": 6.54,
+      "cocoa": 0.33
+    },
+    "NCL": {
+      "taro": 10.13,
+      "sweetPotato": 1.5,
+      "banana": 5.99,
+      "cocoa": 0.33
+    },
+    "NIU": {
+      "taro": 6.94,
+      "sweetPotato": 17.14,
+      "banana": 2.02,
+      "cocoa": 0.33
+    },
+    "MNP": {
+      "taro": 8.26,
+      "sweetPotato": 11.22,
+      "banana": 6.54,
+      "cocoa": 0.33
+    },
+    "PCN": {
+      "taro": 8.26,
+      "sweetPotato": 11.22,
+      "banana": 6.54,
+      "cocoa": 0.33
+    },
+    "TKL": {
+      "taro": 8.26,
+      "sweetPotato": 11.22,
+      "banana": 6.54,
+      "cocoa": 0.33
+    },
+    "WLF": {
+      "taro": 8.26,
+      "sweetPotato": 11.22,
+      "banana": 6.54,
+      "cocoa": 0.33
+    },
+    "ASM": {
+      "taro": 8.26,
+      "sweetPotato": 11.22,
+      "banana": 6.54,
+      "cocoa": 0.33
+    }
   },
   {
     "year": 2007,
-    "taro": 7.98,
-    "sweetPotato": 10.53,
-    "banana": 6.31,
-    "cocoa": 0.32
+    "REGIONAL": {
+      "taro": 7.98,
+      "sweetPotato": 10.53,
+      "banana": 6.31,
+      "cocoa": 0.32
+    },
+    "FJI": {
+      "taro": 9.66,
+      "sweetPotato": 1.51,
+      "banana": 6.34,
+      "cocoa": 0.06
+    },
+    "TUV": {
+      "taro": 7.98,
+      "sweetPotato": 10.53,
+      "banana": 18.67,
+      "cocoa": 0.32
+    },
+    "VUT": {
+      "taro": 7.98,
+      "sweetPotato": 10.53,
+      "banana": 11.15,
+      "cocoa": 0.37
+    },
+    "WSM": {
+      "taro": 5.45,
+      "sweetPotato": 10.53,
+      "banana": 5.23,
+      "cocoa": 0.23
+    },
+    "TON": {
+      "taro": 8.44,
+      "sweetPotato": 11.33,
+      "banana": 1.47,
+      "cocoa": 0.32
+    },
+    "KIR": {
+      "taro": 4.89,
+      "sweetPotato": 10.53,
+      "banana": 5.27,
+      "cocoa": 0.32
+    },
+    "SLB": {
+      "taro": 20.0,
+      "sweetPotato": 13.85,
+      "banana": 2.91,
+      "cocoa": 0.43
+    },
+    "PNG": {
+      "taro": 6.67,
+      "sweetPotato": 5.04,
+      "banana": 14.46,
+      "cocoa": 0.41
+    },
+    "PLW": {
+      "taro": 7.98,
+      "sweetPotato": 10.53,
+      "banana": 6.31,
+      "cocoa": 0.32
+    },
+    "MHL": {
+      "taro": 7.98,
+      "sweetPotato": 10.53,
+      "banana": 6.31,
+      "cocoa": 0.32
+    },
+    "FSM": {
+      "taro": 7.98,
+      "sweetPotato": 5.82,
+      "banana": 5.38,
+      "cocoa": 0.44
+    },
+    "COK": {
+      "taro": 7.98,
+      "sweetPotato": 28.0,
+      "banana": 4.0,
+      "cocoa": 0.32
+    },
+    "PYF": {
+      "taro": 2.4,
+      "sweetPotato": 10.53,
+      "banana": 1.22,
+      "cocoa": 0.32
+    },
+    "GUM": {
+      "taro": 7.98,
+      "sweetPotato": 10.53,
+      "banana": 6.31,
+      "cocoa": 0.32
+    },
+    "NRU": {
+      "taro": 7.98,
+      "sweetPotato": 10.53,
+      "banana": 6.31,
+      "cocoa": 0.32
+    },
+    "NCL": {
+      "taro": 6.84,
+      "sweetPotato": 1.38,
+      "banana": 3.92,
+      "cocoa": 0.32
+    },
+    "NIU": {
+      "taro": 7.5,
+      "sweetPotato": 17.33,
+      "banana": 2.0,
+      "cocoa": 0.32
+    },
+    "MNP": {
+      "taro": 7.98,
+      "sweetPotato": 10.53,
+      "banana": 6.31,
+      "cocoa": 0.32
+    },
+    "PCN": {
+      "taro": 7.98,
+      "sweetPotato": 10.53,
+      "banana": 6.31,
+      "cocoa": 0.32
+    },
+    "TKL": {
+      "taro": 7.98,
+      "sweetPotato": 10.53,
+      "banana": 6.31,
+      "cocoa": 0.32
+    },
+    "WLF": {
+      "taro": 7.98,
+      "sweetPotato": 10.53,
+      "banana": 6.31,
+      "cocoa": 0.32
+    },
+    "ASM": {
+      "taro": 7.98,
+      "sweetPotato": 10.53,
+      "banana": 6.31,
+      "cocoa": 0.32
+    }
   },
   {
     "year": 2008,
-    "taro": 7.79,
-    "sweetPotato": 10.41,
-    "banana": 6.02,
-    "cocoa": 0.35
+    "REGIONAL": {
+      "taro": 7.79,
+      "sweetPotato": 10.41,
+      "banana": 6.02,
+      "cocoa": 0.35
+    },
+    "FJI": {
+      "taro": 7.23,
+      "sweetPotato": 1.27,
+      "banana": 2.98,
+      "cocoa": 0.05
+    },
+    "TUV": {
+      "taro": 7.79,
+      "sweetPotato": 10.41,
+      "banana": 18.42,
+      "cocoa": 0.35
+    },
+    "VUT": {
+      "taro": 7.79,
+      "sweetPotato": 10.41,
+      "banana": 11.01,
+      "cocoa": 0.6
+    },
+    "WSM": {
+      "taro": 5.04,
+      "sweetPotato": 10.41,
+      "banana": 5.17,
+      "cocoa": 0.21
+    },
+    "TON": {
+      "taro": 8.23,
+      "sweetPotato": 11.29,
+      "banana": 1.52,
+      "cocoa": 0.35
+    },
+    "KIR": {
+      "taro": 4.89,
+      "sweetPotato": 10.41,
+      "banana": 5.21,
+      "cocoa": 0.35
+    },
+    "SLB": {
+      "taro": 20.0,
+      "sweetPotato": 14.24,
+      "banana": 2.83,
+      "cocoa": 0.43
+    },
+    "PNG": {
+      "taro": 6.62,
+      "sweetPotato": 5.0,
+      "banana": 14.26,
+      "cocoa": 0.39
+    },
+    "PLW": {
+      "taro": 7.79,
+      "sweetPotato": 10.41,
+      "banana": 6.02,
+      "cocoa": 0.35
+    },
+    "MHL": {
+      "taro": 7.79,
+      "sweetPotato": 10.41,
+      "banana": 6.02,
+      "cocoa": 0.35
+    },
+    "FSM": {
+      "taro": 7.79,
+      "sweetPotato": 5.72,
+      "banana": 5.32,
+      "cocoa": 0.42
+    },
+    "COK": {
+      "taro": 7.79,
+      "sweetPotato": 27.5,
+      "banana": 3.98,
+      "cocoa": 0.35
+    },
+    "PYF": {
+      "taro": 2.39,
+      "sweetPotato": 10.41,
+      "banana": 1.2,
+      "cocoa": 0.35
+    },
+    "GUM": {
+      "taro": 7.79,
+      "sweetPotato": 10.41,
+      "banana": 6.02,
+      "cocoa": 0.35
+    },
+    "NRU": {
+      "taro": 7.79,
+      "sweetPotato": 10.41,
+      "banana": 6.02,
+      "cocoa": 0.35
+    },
+    "NCL": {
+      "taro": 8.8,
+      "sweetPotato": 1.27,
+      "banana": 4.41,
+      "cocoa": 0.35
+    },
+    "NIU": {
+      "taro": 6.86,
+      "sweetPotato": 16.97,
+      "banana": 2.01,
+      "cocoa": 0.35
+    },
+    "MNP": {
+      "taro": 7.79,
+      "sweetPotato": 10.41,
+      "banana": 6.02,
+      "cocoa": 0.35
+    },
+    "PCN": {
+      "taro": 7.79,
+      "sweetPotato": 10.41,
+      "banana": 6.02,
+      "cocoa": 0.35
+    },
+    "TKL": {
+      "taro": 7.79,
+      "sweetPotato": 10.41,
+      "banana": 6.02,
+      "cocoa": 0.35
+    },
+    "WLF": {
+      "taro": 7.79,
+      "sweetPotato": 10.41,
+      "banana": 6.02,
+      "cocoa": 0.35
+    },
+    "ASM": {
+      "taro": 7.79,
+      "sweetPotato": 10.41,
+      "banana": 6.02,
+      "cocoa": 0.35
+    }
   },
   {
     "year": 2009,
-    "taro": 8.25,
-    "sweetPotato": 11.9,
-    "banana": 6.09,
-    "cocoa": 0.35
+    "REGIONAL": {
+      "taro": 8.25,
+      "sweetPotato": 11.9,
+      "banana": 6.09,
+      "cocoa": 0.35
+    },
+    "FJI": {
+      "taro": 10.04,
+      "sweetPotato": 13.71,
+      "banana": 6.22,
+      "cocoa": 0.07
+    },
+    "TUV": {
+      "taro": 8.25,
+      "sweetPotato": 11.9,
+      "banana": 18.44,
+      "cocoa": 0.35
+    },
+    "VUT": {
+      "taro": 8.25,
+      "sweetPotato": 11.9,
+      "banana": 10.85,
+      "cocoa": 0.6
+    },
+    "WSM": {
+      "taro": 5.33,
+      "sweetPotato": 11.9,
+      "banana": 5.0,
+      "cocoa": 0.2
+    },
+    "TON": {
+      "taro": 8.17,
+      "sweetPotato": 11.1,
+      "banana": 1.51,
+      "cocoa": 0.35
+    },
+    "KIR": {
+      "taro": 5.04,
+      "sweetPotato": 11.9,
+      "banana": 5.19,
+      "cocoa": 0.35
+    },
+    "SLB": {
+      "taro": 20.0,
+      "sweetPotato": 14.33,
+      "banana": 2.75,
+      "cocoa": 0.43
+    },
+    "PNG": {
+      "taro": 6.62,
+      "sweetPotato": 4.96,
+      "banana": 14.0,
+      "cocoa": 0.41
+    },
+    "PLW": {
+      "taro": 8.25,
+      "sweetPotato": 11.9,
+      "banana": 6.09,
+      "cocoa": 0.35
+    },
+    "MHL": {
+      "taro": 8.25,
+      "sweetPotato": 11.9,
+      "banana": 6.09,
+      "cocoa": 0.35
+    },
+    "FSM": {
+      "taro": 8.25,
+      "sweetPotato": 5.7,
+      "banana": 5.31,
+      "cocoa": 0.41
+    },
+    "COK": {
+      "taro": 8.25,
+      "sweetPotato": 27.39,
+      "banana": 3.96,
+      "cocoa": 0.35
+    },
+    "PYF": {
+      "taro": 2.38,
+      "sweetPotato": 11.9,
+      "banana": 1.17,
+      "cocoa": 0.35
+    },
+    "GUM": {
+      "taro": 8.25,
+      "sweetPotato": 11.9,
+      "banana": 6.09,
+      "cocoa": 0.35
+    },
+    "NRU": {
+      "taro": 8.25,
+      "sweetPotato": 11.9,
+      "banana": 6.09,
+      "cocoa": 0.35
+    },
+    "NCL": {
+      "taro": 9.87,
+      "sweetPotato": 1.16,
+      "banana": 2.73,
+      "cocoa": 0.35
+    },
+    "NIU": {
+      "taro": 6.8,
+      "sweetPotato": 16.87,
+      "banana": 2.01,
+      "cocoa": 0.35
+    },
+    "MNP": {
+      "taro": 8.25,
+      "sweetPotato": 11.9,
+      "banana": 6.09,
+      "cocoa": 0.35
+    },
+    "PCN": {
+      "taro": 8.25,
+      "sweetPotato": 11.9,
+      "banana": 6.09,
+      "cocoa": 0.35
+    },
+    "TKL": {
+      "taro": 8.25,
+      "sweetPotato": 11.9,
+      "banana": 6.09,
+      "cocoa": 0.35
+    },
+    "WLF": {
+      "taro": 8.25,
+      "sweetPotato": 11.9,
+      "banana": 6.09,
+      "cocoa": 0.35
+    },
+    "ASM": {
+      "taro": 8.25,
+      "sweetPotato": 11.9,
+      "banana": 6.09,
+      "cocoa": 0.35
+    }
   },
   {
     "year": 2010,
-    "taro": 7.95,
-    "sweetPotato": 11.43,
-    "banana": 6.1,
-    "cocoa": 0.34
+    "REGIONAL": {
+      "taro": 7.95,
+      "sweetPotato": 11.43,
+      "banana": 6.1,
+      "cocoa": 0.34
+    },
+    "FJI": {
+      "taro": 10.63,
+      "sweetPotato": 10.35,
+      "banana": 5.57,
+      "cocoa": 0.08
+    },
+    "TUV": {
+      "taro": 7.95,
+      "sweetPotato": 11.43,
+      "banana": 18.45,
+      "cocoa": 0.34
+    },
+    "VUT": {
+      "taro": 7.95,
+      "sweetPotato": 11.43,
+      "banana": 10.67,
+      "cocoa": 0.53
+    },
+    "WSM": {
+      "taro": 5.28,
+      "sweetPotato": 11.43,
+      "banana": 5.02,
+      "cocoa": 0.2
+    },
+    "TON": {
+      "taro": 8.11,
+      "sweetPotato": 10.96,
+      "banana": 1.51,
+      "cocoa": 0.34
+    },
+    "KIR": {
+      "taro": 5.25,
+      "sweetPotato": 11.43,
+      "banana": 5.19,
+      "cocoa": 0.34
+    },
+    "SLB": {
+      "taro": 19.59,
+      "sweetPotato": 14.33,
+      "banana": 2.56,
+      "cocoa": 0.43
+    },
+    "PNG": {
+      "taro": 6.79,
+      "sweetPotato": 4.99,
+      "banana": 15.0,
+      "cocoa": 0.41
+    },
+    "PLW": {
+      "taro": 7.95,
+      "sweetPotato": 11.43,
+      "banana": 6.1,
+      "cocoa": 0.34
+    },
+    "MHL": {
+      "taro": 7.95,
+      "sweetPotato": 11.43,
+      "banana": 6.1,
+      "cocoa": 0.34
+    },
+    "FSM": {
+      "taro": 7.95,
+      "sweetPotato": 5.67,
+      "banana": 5.3,
+      "cocoa": 0.41
+    },
+    "COK": {
+      "taro": 7.95,
+      "sweetPotato": 27.39,
+      "banana": 4.01,
+      "cocoa": 0.34
+    },
+    "PYF": {
+      "taro": 2.37,
+      "sweetPotato": 11.43,
+      "banana": 1.14,
+      "cocoa": 0.34
+    },
+    "GUM": {
+      "taro": 7.95,
+      "sweetPotato": 11.43,
+      "banana": 6.1,
+      "cocoa": 0.34
+    },
+    "NRU": {
+      "taro": 7.95,
+      "sweetPotato": 11.43,
+      "banana": 6.1,
+      "cocoa": 0.34
+    },
+    "NCL": {
+      "taro": 6.79,
+      "sweetPotato": 0.99,
+      "banana": 2.92,
+      "cocoa": 0.34
+    },
+    "NIU": {
+      "taro": 6.74,
+      "sweetPotato": 16.77,
+      "banana": 2.01,
+      "cocoa": 0.34
+    },
+    "MNP": {
+      "taro": 7.95,
+      "sweetPotato": 11.43,
+      "banana": 6.1,
+      "cocoa": 0.34
+    },
+    "PCN": {
+      "taro": 7.95,
+      "sweetPotato": 11.43,
+      "banana": 6.1,
+      "cocoa": 0.34
+    },
+    "TKL": {
+      "taro": 7.95,
+      "sweetPotato": 11.43,
+      "banana": 6.1,
+      "cocoa": 0.34
+    },
+    "WLF": {
+      "taro": 7.95,
+      "sweetPotato": 11.43,
+      "banana": 6.1,
+      "cocoa": 0.34
+    },
+    "ASM": {
+      "taro": 7.95,
+      "sweetPotato": 11.43,
+      "banana": 6.1,
+      "cocoa": 0.34
+    }
   },
   {
     "year": 2011,
-    "taro": 7.7,
-    "sweetPotato": 11.37,
-    "banana": 6.18,
-    "cocoa": 0.34
+    "REGIONAL": {
+      "taro": 7.7,
+      "sweetPotato": 11.37,
+      "banana": 6.18,
+      "cocoa": 0.34
+    },
+    "FJI": {
+      "taro": 9.8,
+      "sweetPotato": 10.12,
+      "banana": 5.33,
+      "cocoa": 0.09
+    },
+    "TUV": {
+      "taro": 7.7,
+      "sweetPotato": 11.37,
+      "banana": 18.43,
+      "cocoa": 0.34
+    },
+    "VUT": {
+      "taro": 7.7,
+      "sweetPotato": 11.37,
+      "banana": 10.53,
+      "cocoa": 0.51
+    },
+    "WSM": {
+      "taro": 5.26,
+      "sweetPotato": 11.37,
+      "banana": 5.02,
+      "cocoa": 0.18
+    },
+    "TON": {
+      "taro": 8.05,
+      "sweetPotato": 10.86,
+      "banana": 1.5,
+      "cocoa": 0.34
+    },
+    "KIR": {
+      "taro": 5.42,
+      "sweetPotato": 11.37,
+      "banana": 5.19,
+      "cocoa": 0.34
+    },
+    "SLB": {
+      "taro": 19.2,
+      "sweetPotato": 14.2,
+      "banana": 2.46,
+      "cocoa": 0.43
+    },
+    "PNG": {
+      "taro": 6.88,
+      "sweetPotato": 5.04,
+      "banana": 15.71,
+      "cocoa": 0.41
+    },
+    "PLW": {
+      "taro": 7.7,
+      "sweetPotato": 11.37,
+      "banana": 6.18,
+      "cocoa": 0.34
+    },
+    "MHL": {
+      "taro": 7.7,
+      "sweetPotato": 11.37,
+      "banana": 6.18,
+      "cocoa": 0.34
+    },
+    "FSM": {
+      "taro": 7.7,
+      "sweetPotato": 5.64,
+      "banana": 5.3,
+      "cocoa": 0.4
+    },
+    "COK": {
+      "taro": 7.7,
+      "sweetPotato": 27.43,
+      "banana": 3.98,
+      "cocoa": 0.34
+    },
+    "PYF": {
+      "taro": 2.36,
+      "sweetPotato": 11.37,
+      "banana": 1.13,
+      "cocoa": 0.34
+    },
+    "GUM": {
+      "taro": 7.7,
+      "sweetPotato": 11.37,
+      "banana": 6.18,
+      "cocoa": 0.34
+    },
+    "NRU": {
+      "taro": 7.7,
+      "sweetPotato": 11.37,
+      "banana": 6.18,
+      "cocoa": 0.34
+    },
+    "NCL": {
+      "taro": 5.65,
+      "sweetPotato": 0.97,
+      "banana": 3.68,
+      "cocoa": 0.34
+    },
+    "NIU": {
+      "taro": 6.7,
+      "sweetPotato": 16.66,
+      "banana": 2.01,
+      "cocoa": 0.34
+    },
+    "MNP": {
+      "taro": 7.7,
+      "sweetPotato": 11.37,
+      "banana": 6.18,
+      "cocoa": 0.34
+    },
+    "PCN": {
+      "taro": 7.7,
+      "sweetPotato": 11.37,
+      "banana": 6.18,
+      "cocoa": 0.34
+    },
+    "TKL": {
+      "taro": 7.7,
+      "sweetPotato": 11.37,
+      "banana": 6.18,
+      "cocoa": 0.34
+    },
+    "WLF": {
+      "taro": 7.7,
+      "sweetPotato": 11.37,
+      "banana": 6.18,
+      "cocoa": 0.34
+    },
+    "ASM": {
+      "taro": 7.7,
+      "sweetPotato": 11.37,
+      "banana": 6.18,
+      "cocoa": 0.34
+    }
   },
   {
     "year": 2012,
-    "taro": 7.66,
-    "sweetPotato": 11.15,
-    "banana": 6.13,
-    "cocoa": 0.34
+    "REGIONAL": {
+      "taro": 7.66,
+      "sweetPotato": 11.15,
+      "banana": 6.13,
+      "cocoa": 0.34
+    },
+    "FJI": {
+      "taro": 9.4,
+      "sweetPotato": 9.48,
+      "banana": 5.19,
+      "cocoa": 0.13
+    },
+    "TUV": {
+      "taro": 7.66,
+      "sweetPotato": 11.15,
+      "banana": 18.0,
+      "cocoa": 0.34
+    },
+    "VUT": {
+      "taro": 7.66,
+      "sweetPotato": 11.15,
+      "banana": 10.33,
+      "cocoa": 0.51
+    },
+    "WSM": {
+      "taro": 5.2,
+      "sweetPotato": 11.15,
+      "banana": 5.03,
+      "cocoa": 0.19
+    },
+    "TON": {
+      "taro": 7.36,
+      "sweetPotato": 10.0,
+      "banana": 1.47,
+      "cocoa": 0.34
+    },
+    "KIR": {
+      "taro": 5.62,
+      "sweetPotato": 11.15,
+      "banana": 5.15,
+      "cocoa": 0.34
+    },
+    "SLB": {
+      "taro": 17.5,
+      "sweetPotato": 13.97,
+      "banana": 2.22,
+      "cocoa": 0.38
+    },
+    "PNG": {
+      "taro": 7.58,
+      "sweetPotato": 5.06,
+      "banana": 16.39,
+      "cocoa": 0.41
+    },
+    "PLW": {
+      "taro": 7.66,
+      "sweetPotato": 11.15,
+      "banana": 6.13,
+      "cocoa": 0.34
+    },
+    "MHL": {
+      "taro": 7.66,
+      "sweetPotato": 11.15,
+      "banana": 6.13,
+      "cocoa": 0.34
+    },
+    "FSM": {
+      "taro": 7.66,
+      "sweetPotato": 5.45,
+      "banana": 5.26,
+      "cocoa": 0.4
+    },
+    "COK": {
+      "taro": 7.66,
+      "sweetPotato": 27.47,
+      "banana": 3.95,
+      "cocoa": 0.34
+    },
+    "PYF": {
+      "taro": 2.59,
+      "sweetPotato": 11.15,
+      "banana": 0.8,
+      "cocoa": 0.34
+    },
+    "GUM": {
+      "taro": 7.66,
+      "sweetPotato": 11.15,
+      "banana": 6.13,
+      "cocoa": 0.34
+    },
+    "NRU": {
+      "taro": 7.66,
+      "sweetPotato": 11.15,
+      "banana": 6.13,
+      "cocoa": 0.34
+    },
+    "NCL": {
+      "taro": 7.22,
+      "sweetPotato": 1.06,
+      "banana": 3.85,
+      "cocoa": 0.34
+    },
+    "NIU": {
+      "taro": 6.44,
+      "sweetPotato": 16.67,
+      "banana": 2.0,
+      "cocoa": 0.34
+    },
+    "MNP": {
+      "taro": 7.66,
+      "sweetPotato": 11.15,
+      "banana": 6.13,
+      "cocoa": 0.34
+    },
+    "PCN": {
+      "taro": 7.66,
+      "sweetPotato": 11.15,
+      "banana": 6.13,
+      "cocoa": 0.34
+    },
+    "TKL": {
+      "taro": 7.66,
+      "sweetPotato": 11.15,
+      "banana": 6.13,
+      "cocoa": 0.34
+    },
+    "WLF": {
+      "taro": 7.66,
+      "sweetPotato": 11.15,
+      "banana": 6.13,
+      "cocoa": 0.34
+    },
+    "ASM": {
+      "taro": 7.66,
+      "sweetPotato": 11.15,
+      "banana": 6.13,
+      "cocoa": 0.34
+    }
   },
   {
     "year": 2013,
-    "taro": 7.3,
-    "sweetPotato": 11.24,
-    "banana": 6.23,
-    "cocoa": 0.33
+    "REGIONAL": {
+      "taro": 7.3,
+      "sweetPotato": 11.24,
+      "banana": 6.23,
+      "cocoa": 0.33
+    },
+    "FJI": {
+      "taro": 10.88,
+      "sweetPotato": 9.91,
+      "banana": 5.04,
+      "cocoa": 0.12
+    },
+    "TUV": {
+      "taro": 7.3,
+      "sweetPotato": 11.24,
+      "banana": 18.48,
+      "cocoa": 0.33
+    },
+    "VUT": {
+      "taro": 7.3,
+      "sweetPotato": 11.24,
+      "banana": 10.16,
+      "cocoa": 0.51
+    },
+    "WSM": {
+      "taro": 5.23,
+      "sweetPotato": 11.24,
+      "banana": 5.04,
+      "cocoa": 0.19
+    },
+    "TON": {
+      "taro": 7.22,
+      "sweetPotato": 10.83,
+      "banana": 1.48,
+      "cocoa": 0.33
+    },
+    "KIR": {
+      "taro": 5.71,
+      "sweetPotato": 11.24,
+      "banana": 5.15,
+      "cocoa": 0.33
+    },
+    "SLB": {
+      "taro": 17.0,
+      "sweetPotato": 14.29,
+      "banana": 2.35,
+      "cocoa": 0.39
+    },
+    "PNG": {
+      "taro": 7.71,
+      "sweetPotato": 5.08,
+      "banana": 16.93,
+      "cocoa": 0.41
+    },
+    "PLW": {
+      "taro": 7.3,
+      "sweetPotato": 11.24,
+      "banana": 6.23,
+      "cocoa": 0.33
+    },
+    "MHL": {
+      "taro": 7.3,
+      "sweetPotato": 11.24,
+      "banana": 6.23,
+      "cocoa": 0.33
+    },
+    "FSM": {
+      "taro": 7.3,
+      "sweetPotato": 5.66,
+      "banana": 5.3,
+      "cocoa": 0.38
+    },
+    "COK": {
+      "taro": 7.3,
+      "sweetPotato": 27.51,
+      "banana": 3.93,
+      "cocoa": 0.33
+    },
+    "PYF": {
+      "taro": 2.32,
+      "sweetPotato": 11.24,
+      "banana": 1.08,
+      "cocoa": 0.33
+    },
+    "GUM": {
+      "taro": 7.3,
+      "sweetPotato": 11.24,
+      "banana": 6.23,
+      "cocoa": 0.33
+    },
+    "NRU": {
+      "taro": 7.3,
+      "sweetPotato": 11.24,
+      "banana": 6.23,
+      "cocoa": 0.33
+    },
+    "NCL": {
+      "taro": 2.94,
+      "sweetPotato": 1.01,
+      "banana": 3.99,
+      "cocoa": 0.33
+    },
+    "NIU": {
+      "taro": 6.67,
+      "sweetPotato": 15.62,
+      "banana": 2.0,
+      "cocoa": 0.33
+    },
+    "MNP": {
+      "taro": 7.3,
+      "sweetPotato": 11.24,
+      "banana": 6.23,
+      "cocoa": 0.33
+    },
+    "PCN": {
+      "taro": 7.3,
+      "sweetPotato": 11.24,
+      "banana": 6.23,
+      "cocoa": 0.33
+    },
+    "TKL": {
+      "taro": 7.3,
+      "sweetPotato": 11.24,
+      "banana": 6.23,
+      "cocoa": 0.33
+    },
+    "WLF": {
+      "taro": 7.3,
+      "sweetPotato": 11.24,
+      "banana": 6.23,
+      "cocoa": 0.33
+    },
+    "ASM": {
+      "taro": 7.3,
+      "sweetPotato": 11.24,
+      "banana": 6.23,
+      "cocoa": 0.33
+    }
   },
   {
     "year": 2014,
-    "taro": 7.4,
-    "sweetPotato": 11.24,
-    "banana": 6.23,
-    "cocoa": 0.33
+    "REGIONAL": {
+      "taro": 7.4,
+      "sweetPotato": 11.24,
+      "banana": 6.23,
+      "cocoa": 0.33
+    },
+    "FJI": {
+      "taro": 9.25,
+      "sweetPotato": 10.08,
+      "banana": 4.89,
+      "cocoa": 0.1
+    },
+    "TUV": {
+      "taro": 7.4,
+      "sweetPotato": 11.24,
+      "banana": 18.68,
+      "cocoa": 0.33
+    },
+    "VUT": {
+      "taro": 7.4,
+      "sweetPotato": 11.24,
+      "banana": 9.96,
+      "cocoa": 0.51
+    },
+    "WSM": {
+      "taro": 5.29,
+      "sweetPotato": 11.24,
+      "banana": 5.07,
+      "cocoa": 0.19
+    },
+    "TON": {
+      "taro": 7.53,
+      "sweetPotato": 10.68,
+      "banana": 1.45,
+      "cocoa": 0.33
+    },
+    "KIR": {
+      "taro": 5.81,
+      "sweetPotato": 11.24,
+      "banana": 5.17,
+      "cocoa": 0.33
+    },
+    "SLB": {
+      "taro": 16.67,
+      "sweetPotato": 14.2,
+      "banana": 2.38,
+      "cocoa": 0.4
+    },
+    "PNG": {
+      "taro": 7.79,
+      "sweetPotato": 5.08,
+      "banana": 17.42,
+      "cocoa": 0.41
+    },
+    "PLW": {
+      "taro": 7.4,
+      "sweetPotato": 11.24,
+      "banana": 6.23,
+      "cocoa": 0.33
+    },
+    "MHL": {
+      "taro": 7.4,
+      "sweetPotato": 11.24,
+      "banana": 6.23,
+      "cocoa": 0.33
+    },
+    "FSM": {
+      "taro": 7.4,
+      "sweetPotato": 5.66,
+      "banana": 5.32,
+      "cocoa": 0.39
+    },
+    "COK": {
+      "taro": 7.4,
+      "sweetPotato": 27.48,
+      "banana": 3.61,
+      "cocoa": 0.33
+    },
+    "PYF": {
+      "taro": 2.3,
+      "sweetPotato": 11.24,
+      "banana": 1.09,
+      "cocoa": 0.33
+    },
+    "GUM": {
+      "taro": 7.4,
+      "sweetPotato": 11.24,
+      "banana": 6.23,
+      "cocoa": 0.33
+    },
+    "NRU": {
+      "taro": 7.4,
+      "sweetPotato": 11.24,
+      "banana": 6.23,
+      "cocoa": 0.33
+    },
+    "NCL": {
+      "taro": 5.27,
+      "sweetPotato": 0.93,
+      "banana": 4.01,
+      "cocoa": 0.33
+    },
+    "NIU": {
+      "taro": 6.67,
+      "sweetPotato": 15.84,
+      "banana": 2.0,
+      "cocoa": 0.33
+    },
+    "MNP": {
+      "taro": 7.4,
+      "sweetPotato": 11.24,
+      "banana": 6.23,
+      "cocoa": 0.33
+    },
+    "PCN": {
+      "taro": 7.4,
+      "sweetPotato": 11.24,
+      "banana": 6.23,
+      "cocoa": 0.33
+    },
+    "TKL": {
+      "taro": 7.4,
+      "sweetPotato": 11.24,
+      "banana": 6.23,
+      "cocoa": 0.33
+    },
+    "WLF": {
+      "taro": 7.4,
+      "sweetPotato": 11.24,
+      "banana": 6.23,
+      "cocoa": 0.33
+    },
+    "ASM": {
+      "taro": 7.4,
+      "sweetPotato": 11.24,
+      "banana": 6.23,
+      "cocoa": 0.33
+    }
   },
   {
     "year": 2015,
-    "taro": 8.76,
-    "sweetPotato": 11.27,
-    "banana": 6.42,
-    "cocoa": 0.34
+    "REGIONAL": {
+      "taro": 8.76,
+      "sweetPotato": 11.27,
+      "banana": 6.42,
+      "cocoa": 0.34
+    },
+    "FJI": {
+      "taro": 20.0,
+      "sweetPotato": 9.93,
+      "banana": 10.0,
+      "cocoa": 0.23
+    },
+    "TUV": {
+      "taro": 8.76,
+      "sweetPotato": 11.27,
+      "banana": 17.77,
+      "cocoa": 0.34
+    },
+    "VUT": {
+      "taro": 8.76,
+      "sweetPotato": 11.27,
+      "banana": 9.87,
+      "cocoa": 0.52
+    },
+    "WSM": {
+      "taro": 5.43,
+      "sweetPotato": 11.27,
+      "banana": 5.08,
+      "cocoa": 0.19
+    },
+    "TON": {
+      "taro": 7.7,
+      "sweetPotato": 10.5,
+      "banana": 1.46,
+      "cocoa": 0.34
+    },
+    "KIR": {
+      "taro": 5.81,
+      "sweetPotato": 11.27,
+      "banana": 5.19,
+      "cocoa": 0.34
+    },
+    "SLB": {
+      "taro": 17.62,
+      "sweetPotato": 14.16,
+      "banana": 2.21,
+      "cocoa": 0.4
+    },
+    "PNG": {
+      "taro": 7.53,
+      "sweetPotato": 5.09,
+      "banana": 16.43,
+      "cocoa": 0.32
+    },
+    "PLW": {
+      "taro": 8.76,
+      "sweetPotato": 11.27,
+      "banana": 6.42,
+      "cocoa": 0.34
+    },
+    "MHL": {
+      "taro": 8.76,
+      "sweetPotato": 11.27,
+      "banana": 6.42,
+      "cocoa": 0.34
+    },
+    "FSM": {
+      "taro": 8.76,
+      "sweetPotato": 5.58,
+      "banana": 5.31,
+      "cocoa": 0.39
+    },
+    "COK": {
+      "taro": 8.76,
+      "sweetPotato": 27.47,
+      "banana": 3.03,
+      "cocoa": 0.34
+    },
+    "PYF": {
+      "taro": 2.27,
+      "sweetPotato": 11.27,
+      "banana": 1.09,
+      "cocoa": 0.34
+    },
+    "GUM": {
+      "taro": 8.76,
+      "sweetPotato": 11.27,
+      "banana": 6.42,
+      "cocoa": 0.34
+    },
+    "NRU": {
+      "taro": 8.76,
+      "sweetPotato": 11.27,
+      "banana": 6.42,
+      "cocoa": 0.34
+    },
+    "NCL": {
+      "taro": 5.84,
+      "sweetPotato": 1.17,
+      "banana": 3.99,
+      "cocoa": 0.34
+    },
+    "NIU": {
+      "taro": 6.61,
+      "sweetPotato": 16.25,
+      "banana": 2.0,
+      "cocoa": 0.34
+    },
+    "MNP": {
+      "taro": 8.76,
+      "sweetPotato": 11.27,
+      "banana": 6.42,
+      "cocoa": 0.34
+    },
+    "PCN": {
+      "taro": 8.76,
+      "sweetPotato": 11.27,
+      "banana": 6.42,
+      "cocoa": 0.34
+    },
+    "TKL": {
+      "taro": 8.76,
+      "sweetPotato": 11.27,
+      "banana": 6.42,
+      "cocoa": 0.34
+    },
+    "WLF": {
+      "taro": 8.76,
+      "sweetPotato": 11.27,
+      "banana": 6.42,
+      "cocoa": 0.34
+    },
+    "ASM": {
+      "taro": 8.76,
+      "sweetPotato": 11.27,
+      "banana": 6.42,
+      "cocoa": 0.34
+    }
   },
   {
     "year": 2016,
-    "taro": 8.63,
-    "sweetPotato": 11.35,
-    "banana": 6.48,
-    "cocoa": 0.37
+    "REGIONAL": {
+      "taro": 8.63,
+      "sweetPotato": 11.35,
+      "banana": 6.48,
+      "cocoa": 0.37
+    },
+    "FJI": {
+      "taro": 20.0,
+      "sweetPotato": 10.76,
+      "banana": 10.0,
+      "cocoa": 0.34
+    },
+    "TUV": {
+      "taro": 8.63,
+      "sweetPotato": 11.35,
+      "banana": 17.78,
+      "cocoa": 0.37
+    },
+    "VUT": {
+      "taro": 8.63,
+      "sweetPotato": 11.35,
+      "banana": 10.21,
+      "cocoa": 0.51
+    },
+    "WSM": {
+      "taro": 5.5,
+      "sweetPotato": 11.35,
+      "banana": 5.61,
+      "cocoa": 0.19
+    },
+    "TON": {
+      "taro": 7.49,
+      "sweetPotato": 10.45,
+      "banana": 1.47,
+      "cocoa": 0.37
+    },
+    "KIR": {
+      "taro": 5.83,
+      "sweetPotato": 11.35,
+      "banana": 5.17,
+      "cocoa": 0.37
+    },
+    "SLB": {
+      "taro": 16.77,
+      "sweetPotato": 14.12,
+      "banana": 2.35,
+      "cocoa": 0.4
+    },
+    "PNG": {
+      "taro": 7.47,
+      "sweetPotato": 5.1,
+      "banana": 16.33,
+      "cocoa": 0.41
+    },
+    "PLW": {
+      "taro": 8.63,
+      "sweetPotato": 11.35,
+      "banana": 6.48,
+      "cocoa": 0.37
+    },
+    "MHL": {
+      "taro": 8.63,
+      "sweetPotato": 11.35,
+      "banana": 6.48,
+      "cocoa": 0.37
+    },
+    "FSM": {
+      "taro": 8.63,
+      "sweetPotato": 5.57,
+      "banana": 5.32,
+      "cocoa": 0.39
+    },
+    "COK": {
+      "taro": 8.63,
+      "sweetPotato": 27.49,
+      "banana": 2.78,
+      "cocoa": 0.37
+    },
+    "PYF": {
+      "taro": 2.24,
+      "sweetPotato": 11.35,
+      "banana": 1.1,
+      "cocoa": 0.37
+    },
+    "GUM": {
+      "taro": 8.63,
+      "sweetPotato": 11.35,
+      "banana": 6.48,
+      "cocoa": 0.37
+    },
+    "NRU": {
+      "taro": 8.63,
+      "sweetPotato": 11.35,
+      "banana": 6.48,
+      "cocoa": 0.37
+    },
+    "NCL": {
+      "taro": 5.72,
+      "sweetPotato": 1.45,
+      "banana": 4.08,
+      "cocoa": 0.37
+    },
+    "NIU": {
+      "taro": 6.65,
+      "sweetPotato": 15.87,
+      "banana": 1.99,
+      "cocoa": 0.37
+    },
+    "MNP": {
+      "taro": 8.63,
+      "sweetPotato": 11.35,
+      "banana": 6.48,
+      "cocoa": 0.37
+    },
+    "PCN": {
+      "taro": 8.63,
+      "sweetPotato": 11.35,
+      "banana": 6.48,
+      "cocoa": 0.37
+    },
+    "TKL": {
+      "taro": 8.63,
+      "sweetPotato": 11.35,
+      "banana": 6.48,
+      "cocoa": 0.37
+    },
+    "WLF": {
+      "taro": 8.63,
+      "sweetPotato": 11.35,
+      "banana": 6.48,
+      "cocoa": 0.37
+    },
+    "ASM": {
+      "taro": 8.63,
+      "sweetPotato": 11.35,
+      "banana": 6.48,
+      "cocoa": 0.37
+    }
   },
   {
     "year": 2017,
-    "taro": 8.53,
-    "sweetPotato": 11.19,
-    "banana": 6.6,
-    "cocoa": 0.65
+    "REGIONAL": {
+      "taro": 8.53,
+      "sweetPotato": 11.19,
+      "banana": 6.6,
+      "cocoa": 0.65
+    },
+    "FJI": {
+      "taro": 20.0,
+      "sweetPotato": 9.5,
+      "banana": 10.0,
+      "cocoa": 2.0
+    },
+    "TUV": {
+      "taro": 8.53,
+      "sweetPotato": 11.19,
+      "banana": 17.79,
+      "cocoa": 0.65
+    },
+    "VUT": {
+      "taro": 8.53,
+      "sweetPotato": 11.19,
+      "banana": 10.35,
+      "cocoa": 0.51
+    },
+    "WSM": {
+      "taro": 5.53,
+      "sweetPotato": 11.19,
+      "banana": 6.51,
+      "cocoa": 0.19
+    },
+    "TON": {
+      "taro": 7.58,
+      "sweetPotato": 10.35,
+      "banana": 1.44,
+      "cocoa": 0.65
+    },
+    "KIR": {
+      "taro": 5.57,
+      "sweetPotato": 11.19,
+      "banana": 5.16,
+      "cocoa": 0.65
+    },
+    "SLB": {
+      "taro": 16.45,
+      "sweetPotato": 14.08,
+      "banana": 2.36,
+      "cocoa": 0.4
+    },
+    "PNG": {
+      "taro": 7.46,
+      "sweetPotato": 5.1,
+      "banana": 16.83,
+      "cocoa": 0.41
+    },
+    "PLW": {
+      "taro": 8.53,
+      "sweetPotato": 11.19,
+      "banana": 6.6,
+      "cocoa": 0.65
+    },
+    "MHL": {
+      "taro": 8.53,
+      "sweetPotato": 11.19,
+      "banana": 6.6,
+      "cocoa": 0.65
+    },
+    "FSM": {
+      "taro": 8.53,
+      "sweetPotato": 5.56,
+      "banana": 5.32,
+      "cocoa": 0.39
+    },
+    "COK": {
+      "taro": 8.53,
+      "sweetPotato": 27.48,
+      "banana": 2.81,
+      "cocoa": 0.65
+    },
+    "PYF": {
+      "taro": 2.21,
+      "sweetPotato": 11.19,
+      "banana": 1.11,
+      "cocoa": 0.65
+    },
+    "GUM": {
+      "taro": 8.53,
+      "sweetPotato": 11.19,
+      "banana": 6.6,
+      "cocoa": 0.65
+    },
+    "NRU": {
+      "taro": 8.53,
+      "sweetPotato": 11.19,
+      "banana": 6.6,
+      "cocoa": 0.65
+    },
+    "NCL": {
+      "taro": 5.39,
+      "sweetPotato": 1.67,
+      "banana": 4.16,
+      "cocoa": 0.65
+    },
+    "NIU": {
+      "taro": 6.61,
+      "sweetPotato": 15.74,
+      "banana": 1.99,
+      "cocoa": 0.65
+    },
+    "MNP": {
+      "taro": 8.53,
+      "sweetPotato": 11.19,
+      "banana": 6.6,
+      "cocoa": 0.65
+    },
+    "PCN": {
+      "taro": 8.53,
+      "sweetPotato": 11.19,
+      "banana": 6.6,
+      "cocoa": 0.65
+    },
+    "TKL": {
+      "taro": 8.53,
+      "sweetPotato": 11.19,
+      "banana": 6.6,
+      "cocoa": 0.65
+    },
+    "WLF": {
+      "taro": 8.53,
+      "sweetPotato": 11.19,
+      "banana": 6.6,
+      "cocoa": 0.65
+    },
+    "ASM": {
+      "taro": 8.53,
+      "sweetPotato": 11.19,
+      "banana": 6.6,
+      "cocoa": 0.65
+    }
   },
   {
     "year": 2018,
-    "taro": 8.49,
-    "sweetPotato": 10.71,
-    "banana": 6.68,
-    "cocoa": 0.65
+    "REGIONAL": {
+      "taro": 8.49,
+      "sweetPotato": 10.71,
+      "banana": 6.68,
+      "cocoa": 0.65
+    },
+    "FJI": {
+      "taro": 19.99,
+      "sweetPotato": 9.6,
+      "banana": 10.0,
+      "cocoa": 2.0
+    },
+    "TUV": {
+      "taro": 8.49,
+      "sweetPotato": 10.71,
+      "banana": 17.95,
+      "cocoa": 0.65
+    },
+    "VUT": {
+      "taro": 8.49,
+      "sweetPotato": 10.71,
+      "banana": 10.44,
+      "cocoa": 0.51
+    },
+    "WSM": {
+      "taro": 5.55,
+      "sweetPotato": 10.71,
+      "banana": 7.75,
+      "cocoa": 0.19
+    },
+    "TON": {
+      "taro": 7.45,
+      "sweetPotato": 10.23,
+      "banana": 1.43,
+      "cocoa": 0.65
+    },
+    "KIR": {
+      "taro": 5.43,
+      "sweetPotato": 10.71,
+      "banana": 5.17,
+      "cocoa": 0.65
+    },
+    "SLB": {
+      "taro": 16.16,
+      "sweetPotato": 14.06,
+      "banana": 2.3,
+      "cocoa": 0.4
+    },
+    "PNG": {
+      "taro": 7.48,
+      "sweetPotato": 5.11,
+      "banana": 16.22,
+      "cocoa": 0.4
+    },
+    "PLW": {
+      "taro": 8.49,
+      "sweetPotato": 10.71,
+      "banana": 6.68,
+      "cocoa": 0.65
+    },
+    "MHL": {
+      "taro": 8.49,
+      "sweetPotato": 10.71,
+      "banana": 6.68,
+      "cocoa": 0.65
+    },
+    "FSM": {
+      "taro": 8.49,
+      "sweetPotato": 5.54,
+      "banana": 5.32,
+      "cocoa": 0.39
+    },
+    "COK": {
+      "taro": 8.49,
+      "sweetPotato": 27.48,
+      "banana": 2.91,
+      "cocoa": 0.65
+    },
+    "PYF": {
+      "taro": 2.17,
+      "sweetPotato": 6.9,
+      "banana": 1.12,
+      "cocoa": 0.65
+    },
+    "GUM": {
+      "taro": 8.49,
+      "sweetPotato": 10.71,
+      "banana": 6.68,
+      "cocoa": 0.65
+    },
+    "NRU": {
+      "taro": 8.49,
+      "sweetPotato": 10.71,
+      "banana": 6.68,
+      "cocoa": 0.65
+    },
+    "NCL": {
+      "taro": 5.54,
+      "sweetPotato": 1.87,
+      "banana": 4.26,
+      "cocoa": 0.65
+    },
+    "NIU": {
+      "taro": 6.61,
+      "sweetPotato": 15.59,
+      "banana": 1.98,
+      "cocoa": 0.65
+    },
+    "MNP": {
+      "taro": 8.49,
+      "sweetPotato": 10.71,
+      "banana": 6.68,
+      "cocoa": 0.65
+    },
+    "PCN": {
+      "taro": 8.49,
+      "sweetPotato": 10.71,
+      "banana": 6.68,
+      "cocoa": 0.65
+    },
+    "TKL": {
+      "taro": 8.49,
+      "sweetPotato": 10.71,
+      "banana": 6.68,
+      "cocoa": 0.65
+    },
+    "WLF": {
+      "taro": 8.49,
+      "sweetPotato": 10.71,
+      "banana": 6.68,
+      "cocoa": 0.65
+    },
+    "ASM": {
+      "taro": 8.49,
+      "sweetPotato": 10.71,
+      "banana": 6.68,
+      "cocoa": 0.65
+    }
   },
   {
     "year": 2019,
-    "taro": 8.59,
-    "sweetPotato": 10.74,
-    "banana": 6.82,
-    "cocoa": 0.64
+    "REGIONAL": {
+      "taro": 8.59,
+      "sweetPotato": 10.74,
+      "banana": 6.82,
+      "cocoa": 0.64
+    },
+    "FJI": {
+      "taro": 20.0,
+      "sweetPotato": 10.05,
+      "banana": 10.0,
+      "cocoa": 1.94
+    },
+    "TUV": {
+      "taro": 8.59,
+      "sweetPotato": 10.74,
+      "banana": 18.01,
+      "cocoa": 0.64
+    },
+    "VUT": {
+      "taro": 8.59,
+      "sweetPotato": 10.74,
+      "banana": 10.55,
+      "cocoa": 0.51
+    },
+    "WSM": {
+      "taro": 5.62,
+      "sweetPotato": 10.74,
+      "banana": 9.23,
+      "cocoa": 0.19
+    },
+    "TON": {
+      "taro": 7.85,
+      "sweetPotato": 10.12,
+      "banana": 1.43,
+      "cocoa": 0.64
+    },
+    "KIR": {
+      "taro": 5.33,
+      "sweetPotato": 10.74,
+      "banana": 5.17,
+      "cocoa": 0.64
+    },
+    "SLB": {
+      "taro": 16.66,
+      "sweetPotato": 14.03,
+      "banana": 2.34,
+      "cocoa": 0.4
+    },
+    "PNG": {
+      "taro": 7.53,
+      "sweetPotato": 5.12,
+      "banana": 16.13,
+      "cocoa": 0.4
+    },
+    "PLW": {
+      "taro": 8.59,
+      "sweetPotato": 10.74,
+      "banana": 6.82,
+      "cocoa": 0.64
+    },
+    "MHL": {
+      "taro": 8.59,
+      "sweetPotato": 10.74,
+      "banana": 6.82,
+      "cocoa": 0.64
+    },
+    "FSM": {
+      "taro": 8.59,
+      "sweetPotato": 5.52,
+      "banana": 5.32,
+      "cocoa": 0.39
+    },
+    "COK": {
+      "taro": 8.59,
+      "sweetPotato": 27.48,
+      "banana": 3.0,
+      "cocoa": 0.64
+    },
+    "PYF": {
+      "taro": 2.14,
+      "sweetPotato": 6.87,
+      "banana": 1.13,
+      "cocoa": 0.64
+    },
+    "GUM": {
+      "taro": 8.59,
+      "sweetPotato": 10.74,
+      "banana": 6.82,
+      "cocoa": 0.64
+    },
+    "NRU": {
+      "taro": 8.59,
+      "sweetPotato": 10.74,
+      "banana": 6.82,
+      "cocoa": 0.64
+    },
+    "NCL": {
+      "taro": 5.54,
+      "sweetPotato": 2.06,
+      "banana": 4.36,
+      "cocoa": 0.64
+    },
+    "NIU": {
+      "taro": 6.62,
+      "sweetPotato": 15.42,
+      "banana": 1.98,
+      "cocoa": 0.64
+    },
+    "MNP": {
+      "taro": 8.59,
+      "sweetPotato": 10.74,
+      "banana": 6.82,
+      "cocoa": 0.64
+    },
+    "PCN": {
+      "taro": 8.59,
+      "sweetPotato": 10.74,
+      "banana": 6.82,
+      "cocoa": 0.64
+    },
+    "TKL": {
+      "taro": 8.59,
+      "sweetPotato": 10.74,
+      "banana": 6.82,
+      "cocoa": 0.64
+    },
+    "WLF": {
+      "taro": 8.59,
+      "sweetPotato": 10.74,
+      "banana": 6.82,
+      "cocoa": 0.64
+    },
+    "ASM": {
+      "taro": 8.59,
+      "sweetPotato": 10.74,
+      "banana": 6.82,
+      "cocoa": 0.64
+    }
   },
   {
     "year": 2020,
-    "taro": 7.77,
-    "sweetPotato": 10.56,
-    "banana": 6.57,
-    "cocoa": 0.65
+    "REGIONAL": {
+      "taro": 7.77,
+      "sweetPotato": 10.56,
+      "banana": 6.57,
+      "cocoa": 0.65
+    },
+    "FJI": {
+      "taro": 12.4,
+      "sweetPotato": 8.2,
+      "banana": 8.0,
+      "cocoa": 2.0
+    },
+    "TUV": {
+      "taro": 7.77,
+      "sweetPotato": 10.56,
+      "banana": 17.99,
+      "cocoa": 0.65
+    },
+    "VUT": {
+      "taro": 7.77,
+      "sweetPotato": 10.56,
+      "banana": 10.64,
+      "cocoa": 0.51
+    },
+    "WSM": {
+      "taro": 5.56,
+      "sweetPotato": 10.56,
+      "banana": 7.86,
+      "cocoa": 0.18
+    },
+    "TON": {
+      "taro": 7.92,
+      "sweetPotato": 10.38,
+      "banana": 1.42,
+      "cocoa": 0.65
+    },
+    "KIR": {
+      "taro": 5.22,
+      "sweetPotato": 10.56,
+      "banana": 5.17,
+      "cocoa": 0.65
+    },
+    "SLB": {
+      "taro": 16.72,
+      "sweetPotato": 14.02,
+      "banana": 2.27,
+      "cocoa": 0.4
+    },
+    "PNG": {
+      "taro": 7.59,
+      "sweetPotato": 5.13,
+      "banana": 16.22,
+      "cocoa": 0.4
+    },
+    "PLW": {
+      "taro": 7.77,
+      "sweetPotato": 10.56,
+      "banana": 6.57,
+      "cocoa": 0.65
+    },
+    "MHL": {
+      "taro": 7.77,
+      "sweetPotato": 10.56,
+      "banana": 6.57,
+      "cocoa": 0.65
+    },
+    "FSM": {
+      "taro": 7.77,
+      "sweetPotato": 5.5,
+      "banana": 5.32,
+      "cocoa": 0.38
+    },
+    "COK": {
+      "taro": 7.77,
+      "sweetPotato": 27.48,
+      "banana": 2.93,
+      "cocoa": 0.65
+    },
+    "PYF": {
+      "taro": 2.11,
+      "sweetPotato": 6.87,
+      "banana": 1.12,
+      "cocoa": 0.65
+    },
+    "GUM": {
+      "taro": 7.77,
+      "sweetPotato": 10.56,
+      "banana": 6.57,
+      "cocoa": 0.65
+    },
+    "NRU": {
+      "taro": 7.77,
+      "sweetPotato": 10.56,
+      "banana": 6.57,
+      "cocoa": 0.65
+    },
+    "NCL": {
+      "taro": 5.82,
+      "sweetPotato": 2.23,
+      "banana": 4.55,
+      "cocoa": 0.65
+    },
+    "NIU": {
+      "taro": 6.62,
+      "sweetPotato": 15.26,
+      "banana": 1.97,
+      "cocoa": 0.65
+    },
+    "MNP": {
+      "taro": 7.77,
+      "sweetPotato": 10.56,
+      "banana": 6.57,
+      "cocoa": 0.65
+    },
+    "PCN": {
+      "taro": 7.77,
+      "sweetPotato": 10.56,
+      "banana": 6.57,
+      "cocoa": 0.65
+    },
+    "TKL": {
+      "taro": 7.77,
+      "sweetPotato": 10.56,
+      "banana": 6.57,
+      "cocoa": 0.65
+    },
+    "WLF": {
+      "taro": 7.77,
+      "sweetPotato": 10.56,
+      "banana": 6.57,
+      "cocoa": 0.65
+    },
+    "ASM": {
+      "taro": 7.77,
+      "sweetPotato": 10.56,
+      "banana": 6.57,
+      "cocoa": 0.65
+    }
   },
   {
     "year": 2021,
-    "taro": 8.21,
-    "sweetPotato": 10.48,
-    "banana": 6.6,
-    "cocoa": 0.65
+    "REGIONAL": {
+      "taro": 8.21,
+      "sweetPotato": 10.48,
+      "banana": 6.6,
+      "cocoa": 0.65
+    },
+    "FJI": {
+      "taro": 12.0,
+      "sweetPotato": 8.0,
+      "banana": 8.0,
+      "cocoa": 2.0
+    },
+    "TUV": {
+      "taro": 8.21,
+      "sweetPotato": 10.48,
+      "banana": 18.0,
+      "cocoa": 0.65
+    },
+    "VUT": {
+      "taro": 8.21,
+      "sweetPotato": 10.48,
+      "banana": 10.45,
+      "cocoa": 0.51
+    },
+    "WSM": {
+      "taro": 5.57,
+      "sweetPotato": 10.48,
+      "banana": 7.83,
+      "cocoa": 0.19
+    },
+    "TON": {
+      "taro": 8.12,
+      "sweetPotato": 10.03,
+      "banana": 1.42,
+      "cocoa": 0.65
+    },
+    "KIR": {
+      "taro": 5.44,
+      "sweetPotato": 10.48,
+      "banana": 5.18,
+      "cocoa": 0.65
+    },
+    "SLB": {
+      "taro": 16.88,
+      "sweetPotato": 14.04,
+      "banana": 2.32,
+      "cocoa": 0.4
+    },
+    "PNG": {
+      "taro": 7.71,
+      "sweetPotato": 5.12,
+      "banana": 16.5,
+      "cocoa": 0.4
+    },
+    "PLW": {
+      "taro": 8.21,
+      "sweetPotato": 10.48,
+      "banana": 6.6,
+      "cocoa": 0.65
+    },
+    "MHL": {
+      "taro": 8.21,
+      "sweetPotato": 10.48,
+      "banana": 6.6,
+      "cocoa": 0.65
+    },
+    "FSM": {
+      "taro": 8.21,
+      "sweetPotato": 5.5,
+      "banana": 5.32,
+      "cocoa": 0.38
+    },
+    "COK": {
+      "taro": 12.0,
+      "sweetPotato": 27.48,
+      "banana": 2.96,
+      "cocoa": 0.65
+    },
+    "PYF": {
+      "taro": 2.05,
+      "sweetPotato": 6.87,
+      "banana": 1.13,
+      "cocoa": 0.65
+    },
+    "GUM": {
+      "taro": 8.21,
+      "sweetPotato": 10.48,
+      "banana": 6.6,
+      "cocoa": 0.65
+    },
+    "NRU": {
+      "taro": 8.21,
+      "sweetPotato": 10.48,
+      "banana": 6.6,
+      "cocoa": 0.65
+    },
+    "NCL": {
+      "taro": 5.75,
+      "sweetPotato": 2.08,
+      "banana": 4.68,
+      "cocoa": 0.65
+    },
+    "NIU": {
+      "taro": 6.6,
+      "sweetPotato": 15.24,
+      "banana": 1.98,
+      "cocoa": 0.65
+    },
+    "MNP": {
+      "taro": 8.21,
+      "sweetPotato": 10.48,
+      "banana": 6.6,
+      "cocoa": 0.65
+    },
+    "PCN": {
+      "taro": 8.21,
+      "sweetPotato": 10.48,
+      "banana": 6.6,
+      "cocoa": 0.65
+    },
+    "TKL": {
+      "taro": 8.21,
+      "sweetPotato": 10.48,
+      "banana": 6.6,
+      "cocoa": 0.65
+    },
+    "WLF": {
+      "taro": 8.21,
+      "sweetPotato": 10.48,
+      "banana": 6.6,
+      "cocoa": 0.65
+    },
+    "ASM": {
+      "taro": 8.21,
+      "sweetPotato": 10.48,
+      "banana": 6.6,
+      "cocoa": 0.65
+    }
   },
   {
     "year": 2022,
-    "taro": 9.27,
-    "sweetPotato": 10.23,
-    "banana": 7.53,
-    "cocoa": 0.65
+    "REGIONAL": {
+      "taro": 9.27,
+      "sweetPotato": 10.23,
+      "banana": 7.53,
+      "cocoa": 0.65
+    },
+    "FJI": {
+      "taro": 20.0,
+      "sweetPotato": 8.0,
+      "banana": 20.0,
+      "cocoa": 2.0
+    },
+    "TUV": {
+      "taro": 9.27,
+      "sweetPotato": 10.23,
+      "banana": 18.03,
+      "cocoa": 0.65
+    },
+    "VUT": {
+      "taro": 12.88,
+      "sweetPotato": 8.0,
+      "banana": 10.49,
+      "cocoa": 0.52
+    },
+    "WSM": {
+      "taro": 5.58,
+      "sweetPotato": 10.23,
+      "banana": 7.82,
+      "cocoa": 0.19
+    },
+    "TON": {
+      "taro": 7.37,
+      "sweetPotato": 9.92,
+      "banana": 1.44,
+      "cocoa": 0.65
+    },
+    "KIR": {
+      "taro": 5.36,
+      "sweetPotato": 10.23,
+      "banana": 5.17,
+      "cocoa": 0.65
+    },
+    "SLB": {
+      "taro": 16.89,
+      "sweetPotato": 14.03,
+      "banana": 2.31,
+      "cocoa": 0.4
+    },
+    "PNG": {
+      "taro": 7.77,
+      "sweetPotato": 5.13,
+      "banana": 16.55,
+      "cocoa": 0.4
+    },
+    "PLW": {
+      "taro": 9.27,
+      "sweetPotato": 10.23,
+      "banana": 7.53,
+      "cocoa": 0.65
+    },
+    "MHL": {
+      "taro": 9.27,
+      "sweetPotato": 10.23,
+      "banana": 7.53,
+      "cocoa": 0.65
+    },
+    "FSM": {
+      "taro": 9.27,
+      "sweetPotato": 5.49,
+      "banana": 5.32,
+      "cocoa": 0.38
+    },
+    "COK": {
+      "taro": 12.0,
+      "sweetPotato": 27.48,
+      "banana": 2.97,
+      "cocoa": 0.65
+    },
+    "PYF": {
+      "taro": 2.0,
+      "sweetPotato": 6.93,
+      "banana": 1.14,
+      "cocoa": 0.65
+    },
+    "GUM": {
+      "taro": 9.27,
+      "sweetPotato": 10.23,
+      "banana": 7.53,
+      "cocoa": 0.65
+    },
+    "NRU": {
+      "taro": 9.27,
+      "sweetPotato": 10.23,
+      "banana": 7.53,
+      "cocoa": 0.65
+    },
+    "NCL": {
+      "taro": 5.58,
+      "sweetPotato": 2.21,
+      "banana": 4.67,
+      "cocoa": 0.65
+    },
+    "NIU": {
+      "taro": 6.58,
+      "sweetPotato": 15.08,
+      "banana": 1.98,
+      "cocoa": 0.65
+    },
+    "MNP": {
+      "taro": 9.27,
+      "sweetPotato": 10.23,
+      "banana": 7.53,
+      "cocoa": 0.65
+    },
+    "PCN": {
+      "taro": 9.27,
+      "sweetPotato": 10.23,
+      "banana": 7.53,
+      "cocoa": 0.65
+    },
+    "TKL": {
+      "taro": 9.27,
+      "sweetPotato": 10.23,
+      "banana": 7.53,
+      "cocoa": 0.65
+    },
+    "WLF": {
+      "taro": 9.27,
+      "sweetPotato": 10.23,
+      "banana": 7.53,
+      "cocoa": 0.65
+    },
+    "ASM": {
+      "taro": 9.27,
+      "sweetPotato": 10.23,
+      "banana": 7.53,
+      "cocoa": 0.65
+    }
   },
   {
     "year": 2023,
-    "taro": 8.84,
-    "sweetPotato": 10.21,
-    "banana": 7.54,
-    "cocoa": 0.65
+    "REGIONAL": {
+      "taro": 8.84,
+      "sweetPotato": 10.21,
+      "banana": 7.54,
+      "cocoa": 0.65
+    },
+    "FJI": {
+      "taro": 20.0,
+      "sweetPotato": 8.0,
+      "banana": 20.0,
+      "cocoa": 2.0
+    },
+    "TUV": {
+      "taro": 8.84,
+      "sweetPotato": 10.21,
+      "banana": 18.02,
+      "cocoa": 0.65
+    },
+    "VUT": {
+      "taro": 12.88,
+      "sweetPotato": 7.99,
+      "banana": 10.5,
+      "cocoa": 0.52
+    },
+    "WSM": {
+      "taro": 5.57,
+      "sweetPotato": 10.21,
+      "banana": 7.84,
+      "cocoa": 0.18
+    },
+    "TON": {
+      "taro": 7.81,
+      "sweetPotato": 9.84,
+      "banana": 1.44,
+      "cocoa": 0.65
+    },
+    "KIR": {
+      "taro": 5.35,
+      "sweetPotato": 10.21,
+      "banana": 5.17,
+      "cocoa": 0.65
+    },
+    "SLB": {
+      "taro": 16.9,
+      "sweetPotato": 14.03,
+      "banana": 2.3,
+      "cocoa": 0.4
+    },
+    "PNG": {
+      "taro": 7.81,
+      "sweetPotato": 5.13,
+      "banana": 16.6,
+      "cocoa": 0.4
+    },
+    "PLW": {
+      "taro": 8.84,
+      "sweetPotato": 10.21,
+      "banana": 7.54,
+      "cocoa": 0.65
+    },
+    "MHL": {
+      "taro": 8.84,
+      "sweetPotato": 10.21,
+      "banana": 7.54,
+      "cocoa": 0.65
+    },
+    "FSM": {
+      "taro": 8.84,
+      "sweetPotato": 5.47,
+      "banana": 5.32,
+      "cocoa": 0.38
+    },
+    "COK": {
+      "taro": 7.0,
+      "sweetPotato": 27.48,
+      "banana": 2.95,
+      "cocoa": 0.65
+    },
+    "PYF": {
+      "taro": 1.79,
+      "sweetPotato": 6.92,
+      "banana": 1.18,
+      "cocoa": 0.65
+    },
+    "GUM": {
+      "taro": 8.84,
+      "sweetPotato": 10.21,
+      "banana": 7.54,
+      "cocoa": 0.65
+    },
+    "NRU": {
+      "taro": 8.84,
+      "sweetPotato": 10.21,
+      "banana": 7.54,
+      "cocoa": 0.65
+    },
+    "NCL": {
+      "taro": 5.58,
+      "sweetPotato": 2.33,
+      "banana": 4.76,
+      "cocoa": 0.65
+    },
+    "NIU": {
+      "taro": 6.57,
+      "sweetPotato": 14.95,
+      "banana": 1.98,
+      "cocoa": 0.65
+    },
+    "MNP": {
+      "taro": 8.84,
+      "sweetPotato": 10.21,
+      "banana": 7.54,
+      "cocoa": 0.65
+    },
+    "PCN": {
+      "taro": 8.84,
+      "sweetPotato": 10.21,
+      "banana": 7.54,
+      "cocoa": 0.65
+    },
+    "TKL": {
+      "taro": 8.84,
+      "sweetPotato": 10.21,
+      "banana": 7.54,
+      "cocoa": 0.65
+    },
+    "WLF": {
+      "taro": 8.84,
+      "sweetPotato": 10.21,
+      "banana": 7.54,
+      "cocoa": 0.65
+    },
+    "ASM": {
+      "taro": 8.84,
+      "sweetPotato": 10.21,
+      "banana": 7.54,
+      "cocoa": 0.65
+    }
   },
   {
     "year": 2024,
-    "taro": 8.6,
-    "sweetPotato": 10.32,
-    "banana": 7.55,
-    "cocoa": 0.73
+    "REGIONAL": {
+      "taro": 8.6,
+      "sweetPotato": 10.32,
+      "banana": 7.55,
+      "cocoa": 0.73
+    },
+    "FJI": {
+      "taro": 20.0,
+      "sweetPotato": 9.0,
+      "banana": 20.0,
+      "cocoa": 2.5
+    },
+    "TUV": {
+      "taro": 8.6,
+      "sweetPotato": 10.32,
+      "banana": 18.01,
+      "cocoa": 0.73
+    },
+    "VUT": {
+      "taro": 12.88,
+      "sweetPotato": 7.99,
+      "banana": 10.5,
+      "cocoa": 0.52
+    },
+    "WSM": {
+      "taro": 5.57,
+      "sweetPotato": 10.32,
+      "banana": 7.83,
+      "cocoa": 0.18
+    },
+    "TON": {
+      "taro": 7.73,
+      "sweetPotato": 9.9,
+      "banana": 1.43,
+      "cocoa": 0.73
+    },
+    "KIR": {
+      "taro": 5.34,
+      "sweetPotato": 10.32,
+      "banana": 5.17,
+      "cocoa": 0.73
+    },
+    "SLB": {
+      "taro": 16.93,
+      "sweetPotato": 14.03,
+      "banana": 2.32,
+      "cocoa": 0.39
+    },
+    "PNG": {
+      "taro": 7.86,
+      "sweetPotato": 5.13,
+      "banana": 16.66,
+      "cocoa": 0.4
+    },
+    "PLW": {
+      "taro": 8.6,
+      "sweetPotato": 10.32,
+      "banana": 7.55,
+      "cocoa": 0.73
+    },
+    "MHL": {
+      "taro": 8.6,
+      "sweetPotato": 10.32,
+      "banana": 7.55,
+      "cocoa": 0.73
+    },
+    "FSM": {
+      "taro": 8.6,
+      "sweetPotato": 5.46,
+      "banana": 5.32,
+      "cocoa": 0.38
+    },
+    "COK": {
+      "taro": 4.29,
+      "sweetPotato": 27.48,
+      "banana": 2.96,
+      "cocoa": 0.73
+    },
+    "PYF": {
+      "taro": 1.91,
+      "sweetPotato": 6.92,
+      "banana": 1.15,
+      "cocoa": 0.73
+    },
+    "GUM": {
+      "taro": 8.6,
+      "sweetPotato": 10.32,
+      "banana": 7.55,
+      "cocoa": 0.73
+    },
+    "NRU": {
+      "taro": 8.6,
+      "sweetPotato": 10.32,
+      "banana": 7.55,
+      "cocoa": 0.73
+    },
+    "NCL": {
+      "taro": 5.57,
+      "sweetPotato": 2.44,
+      "banana": 4.84,
+      "cocoa": 0.73
+    },
+    "NIU": {
+      "taro": 6.55,
+      "sweetPotato": 14.82,
+      "banana": 1.97,
+      "cocoa": 0.73
+    },
+    "MNP": {
+      "taro": 8.6,
+      "sweetPotato": 10.32,
+      "banana": 7.55,
+      "cocoa": 0.73
+    },
+    "PCN": {
+      "taro": 8.6,
+      "sweetPotato": 10.32,
+      "banana": 7.55,
+      "cocoa": 0.73
+    },
+    "TKL": {
+      "taro": 8.6,
+      "sweetPotato": 10.32,
+      "banana": 7.55,
+      "cocoa": 0.73
+    },
+    "WLF": {
+      "taro": 8.6,
+      "sweetPotato": 10.32,
+      "banana": 7.55,
+      "cocoa": 0.73
+    },
+    "ASM": {
+      "taro": 8.6,
+      "sweetPotato": 10.32,
+      "banana": 7.55,
+      "cocoa": 0.73
+    }
   }
 ]

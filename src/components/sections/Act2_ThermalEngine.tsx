@@ -3,6 +3,7 @@ import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { Flame } from 'lucide-react';
 import TemperatureChart from '@/components/charts/TemperatureChart';
+import { getStation } from '@/data/countryStations';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -58,6 +59,7 @@ export default function Act2_ThermalEngine({ className, selectedCountry }: Act2P
     <section
       id="warming"
       ref={sectionRef}
+      aria-label="Act II: The Thermal Engine narrative"
       className={`relative bg-transparent ${className || ''}`}
     >
       {/* Background overlay for blending */}
@@ -141,13 +143,13 @@ export default function Act2_ThermalEngine({ className, selectedCountry }: Act2P
         </div>
 
         {/* RIGHT COLUMN: Pinned Chart (60%) */}
-        <div className="w-full md:w-7/12 h-screen sticky top-0 flex flex-col justify-center items-center py-12 md:py-0 md:pl-12 z-0">
+        <div role="region" aria-label="Warming ocean temperature anomalies chart" className="w-full md:w-7/12 h-screen sticky top-0 flex flex-col justify-center items-center py-12 md:py-0 md:pl-12 z-0">
           <div ref={rightColumnRef} className="w-full max-w-4xl relative h-[60vh] flex flex-col justify-center items-center">
             
             <TemperatureChart activeStep={activeStep} selectedCountry={selectedCountry} />
 
             <div className="absolute bottom-[-32px] left-0 right-0 text-center text-[9px] uppercase tracking-widest font-body text-drift-wood/75">
-              Fiji Basin — NOAA OISST V2.1 Anomaly Profile
+              {getStation(selectedCountry?.id, 'temperature').stationName} — {getStation(selectedCountry?.id, 'temperature').dataSource} Anomaly Profile
             </div>
             
           </div>
