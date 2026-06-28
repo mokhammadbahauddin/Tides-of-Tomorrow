@@ -53,27 +53,36 @@ export default function Home() {
     handleScroll();
 
     // GSAP ScrollTrigger to track the active visual act in the viewport with absolute precision
-    const triggers: ScrollTrigger[] = [];
     const targets = ['prologue', 'warming', 'sinking', 'extreme-weather', 'food-security', 'unpaid-debt', 'climate-debt', 'action'];
+    const triggersMap = new Map<string, ScrollTrigger>();
     
-    targets.forEach(target => {
-      const el = document.getElementById(target);
-      if (!el) return;
-      const trigger = ScrollTrigger.create({
-        trigger: el,
-        start: 'top 50%',
-        end: 'bottom 50%',
-        onEnter: () => setActiveSection(target),
-        onEnterBack: () => setActiveSection(target),
+    const syncTriggers = () => {
+      targets.forEach(target => {
+        if (triggersMap.has(target)) return; // already created
+        const el = document.getElementById(target);
+        if (!el) return;
+        
+        const trigger = ScrollTrigger.create({
+          trigger: el,
+          start: 'top 50%',
+          end: 'bottom 50%',
+          onEnter: () => setActiveSection(target),
+          onEnterBack: () => setActiveSection(target),
+        });
+        triggersMap.set(target, trigger);
       });
-      triggers.push(trigger);
-    });
+    };
+
+    // Run sync once on initial mount
+    syncTriggers();
 
     // Robust ScrollTrigger refresh using ResizeObserver
     let resizeTimeout: ReturnType<typeof setTimeout> | undefined;
     const resizeObserver = new ResizeObserver(() => {
       clearTimeout(resizeTimeout);
       resizeTimeout = setTimeout(() => {
+        // Sync triggers when the DOM grows/re-renders
+        syncTriggers();
         ScrollTrigger.refresh();
         handleScroll();
       }, 200);
@@ -86,7 +95,8 @@ export default function Home() {
       window.removeEventListener('scroll', handleScroll);
       resizeObserver.disconnect();
       clearTimeout(resizeTimeout);
-      triggers.forEach(t => t.kill());
+      triggersMap.forEach(t => t.kill());
+      triggersMap.clear();
     };
   }, []);
 
