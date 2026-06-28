@@ -315,7 +315,7 @@ export default function AudioController({ activeSection, activeStep, isMuted }: 
       activeOscillatorsRef.current.push(dryWindNoise);
 
 
-      // --- 5. Melancholic Synthesis Module (Act VII / CTA) ---
+      // --- 5. Calming Synthesis Module (Act VII / CTA) ---
       const melancholyGain = ctx.createGain();
       melancholyGain.gain.setValueAtTime(0, ctx.currentTime);
       melancholyGain.connect(masterGain);
@@ -323,7 +323,7 @@ export default function AudioController({ activeSection, activeStep, isMuted }: 
 
       const melancholyFilter = ctx.createBiquadFilter();
       melancholyFilter.type = 'lowpass';
-      melancholyFilter.frequency.setValueAtTime(650, ctx.currentTime); // warm filtering
+      melancholyFilter.frequency.setValueAtTime(400, ctx.currentTime); // very low filter cutoff for warm, pillowy texture
       melancholyFilter.Q.setValueAtTime(1.0, ctx.currentTime);
       melancholyFilter.connect(melancholyGain);
 
@@ -340,12 +340,12 @@ export default function AudioController({ activeSection, activeStep, isMuted }: 
 
       const synthVoices: { oscSaw: OscillatorNode; oscTri: OscillatorNode; gain: GainNode }[] = [];
       
-      // Lush cinematic chords (6 voices: deep sub-bass + rich 9th/11th extension notes)
+      // Serene & Expansive Lydian chords (6 voices: deep warm sub-bass + rich major/add9 extensions)
       const chords = [
-        [65.41, 196.00, 233.08, 293.66, 311.13, 392.00], // Cm9 (C2, G3, Bb3, D4, Eb4, G4)
-        [51.91, 196.00, 261.63, 311.13, 392.00, 523.25], // Abmaj9 (Ab1, G3, C4, Eb4, G4, C5)
-        [77.78, 196.00, 233.08, 349.23, 392.00, 466.16], // Ebadd9 (Eb2, G3, Bb3, F4, G4, Bb4)
-        [49.00, 174.61, 233.08, 293.66, 349.23, 440.00]  // Gm11 (G1, F3, Bb3, D4, F4, A4)
+        [65.41, 196.00, 246.94, 293.66, 329.63, 392.00], // Cmaj9 (C2, G3, B3, D4, E4, G4)
+        [87.31, 220.00, 261.63, 329.63, 392.00, 523.25], // Fmaj7(add9) (F2, A3, C4, E4, G4, C5)
+        [110.00, 196.00, 261.63, 293.66, 329.63, 440.00], // Am9 (A2, G3, C4, D4, E4, A4)
+        [98.00, 246.94, 293.66, 329.63, 440.00, 493.88]   // G6/9 (G2, B3, D4, E4, A4, B4)
       ];
 
       for (let i = 0; i < 6; i++) {
@@ -356,14 +356,14 @@ export default function AudioController({ activeSection, activeStep, isMuted }: 
         if (i === 0) {
           // Clean low-end foundation (pure sub-bass)
           oscSaw.type = 'sine';
-          oscTri.type = 'triangle';
+          oscTri.type = 'sine';
           voiceGain.gain.setValueAtTime(0.24, ctx.currentTime);
         } else {
-          // Thick chorused upper voices
-          oscSaw.type = 'sawtooth';
+          // Warm pillowy cloud (sine + triangle waves only, no sawtooth)
+          oscSaw.type = 'sine';
           oscTri.type = 'triangle';
-          oscSaw.detune.setValueAtTime(10 + i * 2, ctx.currentTime);
-          oscTri.detune.setValueAtTime(-6 - i * 2, ctx.currentTime);
+          oscSaw.detune.setValueAtTime(8 + i * 1.5, ctx.currentTime);
+          oscTri.detune.setValueAtTime(-5 - i * 1.5, ctx.currentTime);
           voiceGain.gain.setValueAtTime(0.045, ctx.currentTime);
         }
 
@@ -392,19 +392,19 @@ export default function AudioController({ activeSection, activeStep, isMuted }: 
         chordIndex = (chordIndex + 1) % chords.length;
       };
 
-      // Play Cm first
+      // Play Cmaj9 first
       playNextChord();
       chordIntervalRef.current = setInterval(playNextChord, 6000);
 
-      // Shimmering bioluminescent pluck arpeggiator module
+      // Shimmering pentatonic wind-chime arpeggiator module
       const pluckGain = ctx.createGain();
-      pluckGain.gain.setValueAtTime(0.06, ctx.currentTime); // soft volume
+      pluckGain.gain.setValueAtTime(0.04, ctx.currentTime); // very soft volume
       pluckGain.connect(melancholyGain);
 
       const pluckDelay = ctx.createDelay(1.0);
-      pluckDelay.delayTime.setValueAtTime(0.38, ctx.currentTime);
+      pluckDelay.delayTime.setValueAtTime(0.45, ctx.currentTime); // wider space
       const pluckDelayFeedback = ctx.createGain();
-      pluckDelayFeedback.gain.setValueAtTime(0.55, ctx.currentTime);
+      pluckDelayFeedback.gain.setValueAtTime(0.5, ctx.currentTime);
       pluckDelay.connect(pluckDelayFeedback);
       pluckDelayFeedback.connect(pluckDelay);
       pluckGain.connect(pluckDelay);
@@ -415,12 +415,14 @@ export default function AudioController({ activeSection, activeStep, isMuted }: 
         if (activeSectionRef.current !== 'unpaid-debt' && activeSectionRef.current !== 'climate-debt' && activeSectionRef.current !== 'action') return;
         
         const nowTime = ctxRef.current.currentTime;
-        const notes = currentChordNotesRef.current;
-        if (!notes || notes.length < 3) return;
         
-        // Pick a random high note from the active chord scale (voices 2 to 5), transposed up 2 octaves
-        const baseNote = notes[Math.floor(2 + Math.random() * (notes.length - 2))];
-        const pitch = baseNote * 4;
+        // Pure C Major Pentatonic frequencies (C5, D5, E5, G5, A5, C6, D6, E6, G6, A6)
+        const pentatonicFrequencies = [
+          523.25, 587.33, 659.25, 783.99, 880.00,
+          1046.50, 1174.66, 1318.51, 1567.98, 1760.00
+        ];
+        
+        const pitch = pentatonicFrequencies[Math.floor(Math.random() * pentatonicFrequencies.length)];
         
         const osc = ctxRef.current.createOscillator();
         osc.type = 'sine';
@@ -429,19 +431,19 @@ export default function AudioController({ activeSection, activeStep, isMuted }: 
         const filter = ctxRef.current.createBiquadFilter();
         filter.type = 'bandpass';
         filter.frequency.setValueAtTime(pitch, nowTime);
-        filter.Q.setValueAtTime(6, nowTime);
+        filter.Q.setValueAtTime(10, nowTime); // highly resonant glassy sound
         
         const oscGain = ctxRef.current.createGain();
         oscGain.gain.setValueAtTime(0, nowTime);
-        oscGain.gain.linearRampToValueAtTime(0.08, nowTime + 0.012); // clean pluck envelope
-        oscGain.gain.exponentialRampToValueAtTime(0.0001, nowTime + 0.95);
+        oscGain.gain.linearRampToValueAtTime(0.06, nowTime + 0.02); // gentle chime attack
+        oscGain.gain.exponentialRampToValueAtTime(0.0001, nowTime + 1.6); // long echo decay
         
         osc.connect(filter);
         filter.connect(oscGain);
         oscGain.connect(pluckGain);
         
         osc.start(nowTime);
-        osc.stop(nowTime + 1.1);
+        osc.stop(nowTime + 1.8);
       };
 
       const pluckInterval = setInterval(() => {
