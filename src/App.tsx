@@ -3,6 +3,7 @@ import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { Routes, Route } from 'react-router';
 import Home from './pages/Home';
+import { Analytics } from '@vercel/analytics/react';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -52,6 +53,9 @@ export default function App() {
           <Route path="/" element={<Home />} />
         </Routes>
       </div>
+      
+      {/* Vercel Web Analytics */}
+      <Analytics />
     </div>
   );
 }
