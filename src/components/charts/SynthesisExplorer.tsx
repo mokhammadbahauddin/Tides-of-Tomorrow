@@ -746,31 +746,6 @@ export const SynthesisExplorer: React.FC<SynthesisExplorerProps> = ({ selectedCo
           );
         })()}
 
-        {/* Event Narrative Tooltip */}
-        {(() => {
-          const event = CLIMATE_EVENTS.find(e => e.year === activeYear);
-          if (!event) return null;
-          return (
-            <div
-              className="absolute top-4 left-4 md:left-6 z-30 rounded-none px-3.5 py-2.5 max-w-[240px] sm:max-w-[280px] backdrop-blur-md border border-t-[#D4A574]/20 border-r-[#D4A574]/20 border-b-[#D4A574]/20 shadow-none text-left"
-              style={{
-                background: 'rgba(11, 26, 46, 0.94)',
-                borderLeft: `3px solid ${event.accentColor}`,
-                borderColor: 'rgba(212, 165, 116, 0.25)',
-              }}
-            >
-              <div className="text-[9px] font-mono uppercase tracking-widest text-[#8B7355] mb-1">
-                Historical Climate Event
-              </div>
-              <h5 className="text-xs font-serif font-bold text-[#E8DCC8] mb-1 leading-snug">
-                {event.title}
-              </h5>
-              <p className="text-[10px] leading-relaxed text-[#E8DCC8]/85 font-sans">
-                {event.description}
-              </p>
-            </div>
-          );
-        })()}
       </div>
 
       {/* ── RIGHT COLUMN: Control and Information Panel (35% width) ── */}
@@ -960,6 +935,32 @@ export const SynthesisExplorer: React.FC<SynthesisExplorerProps> = ({ selectedCo
                     <span className="text-[8px] text-[#E8DCC8]/50 ml-0.5">{preset.yUnit}</span>
                   </span>
                 </div>
+              </div>
+            );
+          })()}
+
+          {/* Active Event Narrative Card */}
+          {(() => {
+            const event = CLIMATE_EVENTS.find(e => e.year === activeYear);
+            if (!event) return null;
+            return (
+              <div
+                className="flex flex-col gap-1.5 p-3 rounded-none border text-left mt-1"
+                style={{
+                  borderColor: 'rgba(212, 165, 116, 0.15)',
+                  background: 'rgba(11, 26, 46, 0.4)',
+                  borderLeft: `3.5px solid ${event.accentColor}`,
+                }}
+              >
+                <div className="text-[9px] font-mono text-[#8C7A65] uppercase tracking-wider mb-0.5">
+                  Historical Climate Event ({event.year})
+                </div>
+                <h5 className="text-[11px] font-serif font-bold text-[#E8DCC8] mb-0.5 leading-snug">
+                  {event.title}
+                </h5>
+                <p className="text-[10px] leading-relaxed text-[#E8DCC8]/80 font-sans">
+                  {event.description}
+                </p>
               </div>
             );
           })()}
