@@ -180,18 +180,18 @@ export default function TemperatureChart({ activeStep = 0, selectedCountry }: Te
     defs.append('clipPath')
       .attr('id', 'temp-x-axis-clip')
       .append('rect')
-      .attr('x', 0)
+      .attr('x', -10)
       .attr('y', -5)
-      .attr('width', innerWidth)
+      .attr('width', innerWidth + 20)
       .attr('height', margin.bottom + 10);
 
     // Clip path for milestones to prevent lines and text from sliding outside horizontal boundaries during zoom
     defs.append('clipPath')
       .attr('id', 'temp-milestone-clip')
       .append('rect')
-      .attr('x', 0)
+      .attr('x', -10)
       .attr('y', -margin.top)
-      .attr('width', innerWidth)
+      .attr('width', innerWidth + 20)
       .attr('height', innerHeight + margin.top);
 
     const stripeColor = (val: number) => d3.interpolateRdYlBu(1 - (val + 0.5) / 1.7); // Approximate mapping: cold=blue, hot=red
