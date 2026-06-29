@@ -466,7 +466,7 @@ export const CropYieldChart: React.FC<CropYieldChartProps> = ({ activeStep, sele
       </div>
 
       {/* Right Column: Salinity & Root Cross Section (No background card, blends cleanly) */}
-      <div className="w-full lg:w-5/12 max-w-sm flex flex-col justify-between h-[340px] relative overflow-hidden">
+      <div className="w-full lg:w-5/12 max-w-sm flex flex-col justify-between h-[360px] relative overflow-visible">
         {/* Subtle glowing mesh behind */}
         <div className={`absolute top-0 right-0 w-24 h-24 bg-gradient-to-b from-[#b44d36]/5 to-transparent transition-opacity duration-1000 ${isSalty ? 'opacity-100' : 'opacity-0'}`} />
 
@@ -491,7 +491,7 @@ export const CropYieldChart: React.FC<CropYieldChartProps> = ({ activeStep, sele
         </div>
 
         {/* Cross-section SVG drawing */}
-        <div className="w-full h-[180px] flex items-center justify-center my-1 relative">
+        <div className="w-full h-[160px] flex items-center justify-center my-1 relative">
           <svg viewBox="0 0 200 200" className="w-full h-full">
             <defs>
               <linearGradient id="healthy-water" x1="0%" y1="0%" x2="0%" y2="100%">
