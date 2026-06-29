@@ -197,8 +197,9 @@ export default function TemperatureChart({ activeStep = 0, selectedCountry }: Te
     const stripeColor = (val: number) => d3.interpolateRdYlBu(1 - (val + 0.5) / 1.7); // Approximate mapping: cold=blue, hot=red
 
     // Initial Scales
+    const maxYear = d3.max(data, d => d.year) || 2025;
     const xScale = d3.scaleLinear()
-      .domain([1850, 2024])
+      .domain([1850, maxYear])
       .range([0, innerWidth]);
 
     // Dynamic Y Scale based on actual data
@@ -242,7 +243,7 @@ export default function TemperatureChart({ activeStep = 0, selectedCountry }: Te
     // Axes
     const xAxis = d3.axisBottom(xScale)
       .tickFormat(d3.format('d') as any)
-      .tickValues([1850, 1880, 1910, 1940, 1970, 2000, 2024]);
+      .tickValues([1850, 1880, 1910, 1940, 1970, 2000, 2024, 2025]);
 
     const yAxis = d3.axisLeft(yScale)
       .tickValues(gridTicks)
@@ -437,7 +438,8 @@ export default function TemperatureChart({ activeStep = 0, selectedCountry }: Te
 
     // Transition settings based on activeStep
     const isZoomed = activeStep >= 1;
-    const yearRange: [number, number] = isZoomed ? [1970, 2024] : [1850, 2024];
+    const maxYear = d3.max(data, d => d.year) || 2025;
+    const yearRange: [number, number] = isZoomed ? [1970, maxYear] : [1850, maxYear];
 
     xScale.domain(yearRange);
 
@@ -445,7 +447,7 @@ export default function TemperatureChart({ activeStep = 0, selectedCountry }: Te
     const ease = d3.easeCubicOut;
 
     // Animate X Axis
-    xAxis.tickValues(isZoomed ? [1970, 1980, 1990, 2000, 2010, 2020, 2024] : [1850, 1880, 1910, 1940, 1970, 2000, 2024]);
+    xAxis.tickValues(isZoomed ? [1970, 1980, 1990, 2000, 2010, 2020, 2024, 2025] : [1850, 1880, 1910, 1940, 1970, 2000, 2025]);
     svg.select('.x-axis')
       .transition()
       .duration(transitionDuration)
