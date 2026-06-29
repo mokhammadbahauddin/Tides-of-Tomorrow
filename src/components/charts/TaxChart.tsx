@@ -141,11 +141,11 @@ export default function TaxChart({ activeStep, selectedCountry }: TaxChartProps)
 
     const mainGroup = svgEl.append('g').attr('class', 'physics-world');
 
-    // Grounded Scale configuration (Moved py lower: 175 -> 225 to give rock headroom at the top)
+    // Grounded Scale configuration (Moved py higher and shortened strings for massive headroom)
     const px = width / 2;     // Pivot Center X
-    const py = 225;           // Pivot Center Y (Lowered pivot)
-    const halfLength = 135;   // Scale beam radius
-    const stringHeight = 110; // Suspension height
+    const py = 195;           // Pivot Center Y (Higher pivot for top headroom)
+    const halfLength = 145;   // Scale beam radius (Wider beam)
+    const stringHeight = 95;  // Suspension height (Shorter strings)
 
     // Initial Scale positions (horizontal)
     const initAngle = 0;
@@ -187,18 +187,18 @@ export default function TaxChart({ activeStep, selectedCountry }: TaxChartProps)
     // LEFT PAN GROUP
     const leftPanGroup = movingGroup.append('g').attr('class', 'left-pan-group');
     
-    // Left Suspended Strings
+    // Left Suspended Strings (Wider)
     const leftStrings = leftPanGroup.append('path')
-      .attr('d', `M ${initXL} ${initYL} L ${initXL - 48} ${initLeftPanY} M ${initXL} ${initYL} L ${initXL + 48} ${initLeftPanY}`)
+      .attr('d', `M ${initXL} ${initYL} L ${initXL - 72} ${initLeftPanY} M ${initXL} ${initYL} L ${initXL + 72} ${initLeftPanY}`)
       .attr('stroke', 'rgba(212, 165, 116, 0.4)')
       .attr('stroke-width', 1.2)
       .attr('fill', 'none');
 
-    // Left Plate
+    // Left Plate (Wider)
     const leftPlate = leftPanGroup.append('rect')
-      .attr('x', initXL - 56)
+      .attr('x', initXL - 80)
       .attr('y', initLeftPanY)
-      .attr('width', 112)
+      .attr('width', 160)
       .attr('height', 8)
       .attr('rx', 2.5)
       .attr('fill', 'rgba(15, 34, 55, 0.85)')
@@ -221,18 +221,18 @@ export default function TaxChart({ activeStep, selectedCountry }: TaxChartProps)
     // RIGHT PAN GROUP
     const rightPanGroup = movingGroup.append('g').attr('class', 'right-pan-group');
 
-    // Right Suspended Strings
+    // Right Suspended Strings (Wider)
     const rightStrings = rightPanGroup.append('path')
-      .attr('d', `M ${initXR} ${initYR} L ${initXR - 48} ${initRightPanY} M ${initXR} ${initYR} L ${initXR + 48} ${initRightPanY}`)
+      .attr('d', `M ${initXR} ${initYR} L ${initXR - 72} ${initRightPanY} M ${initXR} ${initYR} L ${initXR + 72} ${initRightPanY}`)
       .attr('stroke', 'rgba(212, 165, 116, 0.4)')
       .attr('stroke-width', 1.2)
       .attr('fill', 'none');
 
-    // Right Plate
+    // Right Plate (Wider)
     const rightPlate = rightPanGroup.append('rect')
-      .attr('x', initXR - 56)
+      .attr('x', initXR - 80)
       .attr('y', initRightPanY)
-      .attr('width', 112)
+      .attr('width', 160)
       .attr('height', 8)
       .attr('rx', 2.5)
       .attr('fill', 'rgba(15, 34, 55, 0.85)')
@@ -340,17 +340,17 @@ export default function TaxChart({ activeStep, selectedCountry }: TaxChartProps)
         cumulative: d.cumulative || 0,
         radius: radius,
         shapePoints: generateBasaltShape(radius),
-        x: initXL + (Math.random() - 0.5) * 40, 
-        y: 20 - index * 38, // Staggered drop from within visible frame (0-50px)
+        x: initXL + (Math.random() - 0.5) * 80, // Wider initial spread
+        y: 40 - index * 26, // Denser, lower staggered drop (keeps stones within screen)
         vx: 0,
         vy: 0,
       };
     });
 
-    // Create D3 Force Simulation centered on Left Pan
+    // Create D3 Force Simulation centered on Left Pan (Lower strength allows natural pyramid stack)
     const sim = d3.forceSimulation<PhysicsNode>(physicsNodes)
       .force('gravity', d3.forceY<PhysicsNode>().y((d) => initLeftPanY - d.radius).strength(0.20))
-      .force('centerX', d3.forceX<PhysicsNode>(initXL).strength(0.12))
+      .force('centerX', d3.forceX<PhysicsNode>(initXL).strength(0.06)) // Reduced strength for wider spread
       .force('collide', d3.forceCollide<PhysicsNode>((d) => d.radius + 1.2).iterations(3));
 
     simRef.current = sim;
@@ -501,9 +501,9 @@ export default function TaxChart({ activeStep, selectedCountry }: TaxChartProps)
           node.vy = 0; // stop vertical velocity on pan contact
         }
 
-        // Horizontal boundaries constraining nodes inside Left Plate width (112px wide)
-        const limitLeft = xL - 50 + node.radius;
-        const limitRight = xL + 50 - node.radius;
+        // Horizontal boundaries constraining nodes inside Left Plate width (160px wide)
+        const limitLeft = xL - 74 + node.radius;
+        const limitRight = xL + 74 - node.radius;
         if (node.x !== undefined) {
           if (node.x < limitLeft) {
             node.x = limitLeft;
@@ -547,14 +547,14 @@ export default function TaxChart({ activeStep, selectedCountry }: TaxChartProps)
           // 1. Move beam endpoints
           beam.attr('x1', curXL).attr('y1', curYL).attr('x2', curXR).attr('y2', curYR);
 
-          // 2. Translate Left Pan group
-          leftStrings.attr('d', `M ${curXL} ${curYL} L ${curXL - 48} ${curLeftPanY} M ${curXL} ${curYL} L ${curXL + 48} ${curLeftPanY}`);
-          leftPlate.attr('x', curXL - 56).attr('y', curLeftPanY);
+          // 2. Translate Left Pan group (Wider)
+          leftStrings.attr('d', `M ${curXL} ${curYL} L ${curXL - 72} ${curLeftPanY} M ${curXL} ${curYL} L ${curXL + 72} ${curLeftPanY}`);
+          leftPlate.attr('x', curXL - 80).attr('y', curLeftPanY);
           leftLabel.attr('x', curXL).attr('y', curLeftPanY + 24);
 
-          // 3. Translate Right Pan group
-          rightStrings.attr('d', `M ${curXR} ${curYR} L ${curXR - 48} ${curRightPanY} M ${curXR} ${curYR} L ${curXR + 48} ${curRightPanY}`);
-          rightPlate.attr('x', curXR - 56).attr('y', curRightPanY);
+          // 3. Translate Right Pan group (Wider)
+          rightStrings.attr('d', `M ${curXR} ${curYR} L ${curXR - 72} ${curRightPanY} M ${curXR} ${curYR} L ${curXR + 72} ${curRightPanY}`);
+          rightPlate.attr('x', curXR - 80).attr('y', curRightPanY);
           rightLabel.attr('x', curXR).attr('y', curRightPanY + 24);
           
           // Move local budget icons
@@ -564,7 +564,7 @@ export default function TaxChart({ activeStep, selectedCountry }: TaxChartProps)
           // Gently push D3 forces towards updated positions
           if (simRef.current) {
             simRef.current
-              .force('centerX', d3.forceX<PhysicsNode>(curXL).strength(0.12))
+              .force('centerX', d3.forceX<PhysicsNode>(curXL).strength(0.06))
               .force('gravity', d3.forceY<PhysicsNode>(curLeftPanY - 10).strength(0.20))
               .alpha(0.12)
               .restart();
