@@ -503,6 +503,24 @@ export default function TemperatureChart({ activeStep = 0, selectedCountry }: Te
         return 0.85;
       });
 
+    // Transition Negative Dots
+    svg.selectAll('.temp-dot-neg')
+      .transition()
+      .duration(transitionDuration)
+      .ease(ease)
+      .attr('d', (d: any) => {
+        const cx = xScale(d.year);
+        const cy = yScale(d.anomaly);
+        const s = 4;
+        return `M ${cx},${cy - s} L ${cx + s},${cy} L ${cx},${cy + s} L ${cx - s},${cy} Z`;
+      })
+      .style('opacity', (d: any) => {
+        if (isZoomed) {
+          return d.year >= 1970 ? 0.7 : 0.05;
+        }
+        return 0.7;
+      });
+
     // Transition Stripes and BLEACHING removed
 
     // Transition Milestone Lines

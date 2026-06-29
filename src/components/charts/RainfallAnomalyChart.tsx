@@ -344,7 +344,7 @@ export function RainfallAnomalyChart({ activeStep = 0, selectedCountry }: Props)
       })
       .attr('fill', (d: any) => {
         if (activeStep >= 1 && [2015, 2016, 2020].includes(d.year)) return '#B44D36'; // Violent terracotta for Cyclones
-        return d.anomaly >= 0 ? 'url(#rain-bar-gradient)' : 'url(#drought-bar-gradient)';
+        return d.anomaly >= 0 ? 'url(#rain-stripe-pattern)' : 'url(#drought-hatch-pattern)';
       });
 
     const annotationGroup = chartStateRef.current.annotationGroup;
