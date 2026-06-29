@@ -53,12 +53,12 @@ export default function TemperatureChart({ activeStep = 0, selectedCountry }: Te
         ? Number((d as any)[countryKey])
         : ((d as any).regional !== undefined ? Number((d as any).regional) : Number((d as any).anomaly));
 
-      const newVal = Math.max(-0.79, Math.min(1.49, rawVal));
+      const newVal = rawVal;
       return {
         ...d,
         anomaly: newVal,
         isElNino: newVal > 0.5,
-        elNinoStrength: (newVal > 1.0 ? "very-strong" : (newVal > 0.5 ? "strong" : "none"))
+        elNinoStrength: newVal > 1.5 ? 'very-strong' : (newVal > 1.0 ? 'strong' : 'moderate')
       } as any;
     });
   }, [rawData, selectedCountry]);
@@ -201,12 +201,16 @@ export default function TemperatureChart({ activeStep = 0, selectedCountry }: Te
       .domain([1850, 2024])
       .range([0, innerWidth]);
 
+    // Dynamic Y Scale based on actual data
+    const maxAnomaly = d3.max(data, d => d.anomaly) || 1.5;
+    const yMax = Math.max(1.5, Math.ceil(maxAnomaly * 10) / 10 + 0.1);
+
     const yScale = d3.scaleLinear()
-      .domain([-0.8, 1.5]) // Cover temperature anomaly range
+      .domain([-0.8, yMax]) // Cover temperature anomaly range dynamically
       .range([innerHeight, 0]);
 
-    // Grid lines (Horizontal)
-    const gridTicks = [-0.5, 0, 0.5, 1.0, 1.5];
+    // Grid lines (Horizontal) up to the new dynamic max
+    const gridTicks = d3.range(-0.5, yMax + 0.1, 0.5);
     g.append('g')
       .attr('class', 'y-grid')
       .selectAll('line')
@@ -335,6 +339,18 @@ export default function TemperatureChart({ activeStep = 0, selectedCountry }: Te
           .attr('fill', '#D4836A')
           .attr('stroke', '#0B1A2E')
           .attr('stroke-width', 1.5);
+          
+        // Add vertical line connecting text to point
+        mG.append('line')
+          .attr('class', 'milestone-line')
+          .attr('x1', xPos)
+          .attr('x2', xPos)
+          .attr('y1', m.y + 5)
+          .attr('y2', yVal - 8)
+          .attr('stroke', '#D4836A')
+          .attr('stroke-width', 1.2)
+          .attr('stroke-dasharray', '3,3')
+          .attr('opacity', 0.6);
       }
 
       mG.append('text')
@@ -541,6 +557,13 @@ export default function TemperatureChart({ activeStep = 0, selectedCountry }: Te
         .ease(ease)
         .attr('cx', xPos);
 
+      mG.select('.milestone-line')
+        .transition()
+        .duration(transitionDuration)
+        .ease(ease)
+        .attr('x1', xPos)
+        .attr('x2', xPos);
+
       mG.select('text')
         .transition()
         .duration(transitionDuration)
@@ -588,9 +611,11 @@ export default function TemperatureChart({ activeStep = 0, selectedCountry }: Te
         const anchor = year >= 2020 ? 'end' : 'middle';
         const xOffset = year >= 2020 ? -12 : 0;
 
+        const textYOffset = year === Math.min(...extremeYears) ? -45 : -25; // Stagger based on year to prevent overlap
+
         group.append('text')
           .attr('x', xPos + xOffset)
-          .attr('y', yPos - 25)
+          .attr('y', yPos + textYOffset)
           .attr('text-anchor', anchor)
           .attr('fill', '#C49A3C')
           .attr('font-size', '9.5px')
