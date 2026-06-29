@@ -126,7 +126,7 @@ export default function Act6_UnpaidDebt({ className, selectedCountry }: Act6Prop
             
             <TaxChart activeStep={activeStep} selectedCountry={selectedCountry} />
 
-            <div className="absolute bottom-[-32px] left-0 right-0 text-center text-[9px] uppercase tracking-widest font-body text-drift-wood/75">
+            <div className="absolute bottom-[-52px] left-0 right-0 text-center text-[9px] uppercase tracking-widest font-body text-drift-wood/75">
               {getStation(selectedCountry?.id, 'tax').stationName} — {getStation(selectedCountry?.id, 'tax').dataSource} (% GDP)
             </div>
             

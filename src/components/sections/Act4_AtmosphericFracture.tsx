@@ -147,7 +147,7 @@ export default function Act4_AtmosphericFracture({ className, selectedCountry }:
             
             <RainfallAnomalyChart activeStep={activeStep} selectedCountry={selectedCountry} />
 
-            <div className="absolute bottom-[-32px] left-0 right-0 text-center text-[9px] uppercase tracking-widest font-body text-drift-wood/75">
+            <div className="absolute bottom-[-52px] left-0 right-0 text-center text-[9px] uppercase tracking-widest font-body text-drift-wood/75">
               {getStation(selectedCountry?.id, 'rainfall').stationName} — {getStation(selectedCountry?.id, 'rainfall').dataSource} Anomalies Profile
             </div>
             

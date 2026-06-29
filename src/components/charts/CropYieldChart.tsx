@@ -156,12 +156,10 @@ export const CropYieldChart: React.FC<CropYieldChartProps> = ({ activeStep, sele
     cocoaPattern.append('line').attr('x1', 0).attr('y1', 0).attr('x2', 8).attr('y2', 8).attr('stroke', '#C49A3C').attr('stroke-width', 1.2);
     cocoaPattern.append('line').attr('x1', 8).attr('y1', 0).attr('x2', 0).attr('y2', 8).attr('stroke', '#C49A3C').attr('stroke-width', 1.2);
 
-    const crops = ['taro', 'sweetPotato', 'banana', 'cocoa'] as const;
+    const crops = ['taro', 'sweetPotato'] as const;
     const colors: Record<string, string> = {
       taro: 'url(#taro-pattern)',
       sweetPotato: 'url(#sweetpotato-pattern)',
-      banana: 'url(#banana-pattern)',
-      cocoa: 'url(#cocoa-pattern)',
     };
 
     const x0 = d3.scaleBand()
@@ -174,7 +172,7 @@ export const CropYieldChart: React.FC<CropYieldChartProps> = ({ activeStep, sele
       .range([0, x0.bandwidth()])
       .padding(0.08);
 
-    const maxY = d3.max(chartData, d => Math.max(d.taro, d.sweetPotato, d.banana, d.cocoa)) || 20;
+    const maxY = d3.max(chartData, d => Math.max(d.taro, d.sweetPotato)) || 15;
 
     const y = d3.scaleLinear()
       .domain([0, maxY * 1.1])
