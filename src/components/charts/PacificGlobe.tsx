@@ -385,10 +385,17 @@ export default function PacificGlobe() {
           <p className="text-[#D4A574] text-sm opacity-70">Please refresh the page to try again.</p>
         </div>
       ) : (
-        <canvas 
-          ref={canvasRef} 
-          className="cursor-grab active:cursor-grabbing pointer-events-auto"
-        />
+        <>
+          <canvas 
+            ref={canvasRef} 
+            className="cursor-grab active:cursor-grabbing pointer-events-auto"
+            role="img"
+            aria-label="Interactive 3D orthographic globe of the Pacific Ocean. Shows geographic coordinates, warming anomalies, and atoll flooding risks for 22 Pacific Island nations. Use drag gestures to rotate the globe."
+          />
+          <div className="sr-only">
+            Interactive 3D globe depicting regional climate threat levels for Pacific territories including Fiji, Tuvalu, Kiribati, Vanuatu, Samoa, Tonga, Solomon Islands, Palau, Marshall Islands, and others. The ocean is highlighted to represent global warming levels, while island markers pulse to represent sea level rise risks.
+          </div>
+        </>
       )}
       {tooltip && (
         <div 

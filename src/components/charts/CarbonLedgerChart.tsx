@@ -21,7 +21,12 @@ export default function CarbonLedgerChart({ isActive = true }: { isActive?: bool
       .attr('viewBox', `0 0 ${width} ${height}`)
       .attr('preserveAspectRatio', 'xMidYMid meet')
       .style('width', '100%')
-      .style('height', '100%');
+      .style('height', '100%')
+      .attr('role', 'img')
+      .attr('aria-label', "Act I: Split bar chart comparing the historical greenhouse gas emissions of global industrialized nations (99.97%) vs the 22 Pacific Island nations (0.03%).");
+
+    svg.append('title').text('Global vs Pacific Carbon Emissions share');
+    svg.append('desc').text('A stacked bar splitting global emissions (99.97%, large red area) and Pacific shares (0.03%, paper-thin teal line).');
 
     svg.selectAll('*').remove();
 

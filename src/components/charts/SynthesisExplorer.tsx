@@ -375,7 +375,15 @@ export const SynthesisExplorer: React.FC<SynthesisExplorerProps> = ({ selectedCo
     >
       {/* ── LEFT COLUMN: SVG Chart Area (65% width) ── */}
       <div className="w-full md:w-[65%] flex flex-col justify-center items-center py-6 px-4 md:px-6 relative overflow-visible select-none">
-        <svg width={width} height={height} className="block overflow-visible max-w-full">
+        <svg 
+          width={width} 
+          height={height} 
+          className="block overflow-visible max-w-full"
+          role="img"
+          aria-label={`Act VII: Interactive correlation scatter plot. Currently plotting ${preset.xLabel} on the X-axis against ${preset.yLabel} on the Y-axis for ${selectedCountry?.name || 'Regional Average'} (2010-2023).`}
+        >
+          <title>Synthesis Explorer Correlation Chart</title>
+          <desc>An interactive scatter plot cross-referencing multi-variable climate indices and crop productivity deficits over a decade timeline.</desc>
           <defs>
             <filter id="dot-glow-synth">
               <feGaussianBlur stdDeviation="4" result="blur" />

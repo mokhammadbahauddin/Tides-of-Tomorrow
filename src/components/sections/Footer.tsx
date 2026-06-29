@@ -103,6 +103,44 @@ export function Footer() {
 
         </div>
 
+        {/* Methodology & Data Disclosures Panel */}
+        <div className="w-full border border-[#D4A574]/15 bg-ocean-ink/40 p-6 md:p-8 mb-12 rounded-none text-left relative overflow-hidden">
+          <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-[#2B7A78]/5 to-transparent pointer-events-none" />
+          <h3 className="font-display text-xs font-semibold text-shell-white mb-4 uppercase tracking-widest text-[#D4A574]">
+            Methodology &amp; Data Disclosures
+          </h3>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 text-[10px] text-shell-white/70 font-mono leading-relaxed">
+            <div className="flex flex-col gap-4">
+              <div>
+                <strong className="text-shell-white block uppercase tracking-wider mb-1 text-[9px] text-[#2B7A78]">1. Temperature Proxies (Act II)</strong>
+                SST anomalies utilize NOAA ERSST gridded data (1850–2025). Smaller territories lacking continuous localized meteorological stations (such as Pitcairn, Tokelau, and Wallis &amp; Futuna) are modeled using regional ocean grid averages as proxy indicators.
+              </div>
+              <div>
+                <strong className="text-shell-white block uppercase tracking-wider mb-1 text-[9px] text-[#2B7A78]">2. Sea Level Quantization (Act III)</strong>
+                To visualize disparate island groups consistently, sea level anomalies (NASA PO.DAAC) are mapped onto a standardized scale index (rounded to the nearest 100mm) representing net rises relative to the 1993 baseline.
+              </div>
+              <div>
+                <strong className="text-shell-white block uppercase tracking-wider mb-1 text-[9px] text-[#2B7A78]">3. Rainfall &amp; Storm Correlations (Act IV)</strong>
+                Rainfall anomalies are derived directly from GPCP gridded precipitation databases (1979–2025). Peak anomalies correspond with the landfall periods of notable Category 5 cyclones (Pam, Winston, Harold).
+              </div>
+            </div>
+            <div className="flex flex-col gap-4">
+              <div>
+                <strong className="text-shell-white block uppercase tracking-wider mb-1 text-[9px] text-[#B44D36]">4. Agriculture &amp; Crop Padding (Act V)</strong>
+                Crop yields combine direct FAOSTAT country profiles with regional averages as placeholders for territories without separate FAO reporting (e.g. Tokelau, Pitcairn). Cocoa indicators are illustrative crop-risk representations.
+              </div>
+              <div>
+                <strong className="text-shell-white block uppercase tracking-wider mb-1 text-[9px] text-[#B44D36]">5. Tax &amp; Economic Models (Act VI)</strong>
+                Environmental tax revenues represent public adaptation finances (such as Fiji ECAL). High-contrast scale weights utilize regional average proxies for nations not individually listed in the OECD environmental tax database.
+              </div>
+              <div>
+                <strong className="text-shell-white block uppercase tracking-wider mb-1 text-[9px] text-[#D4A574]">6. Projections &amp; Composite Voices</strong>
+                Projections are simplified policy sensitivity models calibrated against IPCC AR6 SSP1-1.9 and SSP5-8.5 tropical pathways. Qualitative quotes represent composite narrative testimonies from local regional reports.
+              </div>
+            </div>
+          </div>
+        </div>
+
         {/* Bottom Row */}
         <div className="flex flex-col md:flex-row items-center justify-between pt-8 border-t border-warm-sand/15">
           

@@ -101,7 +101,12 @@ export default function TaxChart({ activeStep, selectedCountry }: TaxChartProps)
       .attr('viewBox', `0 0 ${width} ${height}`)
       .attr('preserveAspectRatio', 'xMidYMid meet')
       .style('width', '100%')
-      .style('height', 'auto');
+      .style('height', 'auto')
+      .attr('role', 'img')
+      .attr('aria-label', `Act VI: Physics-based balance scale simulation. Stacks volcanic rock boulders representing climate loss and damage on the left plate, tipping it downwards against local Pacific budgets on the right plate.`);
+
+    svgEl.append('title').text('Climate Debt Balance Scale');
+    svgEl.append('desc').text('An interactive balance scale physics simulation showing carbon debt boulders overloading local Pacific budgets.');
 
     // Create defs for gradients and filters
     const defs = svgEl.append('defs');

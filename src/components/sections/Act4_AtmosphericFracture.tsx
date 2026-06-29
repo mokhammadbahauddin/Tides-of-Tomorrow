@@ -86,11 +86,11 @@ export default function Act4_AtmosphericFracture({ className, selectedCountry }:
               The Breaking <span className="text-storm-gray">Storms</span>
             </h2>
             <p className="font-body text-base md:text-lg text-shell-white/80 leading-relaxed">
-              The encroaching seas from Act III are only half the battle. As rising tides push inland, the thermal engine of the ocean simultaneously supercharges the sky above. When billions of joules of excess heat evaporate into the atmosphere, the result is a total fracture of historic precipitation patterns.
+              The encroaching seas from Act III are only half the battle. As rising tides push inland, the thermal engine of the ocean simultaneously supercharges the sky above. When zettajoules of cumulative excess heat evaporate into the atmosphere, the result is a total fracture of historic precipitation patterns.
             </p>
             </div>
           </div>
-
+ 
           {/* Step 1: Storm Surge */}
           <div 
             className="trigger-block-weather relative py-12 px-6 md:px-8 transition-all duration-500" 
@@ -105,7 +105,7 @@ export default function Act4_AtmosphericFracture({ className, selectedCountry }:
               Droughts & Deluges
             </h3>
             <p className="font-body text-base md:text-lg text-shell-white/80 leading-relaxed mb-4">
-              Rainfall anomalies show severe, whiplash shifts between devastating droughts and pluvial flooding. Look at the chart: extreme precipitation anomalies perfectly correlate with the devastating landfalls of <strong>Category 5 Cyclones</strong> like Pam (2015), Winston (2016), and Harold (2020).
+              Rainfall anomalies show severe, whiplash shifts between devastating droughts and pluvial flooding. Look at the chart: extreme precipitation anomalies correspond closely with the devastating landfalls of <strong>Category 5 Cyclones</strong> like Pam (2015), Winston (2016), and Harold (2020).
             </p>
             <p className="font-body text-base md:text-lg text-shell-white/80 leading-relaxed">
               These are no longer "once-in-a-generation" events. The supercharged atmosphere is dumping unprecedented volumes of water, tearing roofs off hospitals and obliterating agriculture.
@@ -116,7 +116,7 @@ export default function Act4_AtmosphericFracture({ className, selectedCountry }:
             </div>
             </div>
           </div>
-
+ 
           {/* Step 2: Cycles of Destruction */}
           <div 
             className="trigger-block-weather relative py-12 px-6 md:px-8 transition-all duration-500" 
@@ -134,7 +134,7 @@ export default function Act4_AtmosphericFracture({ className, selectedCountry }:
               A warmer ocean changes the sky. We no longer have predictable seasons. Instead, we swing violently between months of parched, cracking earth and sudden, massive floods.
             </p>
             <p className="font-body text-base md:text-lg text-shell-white/80 leading-relaxed">
-              These spikes on the chart aren't just rain—they are <strong className="text-terracotta">Category 5 Cyclones</strong> like Pam, Winston, and Harold. This is the terrifying reality of climate change: it tears the roofs off our schools and washes away our roads in a single night.
+              This atmospheric whiplash strains our infrastructure to its breaking point. When soil is baked hard by prolonged drought, it loses its capacity to absorb water—leading to severe flash flooding during heavy rains before the previous season's damages have even been repaired.
             </p>
             </div>
           </div>

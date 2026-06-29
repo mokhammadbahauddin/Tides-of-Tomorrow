@@ -31,7 +31,7 @@ export const acts: ActContent[] = [
     label: 'ACT III — DATASET 02',
     labelColor: '#e63946',
     title: 'The Encroaching Waters',
-    body: 'Thermal expansion and glacial melt have broken the ancient boundaries of the tide. Satellite altimetry data reveals sea level anomalies rising at nearly 4.5 millimeters per year in the tropical Pacific—significantly outpacing the global mean. This is not merely an environmental hazard; it is a physical encroachment on sovereign land. For the 90% of Pacific Islanders living within 5 kilometers of the coast, rising saltwater infiltrates freshwater aquifers and erodes the very ground beneath their feet.',
+    body: 'Thermal expansion and glacial melt have broken the ancient boundaries of the tide. Satellite altimetry data reveals sea level anomalies rising at nearly 4.5 millimeters per year in the western tropical Pacific—significantly outpacing the global mean. This is not merely an environmental hazard; it is a physical encroachment on sovereign land. For the 90% of Pacific Islanders living within 5 kilometers of the coast, rising saltwater infiltrates freshwater aquifers and erodes the very ground beneath their feet.',
     stat: '4.5 mm/yr',
     statSubtitle: 'regional sea level rise, threatening coastal sovereignty',
     statColor: '#e63946',

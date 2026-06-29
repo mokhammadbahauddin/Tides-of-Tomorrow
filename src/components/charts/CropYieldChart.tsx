@@ -62,7 +62,12 @@ export const CropYieldChart: React.FC<CropYieldChartProps> = ({ activeStep, sele
       .attr('viewBox', `0 0 ${width} ${height}`)
       .attr('preserveAspectRatio', 'xMidYMid meet')
       .style('width', '100%')
-      .style('height', 'auto');
+      .style('height', 'auto')
+      .attr('role', 'img')
+      .attr('aria-label', `Act V: Grouped bar chart comparing taro and sweet potato yields in tonnes per hectare for ${selectedCountry?.name || 'Regional Average'} (1990-2024). Includes expected yield target and deficit projections.`);
+
+    svg.append('title').text('Crop Yield Comparison Chart');
+    svg.append('desc').text('Grouped bar chart showing taro and sweet potato crop yields over time, with taro represented by terracotta bars and sweet potato represented by warm sand bars.');
 
     const g = svg.append('g').attr('transform', `translate(${margin.left},${margin.top})`);
 
@@ -492,7 +497,14 @@ export const CropYieldChart: React.FC<CropYieldChartProps> = ({ activeStep, sele
 
         {/* Cross-section SVG drawing */}
         <div className="w-full h-[160px] flex items-center justify-center my-1 relative">
-          <svg viewBox="0 0 200 200" className="w-full h-full">
+          <svg 
+            viewBox="0 0 200 200" 
+            className="w-full h-full"
+            role="img"
+            aria-label="Soil salinity cross-section illustration. Shows taro plant root zone in relation to freshwater tables and saltwater intrusion."
+          >
+            <title>Soil Roots Salinity Cross Section</title>
+            <desc>Visual cross-section showing root zone, freshwater table, and the salt water table rising under intrusion.</desc>
             <defs>
               <linearGradient id="healthy-water" x1="0%" y1="0%" x2="0%" y2="100%">
                 <stop offset="0%" stopColor="#1e3a8a" stopOpacity="0.4" />

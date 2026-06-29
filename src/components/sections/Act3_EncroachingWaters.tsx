@@ -105,10 +105,10 @@ export default function Act3_EncroachingWaters({ className, selectedCountry }: A
               Accelerated Sea Level Rise
             </h3>
             <p className="font-body text-base md:text-lg text-shell-white/80 leading-relaxed mb-4">
-              Satellite altimetry data reveals sea level anomalies rising at nearly <span className="text-terracotta font-semibold">4.5 millimeters per year</span> in the tropical Pacific—significantly outpacing the global mean. This isn't just an environmental hazard; it is a physical encroachment on sovereign land.
+              Satellite altimetry data reveals sea level anomalies rising at nearly <span className="text-terracotta font-semibold">4.5 millimeters per year</span> in the western tropical Pacific—significantly outpacing the global mean. This isn't just an environmental hazard; it is a physical encroachment on sovereign land.
             </p>
             <p className="font-body text-base md:text-lg text-shell-white/80 leading-relaxed">
-              When the sea level rises by even a few millimeters, King Tides penetrate hundreds of meters further inland, completely reshaping the geography of the islands.
+              On low-lying flat atolls, even a minor rise in sea level allows King Tides to push saltwater far inland through porous limestone, temporary flooding agricultural soil and shifting the geography of the islands.
             </p>
             </div>
           </div>
@@ -132,9 +132,9 @@ export default function Act3_EncroachingWaters({ className, selectedCountry }: A
             <p className="font-body text-base md:text-lg text-shell-white/80 leading-relaxed">
               Look at the <strong className="text-terracotta">red inundation zone</strong> on the chart. When the sea rises past that point, it gets into the wells our grandparents dug. You can't drink the water anymore. Once the salt is in the soil, the land simply cannot sustain life.
             </p>
-            <div className="my-4 p-5 glass-card italic text-shell-white/90 font-body text-sm">
+             <div className="my-4 p-5 glass-card italic text-shell-white/90 font-body text-sm">
               "We planted taro where our grandfathers planted taro, but the soil is poisoned with salt. We are literally watching the ocean swallow the land that holds our ancestors' bones." <br/>
-              <span className="text-xs text-drift-wood mt-3 block font-body uppercase tracking-widest">— Community Leader, Funafuti, Tuvalu</span>
+              <span className="text-xs text-drift-wood mt-3 block font-body uppercase tracking-widest">— Representative composite narrative testimony, Funafuti, Tuvalu</span>
             </div>
             </div>
           </div>

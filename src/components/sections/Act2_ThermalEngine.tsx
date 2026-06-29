@@ -108,15 +108,15 @@ export default function Act2_ThermalEngine({ className, selectedCountry }: Act2P
             <h3 className="font-display text-3xl md:text-4xl font-bold text-shell-white mb-4">
               The Heat Beneath the Waves
             </h3>
-            <p className="font-body text-base md:text-lg text-shell-white/80 leading-relaxed mb-4">
-              Watch the chart zoom in: we are focusing on the modern era from 1970 to 2024. Here in the Pacific, water temperatures have climbed past the <strong className="text-terracotta">+1.2°C threshold</strong> relative to the pre-industrial baseline.
+             <p className="font-body text-base md:text-lg text-shell-white/80 leading-relaxed mb-4">
+              Watch the chart zoom in: we are focusing on the modern era from 1970 to 2024. Here in the Pacific, regional sea surface temperatures are climbing, pushing closer to the critical global <strong className="text-terracotta">+1.2°C average threshold</strong> relative to the pre-industrial baseline.
             </p>
             <p className="font-body text-base md:text-lg text-shell-white/80 leading-relaxed">
               This isn't a warning about the future; it is a current fever. When the chart spikes, the heat cooks our coral reefs, destroying the vibrant ecosystems that feed our families and protect our shores from ocean waves.
             </p>
             </div>
           </div>
-
+ 
           {/* Step 2: Human Impact */}
           <div 
             className="trigger-block-warm relative py-12 px-6 md:px-8 transition-all duration-500" 
@@ -135,7 +135,7 @@ export default function Act2_ThermalEngine({ className, selectedCountry }: Act2P
             </p>
             <div className="my-4 p-5 glass-card italic text-shell-white/90 font-body text-sm">
               "We used to dive and see a forest of colors. Now, we dive and see a boneyard. The fish are gone, and with them, the income that sends our children to school." <br/>
-              <span className="text-xs text-drift-wood mt-3 block font-body uppercase tracking-widest">Source: Local fisherman, Viti Levu, Fiji</span>
+              <span className="text-xs text-drift-wood mt-3 block font-body uppercase tracking-widest">— Representative composite narrative testimony, Viti Levu, Fiji</span>
             </div>
             </div>
           </div>

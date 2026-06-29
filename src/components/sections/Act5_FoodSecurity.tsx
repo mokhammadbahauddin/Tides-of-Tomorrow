@@ -87,9 +87,9 @@ export default function Act5_FoodSecurity({ className, selectedCountry }: Act5Pr
             <p className="font-body text-base md:text-lg text-shell-white/80 leading-relaxed mb-6">
               When extreme weather and saltwater intrusion combine, they strike directly at the foundation of subsistence agriculture. In the Pacific, staple crops like taro, sweet potatoes, and bananas are not just calories on a spreadsheet—they are cultural cornerstones, the bedrock of community resilience, and a profound connection to ancestral lands.
             </p>
-            <div className="p-4 glass-card italic text-shell-white/90 font-body text-sm">
+             <div className="p-4 glass-card italic text-shell-white/90 font-body text-sm">
               "We plant the taro, but the salt in the soil from the king tides means it rots before we can harvest. Our children are eating imported rice instead of what our ancestors grew. We are losing our food sovereignty." <br/>
-              <span className="text-xs text-drift-wood mt-2 block font-body">— Farmer, Malaita Province, Solomon Islands</span>
+              <span className="text-xs text-drift-wood mt-2 block font-body">— Representative composite narrative testimony, Malaita Province, Solomon Islands</span>
             </div>
             </div>
           </div>

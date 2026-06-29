@@ -196,6 +196,9 @@ export default function CallToAction({ className }: CallToActionProps) {
                   <p className="text-xs text-[#E8DCC8]/75 font-body leading-relaxed border-t border-[#D4A574]/10 pt-4 mt-3">
                     Estimated loss &amp; damage compensation owed to the 22 Pacific Island Nations based on <strong>{country.name}'s {country.share}%</strong> share of historical global emissions. 
                   </p>
+                  <p className="text-[9px] text-[#E8DCC8]/50 font-mono mt-3 leading-relaxed">
+                    *Methodology Note: Debt is an illustrative allocation of a modeled $10 Trillion global climate loss-and-damage burden, distributed proportionally by each nation's cumulative CO₂ emissions (1850–2022) sourced from CAIT/WRI.
+                  </p>
                 </div>
                 
                 {/* Willpower Commitment Custom Slider */}
@@ -339,6 +342,9 @@ export default function CallToAction({ className }: CallToActionProps) {
 
                 {/* Responsive Curve chart */}
                 <MiniChart pledge={pledge} />
+                <p className="text-[9px] text-[#E8DCC8]/40 font-mono mt-1 leading-relaxed text-center">
+                  *Projections are simplified illustrative models calibrated to match the broad SSP1-1.9 (Net Zero) through SSP5-8.5 (Inaction) trajectories from IPCC AR6.
+                </p>
               </div>
 
               {/* Narrative outcome block */}

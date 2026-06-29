@@ -63,7 +63,7 @@ export default function Act7_Synthesis({ className, selectedCountry }: Act7Props
               None of these events happen in isolation. The warming ocean, the rising tides, the failed crops, and the rising taxes—they are all connected. They are the dominoes falling in our backyards, pushed by emissions from continents away.
             </p>
             <p className="font-body text-base md:text-lg text-shell-white/70 leading-relaxed">
-              Use the tool below to explore how these crises overlap. You can see for yourself how the rising temperature directly impacts our ability to grow food, or how the rising sea drives up the cost of survival. The data tells a clear story: everything is connected.
+              We invite you to explore this interactive nexus to trace how these crises overlap. By examining these patterns, we can see clearly how rising temperatures suppress our harvests, or how encroaching tides escalate the economic cost of our survival. The data is unequivocal: everything is bound together.
             </p>
           </div>
 

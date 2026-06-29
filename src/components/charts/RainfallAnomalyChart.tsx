@@ -88,7 +88,12 @@ export function RainfallAnomalyChart({ activeStep = 0, selectedCountry }: Props)
     const svg = d3.select(svgRef.current);
     svg.selectAll('*').remove();
     svg.attr('viewBox', `0 0 ${width} ${height}`)
-       .attr('preserveAspectRatio', 'xMidYMid meet');
+       .attr('preserveAspectRatio', 'xMidYMid meet')
+       .attr('role', 'img')
+       .attr('aria-label', `Act IV: Diverging bar chart showing annual precipitation anomalies for ${selectedCountry?.name || 'Regional Average'} (1979-2025). Peak upward bars represent wet anomalies and downward bars represent droughts.`);
+
+    svg.append('title').text('Rainfall Anomaly History');
+    svg.append('desc').text('Diverging bar chart showing annual precipitation anomalies, with positive values in teal for rain and negative values in brown for drought.');
 
     const margin = { top: 30, right: 30, bottom: 40, left: 50 };
     const innerWidth = width - margin.left - margin.right;
@@ -460,6 +465,7 @@ export function RainfallAnomalyChart({ activeStep = 0, selectedCountry }: Props)
         height={400} 
         className="absolute inset-0 w-full h-full pointer-events-none z-0"
         style={{ mixBlendMode: 'screen', opacity: 0.8 }}
+        aria-hidden="true"
       />
       <svg ref={svgRef} className="w-full relative z-10" />
       <Tooltip {...tooltip} />
