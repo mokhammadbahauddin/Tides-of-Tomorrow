@@ -17,7 +17,7 @@ interface Milestone {
 
 const milestones: Milestone[] = [
   { year: 1990, label: '1990: IPCC First Report', align: 'end', y: 15 },
-  { year: 2015, label: '2015: Paris Agreement (+1.5°C Target)', align: 'start', y: 15 },
+  { year: 2015, label: '2015: Paris Agreement', align: 'end', y: 45 },
   { year: 2023, label: '2023: Global Record Heat', align: 'end', y: 32 }
 ];
 
@@ -238,7 +238,7 @@ export default function TemperatureChart({ activeStep = 0, selectedCountry }: Te
     // Axes
     const xAxis = d3.axisBottom(xScale)
       .tickFormat(d3.format('d') as any)
-      .ticks(width > 500 ? 10 : 5);
+      .tickValues([1850, 1880, 1910, 1940, 1970, 2000, 2024]);
 
     const yAxis = d3.axisLeft(yScale)
       .tickValues(gridTicks)
@@ -338,7 +338,6 @@ export default function TemperatureChart({ activeStep = 0, selectedCountry }: Te
       }
 
       mG.append('text')
-        .attr('class', 'hidden md:block')
         .attr('x', xPos + (m.align === 'start' ? 8 : -8))
         .attr('y', m.y) // Use staggered y to prevent overlapping text
         .attr('text-anchor', m.align)
@@ -430,6 +429,7 @@ export default function TemperatureChart({ activeStep = 0, selectedCountry }: Te
     const ease = d3.easeCubicOut;
 
     // Animate X Axis
+    xAxis.tickValues(isZoomed ? [1970, 1980, 1990, 2000, 2010, 2020, 2024] : [1850, 1880, 1910, 1940, 1970, 2000, 2024]);
     svg.select('.x-axis')
       .transition()
       .duration(transitionDuration)
