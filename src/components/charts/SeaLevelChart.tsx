@@ -12,7 +12,6 @@ interface SeaLevelChartProps {
 }
 
 export default function SeaLevelChart({ activeStep = 0, selectedCountry }: SeaLevelChartProps) {
-  const containerRef = useRef<HTMLDivElement>(null);
   const svgRef = useRef<SVGSVGElement>(null);
   const chartStateRef = useRef<{ xScale: any, yScale: any, threshold: number }>({ xScale: null, yScale: null, threshold: 0 });
   const [tooltip, setTooltip] = useState<{ x: number; y: number; data: SeaLevelRecord | null }>({ x: 0, y: 0, data: null });
