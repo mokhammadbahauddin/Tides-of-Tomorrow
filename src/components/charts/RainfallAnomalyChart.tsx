@@ -296,9 +296,13 @@ export function RainfallAnomalyChart({ activeStep = 0, selectedCountry }: Props)
           .attr('stroke', '#B44D36')
           .attr('stroke-width', 1.5);
           
+        const anchor = c.year >= 2020 ? 'end' : 'middle';
+        const xOffset = c.year >= 2020 ? -12 : 0;
+
         group.append('text')
+          .attr('x', xOffset)
           .attr('y', -18)
-          .attr('text-anchor', 'middle')
+          .attr('text-anchor', anchor)
           .attr('fill', '#B44D36')
           .attr('font-size', '10px')
           .attr('font-weight', 'bold')

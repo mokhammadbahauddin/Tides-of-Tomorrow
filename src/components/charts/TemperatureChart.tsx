@@ -585,10 +585,13 @@ export default function TemperatureChart({ activeStep = 0, selectedCountry }: Te
           .attr('stroke', '#0B1A2E')
           .attr('stroke-width', 1.5);
 
+        const anchor = year >= 2020 ? 'end' : 'middle';
+        const xOffset = year >= 2020 ? -12 : 0;
+
         group.append('text')
-          .attr('x', xPos)
+          .attr('x', xPos + xOffset)
           .attr('y', yPos - 25)
-          .attr('text-anchor', 'middle')
+          .attr('text-anchor', anchor)
           .attr('fill', '#C49A3C')
           .attr('font-size', '9.5px')
           .attr('font-weight', 'bold')
