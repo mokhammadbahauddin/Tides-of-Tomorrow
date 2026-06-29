@@ -341,7 +341,7 @@ export default function TaxChart({ activeStep, selectedCountry }: TaxChartProps)
         radius: radius,
         shapePoints: generateBasaltShape(radius),
         x: initXL + (Math.random() - 0.5) * 80, // Wider initial spread
-        y: 40 - index * 26, // Denser, lower staggered drop (keeps stones within screen)
+        y: py - 70 - index * 10, // Staggered drop closer to the plate (prevents getting stuck off-screen)
         vx: 0,
         vy: 0,
       };
@@ -349,6 +349,7 @@ export default function TaxChart({ activeStep, selectedCountry }: TaxChartProps)
 
     // Create D3 Force Simulation centered on Left Pan (Lower strength allows natural pyramid stack)
     const sim = d3.forceSimulation<PhysicsNode>(physicsNodes)
+      .alphaDecay(0.015) // Keep simulation running longer to allow all blocks to drop
       .force('gravity', d3.forceY<PhysicsNode>().y((d) => initLeftPanY - d.radius).strength(0.20))
       .force('centerX', d3.forceX<PhysicsNode>(initXL).strength(0.06)) // Reduced strength for wider spread
       .force('collide', d3.forceCollide<PhysicsNode>((d) => d.radius + 1.2).iterations(3));
@@ -566,7 +567,7 @@ export default function TaxChart({ activeStep, selectedCountry }: TaxChartProps)
             simRef.current
               .force('centerX', d3.forceX<PhysicsNode>(curXL).strength(0.06))
               .force('gravity', d3.forceY<PhysicsNode>(curLeftPanY - 10).strength(0.20))
-              .alpha(0.12)
+              .alpha(0.7)
               .restart();
           }
         }
