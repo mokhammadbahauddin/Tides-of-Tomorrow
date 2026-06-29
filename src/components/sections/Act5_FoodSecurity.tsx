@@ -110,7 +110,7 @@ export default function Act5_FoodSecurity({ className, selectedCountry }: Act5Pr
               While agricultural yields are not completely collapsing across the region, they are stagnating while the population expands. In disaster years, sudden crop drops compound the food security pressure.
             </p>
             <p className="font-body text-base md:text-lg text-shell-white/80 leading-relaxed">
-              That <strong className="text-terracotta">red bar</strong> on the chart represents Taro—our cultural staple. As temperature anomalies rise and cyclones strike, yields stagnate and experience sudden shocks. This isn't just a statistical flatline; it represents crop failures, empty plates, and the loss of what our ancestors grew. To survive, we are forced to buy expensive, processed, imported food. We aren't just losing our crops; we are losing our food sovereignty.
+              That <strong className="text-terracotta">red bar</strong> on the chart represents Taro—a vital cultural staple. As shown by the data, yields fail to meet the expected growth targets required to sustain the population. During extreme weather years, the chart reveals significant negative shocks to agricultural output. This growing deficit between agricultural production and population needs increases reliance on imported foods, creating severe food security vulnerabilities.
             </p>
             </div>
           </div>

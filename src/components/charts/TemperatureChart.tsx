@@ -37,6 +37,14 @@ export default function TemperatureChart({ activeStep = 0, selectedCountry }: Te
     }).catch((err) => { console.error('Failed to load chart data:', err); setHasError(true); });
   }, []);
 
+  const isRegionalFallback = useMemo(() => {
+    if (!selectedCountry || selectedCountry.id === 'REGIONAL') return false;
+    if (rawData.length > 0) {
+      return (rawData[0] as any)[selectedCountry.id] === undefined;
+    }
+    return false;
+  }, [rawData, selectedCountry]);
+
   const data = useMemo(() => {
     const countryKey = selectedCountry?.id || 'REGIONAL';
     return rawData.map((d) => {
@@ -526,8 +534,9 @@ export default function TemperatureChart({ activeStep = 0, selectedCountry }: Te
     g.selectAll('.bleaching-annotation').remove();
 
     if (activeStep >= 2) {
-      // Use 1998 and 2016 which are the actual peak warming years in the Pacific dataset
-      const extremeYears = [1998, 2016];
+      // Find the top 2 highest anomaly years for this specific nation
+      const sortedData = [...data].sort((a, b) => b.anomaly - a.anomaly);
+      const extremeYears = sortedData.slice(0, 2).map(d => d.year);
       
       extremeYears.forEach(year => {
         const xPos = xScale(year);
@@ -613,6 +622,12 @@ export default function TemperatureChart({ activeStep = 0, selectedCountry }: Te
 
   return (
     <div ref={containerRef} className="relative w-full">
+      {isRegionalFallback && (
+        <div className="absolute top-4 right-6 bg-[#0B1A2E]/80 border border-[#D4A574]/30 px-3 py-1.5 rounded-none backdrop-blur-sm z-10 flex items-center gap-2">
+           <span className="w-2 h-2 rounded-full bg-[#D4A574] animate-pulse" />
+           <span className="text-[10px] font-mono text-[#E8DCC8] uppercase tracking-wider">Showing Regional Average (Country Data Unavailable)</span>
+        </div>
+      )}
       <svg ref={svgRef} className="w-full overflow-visible" />
       <Tooltip {...tooltip} />
     </div>

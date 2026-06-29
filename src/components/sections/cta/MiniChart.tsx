@@ -10,9 +10,9 @@ interface ProjectionPoint {
 }
 
 // Color utility matching CallToAction's pledge colour scheme
-const getPledgeColor = (p: number) => {
-  if (p >= 75) return '#2B7A78'; // Safe reef teal
-  if (p >= 30) return '#D4A574'; // Warning warm sand
+const getPledgeColor = (temp: number) => {
+  if (temp <= 1.8) return '#2B7A78'; // Safe reef teal
+  if (temp <= 3.0) return '#D4A574'; // Warning warm sand
   return '#B44D36'; // Critical terracotta
 };
 
@@ -47,7 +47,7 @@ export default function MiniChart({ pledge }: MiniChartProps) {
   // Calculate points from 2020 to 2050
   const points: ProjectionPoint[] = [2020, 2025, 2030, 2035, 2040, 2045, 2050].map((yVal) => {
     const t = (yVal - 2020) / 30;
-    const p = pledge / 100;
+    const p = 1.0 - ((pledge - 1.5) / 2.5); // Normalize 1.5-4.0 to 1.0-0.0
     const tempVal = 0.95 + (1.65 - 1.3 * p) * t - (0.25 * p) * t * t;
     const px = padding.left + t * graphW;
     const py = padding.top + (1 - (tempVal - 0.5) / 2.3) * graphH;
@@ -71,9 +71,9 @@ export default function MiniChart({ pledge }: MiniChartProps) {
       <span className="text-[8px] text-[#8B7355] font-mono mb-2 uppercase tracking-wide font-semibold">
         Temperature Trajectory (2020–2050)
       </span>
-      <svg role="img" aria-label={`Temperature projection line chart showing projected temperature anomaly of ${points[points.length - 1].temp.toFixed(2)}°C by 2050 based on a ${pledge}% emission reduction`} viewBox={`0 0 ${width} ${height}`} className="w-full h-auto">
+      <svg role="img" aria-label={`Temperature projection line chart showing projected temperature anomaly of ${points[points.length - 1].temp.toFixed(2)}°C by 2050 based on a ${pledge.toFixed(1)}°C scenario`} viewBox={`0 0 ${width} ${height}`} className="w-full h-auto">
         <title>Temperature Projection Chart</title>
-        <desc>{`A line chart starting at 0.95°C anomaly in 2020 and changing to a projected ${points[points.length - 1].temp.toFixed(2)}°C anomaly by 2050 under a selected ${pledge}% emissions reduction pledge.`}</desc>
+        <desc>{`A line chart starting at 0.95°C anomaly in 2020 and changing to a projected ${points[points.length - 1].temp.toFixed(2)}°C anomaly by 2050 under a selected ${pledge.toFixed(1)}°C scenario.`}</desc>
         <defs>
           <filter id="mini-chart-glow" x="-20%" y="-20%" width="140%" height="140%">
             <feGaussianBlur stdDeviation="3" result="blur" />

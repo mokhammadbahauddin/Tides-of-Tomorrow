@@ -12,10 +12,10 @@ interface CallToActionProps {
   className?: string;
 }
 
-// Color utility for gauges & curves based on willpower pledge level
-const getPledgeColor = (p: number) => {
-  if (p >= 75) return '#2B7A78'; // Safe reef teal
-  if (p >= 30) return '#D4A574'; // Warning warm sand
+// Color utility for gauges & curves based on target temperature
+const getPledgeColor = (temp: number) => {
+  if (temp <= 1.8) return '#2B7A78'; // Safe reef teal
+  if (temp <= 3.0) return '#D4A574'; // Warning warm sand
   return '#B44D36'; // Critical terracotta
 };
 
@@ -23,7 +23,7 @@ export default function CallToAction({ className }: CallToActionProps) {
   const sectionRef = useRef<HTMLElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
   const cardsRef = useRef<HTMLDivElement>(null);
-  const [pledge, setPledge] = useState(15); // Default 15% reduction pledge
+  const [targetTemp, setTargetTemp] = useState(2.7); // Default 2.7C current trajectory
   const [country, setCountry] = useState(CTA_COUNTRY_DATA[0]);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
@@ -71,8 +71,8 @@ export default function CallToAction({ className }: CallToActionProps) {
   }, []);
 
   // Dynamic projection calculations for gauges
-  const temp2050 = calcTemp2050(pledge);
-  const sea2050 = calcSea2050(pledge);
+  const temp2050 = calcTemp2050(targetTemp);
+  const sea2050 = calcSea2050(targetTemp);
 
   return (
     <section
@@ -104,7 +104,7 @@ export default function CallToAction({ className }: CallToActionProps) {
           <div 
             className="max-w-6xl mx-auto glass-panel border p-8 md:p-12 mb-16 text-left transition-all duration-500 grid grid-cols-1 lg:grid-cols-12 gap-10 relative overflow-hidden rounded-none" 
             style={{ 
-              borderColor: `${getPledgeColor(pledge)}25`,
+              borderColor: `${getPledgeColor(targetTemp)}25`,
               boxShadow: 'inset 0 0 40px rgba(11, 26, 46, 0.5)',
             }}
           >
@@ -114,10 +114,10 @@ export default function CallToAction({ className }: CallToActionProps) {
                 <div className="flex items-center gap-3 mb-5">
                   <TrendingDown 
                     className="w-5 h-5 transition-colors duration-500" 
-                    style={{ color: getPledgeColor(pledge) }}
+                    style={{ color: getPledgeColor(targetTemp) }}
                   /> 
                   <h3 className="font-display text-xl font-bold text-white tracking-wide">
-                    Acknowledge Your Debt
+                    Historical Carbon Responsibility
                   </h3>
                 </div>
                 
@@ -176,44 +176,44 @@ export default function CallToAction({ className }: CallToActionProps) {
                   </div>
                 </div>
 
-                {/* Country Debt Invoice slip - Premium Slip Card */}
+                {/* Country Carbon Share slip - Premium Slip Card */}
                 <div 
                   className="glass-panel border p-6 rounded-none mb-8 relative overflow-hidden transition-all duration-500"
                   style={{
-                    borderColor: `${getPledgeColor(pledge)}25`,
-                    boxShadow: `0 15px 35px rgba(0,0,0,0.3), 0 0 25px ${getPledgeColor(pledge)}05`,
+                    borderColor: `${getPledgeColor(targetTemp)}25`,
+                    boxShadow: `0 15px 35px rgba(0,0,0,0.3), 0 0 25px ${getPledgeColor(targetTemp)}05`,
                   }}
                 >
                   <div className="absolute top-0 right-0 w-24 h-24 bg-gradient-to-br from-white/5 to-transparent pointer-events-none" />
                   <h4 className="text-terracotta font-mono text-[9px] uppercase tracking-widest font-semibold mb-2"
-                    style={{ color: getPledgeColor(pledge) }}
+                    style={{ color: getPledgeColor(targetTemp) }}
                   >
-                    Climate Debt Invoice
+                    Global Emissions Share
                   </h4>
                   <div className="font-display text-4xl sm:text-5xl font-bold text-shell-white mb-2 tracking-wide">
-                    ${country.debt} <span className="text-base font-sans font-medium text-shell-white/50">Billion</span>
+                    {country.share}% <span className="text-base font-sans font-medium text-shell-white/50">of Global Total</span>
                   </div>
                   <p className="text-xs text-[#E8DCC8]/75 font-body leading-relaxed border-t border-[#D4A574]/10 pt-4 mt-3">
-                    Estimated loss &amp; damage compensation owed to the 22 Pacific Island Nations based on <strong>{country.name}'s {country.share}%</strong> share of historical global emissions. 
+                    <strong>{country.name}</strong> is responsible for {country.share}% of all cumulative global CO₂ emissions, directly driving the disproportionate climate impacts faced by the 22 Pacific Island Nations.
                   </p>
                   <p className="text-[9px] text-[#E8DCC8]/50 font-mono mt-3 leading-relaxed">
-                    *Methodology Note: Debt is an illustrative allocation of a modeled $10 Trillion global climate loss-and-damage burden, distributed proportionally by each nation's cumulative CO₂ emissions (1850–2022) sourced from CAIT/WRI.
+                    *Methodology Note: Percentage reflects historical cumulative CO₂ emissions (1850–2022) sourced from the Global Carbon Project / Our World in Data.
                   </p>
                 </div>
                 
                 {/* Willpower Commitment Custom Slider */}
                 <div className="mb-4">
                   <div className="flex justify-between items-baseline mb-3">
-                    <span className="text-[9px] font-mono text-[#8B7355] uppercase tracking-wider font-semibold">Commitment Willpower</span>
+                    <span className="text-[9px] font-mono text-[#8B7355] uppercase tracking-wider font-semibold">Target Warming Scenario</span>
                     <span 
                       className="text-base font-bold font-display tracking-widest px-3 py-1 rounded-none transition-all duration-300"
                       style={{ 
-                        color: getPledgeColor(pledge),
-                        backgroundColor: `${getPledgeColor(pledge)}12`,
-                        border: `1px solid ${getPledgeColor(pledge)}25`
+                        color: getPledgeColor(targetTemp),
+                        backgroundColor: `${getPledgeColor(targetTemp)}12`,
+                        border: `1px solid ${getPledgeColor(targetTemp)}25`
                       }}
                     >
-                      {pledge}%
+                      {targetTemp.toFixed(1)}°C
                     </span>
                   </div>
 
@@ -225,23 +225,24 @@ export default function CallToAction({ className }: CallToActionProps) {
                     <div 
                       className="absolute top-1/2 left-0 h-2 rounded-full transform -translate-y-1/2 pointer-events-none transition-all duration-300"
                       style={{
-                        width: `${pledge}%`,
-                        background: `linear-gradient(90deg, #B44D36, #D4A574 50%, #2B7A78 100%)`
+                        width: `${((targetTemp - 1.5) / 2.5) * 100}%`,
+                        background: `linear-gradient(90deg, #2B7A78, #D4A574 50%, #B44D36 100%)`
                       }}
                     />
 
                     {/* Hidden Range Input for scrubbing */}
                     <input 
                       type="range"
-                      min="0"
-                      max="100"
-                      value={pledge}
-                      onChange={(e) => setPledge(parseInt(e.target.value))}
-                      aria-label="Climate pledge percentage reduction"
-                      aria-valuemin={0}
-                      aria-valuemax={100}
-                      aria-valuenow={pledge}
-                      aria-valuetext={`${pledge} percent reduction`}
+                      min="1.5"
+                      max="4.0"
+                      step="0.1"
+                      value={targetTemp}
+                      onChange={(e) => setTargetTemp(parseFloat(e.target.value))}
+                      aria-label="Target Global Warming Scenario"
+                      aria-valuemin={1.5}
+                      aria-valuemax={4.0}
+                      aria-valuenow={targetTemp}
+                      aria-valuetext={`${targetTemp} degrees Celsius`}
                       className="w-full h-8 opacity-0 cursor-pointer relative z-10"
                     />
 
@@ -249,9 +250,9 @@ export default function CallToAction({ className }: CallToActionProps) {
                     <div 
                       className="absolute top-1/2 w-6 h-6 rounded-full bg-white transform -translate-y-1/2 -translate-x-1/2 pointer-events-none transition-all duration-300"
                       style={{
-                        left: `${pledge}%`,
-                        border: `2px solid ${getPledgeColor(pledge)}`,
-                        boxShadow: `0 0 15px ${getPledgeColor(pledge)}`
+                        left: `${((targetTemp - 1.5) / 2.5) * 100}%`,
+                        border: `2px solid ${getPledgeColor(targetTemp)}`,
+                        boxShadow: `0 0 15px ${getPledgeColor(targetTemp)}`
                       }}
                     />
                   </div>
@@ -259,23 +260,22 @@ export default function CallToAction({ className }: CallToActionProps) {
                   {/* Milestones buttons and labels */}
                   <div className="flex justify-between px-1 mt-3">
                     {[
-                      { val: 0, label: 'Inaction' },
-                      { val: 30, label: 'Transition' },
-                      { val: 75, label: 'Ambitious' },
-                      { val: 100, label: 'Net Zero' }
+                      { val: 1.5, label: 'SSP1-1.9 (Net Zero)' },
+                      { val: 2.7, label: 'Current Policies' },
+                      { val: 4.0, label: 'SSP5-8.5 (Inaction)' }
                     ].map((ms, idx) => {
-                      const isNear = Math.abs(pledge - ms.val) <= 15;
+                      const isNear = Math.abs(targetTemp - ms.val) <= 0.3;
                       return (
                         <button
                           key={ms.val}
-                          onClick={() => setPledge(ms.val)}
-                          aria-pressed={pledge === ms.val}
-                          aria-label={`Set reduction commitment to ${ms.label} (${ms.val} percent)`}
+                          onClick={() => setTargetTemp(ms.val)}
+                          aria-pressed={targetTemp === ms.val}
+                          aria-label={`Set scenario to ${ms.label} (${ms.val} degrees)`}
                           className="flex flex-col items-center group focus:outline-none"
                           style={{
-                            width: '50px',
-                            marginLeft: idx === 0 ? '-12px' : '0',
-                            marginRight: idx === 3 ? '-12px' : '0',
+                            width: '80px',
+                            marginLeft: idx === 0 ? '-20px' : '0',
+                            marginRight: idx === 2 ? '-20px' : '0',
                           }}
                         >
                           <div 
@@ -285,7 +285,7 @@ export default function CallToAction({ className }: CallToActionProps) {
                                 : 'bg-[#8B7355]/40 group-hover:bg-[#8B7355]'
                             }`}
                             style={{
-                              backgroundColor: isNear ? getPledgeColor(pledge) : undefined
+                              backgroundColor: isNear ? getPledgeColor(targetTemp) : undefined
                             }}
                           />
                           <span 
@@ -295,7 +295,7 @@ export default function CallToAction({ className }: CallToActionProps) {
                                 : 'text-[#8B7355]/50 group-hover:text-[#8B7355]'
                             }`}
                             style={{
-                              color: isNear ? getPledgeColor(pledge) : undefined
+                              color: isNear ? getPledgeColor(targetTemp) : undefined
                             }}
                           >
                             {ms.label}
@@ -318,7 +318,7 @@ export default function CallToAction({ className }: CallToActionProps) {
               {/* Corner Ambient Light */}
               <div 
                 className="absolute -top-12 -right-12 w-28 h-28 blur-3xl pointer-events-none opacity-20 transition-all duration-500"
-                style={{ backgroundColor: getPledgeColor(pledge) }}
+                style={{ backgroundColor: getPledgeColor(targetTemp) }}
               />
 
               <div className="flex flex-col gap-6 w-full">
@@ -326,22 +326,22 @@ export default function CallToAction({ className }: CallToActionProps) {
                 <div className="grid grid-cols-2 gap-6 py-1">
                   <Gauge 
                     value={temp2050} 
-                    max={3.0} 
-                    label="SST Anomaly (2050)" 
-                    unit="°C Anom" 
-                    color={getPledgeColor(pledge)} 
+                    max={4.0} 
+                    label="Target Scenario" 
+                    unit="°C Warming" 
+                    color={getPledgeColor(targetTemp)} 
                   />
                   <Gauge 
                     value={sea2050} 
-                    max={300} 
+                    max={400} 
                     label="Sea Level Rise (2050)" 
                     unit="mm Rise" 
-                    color={getPledgeColor(pledge)} 
+                    color={getPledgeColor(targetTemp)} 
                   />
                 </div>
 
                 {/* Responsive Curve chart */}
-                <MiniChart pledge={pledge} />
+                <MiniChart pledge={targetTemp} />
                 <p className="text-[9px] text-[#E8DCC8]/40 font-mono mt-1 leading-relaxed text-center">
                   *Projections are simplified illustrative models calibrated to match the broad SSP1-1.9 (Net Zero) through SSP5-8.5 (Inaction) trajectories from IPCC AR6.
                 </p>
@@ -351,14 +351,14 @@ export default function CallToAction({ className }: CallToActionProps) {
               <div 
                 className="p-4.5 border rounded-none transition-all duration-500 glass-panel" 
                 style={{ 
-                  backgroundColor: `${getPledgeColor(pledge)}04`, 
-                  borderColor: `${getPledgeColor(pledge)}20`
+                  backgroundColor: `${getPledgeColor(targetTemp)}04`, 
+                  borderColor: `${getPledgeColor(targetTemp)}20`
                 }}
               >
                 <div className="text-xs text-shell-white/85 font-body leading-relaxed transition-all duration-500">
-                  {pledge < 30 && "Business as usual. The trajectory remains catastrophic. At this level of inaction, Pacific adaptation costs will exceed total GDP, and mass forced migration is mathematically inevitable."}
-                  {pledge >= 30 && pledge < 75 && "Moderate transition. While this delays the most extreme impacts, it still locks the Pacific into billions in necessary seawall defenses and continuous agricultural failure."}
-                  {pledge >= 75 && "Aggressive decarbonization. This is the only scenario where the data begins to stabilize. The warming slows, sea level anomalies plateau, and sovereign land is preserved."}
+                  {targetTemp >= 3.5 && "SSP5-8.5: Fossil-fueled development. The trajectory remains catastrophic. At this level of inaction, Pacific adaptation costs will exceed total GDP, and mass forced migration is mathematically inevitable."}
+                  {targetTemp >= 2.0 && targetTemp < 3.5 && "SSP2-4.5: Current policies. While this avoids the most extreme impacts, it still locks the Pacific into billions in necessary seawall defenses and widespread agricultural failure."}
+                  {targetTemp < 2.0 && "SSP1-1.9: Aggressive decarbonization. This is the only scenario where the data begins to stabilize. The warming slows, sea level anomalies plateau, and sovereign land is preserved."}
                 </div>
               </div>
             </div>

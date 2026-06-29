@@ -1,0 +1,16 @@
+[
+  { "name": "Tuvalu", "coords": [179.2, -8.5], "severity": "CRITICAL", "category": "Sea Level Rise", "impact": "Rising ocean tides are flooding coastal areas and contaminating their fresh drinking water with salt." },
+  { "name": "Kiribati", "coords": [173.0, 1.4], "severity": "CRITICAL", "category": "Shoreline Erosion", "impact": "Severe coastal erosion is washing away homes and poisoning crop soils, forcing relocation plans." },
+  { "name": "Fiji", "coords": [178.4, -17.7], "severity": "HIGH", "category": "Adaptation Costs", "impact": "Villages are being forced to relocate inland, diverting vital public funds to build new seawalls." },
+  { "name": "Samoa", "coords": [-172.2, -13.8], "severity": "SEVERE", "category": "Storm Surges", "impact": "Violent storm surges are destroying key coastal roads and flooding low-lying family communities." },
+  { "name": "Tonga", "coords": [-175.2, -21.1], "severity": "HIGH", "category": "Acidification", "impact": "Acidic waters are killing protective coral reefs and depleting the fish populations they depend on." },
+  { "name": "Solomon Islands", "coords": [160.1, -9.6], "severity": "SEVERE", "category": "Crop Failure", "impact": "Rising seas are ruining agricultural soil, forcing families to rely on expensive imported food." },
+  { "name": "Vanuatu", "coords": [168.3, -17.7], "severity": "CRITICAL", "category": "Extreme Weather", "impact": "Experiencing catastrophic category-5 cyclones and unpredictable whiplash weather cycles." },
+  { "name": "Nauru", "coords": [166.9, -0.5], "severity": "HIGH", "category": "Coral Bleaching", "impact": "Spiking water temperatures are bleaching protective reefs, threatening local fish supplies." },
+  { "name": "Niue", "coords": [-169.9, -19.0], "severity": "HIGH", "category": "Water Security", "impact": "Their underground freshwater supply is highly vulnerable to sea level rise and storms." },
+  { "name": "Cook Islands", "coords": [-159.8, -21.2], "severity": "SEVERE", "category": "Reef Collapse", "impact": "Bleached coral reefs can no longer buffer the shores, leaving coastal homes exposed to ocean waves." },
+  { "name": "Guam", "coords": [144.7, 13.4], "severity": "SEVERE", "category": "Typhoons", "impact": "More frequent and intense typhoons are battering local infrastructure and bleaching coral reefs." },
+  { "name": "Micronesia", "coords": [158.2, 6.9], "severity": "SEVERE", "category": "Salt Intrusion", "impact": "Regular flooding during high spring tides is contaminating farm soils and crop gardens." },
+  { "name": "Marshall Islands", "coords": [171.3, 7.1], "severity": "CRITICAL", "category": "Tidal Flooding", "impact": "King tides now flood lagoon streets regularly, while heat stress is collapsing local coral reefs." },
+  { "name": "Palau", "coords": [134.5, 7.4], "severity": "HIGH", "category": "Marine Bleaching", "impact": "Spiking water temperatures threaten rare marine species in their world-famous marine lakes." }
+]

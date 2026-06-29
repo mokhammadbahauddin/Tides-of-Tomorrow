@@ -59,6 +59,14 @@ export default function TaxChart({ activeStep, selectedCountry }: TaxChartProps)
     }).catch((err) => { console.error('Failed to load chart data:', err); setHasError(true); });
   }, []);
 
+  const isRegionalFallback = useMemo(() => {
+    if (!selectedCountry || selectedCountry.id === 'REGIONAL') return false;
+    if (rawData.length > 0) {
+      return (rawData[0] as any)[selectedCountry.id] === undefined;
+    }
+    return false;
+  }, [rawData, selectedCountry]);
+
   const data = useMemo(() => {
     const countryKey = selectedCountry?.id || 'REGIONAL';
     let cumulativeSum = 0;
@@ -294,7 +302,7 @@ export default function TaxChart({ activeStep, selectedCountry }: TaxChartProps)
       .attr('font-family', 'Inter, sans-serif')
       .attr('font-weight', 'bold')
       .attr('opacity', 0)
-      .text('DRAINING FUNDS // INJUSTICE');
+      .text('RESOURCE DISPLACEMENT');
 
     // --- RENDER GROUNDED STAND (FULCRUM COLUMN) ---
     // Rendered on top of moving beam so the pivot joint overlays cleanly
@@ -638,6 +646,13 @@ export default function TaxChart({ activeStep, selectedCountry }: TaxChartProps)
         <span className="text-[8px] font-mono text-terracotta uppercase tracking-widest font-semibold">BALANCE SCALE SIMULATOR</span>
         <h4 className="text-xs font-display text-shell-white/70">{selectedCountry?.name || 'Regional'} Adaptation Cost vs Public Resource Balance</h4>
       </div>
+
+      {isRegionalFallback && (
+        <div className="absolute top-6 right-6 bg-[#0B1A2E]/80 border border-[#D4A574]/30 px-3 py-1.5 rounded-none backdrop-blur-sm z-10 flex items-center gap-2 mt-12 md:mt-0">
+           <span className="w-2 h-2 rounded-full bg-[#D4A574] animate-pulse" />
+           <span className="text-[10px] font-mono text-[#E8DCC8] uppercase tracking-wider">Showing Regional Average (Country Data Unavailable)</span>
+        </div>
+      )}
 
       <svg ref={svgRef} className="w-full" />
     </div>

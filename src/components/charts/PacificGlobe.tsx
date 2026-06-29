@@ -20,18 +20,6 @@ export default function PacificGlobe() {
   const isVisibleRef = useRef<boolean>(false);
   const lastTooltipRef = useRef<string>('');
 
-  // Pause the animation loop when the globe is off-screen
-  useEffect(() => {
-    const container = containerRef.current;
-    if (!container) return;
-    const observer = new IntersectionObserver(
-      ([entry]) => { isVisibleRef.current = entry.isIntersecting; },
-      { threshold: 0.1 }
-    );
-    observer.observe(container);
-    return () => observer.disconnect();
-  }, []);
-
   useEffect(() => {
     if (!canvasRef.current || !containerRef.current) return;
     const canvas = canvasRef.current;
@@ -42,8 +30,6 @@ export default function PacificGlobe() {
     // Responsive Canvas Resizing
     let width = container.clientWidth;
     let height = container.clientHeight;
-    
-    // Pixel ratio for sharpness
     const dpr = window.devicePixelRatio || 1;
 
     const resizeCanvas = () => {
@@ -66,31 +52,14 @@ export default function PacificGlobe() {
     const path = d3.geoPath(projection, context);
     const graticule = d3.geoGraticule();
 
-    // Precise, geographically accurate coordinates [longitude, latitude]
-    const pictNations = [
-      { name: 'Tuvalu', coords: [179.2, -8.5] as [number, number], severity: 'CRITICAL' as const, category: 'Sea Level Rise', impact: 'Rising ocean tides are flooding coastal areas and contaminating their fresh drinking water with salt.' },
-      { name: 'Kiribati', coords: [173.0, 1.4] as [number, number], severity: 'CRITICAL' as const, category: 'Shoreline Erosion', impact: 'Severe coastal erosion is washing away homes and poisoning crop soils, forcing relocation plans.' },
-      { name: 'Fiji', coords: [178.4, -17.7] as [number, number], severity: 'HIGH' as const, category: 'Adaptation Costs', impact: 'Villages are being forced to relocate inland, diverting vital public funds to build new seawalls.' },
-      { name: 'Samoa', coords: [-172.2, -13.8] as [number, number], severity: 'SEVERE' as const, category: 'Storm Surges', impact: 'Violent storm surges are destroying key coastal roads and flooding low-lying family communities.' },
-      { name: 'Tonga', coords: [-175.2, -21.1] as [number, number], severity: 'HIGH' as const, category: 'Acidification', impact: 'Acidic waters are killing protective coral reefs and depleting the fish populations they depend on.' },
-      { name: 'Solomon Islands', coords: [160.1, -9.6] as [number, number], severity: 'SEVERE' as const, category: 'Crop Failure', impact: 'Rising seas are ruining agricultural soil, forcing families to rely on expensive imported food.' },
-      { name: 'Vanuatu', coords: [168.3, -17.7] as [number, number], severity: 'CRITICAL' as const, category: 'Extreme Weather', impact: 'Experiencing catastrophic category-5 cyclones and unpredictable whiplash weather cycles.' },
-      { name: 'Nauru', coords: [166.9, -0.5] as [number, number], severity: 'HIGH' as const, category: 'Coral Bleaching', impact: 'Spiking water temperatures are bleaching protective reefs, threatening local fish supplies.' },
-      { name: 'Niue', coords: [-169.9, -19.0] as [number, number], severity: 'HIGH' as const, category: 'Water Security', impact: 'Their underground freshwater supply is highly vulnerable to sea level rise and storms.' },
-      { name: 'Cook Islands', coords: [-159.8, -21.2] as [number, number], severity: 'SEVERE' as const, category: 'Reef Collapse', impact: 'Bleached coral reefs can no longer buffer the shores, leaving coastal homes exposed to ocean waves.' },
-      { name: 'Guam', coords: [144.7, 13.4] as [number, number], severity: 'SEVERE' as const, category: 'Typhoons', impact: 'More frequent and intense typhoons are battering local infrastructure and bleaching coral reefs.' },
-      { name: 'Micronesia', coords: [158.2, 6.9] as [number, number], severity: 'SEVERE' as const, category: 'Salt Intrusion', impact: 'Regular flooding during high spring tides is contaminating farm soils and crop gardens.' },
-      { name: 'Marshall Islands', coords: [171.3, 7.1] as [number, number], severity: 'CRITICAL' as const, category: 'Tidal Flooding', impact: 'King tides now flood lagoon streets regularly, while heat stress is collapsing local coral reefs.' },
-      { name: 'Palau', coords: [134.5, 7.4] as [number, number], severity: 'HIGH' as const, category: 'Marine Bleaching', impact: 'Spiking water temperatures threaten rare marine species in their world-famous marine lakes.' },
-    ];
-
+    let pictNations: any[] = [];
     let sphere = { type: 'Sphere' } as d3.GeoPermissibleObjects;
     let land: d3.GeoPermissibleObjects | null = null;
     let borders: d3.GeoPermissibleObjects | null = null;
 
     let rotationX = -160;
     let rotationY = -10;
-    let animationId: number;
+    let animationId: number | null = null;
     let mousePos: [number, number] | null = null;
 
     // Drag-to-spin with inertia variables
@@ -105,7 +74,7 @@ export default function PacificGlobe() {
     let lastY = 0;
     let lastTime = 0;
 
-    // Pointer event interaction (Unified Mouse + Touch)
+    // Pointer event interaction
     const handlePointerDown = (e: PointerEvent) => {
       isDragging = true;
       startX = e.clientX;
@@ -122,8 +91,6 @@ export default function PacificGlobe() {
 
     const handlePointerMove = (e: PointerEvent) => {
       const rect = canvas.getBoundingClientRect();
-      
-      // Fix mouse mapping issue under CSS transform scale layouts
       const scaleX = rect.width / width;
       const scaleY = rect.height / height;
       
@@ -134,12 +101,11 @@ export default function PacificGlobe() {
       if (isDragging) {
         const dx = e.clientX - startX;
         const dy = e.clientY - startY;
-        const sensitivity = 0.25; // Drag sensitivity
+        const sensitivity = 0.25;
         
         const now = performance.now();
         const dt = now - lastTime;
         if (dt > 0) {
-          // Calculate instant velocity
           velocityX = (e.clientX - lastX) * sensitivity;
           velocityY = -(e.clientY - lastY) * sensitivity;
         }
@@ -148,7 +114,7 @@ export default function PacificGlobe() {
         lastTime = now;
 
         rotationX = startRotX + dx * sensitivity;
-        rotationY = Math.max(-60, Math.min(60, startRotY - dy * sensitivity)); // Clamp pitch rotation
+        rotationY = Math.max(-60, Math.min(60, startRotY - dy * sensitivity));
       }
     };
 
@@ -167,18 +133,9 @@ export default function PacificGlobe() {
       }
     });
 
-    d3.json('/data/world-110m.json').then((world: any) => {
-      land = topojson.feature(world, world.objects.countries) as unknown as d3.GeoPermissibleObjects;
-      borders = topojson.mesh(world, world.objects.countries, (a, b) => a !== b) as unknown as d3.GeoPermissibleObjects;
-      render();
-    }).catch((err) => { console.error('Failed to load chart data:', err); setHasError(true); });
-
     const render = () => {
-      if (!context) return;
-
-      // Skip drawing when globe is not visible, but keep the loop alive
-      if (!isVisibleRef.current) {
-        animationId = requestAnimationFrame(render);
+      if (!context || !isVisibleRef.current) {
+        animationId = null;
         return;
       }
 
@@ -353,8 +310,29 @@ export default function PacificGlobe() {
       animationId = requestAnimationFrame(render);
     };
 
+    Promise.all([
+      d3.json('/data/world-110m.json'),
+      d3.json('/data/nations.json')
+    ]).then(([world, nations]: any) => {
+      land = topojson.feature(world, world.objects.countries) as unknown as d3.GeoPermissibleObjects;
+      borders = topojson.mesh(world, world.objects.countries, (a, b) => a !== b) as unknown as d3.GeoPermissibleObjects;
+      pictNations = nations;
+      
+      const observer = new IntersectionObserver(
+        ([entry]) => { 
+          isVisibleRef.current = entry.isIntersecting; 
+          if (entry.isIntersecting && !animationId) {
+            render();
+          }
+        },
+        { threshold: 0.1 }
+      );
+      observer.observe(container);
+
+    }).catch((err) => { console.error('Failed to load chart data:', err); setHasError(true); });
+
     return () => {
-      cancelAnimationFrame(animationId);
+      if (animationId) cancelAnimationFrame(animationId);
       window.removeEventListener('resize', resizeCanvas);
       canvas.removeEventListener('pointerdown', handlePointerDown);
       canvas.removeEventListener('pointermove', handlePointerMove);
@@ -392,15 +370,15 @@ export default function PacificGlobe() {
             role="img"
             aria-label="Interactive 3D orthographic globe of the Pacific Ocean. Shows geographic coordinates, warming anomalies, and atoll flooding risks for 22 Pacific Island nations. Use drag gestures to rotate the globe."
           />
-          <div className="sr-only">
-            Interactive 3D globe depicting regional climate threat levels for Pacific territories including Fiji, Tuvalu, Kiribati, Vanuatu, Samoa, Tonga, Solomon Islands, Palau, Marshall Islands, and others. The ocean is highlighted to represent global warming levels, while island markers pulse to represent sea level rise risks.
-          </div>
         </>
       )}
       {tooltip && (
         <div 
-          className="absolute pointer-events-none glass-panel border border-[#D4A574]/15 p-4 z-50 text-left rounded-none max-w-xs"
-          style={{ left: tooltip.x + 15, top: tooltip.y - 15 }}
+          className="fixed pointer-events-none glass-panel border border-[#D4A574]/15 p-4 z-[100] text-left rounded-none max-w-xs"
+          style={{ 
+            left: Math.min(tooltip.x + 15, window.innerWidth - 300), 
+            top: Math.min(tooltip.y - 15, window.innerHeight - 150) 
+          }}
         >
           {/* Heading */}
           <div className="mb-1 border-b border-[#D4A574]/15 pb-1.5">

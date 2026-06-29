@@ -152,12 +152,11 @@ export default function Act1_Prologue() {
               <CarbonLedgerChart isActive={activeStep === 1} />
             </div>
 
-            {/* Dynamic Data Citation Overlay */}
             <div className="absolute bottom-[-45px] left-0 right-0 text-center pointer-events-none z-20">
               <p className="text-[9px] text-drift-wood/75 uppercase tracking-widest font-body inline-block bg-deep-ocean/90 px-3 py-1.5 border border-warm-sand/15 backdrop-blur-sm rounded-none">
                 {activeStep === 0 
-                  ? "Source: Pacific Data Hub (PDH.Stat) — Climate Vulnerability Profiles" 
-                  : "Source: CAIT / WRI / SPREP / IPCC AR6"
+                  ? "Source: Natural Earth World Atlas (Geographical TopoJSON)" 
+                  : "Source: Global Carbon Project (GCP) & WRI Climate Watch"
                 }
               </p>
             </div>

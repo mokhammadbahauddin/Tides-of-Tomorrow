@@ -12,7 +12,9 @@ interface SeaLevelChartProps {
 }
 
 export default function SeaLevelChart({ activeStep = 0, selectedCountry }: SeaLevelChartProps) {
+  const containerRef = useRef<HTMLDivElement>(null);
   const svgRef = useRef<SVGSVGElement>(null);
+  const chartStateRef = useRef<{ xScale: any, yScale: any, threshold: number }>({ xScale: null, yScale: null, threshold: 0 });
   const [tooltip, setTooltip] = useState<{ x: number; y: number; data: SeaLevelRecord | null }>({ x: 0, y: 0, data: null });
   const [rawData, setRawData] = useState<SeaLevelRecord[]>([]);
   const [hasError, setHasError] = useState(false);
@@ -25,6 +27,14 @@ export default function SeaLevelChart({ activeStep = 0, selectedCountry }: SeaLe
       if (res) setRawData(res);
     }).catch((err) => { console.error('Failed to load chart data:', err); setHasError(true); });
   }, []);
+
+  const isRegionalFallback = useMemo(() => {
+    if (!selectedCountry || selectedCountry.id === 'REGIONAL') return false;
+    if (rawData.length > 0) {
+      return (rawData[0] as any)[selectedCountry.id] === undefined;
+    }
+    return false;
+  }, [rawData, selectedCountry]);
 
   const data = useMemo(() => {
     const countryKey = selectedCountry?.id || 'REGIONAL';
@@ -184,8 +194,10 @@ export default function SeaLevelChart({ activeStep = 0, selectedCountry }: SeaLe
       .attr('r', 4);
 
     // Danger Threshold Group (Hidden initially)
-    const thresholdLevel = 80; // mm anomaly threshold for inundation
-    (svg.node() as any).__threshold = thresholdLevel;
+    // Dynamic threshold based on data maximum
+    const maxLevel = d3.max(data, d => d.level) || 100;
+    const thresholdLevel = Math.max(80, maxLevel * 0.75); // Dynamic threshold
+    chartStateRef.current = { xScale, yScale, threshold: thresholdLevel };
 
     const dangerGroup = g.append('g').attr('class', 'danger-group').attr('opacity', 0);
     
@@ -227,14 +239,20 @@ export default function SeaLevelChart({ activeStep = 0, selectedCountry }: SeaLe
     // Comparison Group for 1993 vs 2023 Net Rise
     const compGroup = g.append('g').attr('class', 'comparison-group').attr('opacity', 0);
     
-    const y1993 = yScale(-19.05);
-    const y2023 = yScale(104.76);
+    const data1993 = data.find(d => d.year === 1993) || data[0];
+    const dataLatest = data[data.length - 1];
+    
+    const val1993 = data1993 ? data1993.level : -19.0;
+    const valLatest = dataLatest ? dataLatest.level : 104.8;
+    
+    const y1993 = yScale(val1993);
+    const y2023 = yScale(valLatest);
     const xMid = xScale(2006); // Middle area of the chart for the bracket
 
     // 1993 guide line
     compGroup.append('line')
-      .attr('x1', xScale(1993))
-      .attr('x2', xScale(2023))
+      .attr('x1', xScale(data1993.year))
+      .attr('x2', xScale(dataLatest.year))
       .attr('y1', y1993)
       .attr('y2', y1993)
       .attr('stroke', 'rgba(232, 220, 200, 0.35)')
@@ -242,7 +260,7 @@ export default function SeaLevelChart({ activeStep = 0, selectedCountry }: SeaLe
       .attr('stroke-dasharray', '3,3');
 
     compGroup.append('text')
-      .attr('x', xScale(1993) + 10)
+      .attr('x', xScale(data1993.year) + 10)
       .attr('y', y1993 + 14)
       .attr('fill', '#8B7355') // drift-wood
       .attr('font-size', '9px')
@@ -251,12 +269,12 @@ export default function SeaLevelChart({ activeStep = 0, selectedCountry }: SeaLe
       .attr('stroke', '#0B1A2E')
       .attr('stroke-width', '2.5px')
       .attr('stroke-linejoin', 'round')
-      .text('1993 Level: -19.0 mm');
+      .text(`${data1993.year} Level: ${val1993.toFixed(1)} mm`);
 
     // 2023 guide line
     compGroup.append('line')
-      .attr('x1', xScale(1993))
-      .attr('x2', xScale(2023))
+      .attr('x1', xScale(data1993.year))
+      .attr('x2', xScale(dataLatest.year))
       .attr('y1', y2023)
       .attr('y2', y2023)
       .attr('stroke', 'rgba(43, 122, 120, 0.35)') // reef-teal
@@ -264,7 +282,7 @@ export default function SeaLevelChart({ activeStep = 0, selectedCountry }: SeaLe
       .attr('stroke-dasharray', '3,3');
 
     compGroup.append('text')
-      .attr('x', xScale(1993) + 10)
+      .attr('x', xScale(data1993.year) + 10)
       .attr('y', y2023 - 6)
       .attr('fill', '#2B7A78') // reef-teal
       .attr('font-size', '9px')
@@ -273,7 +291,7 @@ export default function SeaLevelChart({ activeStep = 0, selectedCountry }: SeaLe
       .attr('stroke', '#0B1A2E')
       .attr('stroke-width', '2.5px')
       .attr('stroke-linejoin', 'round')
-      .text('2023 Level: +104.8 mm');
+      .text(`${dataLatest.year} Level: ${valLatest > 0 ? '+' : ''}${valLatest.toFixed(1)} mm`);
 
     // Vertical height comparison bracket
     compGroup.append('line')
@@ -317,7 +335,7 @@ export default function SeaLevelChart({ activeStep = 0, selectedCountry }: SeaLe
       .attr('stroke', '#0B1A2E')
       .attr('stroke-width', '3px')
       .attr('stroke-linejoin', 'round')
-      .text('+123.8 mm Net Rise');
+      .text(`+${(valLatest - val1993).toFixed(1)} mm Net Rise`);
 
     textBlock.append('text')
       .attr('x', 0)
@@ -329,7 +347,7 @@ export default function SeaLevelChart({ activeStep = 0, selectedCountry }: SeaLe
       .attr('stroke', '#0B1A2E')
       .attr('stroke-width', '3px')
       .attr('stroke-linejoin', 'round')
-      .text('(+12.4 cm in 30 years)');
+      .text(`(${(valLatest - val1993).toFixed(1)} mm in ${(dataLatest.year - data1993.year)} years)`);
 
     // Hover interaction
     const hoverLine = g.append('line')
@@ -377,19 +395,16 @@ export default function SeaLevelChart({ activeStep = 0, selectedCountry }: SeaLe
       .attr('font-family', 'JetBrains Mono, monospace')
       .text('Anomaly (mm)');
 
-    // Store scales for reactive updates
-    (svg.node() as any).__scales = { xScale, yScale, xAxis, innerWidth, innerHeight };
-
   }, [data]);
 
   useEffect(() => {
     const svg = d3.select(svgRef.current);
     if (svg.empty()) return;
 
-    const scales = (svg.node() as any).__scales;
-    if (!scales) return;
+    const { xScale, yScale, threshold } = chartStateRef.current;
+    if (!xScale || !yScale) return;
 
-    const { innerHeight } = scales;
+    const innerHeight = height - 20 - 40;
     const dots = svg.selectAll('.sl-dot');
     
     // Clear previous annotations
@@ -437,7 +452,7 @@ export default function SeaLevelChart({ activeStep = 0, selectedCountry }: SeaLe
       svg.select('.danger-group').transition().duration(800).attr('opacity', 1);
       svg.select('.comparison-group').transition().duration(500).attr('opacity', 0.15); // dim it
 
-      const thresholdLevel = (svg.node() as any).__threshold || 80;
+      const thresholdLevel = threshold;
 
       dots.transition().duration(500)
         .attr('r', (d: any) => d.level >= thresholdLevel ? 8 : 4)
@@ -478,6 +493,12 @@ export default function SeaLevelChart({ activeStep = 0, selectedCountry }: SeaLe
 
   return (
     <div className="relative w-full">
+      {isRegionalFallback && (
+        <div className="absolute top-4 right-6 bg-[#0B1A2E]/80 border border-[#D4A574]/30 px-3 py-1.5 rounded-none backdrop-blur-sm z-10 flex items-center gap-2">
+           <span className="w-2 h-2 rounded-full bg-[#D4A574] animate-pulse" />
+           <span className="text-[10px] font-mono text-[#E8DCC8] uppercase tracking-wider">Showing Regional Average (Country Data Unavailable)</span>
+        </div>
+      )}
       <svg ref={svgRef} className="w-full" />
       {tooltip.data && (
         <div

@@ -192,7 +192,7 @@ export default function CarbonLedgerChart({ isActive = true }: { isActive?: bool
         <svg ref={svgRef} className="w-full h-full" />
       </div>
       <div className="mt-4 text-center text-[#8B7355] font-body text-xs tracking-wide opacity-80 uppercase tracking-widest font-semibold text-[9px]">
-        Source: CAIT / WRI / SPREP / IPCC AR6
+        Source: Global Carbon Project (GCP) / WRI Climate Watch
       </div>
     </div>
   );

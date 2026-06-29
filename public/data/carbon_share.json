@@ -1,0 +1,14 @@
+{
+  "globalEmissions": { "value": 99.97, "label": "Historical Global Emissions" },
+  "pacificEmissions": { "value": 0.03, "label": "Pacific Islands Footprint" },
+  "breakdown": [
+    { "nation": "United States", "share": 24.5 },
+    { "nation": "European Union", "share": 17.5 },
+    { "nation": "China", "share": 14.3 },
+    { "nation": "Russia", "share": 6.8 },
+    { "nation": "United Kingdom", "share": 4.6 },
+    { "nation": "Japan", "share": 4.0 },
+    { "nation": "India", "share": 3.2 },
+    { "nation": "Other Industrialized", "share": 25.1 }
+  ]
+}

@@ -22,7 +22,8 @@ export function RainfallAnomalyChart({ activeStep = 0, selectedCountry }: Props)
   const width = 800;
   const height = 400;
 
-  // Animation ref for canvas
+  const chartStateRef = useRef<{ xScale: any, yScale: any, annotationGroup: any }>({ xScale: null, yScale: null, annotationGroup: null });
+  const isVisibleRef = useRef<boolean>(false);
   const requestRef = useRef<number>(0);
   // Shared state for the particle system to read
   const particleStateRef = useRef({ intensity: 0, type: 'neutral' as 'rain' | 'drought' | 'neutral' });
@@ -31,16 +32,18 @@ export function RainfallAnomalyChart({ activeStep = 0, selectedCountry }: Props)
   useEffect(() => {
     d3.json<RainfallAnomalyRecord[]>('/data/rainfall.json').then((res) => {
       if (res) {
-        const enriched = res.map(d => {
-          if (d.year === 2015) return { ...d, event: 'Cyclone Pam' };
-          if (d.year === 2016) return { ...d, event: 'Cyclone Winston' };
-          if (d.year === 2020) return { ...d, event: 'Cyclone Harold' };
-          return d;
-        });
-        setRawData(enriched);
+        setRawData(res);
       }
     }).catch((err) => { console.error('Failed to load chart data:', err); setHasError(true); });
   }, []);
+
+  const isRegionalFallback = useMemo(() => {
+    if (!selectedCountry || selectedCountry.id === 'REGIONAL') return false;
+    if (rawData.length > 0) {
+      return (rawData[0] as any)[selectedCountry.id] === undefined;
+    }
+    return false;
+  }, [rawData, selectedCountry]);
 
   const data = useMemo(() => {
     const countryKey = selectedCountry?.id || 'REGIONAL';
@@ -318,8 +321,7 @@ export function RainfallAnomalyChart({ activeStep = 0, selectedCountry }: Props)
     });
 
     // Save refs for activeStep changes
-    (svg.node() as any).__scales = { xScale, yScale };
-    (svg.node() as any).__annotationGroup = annotationGroup;
+    chartStateRef.current = { xScale, yScale, annotationGroup };
   }, [handleMouseMove, handleMouseLeave, data]);
 
   // Handle activeStep transitions for the chart highlights
@@ -345,7 +347,7 @@ export function RainfallAnomalyChart({ activeStep = 0, selectedCountry }: Props)
         return d.anomaly >= 0 ? 'url(#rain-bar-gradient)' : 'url(#drought-bar-gradient)';
       });
 
-    const annotationGroup = (svg.node() as any).__annotationGroup;
+    const annotationGroup = chartStateRef.current.annotationGroup;
     if (annotationGroup) {
       annotationGroup.transition().duration(1000).attr('opacity', activeStep >= 1 ? 1 : 0);
     }
@@ -380,6 +382,11 @@ export function RainfallAnomalyChart({ activeStep = 0, selectedCountry }: Props)
     const maxParticles = 600;
 
     const render = () => {
+      if (!isVisibleRef.current) {
+        requestRef.current = requestAnimationFrame(render);
+        return;
+      }
+
       ctx.clearRect(0, 0, canvas.width, canvas.height);
       const state = particleStateRef.current;
 
@@ -439,6 +446,18 @@ export function RainfallAnomalyChart({ activeStep = 0, selectedCountry }: Props)
     return () => cancelAnimationFrame(requestRef.current);
   }, []);
 
+  // Intersection Observer for Canvas loop pause
+  useEffect(() => {
+    const container = containerRef.current;
+    if (!container) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => { isVisibleRef.current = entry.isIntersecting; },
+      { threshold: 0.1 }
+    );
+    observer.observe(container);
+    return () => observer.disconnect();
+  }, []);
+
   if (hasError) {
     return (
       <div className="flex flex-col items-center justify-center h-full min-h-[300px] text-center p-8">
@@ -459,6 +478,12 @@ export function RainfallAnomalyChart({ activeStep = 0, selectedCountry }: Props)
 
   return (
     <div ref={containerRef} className="relative w-full overflow-hidden rounded-none">
+      {isRegionalFallback && (
+        <div className="absolute top-4 right-6 bg-[#0B1A2E]/80 border border-[#D4A574]/30 px-3 py-1.5 rounded-none backdrop-blur-sm z-10 flex items-center gap-2">
+           <span className="w-2 h-2 rounded-full bg-[#D4A574] animate-pulse" />
+           <span className="text-[10px] font-mono text-[#E8DCC8] uppercase tracking-wider">Showing Regional Average (Country Data Unavailable)</span>
+        </div>
+      )}
       <canvas 
         ref={canvasRef} 
         width={800} 
